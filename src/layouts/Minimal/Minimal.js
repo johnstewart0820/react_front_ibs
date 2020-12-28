@@ -10,7 +10,7 @@ const Minimal = props => {
   return (
     <div className={classes.root}>
       <main className={classes.content}>{children}</main>
-      <main className={classes.public}>a</main>
+      <main className={classes.public}></main>
     </div>
   );
 };

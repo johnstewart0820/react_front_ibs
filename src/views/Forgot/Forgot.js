@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import validate from 'validate.js';
 import {
   Button,
-  TextField,
   Link,
-  FormControlLabel,
-  Checkbox,
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
-import storage from 'utils/storage';
 import { ToastProvider, useToasts } from 'react-toast-notifications'
 
 

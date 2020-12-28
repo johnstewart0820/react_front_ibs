@@ -32,7 +32,7 @@ const Main = props => {
     defaultMatches: true
   });
 
-  const [openSidebar, setOpenSidebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(true);
 
   const handleSidebarOpen = () => {
     setOpenSidebar(true);
