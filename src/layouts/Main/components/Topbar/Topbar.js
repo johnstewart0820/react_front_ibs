@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Button } from '@material-ui/core';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles(theme => ({
   root: {
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
@@ -36,20 +37,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Topbar = props => {
-  const { className, onSidebarOpen, ...rest } = props;
-
+  const { className, onSidebarOpen, onSidebarClose, ...rest } = props;
+  const [ open, setOpen] = useState(true);
   const classes = useStyles();
 
   const [notifications] = useState([]);
-
+  const onMaxTopbar = () => {
+    if (open === true)
+      onSidebarOpen();
+    else 
+      onSidebarClose();
+    setOpen(!open);
+  }
   return (
     <AppBar
       {...rest}
       className={clsx(classes.root, className)}
     >
       <div className={classes.toolbar}>
-        <Button className={classes.close_drawer_icon}>
-          <KeyboardBackspaceIcon/>
+        <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
+          {open ? <KeyboardBackspaceIcon/> : <MenuIcon/>}
         </Button>
       </div>
     </AppBar>

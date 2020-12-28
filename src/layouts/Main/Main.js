@@ -8,6 +8,7 @@ import { Sidebar, Topbar, Footer } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    backgroundColor: '#ECECEC',
     paddingTop: 95,
     height: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -20,6 +21,15 @@ const useStyles = makeStyles(theme => ({
   content: {
     height: '100%',
     backgroundColor: '#ECECEC'
+  },
+  topbar_max: {
+    transform: 'translateX(-345px)',
+    visibility: 'visible',
+    width: '100%'
+  },
+  topbar_min: {
+    transform: 'translateX(0)',
+    visibility: 'visible'
   }
 }));
 
@@ -35,14 +45,14 @@ const Main = props => {
   const [openSidebar, setOpenSidebar] = useState(true);
 
   const handleSidebarOpen = () => {
-    setOpenSidebar(true);
-  };
-
-  const handleSidebarClose = () => {
     setOpenSidebar(false);
   };
 
-  const shouldOpenSidebar = isDesktop ? true : openSidebar;
+  const handleSidebarClose = () => {
+    setOpenSidebar(true);
+  };
+
+  const shouldOpenSidebar = openSidebar;
 
   return (
     <div
@@ -51,7 +61,7 @@ const Main = props => {
         [classes.shiftContent]: isDesktop
       })}
     >
-      <Topbar onSidebarOpen={handleSidebarOpen} />
+      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} className={!openSidebar ? classes.topbar_max : classes.topbar_min }/>
       <Sidebar
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
