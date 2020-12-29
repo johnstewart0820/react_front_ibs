@@ -13,8 +13,8 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     backgroundImage: 'url(/images/logos/logo.png)',
-    width: '200px',
-    height: '50px'
+    width: '320px',
+    height: '80px'
   },
   loginForm: {
   },
