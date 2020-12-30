@@ -6,6 +6,7 @@ import {
   Link,
   FormControlLabel,
   Checkbox,
+  CircularProgress
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
@@ -19,6 +20,7 @@ const SignIn = props => {
   const [checkStatus, setCheckStatus] = useState(false);
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
+  const [progressStatus, setProgressStatus] = useState(false);
   const handleChange = event => {
     let arr = JSON.parse(JSON.stringify(input));
     arr[event.target.name] = event.target.value;
@@ -29,9 +31,10 @@ const SignIn = props => {
     setCheckStatus(!checkStatus);
   };
   const handleSignIn = event => {
-    if (error && (error.email && error.email.length > 0 ) || (error.password && error.password.length > 0)) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 1000, autoDismiss: true })
+    if ((error && (error.email && error.email.length > 0 ) || (error.password && error.password.length > 0)) || !input.email || !input.password) {
+      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
+      setProgressStatus(true);
       if (checkStatus) {
         storage.setStorage('email', input.email);
         storage.setStorage('password', input.password);
@@ -43,11 +46,13 @@ const SignIn = props => {
       .login(input.email, input.password)
       .then(response => {
         if (response.code === 200) {
-          console.log(response);
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true })
-          history.push('/cockpit');
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true })
+          setTimeout(function(){history.push('/cockpit');}, 3000);
+
         } else {
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 1000, autoDismiss: true })
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
         }
       }) 
     }
@@ -65,12 +70,12 @@ const SignIn = props => {
   useEffect(() => {
     let arr = JSON.parse(JSON.stringify(error));
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    if (!pattern.test(input["email"])) {
+    if (input["email"] && !pattern.test(input["email"])) {
       arr["email"] = "Please enter valid email address.";
     } else {
       arr["email"] = "";
     }
-    if (!input["password"] || input["password"].length <= 5) {
+    if (input["password"] && input["password"].length <= 5) {
       arr["password"] = "Please enter the password at least 6 characters."
     } else {
       arr["password"] = "";
@@ -79,6 +84,11 @@ const SignIn = props => {
     setError(arr);
   }, [input]);
 
+  const handleKeyPress = (event) => {
+    if (event.charCode === 13) {
+      handleSignIn();
+    }
+  }
   return (
     <>
       <div className={classes.root}>
@@ -96,9 +106,9 @@ const SignIn = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} />
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress}/>
                   <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
-                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} />
+                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
                   <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
                   <FormControlLabel
                     className={classes.rememberMe}
@@ -130,6 +140,16 @@ const SignIn = props => {
       <div className={classes.footerContainer}>
         <img src="/images/logos/footer_logo.jpg" className={classes.unionLogo} />
       </div>
+      {
+        progressStatus ?
+        <>
+        <div className={classes.progressContainer}>
+          <CircularProgress className={classes.progress}/>
+        </div>
+        </>
+        :
+        <></>
+      }
     </>
   );
 };

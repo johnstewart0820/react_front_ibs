@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Button,
   Link,
+  CircularProgress
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
@@ -18,6 +19,7 @@ const Forgot = props => {
   const { addToast } = useToasts()
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
+  const [progressStatus, setProgressStatus] = useState(false);
   useEffect(() => {
     
   }, []);
@@ -29,26 +31,35 @@ const Forgot = props => {
   };
 
   const handleForgot = event => {
-    if (error && (error.email && error.email.length > 0 )) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 2000, autoDismiss: true })
+    if ((error && (error.email && error.email.length > 0 )) || !input.email) {
+      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
+      setProgressStatus(true);
       auth
       .forgot(input.email)
       .then(response => {
         if (response.code === 200) {
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 2000, autoDismiss: true })
-          history.push('/login');
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true })
+          setTimeout(function(){history.push('/login')}, 3000);
         } else {
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 2000, autoDismiss: true })
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
         }
       }) 
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.charCode === 13) {
+      handleForgot();
+    }
+  }
+
   useEffect(() => {
     let arr = JSON.parse(JSON.stringify(error));
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    if (!pattern.test(input["email"])) {
+    if (input["email"] && !pattern.test(input["email"])) {
       arr["email"] = "Please enter valid email address.";
     } else {
       arr["email"] = "";
@@ -73,7 +84,7 @@ const Forgot = props => {
           <div>
             <div className={classes.loginMainForm}>
               <div className={classes.inputForm}>
-                <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} />
+                <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress}/>
                 <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
               </div>
             </div>
@@ -92,6 +103,16 @@ const Forgot = props => {
     <div className={classes.footerContainer}>
         <img src="/images/logos/footer_logo.jpg" className={classes.unionLogo} />
     </div>
+    {
+        progressStatus ?
+        <>
+        <div className={classes.progressContainer}>
+          <CircularProgress className={classes.progress}/>
+        </div>
+        </>
+        :
+        <></>
+      }
   </>
   );
 };

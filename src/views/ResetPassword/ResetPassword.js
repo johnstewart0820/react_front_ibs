@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Button,
   Link,
+  CircularProgress
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
@@ -20,6 +21,8 @@ const ResetPassword = props => {
   const { addToast } = useToasts()
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
+  const [progressStatus, setProgressStatus] = useState(false);
+
   const handleChange = event => {
     let arr = JSON.parse(JSON.stringify(input));
     arr[event.target.name] = event.target.value;
@@ -27,34 +30,43 @@ const ResetPassword = props => {
   };
 
   const handleResetPassword = event => {
-    if (error && (error.password && error.password.length > 0 ) || (error.reset_password && error.reset_password.length > 0)) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 2000, autoDismiss: true })
+    if ((error && (error.password && error.password.length > 0 ) || (error.reset_password && error.reset_password.length > 0)) || !input.password || !input.reset_password) {
+      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
+      setProgressStatus(true);
       auth
       .reset_password(input.password, token)
       .then(response => {
         if (response.code === 200) {
           console.log(response);
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 2000, autoDismiss: true })
-          history.push('/login');
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true })
+          setTimeout(function(){history.push('/login')}, 3000);
+          // history.push('/login');
         } else {
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 2000, autoDismiss: true })
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
         }
       }) 
     }
   };
+  const handleKeyPress = (event) => {
+    if (event.charCode === 13) {
+      handleResetPassword();
+    }
+  }
   useEffect(() => {
   }, []);
   useEffect(() => {
     let arr = JSON.parse(JSON.stringify(error));
-    if (!input["password"] || input["password"].length <= 5) {
+    if (input["password"] && input["password"].length <= 5) {
       arr["password"] = "Please enter the password at least 6 characters."
     } else {
       arr["password"] = "";
     }
     let reset_password = input["reset_password"];
     let password = input["password"];
-    if (!input["reset_password"] || reset_password != password) {
+    if (input["reset_password"] && reset_password != password) {
       arr["reset_password"] = "Please enter the same password."
     } else {
       arr["reset_password"] = "";
@@ -80,9 +92,9 @@ const ResetPassword = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} />
+                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
                   <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
-                  <input className={classes.input_box} type="password" value={input.reset_password} name="reset_password" placeholder="Powtórz hasło" onChange={handleChange} />
+                  <input className={classes.input_box} type="password" value={input.reset_password} name="reset_password" placeholder="Powtórz hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
                   <div className={classes.error_log}>{error["reset_password"] && error["reset_password"].length > 0 && error.reset_password}</div>
                 </div>
               </div>
@@ -100,6 +112,16 @@ const ResetPassword = props => {
       <div className={classes.footerContainer}>
         <img src="/images/logos/footer_logo.jpg" className={classes.unionLogo} />
       </div>
+      {
+        progressStatus ?
+        <>
+        <div className={classes.progressContainer}>
+          <CircularProgress className={classes.progress}/>
+        </div>
+        </>
+        :
+        <></>
+      }
     </>
   );
 };

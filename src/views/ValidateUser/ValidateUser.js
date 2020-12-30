@@ -5,6 +5,9 @@ import {useLocation } from "react-router-dom";
 import { ToastProvider, useToasts } from 'react-toast-notifications'
 import useStyles from './style';
 import auth from '../../apis/auth';
+import {
+  CircularProgress
+} from '@material-ui/core';
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -13,26 +16,37 @@ const ValidateUser = props => {
   let query = useQuery();
   let token = query.get("token");
   const classes = useStyles();
-
-  const [checkStatus, setCheckStatus] = useState(false);
-  const [input, setInput] = useState({});
-  const [error, setError] = useState({});
+  const [progressStatus, setProgressStatus] = useState(false);
   const { addToast } = useToasts()
   useEffect(() => {
-
+    setProgressStatus(true);
     auth
       .validate(token)
       .then(response => {
         if (response.code === 200) {
-          history.push('/login');
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true })
+          setTimeout(function(){history.push('/login');}, 3000);
         } else {
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 1000, autoDismiss: true})
+          setProgressStatus(false);
+          addToast(response.message, { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true })
+          setTimeout(function(){history.push('/login');}, 3000);
         }
       }) 
   }, []);
 
   return (
     <>
+    {
+        progressStatus ?
+        <>
+        <div className={classes.progressContainer}>
+          <CircularProgress className={classes.progress}/>
+        </div>
+        </>
+        :
+        <></>
+      }
     </>
   );
 };

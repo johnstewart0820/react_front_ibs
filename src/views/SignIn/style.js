@@ -131,6 +131,16 @@ const useStyles = makeStyles(theme => ({
   },
   signInButton: {
     margin: theme.spacing(2, 0)
+  },
+  progressContainer: {
+    position: 'absolute',
+    top: '50%',
+    width: '600px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  progress: {
+    color: '#b5502F'
   }
 }));
 

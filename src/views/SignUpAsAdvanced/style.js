@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       textDecoration: 'none'
     },
-    color: '#b5502F',
+    color: 'gray',
     marginRight: '20px',
     fontWeight: 'bold',
     fontFamily: 'roboto',
@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     },
     fontWeight: 'bold',
     fontFamily: 'roboto',
-    color: 'gray',
+    color: '#b5502F',
   },
   loginMainForm: {
     paddingLeft: '10px',
@@ -127,6 +127,16 @@ const useStyles = makeStyles(theme => ({
   },
   signInButton: {
     margin: theme.spacing(2, 0)
+  },
+  progressContainer: {
+    position: 'absolute',
+    top: '50%',
+    width: '600px',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  progress: {
+    color: '#b5502F'
   }
 }));
 
