@@ -30,7 +30,13 @@ const useStyles = makeStyles(theme => ({
   topbar_min: {
     transform: 'translateX(0)',
     visibility: 'visible'
-  }
+  },
+  mainContainer: {
+    paddingLeft: theme.spacing(3),
+    paddingTop: theme.spacing(5),
+    paddingRight: theme.spacing(5),
+    paddingBottom: theme.spacing(8),
+  },
 }));
 
 const Main = props => {
@@ -58,16 +64,16 @@ const Main = props => {
     <div
       className={clsx({
         [classes.root]: true,
-        [classes.shiftContent]: isDesktop
+        [classes.shiftContent]: openSidebar
       })}
     >
-      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} className={!openSidebar ? classes.topbar_max : classes.topbar_min }/>
+      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} className={!openSidebar ? classes.topbar_max : classes.topbar_min } title={props.title}/>
       <Sidebar
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
       />
-      <main className={classes.content}>
+      <main className={classes.mainContainer}>
         {children}
       </main>
     </div>

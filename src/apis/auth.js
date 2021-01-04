@@ -9,7 +9,7 @@ class Auth {
                 password: password
             })
             .then(response => {
-                if (response.code === 200) {
+                if (response.data.code === 200) {
                     storage.setStorage('token', response.data.data.token);
                 }
                 return response.data;

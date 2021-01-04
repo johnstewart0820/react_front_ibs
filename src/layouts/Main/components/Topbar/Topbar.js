@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1)
   },
   toolbar: {
+    display: 'flex',
     width: '100%',
     paddingLeft: '40px'
   },
@@ -33,11 +34,20 @@ const useStyles = makeStyles(theme => ({
     '& .MuiSvgIcon-root': {
       fontSize: '4em'
     }
+  },
+  title: {
+    color: 'gray',
+    fontSize: '1.7em',
+    fontFamily: 'roboto',
+    fontWeight: '400',
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: '20px'
   }
 }));
 
 const Topbar = props => {
-  const { className, onSidebarOpen, onSidebarClose, ...rest } = props;
+  const { className, title, onSidebarOpen, onSidebarClose, ...rest } = props;
   const [ open, setOpen] = useState(true);
   const classes = useStyles();
 
@@ -58,6 +68,9 @@ const Topbar = props => {
         <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
           {open ? <KeyboardBackspaceIcon/> : <MenuIcon/>}
         </Button>
+        <div className={classes.title}>
+          {title}
+        </div>
       </div>
     </AppBar>
   );

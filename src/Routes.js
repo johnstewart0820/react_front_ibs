@@ -30,48 +30,56 @@ const Routes = () => {
         component={CockpitView}
         exact
         layout={MainLayout}
+        title='Kokpit'
         path="/cockpit"
       />
       <RouteWithLayout
         component={ForecastingModuleView}
         exact
         layout={MainLayout}
+        title='Moduł prognostyczny'
         path="/forecasting_module"
       />
       <RouteWithLayout
         component={OwnSimulationsView}
         exact
         layout={MainLayout}
+        title='Własne symulacje'
         path="/own_simulations"
       />
       <RouteWithLayout
         component={JobOfferView}
         exact
         layout={MainLayout}
+        title='Moduł Internetowych Ofert Pracy'
         path="/job_offer"
       />
       <RouteWithLayout
         component={ProfileView}
         exact
         layout={MainLayout}
+        title='Twój Profil'
         path="/profile"
       />
       <RouteWithLayout
         component={AnalyzesView}
         exact
         layout={MainLayout}
+        title='Zapisane analizy'
         path="/analyzes"
       />
       <RouteWithLayout
         component={SavedSimulationsView}
         exact
         layout={MainLayout}
+        title='Zapisane symulacje'
         path="/saved_simulations"
       />
       <RouteWithLayout
         component={HelpView}
         exact
         layout={MainLayout}
+        title='Pomoc'
         path="/help"
       />
       <RouteWithLayout
