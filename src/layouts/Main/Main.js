@@ -25,11 +25,13 @@ const useStyles = makeStyles(theme => ({
   topbar_max: {
     transform: 'translateX(-345px)',
     visibility: 'visible',
-    width: '100%'
+    width: '100%',
+    zIndex: '0'
   },
   topbar_min: {
     transform: 'translateX(0)',
-    visibility: 'visible'
+    visibility: 'visible',
+    zIndex: '0'
   },
   mainContainer: {
     paddingLeft: theme.spacing(3),

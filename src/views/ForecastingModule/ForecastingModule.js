@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, TextField, Card, Button, CircularProgress } from '@material-ui/core';
+import { ToastProvider, useToasts } from 'react-toast-notifications'
 import { Autocomplete } from '@material-ui/lab';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
@@ -7,11 +8,19 @@ import scenarios from '../../apis/scenarios';
 
 const ForecastingModule = (props) => {
   const classes = useStyles();
+  const { addToast } = useToasts()
   const { history } = props;
   const [progressStatus, setProgressStatus] = useState(false);
   const [scenariosLabels, setScenariosLabels] = useState([]);
+  const [selectedItem, setSelectedItem] = useState({});
   const handleShowResult = () => {
-    
+    if (Object.keys(selectedItem).length === 0 && selectedItem.constructor === Object) {
+      addToast('Please select one scenario.', { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true })
+    } else {
+      history.push({
+        pathname: '/forecasting_module/simulation_info',
+        state: {item: selectedItem}});
+    }
   }
 
   const handleCreateSimulation = () => {
@@ -33,7 +42,6 @@ const ForecastingModule = (props) => {
   }, []);
 
   return (
-    console.log(scenariosLabels),
     <>
       <Card className={classes.mainContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>
@@ -45,8 +53,9 @@ const ForecastingModule = (props) => {
           <Grid item xs="5">
             <Autocomplete
               className={classes.name_select_box}
+              onChange={(event, value) => setSelectedItem(value ? value : {})}
               options={scenariosLabels}
-              getOptionLabel={(option) => scenariosLabels && option.description}
+              getOptionLabel={(option) => scenariosLabels && option && option.description}
               renderInput={(params) => <TextField {...params} label="Wpisz nazwę" variant="outlined" />}
             />
           </Grid>

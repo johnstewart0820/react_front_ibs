@@ -1,5 +1,6 @@
 export { default as Cockpit } from './Cockpit';
 export { default as ForecastingModule } from './ForecastingModule';
+export { default as SimulationInfo } from './SimulationInfo';
 export { default as OwnSimulations } from './OwnSimulations';
 export { default as JobOffer } from './JobOffer';
 export { default as Profile } from './Profile';
