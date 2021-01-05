@@ -11,7 +11,8 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import validators from './common/validators';
 import Routes from './Routes';
-import { ToastProvider } from 'react-toast-notifications'
+import { ToastProvider } from 'react-toast-notifications';
+import AppContainer from './AppContainer';
 const browserHistory = createBrowserHistory();
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
@@ -27,11 +28,13 @@ export default class App extends Component {
   render() {
     return (
       <ToastProvider>
-      <ThemeProvider theme={theme}>
-        <Router history={browserHistory}>
-          <Routes />
-        </Router>
-      </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <Router history={browserHistory}>
+            <AppContainer>
+              <Routes />
+            </AppContainer>
+          </Router>
+        </ThemeProvider>
       </ToastProvider>
     );
   }

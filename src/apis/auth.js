@@ -65,6 +65,15 @@ class Auth {
                 return error;
             })
     }
+    validateToken = () => {
+        return axios
+        .get(`${process.env.REACT_APP_BACKEND_URL}/user/validate_token`, {headers: authHeader(storage.getStorage('token'))})
+        .then(response => {
+            return response.data;
+        }).catch(error => {
+            return error;
+        })    
+    }
 
 }
 export default new Auth();
