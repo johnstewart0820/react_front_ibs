@@ -11,6 +11,7 @@ import {
   OwnSimulations as OwnSimulationsView,
   JobOffer as JobOfferView,
   Profile as ProfileView,
+  ChangePassword as ChangePasswordView,
   Analyzes as AnalyzesView,
   SavedSimulations as SavedSimulationsView,
   Help as HelpView,
@@ -70,6 +71,13 @@ const Routes = () => {
         path="/profile"
       />
       <RouteWithLayout
+        component={ChangePasswordView}
+        exact
+        layout={MainLayout}
+        title='Twój Profil'
+        path="/change_password"
+      />
+      <RouteWithLayout
         component={AnalyzesView}
         exact
         layout={MainLayout}
@@ -96,12 +104,12 @@ const Routes = () => {
         layout={MinimalLayout}
         path="/register"
       />
-      <RouteWithLayout
+      {/* <RouteWithLayout
         component={SignUpAsAdvancedView}
         exact
         layout={MinimalLayout}
         path="/registerAsAdvanced"
-      />
+      /> */}
       <RouteWithLayout
         component={ValidateUserView}
         exact

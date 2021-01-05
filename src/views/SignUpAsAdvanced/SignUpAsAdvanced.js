@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
+import constants from '../../utils/constants';
 
 const SignUpAsAdvanced = props => {
   const { history } = props;
@@ -45,9 +46,9 @@ const SignUpAsAdvanced = props => {
       || (error.first_name && error.first_name.length > 0)
       || (error.last_name && error.last_name.length > 0))
       || !input.email || !input.password || !input.reset_password || !input.first_name || !input.last_name) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
+      addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else if (!checkStatus) {
-      addToast('Please check the policy.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true})
+      addToast(constants.CHECk_POLICY, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true})
     }
     else {
       setProgressStatus(true);
@@ -55,7 +56,7 @@ const SignUpAsAdvanced = props => {
       .register(input.email, input.password, true, input.first_name, input.last_name)
       .then(response => {
         if (response.code === 200) {
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 5000, autoDismiss: true})
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true})
         } else {
           addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true})
         }
@@ -74,19 +75,19 @@ const SignUpAsAdvanced = props => {
     let arr = JSON.parse(JSON.stringify(error));
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (input["email"] && !pattern.test(input["email"])) {
-      arr["email"] = "Please enter valid email address.";
+      arr["email"] = constants.ENTER_VALID_EMAIL;
     } else {
       arr["email"] = "";
     }
     if (input["password"] && input["password"].length <= 5) {
-      arr["password"] = "Please enter the password at least 6 characters."
+      arr["password"] = constants.ENTER_PASSWORD;
     } else {
       arr["password"] = "";
     }
     let reset_password = input["reset_password"];
     let password = input["password"];
     if (input["reset_password"] && reset_password != password) {
-      arr["reset_password"] = "Please enter the same password."
+      arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
     } else {
       arr["reset_password"] = "";
     }

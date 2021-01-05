@@ -8,7 +8,7 @@ class User {
                 headers: authHeader(storage.getStorage('token'))
             })
             .then(response => {
-                if (response.data.code !== 200)
+                if (response.data.code === 401)
                     storage.removeStorage('token');
                 return response.data;
             }).catch(error => {

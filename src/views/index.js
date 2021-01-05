@@ -4,6 +4,7 @@ export { default as SimulationInfo } from './SimulationInfo';
 export { default as OwnSimulations } from './OwnSimulations';
 export { default as JobOffer } from './JobOffer';
 export { default as Profile } from './Profile';
+export { default as ChangePassword } from './ChangePassword';
 export { default as Analyzes } from './Analyzes';
 export { default as SavedSimulations } from './SavedSimulations';
 export { default as Help } from './Help';

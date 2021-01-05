@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end'
   },
   switchTab: {
-    marginBottom: '120px',
+    marginBottom: '80px',
     paddingRight: '30px'
   },
   tabLogin: {
@@ -137,6 +137,13 @@ const useStyles = makeStyles(theme => ({
   },
   progress: {
     color: '#b5502F'
+  },
+  titleBlock: {
+    color: '#b5502F',
+    fontWeight: '500',
+    fontSize: '18px',
+    fontFamily: 'roboto',
+    marginBottom: '25px'
   }
 }));
 

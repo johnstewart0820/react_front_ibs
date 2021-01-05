@@ -38,11 +38,11 @@ const Profile = (props) => {
                 E-mail
               </div>
               <input className={classes.input_box} type="text" value={profile.email} name="email"/>
-              <div className={classes.title}>
+              {/* <div className={classes.title}>
                 Hasło
               </div>
-              <input className={classes.input_box} type="password" value={profile.password} name="password"/>
-              <div ><Link to='/forgotpassword' component={RouterLink} className={classes.resetbtn}>zmiana hasła</Link></div>
+              <input className={classes.input_box} type="password" value={profile.password} name="password"/> */}
+              <div ><Link to='/change_password' component={RouterLink} className={classes.resetbtn}>zmiana hasła</Link></div>
             </Grid>
             { profile.first_name ?
             <Grid item xs="6">

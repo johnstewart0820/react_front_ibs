@@ -9,7 +9,7 @@ import {
 import useStyles from './style';
 import auth from '../../apis/auth';
 import { ToastProvider, useToasts } from 'react-toast-notifications'
-
+import constants from '../../utils/constants';
 
 const Forgot = props => {
   const { history } = props;
@@ -32,7 +32,7 @@ const Forgot = props => {
 
   const handleForgot = event => {
     if ((error && (error.email && error.email.length > 0 )) || !input.email) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
+      addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
       setProgressStatus(true);
       auth
@@ -40,8 +40,8 @@ const Forgot = props => {
       .then(response => {
         if (response.code === 200) {
           setProgressStatus(false);
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true })
-          setTimeout(function(){history.push('/login')}, 3000);
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true })
+          setTimeout(function(){history.push('/login')}, 1000);
         } else {
           setProgressStatus(false);
           addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
@@ -60,7 +60,7 @@ const Forgot = props => {
     let arr = JSON.parse(JSON.stringify(error));
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (input["email"] && !pattern.test(input["email"])) {
-      arr["email"] = "Please enter valid email address.";
+      arr["email"] = constants.ENTER_VALID_EMAIL;
     } else {
       arr["email"] = "";
     }

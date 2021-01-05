@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
   
   mainContainer: {
-    display: 'flex'
   },
   userImage: {
     height: '100%'
@@ -15,7 +14,6 @@ const useStyles = makeStyles(theme => ({
   input_box: {
     padding: '12px 30px',
     fontSize: '16px',
-    marginBottom: '20px',
     width: '100%',
     color: '#606C75',
     fontWeight: '500',
@@ -38,11 +36,12 @@ const useStyles = makeStyles(theme => ({
     color: '#b5502F'
   },
   userImageBlock: {
-    width: 'fit-content',
-    height: '100%'
+    maxWidth: '20%',
+    flexBasis: '20%'
   },
   profileBlock: {
-    width: 'calc(100% - 260px)'
+    maxWidth: '80%',
+    flexBasis: '80%'
   },
   profileLogo: {
     height: '100%',
@@ -60,6 +59,29 @@ const useStyles = makeStyles(theme => ({
   },
   progress: {
     color: '#b5502F'
+  },
+  btnRegister: {
+    '& .MuiButton-label': {
+      textTransform: 'none',
+      fontSize: '18px',
+    },
+    '& .MuiButton-containedSecondary:hover': {
+
+    },
+    '&:hover': {
+      backgroundColor: '#a52b02'
+    },
+    padding: '4px',
+    borderRadius: '0px',
+    fontWeight: '400',
+    backgroundColor: '#a52b02',
+    color: 'white',
+    width: '100%',
+    marginTop: '20px'
+  },
+  error_log: {
+    color: 'red',
+    marginBottom: '20px',
   }
 }));
 

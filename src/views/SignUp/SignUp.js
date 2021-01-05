@@ -10,7 +10,9 @@ import {
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
-import { ToastProvider, useToasts } from 'react-toast-notifications'
+import { ToastProvider, useToasts } from 'react-toast-notifications';
+import constants from '../../utils/constants';
+
 const SignUp = props => {
   const { history } = props;
 
@@ -36,9 +38,9 @@ const SignUp = props => {
   const handleSignUp = event => {
     if ((error && (error.email && error.email.length > 0 ) || (error.password && error.password.length > 0) || (error.reset_password && error.reset_password.length > 0 )) 
       || !input.email || !input.password || !input.reset_password) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
+      addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else if (!checkStatus) {
-      addToast('Please check the policy.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true})
+      addToast(constants.CHECk_POLICY, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true})
     }
     else {
       setProgressStatus(true);
@@ -46,7 +48,7 @@ const SignUp = props => {
       .register(input.email, input.password, false)
       .then(response => {
         if (response.code === 200) {
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 5000, autoDismiss: true})
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true})
         } else {
           addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true})
         }
@@ -64,19 +66,19 @@ const SignUp = props => {
     let arr = JSON.parse(JSON.stringify(error));
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
     if (input["email"] && !pattern.test(input["email"])) {
-      arr["email"] = "Please enter valid email address.";
+      arr["email"] = constants.ENTER_VALID_EMAIL;
     } else {
       arr["email"] = "";
     }
     if (input["password"] && input["password"].length <= 5) {
-      arr["password"] = "Please enter the password at least 6 characters."
+      arr["password"] = constants.ENTER_PASSWORD;
     } else {
       arr["password"] = "";
     }
     let reset_password = input["reset_password"];
     let password = input["password"];
     if (input["reset_password"] && reset_password != password) {
-      arr["reset_password"] = "Please enter the same password."
+      arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
     } else {
       arr["reset_password"] = "";
     }
@@ -125,14 +127,14 @@ const SignUp = props => {
                 <Button variant="contained" color="secondary" className={classes.btnRegister} onClick={handleSignUp}>
                   Zarejestruj się
                 </Button>
-                <Link to="/registerAsAdvanced" component={RouterLink} className={classes.registerAsAdvanced}>
+                {/* <Link to="/registerAsAdvanced" component={RouterLink} className={classes.registerAsAdvanced}>
                   <div className={classes.registerAsAdvanced_firstline}>
                     Zarejestruj się jako
                   </div>
                   <div className={classes.registerAsAdvanced_secondline}>
                     użytkownik zaawansowany
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

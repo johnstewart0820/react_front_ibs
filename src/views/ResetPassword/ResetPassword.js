@@ -10,6 +10,8 @@ import useStyles from './style';
 import auth from '../../apis/auth';
 import { ToastProvider, useToasts } from 'react-toast-notifications';
 import {useLocation } from "react-router-dom";
+import constants from '../../utils/constants';
+
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -31,7 +33,7 @@ const ResetPassword = props => {
 
   const handleResetPassword = event => {
     if ((error && (error.password && error.password.length > 0 ) || (error.reset_password && error.reset_password.length > 0)) || !input.password || !input.reset_password) {
-      addToast('Please check all the fields.', { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
+      addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
       setProgressStatus(true);
       auth
@@ -40,8 +42,8 @@ const ResetPassword = props => {
         if (response.code === 200) {
           console.log(response);
           setProgressStatus(false);
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true })
-          setTimeout(function(){history.push('/login')}, 3000);
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true })
+          setTimeout(function(){history.push('/login')}, 1000);
           // history.push('/login');
         } else {
           setProgressStatus(false);
@@ -60,14 +62,14 @@ const ResetPassword = props => {
   useEffect(() => {
     let arr = JSON.parse(JSON.stringify(error));
     if (input["password"] && input["password"].length <= 5) {
-      arr["password"] = "Please enter the password at least 6 characters."
+      arr["password"] = constants.ENTER_PASSWORD;
     } else {
       arr["password"] = "";
     }
     let reset_password = input["reset_password"];
     let password = input["password"];
     if (input["reset_password"] && reset_password != password) {
-      arr["reset_password"] = "Please enter the same password."
+      arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
     } else {
       arr["reset_password"] = "";
     }
@@ -91,6 +93,9 @@ const ResetPassword = props => {
           <div className={classes.loginForm}>
             <div>
               <div className={classes.loginMainForm}>
+                <div className={classes.titleBlock}>
+                  Ustaw nowe hasło
+                </div>
                 <div className={classes.inputForm}>
                   <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
                   <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
@@ -101,7 +106,7 @@ const ResetPassword = props => {
               <div className={classes.buttonContainer}>
                 <div className={classes.btnLoginContainer}>
                   <Button variant="contained" color="secondary" className={classes.btnLogin} onClick={handleResetPassword}>
-                    Zresetuj hasło
+                    Ustaw hasło
                   </Button>
                 </div>
               </div>
