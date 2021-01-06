@@ -108,7 +108,7 @@ const SignIn = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress}/>
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} autocomplete='off'/>
                   <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
                   <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
                   <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
@@ -118,7 +118,6 @@ const SignIn = props => {
                       <Checkbox
                         checked={checkStatus}
                         onChange={handleRememberMe}
-                        color="#b5502F"
                       />
                     }
                     label="Zapamiętaj mnie"

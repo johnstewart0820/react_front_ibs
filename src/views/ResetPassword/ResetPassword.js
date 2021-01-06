@@ -68,7 +68,7 @@ const ResetPassword = props => {
     }
     let reset_password = input["reset_password"];
     let password = input["password"];
-    if (input["reset_password"] && reset_password != password) {
+    if (input["reset_password"] && reset_password !== password) {
       arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
     } else {
       arr["reset_password"] = "";

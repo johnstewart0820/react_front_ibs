@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
+    card: {
+        backgroundColor: '#FCFCFC'
+    },
     mainContainer: {
         padding: '30px 40px 30px 20px',
         alignItems: 'center'

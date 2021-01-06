@@ -84,17 +84,17 @@ const SignUpAsAdvanced = props => {
     }
     let reset_password = input["reset_password"];
     let password = input["password"];
-    if (input["reset_password"] && reset_password != password) {
+    if (input["reset_password"] && reset_password !== password) {
       arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
     } else {
       arr["reset_password"] = "";
     }
-    if (input["first_name"] && input["first_name"].length == 0) {
+    if (input["first_name"] && input["first_name"].length === 0) {
       arr["first_name"] = "Please enter the first name."
     } else {
       arr["first_name"] = "";
     }
-    if (input["last_name"] && input["last_name"].length == 0) {
+    if (input["last_name"] && input["last_name"].length === 0) {
       arr["last_name"] = "Please enter the last name."
     } else {
       arr["last_name"] = "";

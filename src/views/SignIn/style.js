@@ -55,8 +55,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: '30px',
     '& .MuiTypography-body1': {
       fontSize: '16px',
-      color: 'gray',
     },
+    '& .MuiCheckbox-colorSecondary.Mui-checked' : {
+      color: '#546e7a'
+    }
   },
   buttonContainer: {
     marginTop: '120px',

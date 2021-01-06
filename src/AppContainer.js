@@ -10,7 +10,7 @@ class AppContainer extends React.Component {
     this.state = {flag: false};
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // this.setState({flag: false});
     for (let i = 0; i < constants.unauthenticated_url.length; i ++) {
       if (constants.unauthenticated_url[i] === this.props.location.pathname) {
