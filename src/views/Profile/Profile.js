@@ -27,7 +27,7 @@ const Profile = (props) => {
     <Grid container spacing={4} className={classes.mainContainer}>
       <Grid item className={classes.userImageBlock}>
         <Card className={classes.userImage}>
-          <img className={classes.profileLogo} src="/images/avatars/org_profile.jpg"/>
+          <img className={classes.profileLogo} src="/images/avatars/org_profile.jpg" alt=""/>
         </Card>
       </Grid>
       <Grid item className={classes.profileBlock}>
@@ -42,7 +42,7 @@ const Profile = (props) => {
                 Hasło
               </div>
               <input className={classes.input_box} type="password" value={profile.password} name="password"/> */}
-              <div ><Link to='/change_password' component={RouterLink} className={classes.resetbtn}>zmiana hasła</Link></div>
+              <div ><Link to='/profile/change_password' component={RouterLink} className={classes.resetbtn}>zmiana hasła</Link></div>
             </Grid>
             { profile.first_name ?
             <Grid item xs="6">

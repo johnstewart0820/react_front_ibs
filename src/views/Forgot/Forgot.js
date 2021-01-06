@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
-import { ToastProvider, useToasts } from 'react-toast-notifications'
+import { useToasts } from 'react-toast-notifications'
 import constants from '../../utils/constants';
 
 const Forgot = props => {
@@ -101,7 +101,7 @@ const Forgot = props => {
       </div>
     </div>
     <div className={classes.footerContainer}>
-        <img src="/images/logos/footer_logo.jpg" className={classes.unionLogo} />
+        <img src="/images/logos/footer_logo.jpg" className={classes.unionLogo} alt=""/>
     </div>
     {
         progressStatus ?

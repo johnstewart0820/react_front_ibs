@@ -55,10 +55,13 @@ const useStyles = makeStyles(theme => ({
     },
     name_select_box: {
         '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input' : {
-            padding: '3.5px 4px'
+            padding: '3.5px 4px',
         },
-        '& .MuiFormLabel-root': {
-            fontStyle: 'italic'
+        '& ::placeholder': {
+            fontStyle: 'italic',
+            marginTop: '-5px',
+            color: '#606C75',
+            fontWeight: '500'
         }
     },
     progressContainer: {

@@ -1,13 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import auth from './apis/auth';
 import constants from './utils/constants';
 
 // A simple component that shows the pathname of the current location
-function validateToken() {
-	return auth.validateToken();
-}
 class AppContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -61,7 +57,6 @@ class AppContainer extends React.Component {
 		}
 	}
 	render() {
-		const { match, location, history } = this.props;
 
 		return this.state.flag ? <>{this.props.children}</> : <></>;
 	}

@@ -11,7 +11,7 @@ import {
 import useStyles from './style';
 import auth from '../../apis/auth';
 import storage from 'utils/storage';
-import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { useToasts } from 'react-toast-notifications';
 import constants from '../../utils/constants';
 
 const SignIn = props => {
@@ -33,7 +33,7 @@ const SignIn = props => {
     setCheckStatus(!checkStatus);
   };
   const handleSignIn = event => {
-    if ((error && (error.email && error.email.length > 0 ) || (error.password && error.password.length > 0)) || !input.email || !input.password) {
+    if ((error && ((error.email && error.email.length > 0 ) || (error.password && error.password.length > 0))) || !input.email || !input.password) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
       setProgressStatus(true);

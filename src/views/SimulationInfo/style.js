@@ -5,8 +5,6 @@ const useStyles = makeStyles(theme => ({
         padding: '30px 40px 30px 20px',
         alignItems: 'center'
     },
-    mainHeader: {
-    },
     titleBlock: {
         display: 'flex',
     },
@@ -19,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
     titleHeader: {
         color: '#606C75',
-        fontSize: '18px',
+        fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
         fontWeight: '500'
@@ -44,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 
     titleInfo: {
         color: '#a52b02',
-        fontSize: '18px',
+        fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
         marginLeft: '10px',
@@ -53,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     btnOpen: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '18px',
+            fontSize: '15px',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -76,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     btnChange: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '18px',
+            fontSize: '15px',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -92,14 +90,6 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: 'white',
         color: '#a52b02',
         width: '100%'
-    },
-    name_select_box: {
-        '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input' : {
-            padding: '3.5px 4px'
-        },
-        '& .MuiFormLabel-root': {
-            fontStyle: 'italic'
-        }
     },
     progressContainer: {
         position: 'absolute',

@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
-import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { useToasts } from 'react-toast-notifications';
 import {useLocation } from "react-router-dom";
 import constants from '../../utils/constants';
 
@@ -32,7 +32,7 @@ const ResetPassword = props => {
   };
 
   const handleResetPassword = event => {
-    if ((error && (error.password && error.password.length > 0 ) || (error.reset_password && error.reset_password.length > 0)) || !input.password || !input.reset_password) {
+    if ((error && ((error.password && error.password.length > 0 ) || (error.reset_password && error.reset_password.length > 0))) || !input.password || !input.reset_password) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
       setProgressStatus(true);

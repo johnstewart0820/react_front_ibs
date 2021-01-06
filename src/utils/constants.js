@@ -14,4 +14,4 @@ class constants {
     ]
 }
 
-export default new constants;
+export default new constants();

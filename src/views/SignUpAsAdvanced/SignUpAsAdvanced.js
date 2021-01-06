@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ToastProvider, useToasts } from 'react-toast-notifications'
+import { useToasts } from 'react-toast-notifications'
 import {
   Button,
-  TextField,
   Link,
   FormControlLabel,
   Checkbox,
@@ -15,7 +14,6 @@ import auth from '../../apis/auth';
 import constants from '../../utils/constants';
 
 const SignUpAsAdvanced = props => {
-  const { history } = props;
 
   const classes = useStyles();
 
@@ -40,11 +38,11 @@ const SignUpAsAdvanced = props => {
 
   const handleSignUp = event => {
     if ((error && 
-      (error.email && error.email.length > 0 ) 
+      ((error.email && error.email.length > 0 ) 
       || (error.password && error.password.length > 0) 
       || (error.reset_password && error.reset_password.length > 0 )
       || (error.first_name && error.first_name.length > 0)
-      || (error.last_name && error.last_name.length > 0))
+      || (error.last_name && error.last_name.length > 0)))
       || !input.email || !input.password || !input.reset_password || !input.first_name || !input.last_name) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else if (!checkStatus) {

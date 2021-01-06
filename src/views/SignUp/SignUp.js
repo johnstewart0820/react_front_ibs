@@ -10,11 +10,10 @@ import {
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
-import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { useToasts } from 'react-toast-notifications';
 import constants from '../../utils/constants';
 
 const SignUp = props => {
-  const { history } = props;
 
   const classes = useStyles();
   const [checkStatus, setCheckStatus] = useState(false);
@@ -36,7 +35,7 @@ const SignUp = props => {
     setCheckStatus(!checkStatus);
   };
   const handleSignUp = event => {
-    if ((error && (error.email && error.email.length > 0 ) || (error.password && error.password.length > 0) || (error.reset_password && error.reset_password.length > 0 )) 
+    if ((error && ((error.email && error.email.length > 0 ) || (error.password && error.password.length > 0) || (error.reset_password && error.reset_password.length > 0 ))) 
       || !input.email || !input.password || !input.reset_password) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else if (!checkStatus) {

@@ -16,7 +16,7 @@ import {
   SavedSimulations as SavedSimulationsView,
   Help as HelpView,
   SignUp as SignUpView,
-  SignUpAsAdvanced as SignUpAsAdvancedView,
+  // SignUpAsAdvanced as SignUpAsAdvancedView,
   SignIn as SignInView,
   ValidateUser as ValidateUserView,
   Forgot as ForgotView,
@@ -75,7 +75,7 @@ const Routes = () => {
         exact
         layout={MainLayout}
         title='Twój Profil'
-        path="/change_password"
+        path="/profile/change_password"
       />
       <RouteWithLayout
         component={AnalyzesView}

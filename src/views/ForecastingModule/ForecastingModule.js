@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, TextField, Card, Button, CircularProgress } from '@material-ui/core';
-import { ToastProvider, useToasts } from 'react-toast-notifications'
+import { useToasts } from 'react-toast-notifications'
 import { Autocomplete } from '@material-ui/lab';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
@@ -45,21 +45,21 @@ const ForecastingModule = (props) => {
     <>
       <Card className={classes.mainContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>
-          <Grid item xs="12">
+          <Grid item xs={12}>
             <div className={classes.title}>
               Wybierz symulację do analizy wyników
           </div>
           </Grid>
-          <Grid item xs="5">
+          <Grid item xs={5}>
             <Autocomplete
               className={classes.name_select_box}
               onChange={(event, value) => setSelectedItem(value ? value : {})}
               options={scenariosLabels}
               getOptionLabel={(option) => scenariosLabels && option && option.description}
-              renderInput={(params) => <TextField {...params} label="Wpisz nazwę" variant="outlined" />}
+              renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}/>}
             />
           </Grid>
-          <Grid item xs="3">
+          <Grid item xs={3}>
             <Button variant="contained" color="secondary" className={classes.btnShowResult} onClick={handleShowResult}>
               Przeglądaj wyniki
           </Button>

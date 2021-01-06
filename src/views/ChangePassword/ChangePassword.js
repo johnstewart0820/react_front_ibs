@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Card, Link, CircularProgress, Button } from '@material-ui/core';
-import { Link as RouterLink, withRouter } from 'react-router-dom';
-import { ToastProvider, useToasts } from 'react-toast-notifications';
+import { Card, CircularProgress, Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications';
 import useStyles from './style';
 import user from '../../apis/user';
 import constants from '../../utils/constants';
@@ -16,7 +16,7 @@ const ChangePassword = (props) => {
   const { addToast } = useToasts()
   
   const handleChangePassword = () => {
-    if ((error && (error.old_password && error.old_password.length > 0) || (error.new_password && error.new_password.length > 0 ) || (error.repeat_new_password && error.repeat_new_password.length > 0 )) 
+    if ((error && ((error.old_password && error.old_password.length > 0) || (error.new_password && error.new_password.length > 0 ) || (error.repeat_new_password && error.repeat_new_password.length > 0 ))) 
       || !input.old_password || !input.new_password || !input.repeat_new_password) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
@@ -61,7 +61,7 @@ const ChangePassword = (props) => {
     }
     let reset_password = input["repeat_new_password"];
     let password = input["new_password"];
-    if (input["repeat_new_password"] && reset_password != password) {
+    if (input["repeat_new_password"] && reset_password !== password) {
       arr["repeat_new_password"] = constants.ENTER_SAME_PASSWORD;
     } else {
       arr["repeat_new_password"] = "";
