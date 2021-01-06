@@ -15,7 +15,7 @@ const Profile = (props) => {
     .getProfile()
     .then(response => {
       setProgressStatus(false);
-      if (response.code !== 200) {
+      if (response.code === 401) {
         history.push('/login');
       } else {
         setProfile(response.data.user);
