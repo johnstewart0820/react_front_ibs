@@ -11,7 +11,11 @@ const SingleSelect = (props) => {
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel htmlFor="outlined-age-native-simple" className={classes.name_select_box}>Wybierz</InputLabel>
+      <InputLabel htmlFor="outlined-age-native-simple" className={classes.name_select_box} shrink={false}>
+        {
+          (Object.keys(value).length === 0 && value.constructor === Object ) ? 'Wybierz' : ''
+        }
+      </InputLabel>
       <Select
         native
         value={value}

@@ -8,6 +8,8 @@ const useStyles = makeStyles(theme => ({
         fontStyle: 'italic',
         color: '#aeaeae',
         fontWeight: '400',
+        paddingLeft: '14px',
+        marginTop: '-1px'
     },
     multiple_select: {
         '& .MuiSelect-outlined.MuiSelect-outlined': {
@@ -16,7 +18,6 @@ const useStyles = makeStyles(theme => ({
             borderRadius: '4px',
         },
         marginTop: '-1px !important'
-
     }
 }));
 

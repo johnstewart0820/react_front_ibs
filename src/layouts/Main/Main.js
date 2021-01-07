@@ -16,14 +16,14 @@ const useStyles = makeStyles(theme => ({
     }
   },
   shiftContent: {
-    paddingLeft: 345
+    paddingLeft: 300
   },
   content: {
     height: '100%',
     backgroundColor: '#ECECEC'
   },
   topbar_max: {
-    transform: 'translateX(-345px)',
+    transform: 'translateX(-300px)',
     visibility: 'visible',
     width: '100%',
     zIndex: '0'

@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     drawer: {
-      width: 345,
+      width: 300,
     },
     root: {
       backgroundColor: '#323444',
@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(2)
     },
     main_logo: {
-      padding: '10px 60px',
     },
     icon: {
       color: '#8b919a',
@@ -31,15 +30,15 @@ const useStyles = makeStyles(theme => ({
       },
     },
     logout: {
-      padding: '25px 20px 25px 60px',
+      padding: '20px 16px 20px 56px',
       justifyContent: 'flex-start',
       textTransform: 'none',
       letterSpacing: 0,
       width: '100%',
       fontWeight: 400,
-      fontSize: '20px',
+      fontSize: '16px',
       color: '#8b919a',
-      lineHeight: '1.3em',
+      lineHeight: '1em',
       '&:hover': {
         backgroundColor: '#1e202c',
         color: '#EBECF0',

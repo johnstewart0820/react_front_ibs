@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
     root: {
       boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
-      left: '344px',
-      width: 'calc(100% - 344px)',
+      left: '299px',
+      width: 'calc(100% - 299px)',
       height: '80px',
       backgroundColor: '#FCFCFC',
       display: 'flex',
@@ -20,23 +20,23 @@ const useStyles = makeStyles(theme => ({
     toolbar: {
       display: 'flex',
       width: '100%',
-      paddingLeft: '40px'
+      paddingLeft: '10px'
     },
     close_drawer_icon: {
       display: 'flex',
       justifyContent: 'center',
       '& .MuiSvgIcon-root': {
-        fontSize: '4em'
+        fontSize: '3em'
       }
     },
     title: {
       color: 'gray',
-      fontSize: '1.7em',
+      fontSize: '22px',
       fontFamily: 'roboto',
       fontWeight: '400',
       display: 'flex',
       alignItems: 'center',
-      marginLeft: '20px'
+      marginLeft: '16px'
     }
   }));
 
