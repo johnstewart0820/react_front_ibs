@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { 
-  FirstAdditionalOption, 
-  SecondAdditionalOption, 
-  ThirdAdditionalOption,
+  TotalAdditionalOption, 
+  PkdSectionAdditionalOption, 
+  ProvinceAdditionalOption,
   MultiSelect, 
-  SingleSelect 
+  SingleSelect, 
+  OccupationAdditionalOption,
+  OccupationSectorAdditionalOption,
+  ProvinceOccupationAdditionalOption
 } from './components';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
@@ -18,8 +21,6 @@ import {
   chartType, 
   aggragateType, 
   aggragateSubType, 
-  provinceList, 
-  occupationList, 
   showChartsMode
 } from './constants';
 import { useToasts } from 'react-toast-notifications'
@@ -35,21 +36,93 @@ const SimulationInfo = (props) => {
   const [selectedChartType, setSelectedChartType] = useState({});
   const [selectedAggragationType, setSelectedAggragationType] = useState({});
   const [selectedAggragationSubType, setSelectedAggragationSubType] = useState([]);
-  const [selectedProvince, setSelectedProvince] = useState([]);
-  const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedShowChartsMode, setSelectedShowChartsMode] = useState({});
   const [selectedPkdSection, setSelectedPkdSection] = useState([]);
-  const [selectedVoivodeShips, setSelectedVoivodeShips] = useState([]);
+  const [selectedProvince, setSelectedProvince] = useState([]);
+  const [selectedOccupation, setSelectedOccupation] = useState([]);
 
   const [pkdSectionList, setPkdSelectionList] = useState([]);
-  const [voivodeshipsList, setVoivodeShipsList] = useState([]);
- 
+  const [provinceList, setProvinceList] = useState([]);
+  const [occupationList, setOccupationList] = useState([]);
   const handleChange = (props) => {
     history.push('/forecasting_module');
   }
 
   const handleOpen = () => {
 
+  }
+
+  const renderSwitchAddition = () => {
+    if (
+      (Object.keys(selectedChartType).length === 0 && selectedChartType.constructor === Object )
+      || (Object.keys(selectedAggragationType).length === 0 && selectedAggragationType.constructor === Object )
+      || selectedAggragationSubType.length === 0 
+    ) {
+      return <></>;
+    } else {
+      switch(selectedAggragationType) {
+        case 'sector': 
+           return <PkdSectionAdditionalOption
+            pkdSectionValue={selectedPkdSection}
+            showChartModeValue={selectedShowChartsMode}
+            handleSelectedPkdSection={setSelectedPkdSection}
+            handleSelectedShowChartsMode={setSelectedShowChartsMode}
+            pkdSectionList={pkdSectionList}
+            showChartsMode={showChartsMode}
+          />
+        case 'province':
+          return <ProvinceAdditionalOption
+              provinceValue={selectedProvince}
+              showChartModeValue={selectedShowChartsMode}
+              handleSelectedProvince={setSelectedProvince}
+              handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              provinceList={provinceList}
+              showChartsMode={showChartsMode}
+            />
+        case 'professed':
+          return <OccupationAdditionalOption
+              occupationValue={selectedOccupation}
+              showChartModeValue={selectedShowChartsMode}
+              handleSelectedOccupation={setSelectedOccupation}
+              handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              occupationList={occupationList}
+              showChartsMode={showChartsMode}
+            />
+        case 'sector-professed':
+          return <OccupationSectorAdditionalOption
+              pkdSectionValue={selectedPkdSection} 
+              occupationValue={selectedOccupation} 
+              showChartModeValue={selectedShowChartsMode} 
+              handleSelectedPkdSection={setSelectedPkdSection} 
+              handleSelectedOccupation={setSelectedOccupation} 
+              handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              pkdSectionList={pkdSectionList}
+              occupationList={occupationList}
+              showChartsMode={showChartsMode}
+            />
+        case 'district-professed':
+          return <ProvinceOccupationAdditionalOption
+              provinceValue={selectedProvince} 
+              occupationValue={selectedOccupation} 
+              handleSelectedProvince={setSelectedProvince} 
+              handleSelectedOccupation={setSelectedOccupation} 
+              provinceList={provinceList}
+              occupationList={occupationList}
+            />
+        default:
+          return <TotalAdditionalOption
+              provinceValue={selectedProvince} 
+              occupationValue={selectedOccupation} 
+              showChartModeValue={selectedShowChartsMode} 
+              handleSelectedProvince={setSelectedProvince} 
+              handleSelectedOccupation={setSelectedOccupation} 
+              handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              provinceList={provinceList}
+              occupationList={occupationList}
+              showChartsMode={showChartsMode}
+            />
+      }
+    }
   }
 
   useEffect(() => {
@@ -62,7 +135,8 @@ const SimulationInfo = (props) => {
           history.push('/login');
         } else {
           setPkdSelectionList(response.data.pkdSections);
-          setVoivodeShipsList(response.data.voivodeships);
+          setProvinceList(response.data.provinces);
+          setOccupationList(response.data.professions);
         }
       })
   }, []);
@@ -129,49 +203,7 @@ const SimulationInfo = (props) => {
           </Grid>
         </Grid>
       </Card>
-      {
-        (Object.keys(selectedChartType).length === 0 && selectedChartType.constructor === Object )
-        || (Object.keys(selectedAggragationType).length === 0 && selectedAggragationType.constructor === Object )
-        || selectedAggragationSubType.length === 0 
-        ?
-          <></>
-        : 
-        (
-            selectedAggragationType === 'sector'
-          ?
-            <SecondAdditionalOption
-              pkdSectionValue={selectedPkdSection}
-              showChartModeValue={selectedShowChartsMode}
-              handleSelectedPkdSection={setSelectedPkdSection}
-              handleSelectedShowChartsMode={setSelectedShowChartsMode}
-              pkdSectionList={pkdSectionList}
-              showChartsMode={showChartsMode}
-            />
-          :
-              selectedAggragationType === 'province'
-            ?
-              <ThirdAdditionalOption
-                voivodeshipsValue={selectedVoivodeShips}
-                showChartModeValue={selectedShowChartsMode}
-                handleSelectedVoivodeships={setSelectedVoivodeShips}
-                handleSelectedShowChartsMode={setSelectedShowChartsMode}
-                voivodeshipsList={voivodeshipsList}
-                showChartsMode={showChartsMode}
-              />
-            :
-              <FirstAdditionalOption
-                provinceValue={selectedProvince} 
-                occupationValue={selectedOccupation} 
-                showChartModeValue={selectedShowChartsMode} 
-                handleSelectedProvince={setSelectedProvince} 
-                handleSelectedOccupation={setSelectedOccupation} 
-                handleSelectedShowChartsMode={setSelectedShowChartsMode}
-                provinceList={provinceList}
-                occupationList={occupationList}
-                showChartsMode={showChartsMode}
-              />
-        )
-      }
+      {renderSwitchAddition()}
       {
         progressStatus ?
           <>

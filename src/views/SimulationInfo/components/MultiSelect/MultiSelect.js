@@ -49,8 +49,8 @@ const MultiSelect = (props) => {
       MenuProps={MenuProps}
     >
       {list.map((item, index) => (
-        <MenuItem key={index} value={item.polish ? item.polish : item.description} style={getStyles(item.polish ? item.polish : item.description , value, theme)}>
-          {item.polish ? item.polish : item.description}
+        <MenuItem key={index} value={item.polish ? item.polish : item.name} style={getStyles(item.polish ? item.polish : item.name , value, theme)}>
+          {item.polish ? item.polish : item.name}
         </MenuItem>
       ))}
     </Select>

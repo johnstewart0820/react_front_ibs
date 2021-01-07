@@ -50,12 +50,7 @@ const chartType = [
       polish: 'Luka'
     },
   ];
-  const provinceList = [
-
-  ];
-  const occupationList = [
-
-  ];
+ 
   const showChartsMode = [
     {
       name: 'together',
@@ -71,7 +66,5 @@ export {
     chartType, 
     aggragateType, 
     aggragateSubType, 
-    provinceList, 
-    occupationList, 
     showChartsMode
 };

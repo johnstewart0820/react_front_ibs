@@ -28,7 +28,7 @@ const SingleSelect = (props) => {
         <option aria-label="None" value="" />
         {
           list.map((item, index) => 
-            <option key={index} value={item.name ? item.name : item.description}>{item.polish ? item.polish : item.description}</option>
+            <option key={index} value={item.name ? item.name : item.name}>{item.polish ? item.polish : item.name}</option>
           )
         }
       </Select>

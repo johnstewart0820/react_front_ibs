@@ -1,5 +1,5 @@
 import React from 'react';
-import { SingleSelect, MultiSelect } from '../';
+import { MultiSelect, SingleSelect } from '..';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 import { 
@@ -7,15 +7,15 @@ import {
   Card, 
 } from '@material-ui/core';
 
-const SecondAdditionalOption = (props) => {
+const ProvinceOccupationAdditionalOption = (props) => {
   const classes = useStyles();
   const { 
-    pkdSectionValue,  
-    showChartModeValue, 
-    handleSelectedPkdSection,  
-    handleSelectedShowChartsMode,
-    pkdSectionList,
-    showChartsMode
+    provinceValue, 
+    occupationValue, 
+    handleSelectedProvince, 
+    handleSelectedOccupation, 
+    provinceList,
+    occupationList,
   } = props;
 
   return (
@@ -27,17 +27,17 @@ const SecondAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <div className={classes.secondTitleHeader}>
-              Wybierz sekcję PKD
+              Wybierz województwo
             </div>
-            <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
+            <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList}/>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <div className={classes.secondTitleHeader}>
-              Wyniki
+              Wybierz zawód
             </div>
-            <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+            <MultiSelect value={occupationValue} handleChange={handleSelectedOccupation} list={occupationList}/>
           </Grid>
         </Grid>
       </Card>
@@ -45,4 +45,4 @@ const SecondAdditionalOption = (props) => {
   );
 };
 
-export default withRouter(SecondAdditionalOption);
+export default withRouter(ProvinceOccupationAdditionalOption);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SingleSelect, MultiSelect } from '../';
+import { MultiSelect, SingleSelect } from '..';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 import { 
@@ -7,14 +7,17 @@ import {
   Card, 
 } from '@material-ui/core';
 
-const ThirdAdditionalOption = (props) => {
+const TotalAdditionalOption = (props) => {
   const classes = useStyles();
   const { 
-    voivodeshipsValue,
-    showChartModeValue,
-    handleSelectedVoivodeships,
+    provinceValue, 
+    occupationValue, 
+    showChartModeValue, 
+    handleSelectedProvince, 
+    handleSelectedOccupation, 
     handleSelectedShowChartsMode,
-    voivodeshipsList,
+    provinceList,
+    occupationList,
     showChartsMode
   } = props;
 
@@ -27,11 +30,17 @@ const ThirdAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={4}>
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
-            <MultiSelect value={voivodeshipsValue} handleChange={handleSelectedVoivodeships} list={voivodeshipsList}/>
+            <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList}/>
+          </Grid>
+          <Grid item xs={4}>
+            <div className={classes.secondTitleHeader}>
+              Wybierz zawód
+            </div>
+            <MultiSelect value={occupationValue} handleChange={handleSelectedOccupation} list={occupationList}/>
           </Grid>
           <Grid item xs={4}>
             <div className={classes.secondTitleHeader}>
@@ -45,4 +54,4 @@ const ThirdAdditionalOption = (props) => {
   );
 };
 
-export default withRouter(ThirdAdditionalOption);
+export default withRouter(TotalAdditionalOption);
