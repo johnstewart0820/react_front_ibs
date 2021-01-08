@@ -11,6 +11,7 @@ class Auth {
             .then(response => {
                 if (response.data.code === 200) {
                     storage.setStorage('token', response.data.data.token);
+                    storage.setStorage('role', response.data.data.role);
                 }
                 return response.data;
             }).catch(error => {

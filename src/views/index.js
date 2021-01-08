@@ -8,6 +8,7 @@ export { default as ChangePassword } from './ChangePassword';
 export { default as Analyzes } from './Analyzes';
 export { default as SavedSimulations } from './SavedSimulations';
 export { default as Help } from './Help';
+export { default as ContentManagement } from './ContentManagement';
 export { default as SignUp } from './SignUp';
 export { default as SignUpAsAdvanced } from './SignUpAsAdvanced';
 export { default as SignIn } from './SignIn';

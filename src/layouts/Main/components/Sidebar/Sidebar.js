@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Drawer, Button } from '@material-ui/core';
@@ -18,14 +18,9 @@ import useStyles from './style';
 
 const Sidebar = props => {
   const { open, variant, history, onClose, className, ...rest } = props;
-
+  const [pages, setPages] = useState([]);
   const classes = useStyles();
-
-  const logout = () => {
-    storage.removeStorage('token');
-    history.push('/login');
-  };
-  const pages = [
+  const items = [
     {
       title: 'Kokpit',
       href: '/cockpit',
@@ -65,8 +60,24 @@ const Sidebar = props => {
       title: 'Pomoc',
       href: '/help',
       icon: <SettingsIcon />
-    }
+    },
   ];
+  const logout = () => {
+    storage.removeStorage('token');
+    history.push('/login');
+  };
+  useEffect(() => {
+    if (storage.getStorage('role') === '1') {
+      setPages([...items, {
+        title: 'Zarządzanie treścią',
+        href: '/content_management',
+        icon: <SettingsIcon />
+      }]);
+    } else {
+      setPages(items);
+    }
+  }, []);
+  
 
   return (
     <Drawer

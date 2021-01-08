@@ -21,8 +21,18 @@ class AppContainer extends React.Component {
     auth
     .validateToken()
     .then(response => {
-      if (response.code !== 401)
-        this.setState({flag: true}) 
+      if (response.code !== 401) {
+        if (this.props.location.pathname !== '/content_management') {
+          this.setState({flag: true}) 
+        } else {
+          if (response.role === 1) {
+            this.setState({flag: true}) 
+          } else {
+            this.setState({flag: false})
+            this.props.history.push('/login');            
+          }
+        }
+      }
       else {
         this.setState({flag: false})
         this.props.history.push('/login');
@@ -46,13 +56,22 @@ class AppContainer extends React.Component {
       auth
       .validateToken()
       .then(response => {
-        if (response.code !== 401)
-          this.setState({flag: true}) 
+        if (response.code !== 401) {
+          if (this.props.location.pathname !== '/content_management') {
+            this.setState({flag: true}) 
+          } else {
+            if (response.role === 1) {
+              this.setState({flag: true}) 
+            } else {
+              this.setState({flag: false})
+              this.props.history.push('/login');            
+            }
+          }
+        }
         else {
           this.setState({flag: false})
           this.props.history.push('/login');
         }
-
       })
 		}
 	}

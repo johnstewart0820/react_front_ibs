@@ -54,11 +54,12 @@ const useStyles = makeStyles(theme => ({
   rememberMe: {
     marginTop: '30px',
     '& .MuiTypography-body1': {
+      color: 'gray',
       fontSize: '16px',
     },
     '& .MuiCheckbox-colorSecondary.Mui-checked' : {
       color: '#546e7a'
-    }
+    },
   },
   buttonContainer: {
     marginTop: '120px',
