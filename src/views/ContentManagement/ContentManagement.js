@@ -1,30 +1,110 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-
-// import {
-//   Budget,
-//   TotalUsers,
-//   TasksProgress,
-//   TotalProfit,
-//   LatestSales,
-//   UsersByDevice,
-//   LatestProducts,
-//   LatestOrders
-// } from './components';
-
-const useStyles = makeStyles(theme => ({
+import React, { useEffect, useState } from 'react';
+import { Link as RouterLink, withRouter } from 'react-router-dom';
+import useStyles from './style';
+import {
+  Grid,
+  Card,
+  Button,
+  CircularProgress,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer ,
+  TableHead ,
+  TableRow ,
+  Link
+} from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { useToasts } from 'react-toast-notifications'
+import contents from '../../apis/contents';
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.common.black,
+    borderBottom: '2px solid gray'
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+const StyledTableRow = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(4)
-  }
-}));
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&:hover': {
+      cursor: 'pointer'
+    }
+  },
+}))(TableRow);
 
-const ContentManagement = () => {
+const ContentManagement = (props) => {
   const classes = useStyles();
+  const { addToast } = useToasts()
+  const { history } = props;
+
+  const [progressStatus, setProgressStatus] = useState(false);
+  const [blocks, setBlocks] = useState([]);
+
+  const handleEdit = (id) => {
+    history.push(`/content_management/${id}`)
+  }
+
+  useEffect(() => {
+    setProgressStatus(true);
+    contents
+      .getBlocks()
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          setBlocks(response.data.blocks)
+        }
+      })
+  }, []);
 
   return (
-    <div className={classes.root}>
-    </div>
+    <>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>ID</StyledTableCell>
+              <StyledTableCell>Slug</StyledTableCell>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell>Option</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {blocks.map((row, index) => (
+              <StyledTableRow key={index} onClick={() => handleEdit(row.id_content)}>
+                <StyledTableCell>{index + 1}</StyledTableCell>
+                <StyledTableCell>{row.slug}</StyledTableCell>
+                <StyledTableCell>{row.name}</StyledTableCell>
+                <StyledTableCell>
+                  <Button variant="contained" color="secondary" className={classes.btnOpen} onClick = {() => handleEdit(row.id_content)}>
+                    Edytować
+                  </Button>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {
+        progressStatus ?
+          <>
+            <div className={classes.progressContainer}>
+              <CircularProgress className={classes.progress} />
+            </div>
+          </>
+          :
+          <></>
+      }
+    </>
   );
 };
 
-export default ContentManagement;
+export default withRouter(ContentManagement);

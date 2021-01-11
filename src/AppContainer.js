@@ -25,7 +25,7 @@ class AppContainer extends React.Component {
         if (this.props.location.pathname !== '/content_management') {
           this.setState({flag: true}) 
         } else {
-          if (response.role === 1) {
+          if (response.role === '1') {
             this.setState({flag: true}) 
           } else {
             this.setState({flag: false})
@@ -60,7 +60,7 @@ class AppContainer extends React.Component {
           if (this.props.location.pathname !== '/content_management') {
             this.setState({flag: true}) 
           } else {
-            if (response.role === 1) {
+            if (response.role === '1') {
               this.setState({flag: true}) 
             } else {
               this.setState({flag: false})

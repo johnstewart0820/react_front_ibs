@@ -16,6 +16,7 @@ import {
   SavedSimulations as SavedSimulationsView,
   Help as HelpView,
   ContentManagement as ContentManagementView,
+  BlockText as BlockTextView,
   SignUp as SignUpView,
   // SignUpAsAdvanced as SignUpAsAdvancedView,
   SignIn as SignInView,
@@ -105,6 +106,13 @@ const Routes = () => {
         layout={MainLayout}
         title='Zarządzanie treścią'
         path="/content_management"
+      />
+      <RouteWithLayout
+        component={BlockTextView}
+        exact
+        layout={MainLayout}
+        title='Zarządzanie treścią'
+        path="/content_management/:id"
       />
       <RouteWithLayout
         component={SignUpView}

@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#FCFCFC',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      zIndex: '10'
     },
     flexGrow: {
       flexGrow: 1

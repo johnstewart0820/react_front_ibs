@@ -12,7 +12,7 @@ const Help = () => {
 
   return (
     <div className={classes.root}>
-      a
+      
     </div>
   );
 };
