@@ -72,20 +72,18 @@ const ContentManagement = (props) => {
           <TableHead>
             <TableRow>
               <StyledTableCell>ID</StyledTableCell>
-              <StyledTableCell>Slug</StyledTableCell>
-              <StyledTableCell>Name</StyledTableCell>
-              <StyledTableCell>Option</StyledTableCell>
+              <StyledTableCell>Nazwa</StyledTableCell>
+              <StyledTableCell>Opcja</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {blocks.map((row, index) => (
               <StyledTableRow key={index} onClick={() => handleEdit(row.id_content)}>
                 <StyledTableCell>{index + 1}</StyledTableCell>
-                <StyledTableCell>{row.slug}</StyledTableCell>
                 <StyledTableCell>{row.name}</StyledTableCell>
                 <StyledTableCell>
                   <Button variant="contained" color="secondary" className={classes.btnOpen} onClick = {() => handleEdit(row.id_content)}>
-                    Edytować
+                    Edytuj
                   </Button>
                 </StyledTableCell>
               </StyledTableRow>

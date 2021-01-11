@@ -10,11 +10,9 @@ import {
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { useToasts } from 'react-toast-notifications'
 import contents from '../../apis/contents';
-import ReactQuill from 'react-quill';
+import ReactQuill, {Quill} from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
-// import Quill from 'quill';
-// import { ImageDrop } from 'quill-image-drop-module';
-// import { ImageResize } from 'quill-image-resize-module';
+import ImageResize from 'quill-image-resize-module';
 
 const BlockText = (props) => {
   const classes = useStyles();
@@ -24,9 +22,10 @@ const BlockText = (props) => {
   const [progressStatus, setProgressStatus] = useState(false);
   const [block, setBlock] = useState([]);
   const [content, setContent] = useState('');
+  Quill.register('modules/imageResize', ImageResize)
   const modules = {
     toolbar: [
-      [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'font': [] }],
       [{size: []}],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{
@@ -38,9 +37,10 @@ const BlockText = (props) => {
       ['link', 'image', 'video'],
       ['clean']
     ],
-    // imageResize: {
-    //   displaySize: true
-    // },
+    imageResize: {
+      displaySize: true,
+      Resize: true
+    },
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
@@ -86,6 +86,7 @@ const BlockText = (props) => {
         if (response.code === 401) {
           history.push('/login');
         } else {
+          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true});
         }
       })
   }
@@ -93,10 +94,7 @@ const BlockText = (props) => {
   return (
     <>
       <div className={classes.title}>
-        <span>Slug:</span> {block.slug}
-      </div>
-      <div className={classes.title}>
-        <span>Name:</span> {block.name}
+        <span>Nazwa:</span> {block.name}
       </div>
       <ReactQuill 
           onChange={handleChange}
@@ -108,10 +106,10 @@ const BlockText = (props) => {
       />
       <div className={classes.buttonBlock}>
         <Button variant="contained" color="secondary" className={classes.btnChange} onClick={handleBack}>
-          Plecy
+          Cofnij
         </Button>
         <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleUpdate}>
-          Aktualizacja
+          Aktualizuj
         </Button>
       </div>
       {
