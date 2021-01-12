@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import useStyles from './style';
 import {
@@ -23,8 +23,10 @@ const BlockText = (props) => {
   const [block, setBlock] = useState([]);
   const [content, setContent] = useState('');
   Quill.register('modules/imageResize', ImageResize)
+
   const modules = {
-    toolbar: [
+    toolbar: {
+      container: [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }, { 'font': [] }],
       [{size: []}],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
@@ -35,8 +37,9 @@ const BlockText = (props) => {
        {'indent': '-1'}, {'indent': '+1'}],
       [{ align: '' }, { align: 'right' }, { align: 'center' }, { align: 'justify' }],
       ['link', 'image', 'video'],
-      ['clean']
+      ['clean'],
     ],
+    },
     imageResize: {
       displaySize: true,
       Resize: true
@@ -44,7 +47,8 @@ const BlockText = (props) => {
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
-    }
+    },
+  
   }
   const formats = [
     'header', 'font', 'size',
@@ -53,6 +57,7 @@ const BlockText = (props) => {
     'list', 'bullet', 'indent', 'align',
     'link', 'image', 'video'
   ];
+ 
   const handleBack = (id) => {
     history.push(`/content_management`)
   }

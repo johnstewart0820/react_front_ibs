@@ -11,6 +11,7 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import storage from '../../../../utils/storage';
 import { SidebarNav } from './components';
 import { withRouter } from 'react-router-dom';
@@ -32,7 +33,7 @@ const Sidebar = props => {
       icon: <PeopleIcon />
     },
     {
-      title: 'Własne symulacje',
+      title: 'Własna symulacje',
       href: '/own_simulations',
       icon: <ShoppingBasketIcon />
     },
@@ -59,7 +60,7 @@ const Sidebar = props => {
     {
       title: 'Pomoc',
       href: '/help',
-      icon: <SettingsIcon />
+      icon: <HelpOutlineOutlinedIcon />
     },
   ];
   const logout = () => {

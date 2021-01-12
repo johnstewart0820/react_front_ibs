@@ -122,6 +122,9 @@ const useStyles = makeStyles(theme => ({
         },
         '& .ql-editor': {
             whiteSpace: 'normal !important'
+        },
+        '& .ql-tooltip': {
+            left: '10px !important'
         }
     },
     title: {

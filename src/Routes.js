@@ -55,7 +55,7 @@ const Routes = () => {
         component={OwnSimulationsView}
         exact
         layout={MainLayout}
-        title='Własne symulacje'
+        title='Własna symulacje'
         path="/own_simulations"
       />
       <RouteWithLayout
