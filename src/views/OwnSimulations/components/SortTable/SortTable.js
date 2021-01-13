@@ -54,7 +54,7 @@ const SortTable = (props) => {
             {rows.map((item, indx) => {
               var percent = item.value / sum * 100;
               return (
-                <TableRow key={indx}>
+                <TableRow key={indx} className={classes.root}>
                   <TableCell>{item.year}</TableCell>
                   <TableCell>{percent.toFixed(2)}</TableCell>
                   <TableCell>{item.value}</TableCell>
