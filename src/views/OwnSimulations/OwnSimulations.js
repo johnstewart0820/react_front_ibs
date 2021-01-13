@@ -6,14 +6,17 @@ import {
   CircularProgress,
   Grid,
   Card,
-  Button
+  Button,
 } from '@material-ui/core';
-import { SingleSelect } from './components'
+
+import 'react-tabs/style/react-tabs.css';
+
+import { SimulationModal, SingleSelect } from './components'
 import series_labels from '../../apis/series-labels';
 const OwnSimulations = props => {
 
   const [progressStatus, setProgressStatus] = useState(false);
-
+  const [openModal, setOpenModal] = useState(false);
   const [simulation, setSimulation] = useState('');
   const [gdpRate, setGdpRate] = useState({});
   const [foreignDemand, setForeignDemand] = useState({});
@@ -52,6 +55,15 @@ const OwnSimulations = props => {
   const handleSimulationChange = (e) => {
     setSimulation(e.target.value);
   }
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  }
+
+  const handleClose = () => {
+    setOpenModal(false);
+  }
+
   return (
     <>
       <div className={classes.public}>
@@ -122,7 +134,7 @@ const OwnSimulations = props => {
             </Grid>
             <Grid item lg={3} md={3} sm={0}></Grid>
             <Grid item lg={3} md={3} sm={12}>
-              <Button variant="contained" color="secondary" className={classes.btnSee}>
+              <Button variant="contained" color="secondary" className={classes.btnSee} onClick={handleOpenModal}>
                 Zobacz wartości liczbowe dla wariantów
               </Button>
             </Grid>
@@ -134,6 +146,7 @@ const OwnSimulations = props => {
           </Grid>
         </div>
       </div>
+      <SimulationModal handleClose={handleClose} openModal={openModal}/>
       {
         progressStatus ?
           <>

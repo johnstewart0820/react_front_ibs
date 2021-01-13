@@ -144,6 +144,16 @@ const useStyles = makeStyles((theme) => ({
       fontStyle: 'italic'
     }
   },
+  progressContainer: {
+    position: 'absolute',
+    top: '50%',
+    width: 'calc(100% - 600px)',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  progress: {
+      color: '#b5502F'
+  },
 }));
 
 export default useStyles;
