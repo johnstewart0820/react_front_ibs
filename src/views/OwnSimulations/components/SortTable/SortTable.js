@@ -27,7 +27,7 @@ const SortTable = (props) => {
                   direction={sortOrder}
                   onClick={() => requestSort(0)}
                 >
-                  Miesiąc
+                  Rok
                 </TableSortLabel>
               </TableCell>
               <TableCell>
@@ -36,27 +36,16 @@ const SortTable = (props) => {
                   direction={sortOrder}
                   onClick={() => requestSort(1)}
                 >
-                  %
-                </TableSortLabel>
-              </TableCell>
-              <TableCell>
-                <TableSortLabel
-                  active={sortBy === 2}
-                  direction={sortOrder}
-                  onClick={() => requestSort(2)}
-                >
-                  wartość
+                  Wartość
                 </TableSortLabel>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((item, indx) => {
-              var percent = item.value / sum * 100;
               return (
                 <TableRow key={indx} className={classes.root}>
                   <TableCell>{item.year}</TableCell>
-                  <TableCell>{percent.toFixed(2)}</TableCell>
                   <TableCell>{item.value}</TableCell>
                 </TableRow>
               );

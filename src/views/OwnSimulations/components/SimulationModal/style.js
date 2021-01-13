@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     paper: {
         backgroundColor: '#E6E9EE',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: '25px',
         outline: 'none',
         color: '#44545e',
         fontSize: '15px',

@@ -32,10 +32,7 @@ const useStyles = makeStyles(theme => ({
     visibility: 'visible',
   },
   mainContainer: {
-    paddingLeft: theme.spacing(3),
-    paddingTop: theme.spacing(5),
-    paddingRight: theme.spacing(5),
-    paddingBottom: theme.spacing(8),
+    padding: theme.spacing(3),
   },
 }));
 

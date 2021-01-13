@@ -75,7 +75,7 @@ const SimulationModal = (props) => {
                   <Tab>Tempo wzrostu PKB</Tab>
                   <Tab>Popyt zagraniczny</Tab>
                   <Tab>Wielkść konsumpcji publicznej</Tab>
-                  <Tab>Djietność</Tab>
+                  <Tab>Dzietność</Tab>
                   <Tab>Saldo Migracji</Tab>
                 </TabList>
                 <TabPanel>

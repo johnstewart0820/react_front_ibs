@@ -23,13 +23,24 @@ const SimulationView = (props) => {
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const [chartData, setChartData] = useState([]);
   const [progressStatus, setProgressStatus] = useState(false);
-
+  const [maxValue, setMaxValue] = useState(0);
+  const [minValue, setMinValue] = useState(0);
   function generateChartData(rows) {
     let data = [];
+    let max = 0;
+    let min = 0;
     rows.map((row, index) => {
-      data.push({'name': row.year, 'uv': row.value})
+      data.push({'name': row.year, 'Wartość': row.value})
+      if (max < Math.ceil(row.value)) {
+        max = Math.ceil(row.value);
+      }
+      if (min > Math.floor(row.value)) {
+        min = Math.floor(row.value);
+      }
     });
     setChartData(data);
+    setMaxValue(max);
+    setMinValue(min);
   }
 
   useEffect(() => {
@@ -48,7 +59,6 @@ const SimulationView = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(seriesLabels, selectedSeriesLabel);
     if (seriesLabels.length > 0 && selectedSeriesLabel >= 0) {
       setProgressStatus(true);
       series_labels
@@ -108,10 +118,10 @@ const SimulationView = (props) => {
 
                 </defs>
                 <XAxis dataKey="name" />
-                <YAxis />
+                <YAxis type="number" domain={[ Math.floor(minValue / 5) * 5, Math.ceil(maxValue)]}/>
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip />
-                <Area type="monotone" dataKey="uv" stroke="#a52b02" fillOpacity={1} fill="url(#colorUv)" />
+                <Area type="monotone" dataKey="Wartość" stroke="#a52b02" fillOpacity={1} fill="url(#colorUv)" />
               </AreaChart>
             </ResponsiveContainer>
             </div>

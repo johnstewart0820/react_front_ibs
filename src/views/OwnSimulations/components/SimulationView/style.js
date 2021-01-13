@@ -37,7 +37,9 @@ const useStyles = makeStyles(theme => ({
     },
     seriesLabelItem: {
         width: '200px',
-        height: '40px',
+        height: '60px',
+        padding: '15px',
+        lineHeight: '1',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
