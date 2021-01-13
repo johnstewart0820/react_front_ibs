@@ -16,9 +16,11 @@ const Minimal = props => {
   const classes = useStyles(theme);
   
   useEffect(() => {
+    setProgressStatus(true);
     contents
     .getAllBlocks()
     .then(response => {
+      setProgressStatus(false);
       if (response.code === 200) {
         setBlocks(response.data.blocks);
       }
@@ -26,8 +28,12 @@ const Minimal = props => {
   }, []);
 
   return (
+    <>
     <div className={classes.root}>
       <main className={classes.content}>{children}</main>
+      {
+      !progressStatus 
+      ? 
       <main className={classes.public}>
         <Grid container spacing={3}>
           <Grid item xs={6}>
@@ -47,7 +53,21 @@ const Minimal = props => {
           </Grid>
         </Grid>
       </main>
+      :
+      <></>
+      }
     </div>
+    {
+      progressStatus ?
+        <>
+          <div className={classes.progressContainer}>
+            <CircularProgress className={classes.progress} />
+          </div>
+        </>
+        :
+        <></>
+    }
+    </>
   );
 };
 

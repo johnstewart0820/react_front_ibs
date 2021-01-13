@@ -32,7 +32,17 @@ const useStyles = makeStyles((theme) => ({
   normalBlock: {
     padding: '30px 30px 70px 30px',
     height: '100%'
-  }
+  },
+  progressContainer: {
+    position: 'absolute',
+    top: '50%',
+    width: 'calc(100% - 600px)',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  progress: {
+      color: '#b5502F'
+  },
 }));
 
 export default useStyles;

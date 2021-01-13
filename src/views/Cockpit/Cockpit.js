@@ -18,9 +18,11 @@ const Cockpit = props => {
   const classes = useStyles(theme);
   
   useEffect(() => {
+    setProgressStatus(true);
     contents
     .getAllBlocks()
     .then(response => {
+      setProgressStatus(false);
       if (response.code === 200) {
         setBlocks(response.data.blocks);
       }
@@ -34,6 +36,7 @@ const Cockpit = props => {
     history.push('/job_offer');
   }
   return (
+    <>
     <div className={classes.public}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
@@ -50,19 +53,36 @@ const Cockpit = props => {
             </div>
           </Card>
         </Grid>
-        <Grid item xs={12}>Przegladaj najciekawsze dane:</Grid>
-        <Grid item xs={7}>
-          <Card className={classes.normalBlock}>
-            <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[3].content : ''}}/>
-          </Card>
-        </Grid>
-        <Grid item xs={5}>
-          <Card className={classes.normalBlock}>
-            <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[4].content : ''}}/>
-          </Card>
-        </Grid>
+        { !progressStatus ?
+        <>
+          <Grid item xs={12}>Przegladaj najciekawsze dane:</Grid>
+          <Grid item xs={7}>
+            <Card className={classes.normalBlock}>
+              <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[3].content : ''}}/>
+            </Card>
+          </Grid>
+          <Grid item xs={5}>
+            <Card className={classes.normalBlock}>
+              <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[4].content : ''}}/>
+            </Card>
+          </Grid>
+        </>
+        :
+        <></>
+        }
       </Grid>
     </div>
+    {
+      progressStatus ?
+        <>
+          <div className={classes.progressContainer}>
+            <CircularProgress className={classes.progress} />
+          </div>
+        </>
+        :
+        <></>
+    }
+    </>
   );
 };
 
