@@ -170,6 +170,13 @@ const CreateOwnSimulations = props => {
             array[j] = 0;
           }
           setSeriesValue(JSON.stringify(array));
+          for (let i = 0; i < 31; i ++) {
+            if (array[i].length == 0) {
+              setDisableStatus(true);
+              return;
+            }
+          }
+          setDisableStatus(false);
           });
       }
       setCtrlDown(false);
