@@ -56,6 +56,10 @@ const OwnSimulations = props => {
     setSimulation(e.target.value);
   }
 
+  const handleCreate = () => {
+    history.push('/own_simulations/create');
+  }
+  
   const handleOpenModal = () => {
     setOpenModal(true);
   }
@@ -128,7 +132,7 @@ const OwnSimulations = props => {
         <div className={classes.controlBlock}>
           <Grid container spacing={4}>
             <Grid item lg={3} md={3} sm={12}>
-              <Button variant="contained" color="secondary" className={classes.btnCreate}>
+              <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleCreate}>
                 Stwórz własny scenariusz dla zmiennej egzogenicznej
               </Button>
             </Grid>

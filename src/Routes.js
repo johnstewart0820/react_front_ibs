@@ -9,6 +9,7 @@ import {
   ForecastingModule as ForecastingModuleView,
   SimulationInfo as SimulationInfoView,
   OwnSimulations as OwnSimulationsView,
+  CreateOwnSimulations as CreateOwnSimulationsView,
   JobOffer as JobOfferView,
   Profile as ProfileView,
   ChangePassword as ChangePasswordView,
@@ -57,6 +58,13 @@ const Routes = () => {
         layout={MainLayout}
         title='Własna symulacje'
         path="/own_simulations"
+      />
+      <RouteWithLayout
+        component={CreateOwnSimulationsView}
+        exact
+        layout={MainLayout}
+        title='Własna symulacje'
+        path="/own_simulations/create"
       />
       <RouteWithLayout
         component={JobOfferView}

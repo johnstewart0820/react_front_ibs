@@ -46,5 +46,24 @@ class series_labels {
                 return error;
             })
     }
+    createSeries = (id_type, description, eid, exo, series_list) => {
+        return axios
+            .post(`${process.env.REACT_APP_BACKEND_URL}/series_label`, {
+                id_type: id_type,
+                description: description,
+                eid: eid,
+                exo: exo,
+                series_list: series_list
+            }, {
+                headers: authHeader(storage.getStorage('token')),
+            })
+            .then(response => {
+                if (response.data.code === 401)
+                    storage.removeStorage('token');
+                return response.data;
+            }).catch(error => {
+                return error;
+            })
+    }
 }
 export default new series_labels();
