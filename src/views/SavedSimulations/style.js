@@ -10,25 +10,6 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0px 0px 20px grey',
   },
   public: {
-    '& .ql-align-right': {
-      textAlign: 'right'
-    },
-    '& .ql-align-left': {
-      textAlign: 'left'
-    },
-    '& .ql-align-center': {
-      textAlign: 'center'
-    },
-    '& .ql-video': {
-      width: '100%',
-      height: '180px'
-    },
-    '& video': {
-
-    },
-    '& .ql-size-small': {
-      fontSize: '12px'
-    },
     color: '#44545e',
     fontSize: '15px',
     fontFamily: 'roboto',
@@ -72,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: '50px',
     width: 'calc(100% - 360px)'
   },
-  btnSimulate: {
+  btnCreate: {
     '& .MuiButton-label': {
         textTransform: 'none',
         fontSize: '15px',
@@ -87,58 +68,18 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     lineHeight: '1',
+    padding: '10px',
     '&:disabled': {
       backgroundColor: '#b5502F',
       color: 'darkgray'
     }
   },
-  btnSee: {
-      '& .MuiButton-label': {
-          textTransform: 'none',
-          fontSize: '15px',
-      },
-      '& .MuiButton-containedSecondary:hover': {
-
-      },
-      '&:hover': {
-          backgroundColor: '#a52b02',
-          color: 'white',
-      },
-      borderRadius: '0px',
-      fontWeight: '300',
-      border: '2px solid #a52b02',
-      backgroundColor: '#ECECEC',
-      color: '#a52b02',
-      width: '100%',
-      height: '100%',
-      lineHeight: '1'
-  },
-  btnCreate: {
-    '& .MuiButton-label': {
-        textTransform: 'none',
-        fontSize: '15px',
-    },
-    '& .MuiButton-containedSecondary:hover': {
-
-    },
-    '&:hover': {
-        backgroundColor: 'gray',
-        color: 'white',
-    },
-    borderRadius: '0px',
-    fontWeight: '300',
-    border: '2px solid gray',
-    backgroundColor: '#ECECEC',
-    color: 'gray',
-    width: '100%',
-    height: '100%',
-    lineHeight: '1'
-},
   input_box: {
-    padding: '12px 30px',
+    padding: '12px 20px',
+    marginLeft: '10px',
+    marginRight: '10px',
+    width: '200px',
     fontSize: '14px',
-    marginTop: '20px',
-    width: '100%',
     '&::placeholder': {
       color: '#606C75',
       fontWeight: '400',
@@ -155,6 +96,19 @@ const useStyles = makeStyles((theme) => ({
   progress: {
       color: '#b5502F'
   },
+  rowsBlock: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  searchBlock: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  refresh_btn: {
+    color: '#a52b02',
+    cursor: 'pointer',
+  }
 }));
 
 export default useStyles;

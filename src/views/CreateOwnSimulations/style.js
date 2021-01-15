@@ -73,9 +73,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
   },
   controlBlock: {
-    position: 'absolute',
-    bottom: '25px',
-    width: 'calc(100% - 360px)',
+    // position: 'absolute',
+    // bottom: '25px',
+    // width: 'calc(100% - 360px)',
+    marginTop: '100px',
     display: 'flex',
     justifyContent: 'flex-end'
   },

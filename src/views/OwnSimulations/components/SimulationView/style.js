@@ -72,12 +72,13 @@ const useStyles = makeStyles(theme => ({
     },
     chartArea: {
         width: '100% !important',
-        height: '80% !important',
+        height: '100%',
+        
     },
     chartBlock: {
-        height: 'calc(100% - 100px)',
+        height: '85%',
         display: 'flex',
-        alignItems: 'flex-end'
+        // alignItems: 'flex-end'
     }
 }));
 

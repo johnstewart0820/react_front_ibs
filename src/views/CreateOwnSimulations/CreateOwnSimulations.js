@@ -94,7 +94,7 @@ const CreateOwnSimulations = props => {
     }
 
     for (let i = 0; i < 31; i ++) {
-      if (arr[i].length == 0) {
+      if (arr[i].length === 0) {
         setDisableStatus(true);
         return;
       }
@@ -142,11 +142,11 @@ const CreateOwnSimulations = props => {
   }
 
   const handleKeydown = (e) => {
-    if (e.keyCode == 17 || e.keyCode == 91) {
+    if (e.keyCode === 17 || e.keyCode === 91) {
       setCtrlDown(true);
     }
     else {
-      if (ctrlDown && e.keyCode == 86) {
+      if (ctrlDown && e.keyCode === 86) {
         navigator.clipboard.readText()
         .then(
           response => {
@@ -159,7 +159,7 @@ const CreateOwnSimulations = props => {
           let array = JSON.parse(seriesValue);
           let i = 0;
           for(i = 0; i < rows.length; i ++) {
-            if (i == 31)
+            if (i === 31)
               break;
             if (!isNaN(rows[i])) {
               array[i] = rows[i];
@@ -171,7 +171,7 @@ const CreateOwnSimulations = props => {
           }
           setSeriesValue(JSON.stringify(array));
           for (let i = 0; i < 31; i ++) {
-            if (array[i].length == 0) {
+            if (array[i].length === 0) {
               setDisableStatus(true);
               return;
             }
@@ -184,7 +184,7 @@ const CreateOwnSimulations = props => {
   }
 
   const handleKeyUp = (e) => {
-    if (e.keyCode == 17 || e.keyCode == 91) {
+    if (e.keyCode === 17 || e.keyCode === 91) {
       setCtrlDown(false);
     }
   }
@@ -327,7 +327,7 @@ const CreateOwnSimulations = props => {
           }
         </Grid>
         <div className={classes.controlBlock}>
-          <Button variant="contained" color="secondary" className={clsx(classes.btnCreate, classes.btn)} onClick={handleCreateScenario} disabled={disableStatus || !scenariosName || scenariosName.length == 0}>
+          <Button variant="contained" color="secondary" className={clsx(classes.btnCreate, classes.btn)} onClick={handleCreateScenario} disabled={disableStatus || !scenariosName || scenariosName.length === 0}>
             Zapisz scenariusz
           </Button>
         </div>

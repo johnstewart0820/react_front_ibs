@@ -10,9 +10,11 @@ import {
 } from '@material-ui/core';
 
 import 'react-tabs/style/react-tabs.css';
-
+import { useToasts } from 'react-toast-notifications'
 import { SimulationModal, SingleSelect } from './components'
 import series_labels from '../../apis/series-labels';
+import scenarios from '../../apis/scenarios';
+
 const OwnSimulations = props => {
 
   const [progressStatus, setProgressStatus] = useState(false);
@@ -32,6 +34,7 @@ const OwnSimulations = props => {
 
   const { history } = props;
   const theme = useTheme();
+  const { addToast } = useToasts()
   const classes = useStyles(theme);
 
   useEffect(() => {
@@ -59,6 +62,32 @@ const OwnSimulations = props => {
   const handleCreate = () => {
     history.push('/own_simulations/create');
   }
+
+  const handleCreateScenario = () => {
+    setProgressStatus(true);
+    let arr = [];
+    [gdpList, foreignDemandList, publicConsumptionList, fertilityList, migrateBalanceList].forEach((item, index) => {
+      item.forEach((item, index) => {
+        if (item.description === gdpRate || item.description === foreignDemand || item.description === publicConsumption || item.description === fertility || item.description === migrateBalance)
+        arr.push(item.id_series)
+      })
+    })
+    scenarios
+      .createScenario(0, simulation, 2020, 2050, arr)
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          if (response.code === 200) {
+            addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true});
+            setTimeout(function(){history.push('/saved_simulations');}, 1000);
+          } else {
+            addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true});
+          }
+        }
+      })
+  }
   
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -67,6 +96,10 @@ const OwnSimulations = props => {
   const handleClose = () => {
     setOpenModal(false);
   }
+
+  // function getDisabledStatus() {
+  //   return 
+  // }
 
   return (
     <>
@@ -143,8 +176,22 @@ const OwnSimulations = props => {
               </Button>
             </Grid>
             <Grid item lg={3} md={3} sm={12}>
-              <Button variant="contained" color="secondary" className={classes.btnSimulate}>
-                Urchom symulację
+              <Button 
+                variant="contained" 
+                color="secondary" 
+                className={classes.btnSimulate} 
+                disabled={
+                  (Object.keys(gdpRate).length === 0 && gdpRate.constructor === Object )
+                  || (Object.keys(foreignDemand).length === 0 && foreignDemand.constructor === Object )
+                  || (Object.keys(publicConsumption).length === 0 && publicConsumption.constructor === Object )
+                  || (Object.keys(fertility).length === 0 && fertility.constructor === Object )
+                  || (Object.keys(migrateBalance).length === 0 && migrateBalance.constructor === Object )
+                  || !simulation
+                  || simulation.length === 0
+                }
+                onClick={handleCreateScenario}
+              >
+                Uruchom symulację
               </Button>
             </Grid>
           </Grid>

@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
         fontFamily: 'roboto',
         fontWeight: 400,
-        width: '80%',
-        height: '80%'
+        width: '1000px',
+        height: '600px'
     },
     closeIcon: {
         color: 'white',

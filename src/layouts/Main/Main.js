@@ -8,9 +8,9 @@ import { Sidebar, Topbar, Footer } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#ECECEC',
+    // backgroundColor: '#ECECEC',
     paddingTop: 95,
-    height: '100%',
+    // height: '100%',
     [theme.breakpoints.up('sm')]: {
       paddingTop: 80
     }
