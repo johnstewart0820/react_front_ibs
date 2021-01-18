@@ -80,13 +80,15 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     marginTop: '20px',
     width: '330px',
+    fontFamily: 'roboto',
     '&::placeholder': {
       color: theme.palette.gray,
-      fontWeight: 500
+      fontWeight: 500,
     }
   },
   error_log: {
-    color: 'red'
+    color: 'red',
+    fontFamily: 'roboto'
   },
   btnLogin: {
     '& .MuiButton-label': {

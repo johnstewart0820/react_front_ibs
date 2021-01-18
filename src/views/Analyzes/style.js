@@ -78,7 +78,8 @@ const useStyles = makeStyles((theme) => ({
     '&::placeholder': {
       color: theme.palette.gray,
       fontWeight: '400',
-      fontStyle: 'italic'
+      fontStyle: 'italic',
+      fontFamily: 'roboto'
     }
   },
   progressContainer: {

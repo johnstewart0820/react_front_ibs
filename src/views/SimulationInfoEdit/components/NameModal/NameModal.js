@@ -41,7 +41,7 @@ const NameModal = (props) => {
             </Grid>
             <Grid item xs={12}>
               <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleSave} disabled={name.length === 0}>
-                Zapisać
+                Zapisz
               </Button>
             </Grid>
           </Grid>

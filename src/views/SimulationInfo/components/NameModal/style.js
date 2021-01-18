@@ -31,10 +31,11 @@ const useStyles = makeStyles(theme => ({
         fontSize: '16px',
         width: '100%',
         color: theme.palette.gray,
-        fontWeight: '500',
+        fontWeight: '400',
+        fontFamily: 'roboto',
         '&::placeholder': {
           color: theme.palette.gray,
-          fontWeight: '500',
+          fontWeight: '400',
           fontStyle: 'italic'
         }
     },

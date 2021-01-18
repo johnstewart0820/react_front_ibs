@@ -139,9 +139,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     marginTop: '20px',
     width: '100%',
+    fontFamily: 'roboto',
     '&::placeholder': {
       color: 'gray',
-      fontWeight: '400',
+      fontWeight: '300',
       fontStyle: 'italic'
     }
   },

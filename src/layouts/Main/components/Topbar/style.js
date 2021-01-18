@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     root: {
-      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+      boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.15), 0px 4px 5px 0px rgba(0,0,0,0.04), 0px 1px 10px 0px rgba(0,0,0,0.02)',
       left: '299px',
       width: 'calc(100% - 299px)',
       height: '80px',
@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     toolbar: {
       display: 'flex',
       width: '100%',
-      paddingLeft: '10px'
+      padding: '0px 10px',
+      justifyContent: 'space-between'
     },
     close_drawer_icon: {
       display: 'flex',
@@ -38,7 +39,16 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       alignItems: 'center',
       marginLeft: '16px'
-    }
+    },
+    avatar: {
+
+    },
+    titlebar: {
+      display: 'flex'
+    },
+    avataricon: {
+      fontSize: '40px'
+    },
   }));
 
   export default useStyles;

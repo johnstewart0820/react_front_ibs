@@ -52,7 +52,8 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '20px',
   },
   error_log: {
-    color: 'red'
+    color: 'red',
+    fontFamily: 'roboto',
   },
   rememberMe: {
     marginTop: '30px',
@@ -70,6 +71,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     marginTop: '20px',
     width: '330px',
+    fontFamily: 'roboto',
     '&::placeholder': {
       color: theme.palette.gray,
       fontWeight: '600'

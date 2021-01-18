@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         color: theme.palette.gray,
         fontWeight: '500',
+        fontFamily: 'roboto',
         '&::placeholder': {
           color: theme.palette.gray,
           fontWeight: '500',

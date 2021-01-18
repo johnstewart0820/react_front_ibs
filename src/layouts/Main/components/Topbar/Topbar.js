@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { AppBar, Button } from '@material-ui/core';
+import { AppBar, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './style';
+import { useHistory } from "react-router-dom";
+import storage from '../../../../utils/storage';
 
 const Topbar = props => {
   const { className, title, onSidebarOpen, onSidebarClose, ...rest } = props;
   const [ open, setOpen] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [avatarOpen, setAvatarOpen] = useState(Boolean(anchorEl));
   const classes = useStyles();
+  let history = useHistory();
 
   const onMaxTopbar = () => {
     if (open === true)
@@ -18,17 +24,70 @@ const Topbar = props => {
       onSidebarClose();
     setOpen(!open);
   }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setAvatarOpen(false);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+    setAvatarOpen(true);
+  };
+
+  const handleProfile = () => {
+    handleClose();
+    history.push('/profile');
+  }
+
+  const handleLogout = () => {
+    handleClose();
+    storage.removeStorage('token');
+    history.push('/login');
+  }
+
   return (
     <AppBar
       {...rest}
       className={clsx(classes.root, className)}
     >
       <div className={classes.toolbar}>
-        <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
-          {open ? <KeyboardBackspaceIcon/> : <MenuIcon/>}
-        </Button>
-        <div className={classes.title}>
-          {title}
+        
+        <div className={classes.titlebar}>
+          <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
+            {open ? <KeyboardBackspaceIcon/> : <MenuIcon/>}
+          </Button>
+          <div className={classes.title}>
+            {title}
+          </div>
+        </div>
+        <div className={classes.avatar}>
+          <IconButton
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+          >
+            <AccountCircle className={classes.avataricon}/>
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={avatarOpen}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleProfile}>Ustawienia</MenuItem>
+            <MenuItem onClick={handleLogout}>Wyloguj</MenuItem>
+          </Menu>
         </div>
       </div>
     </AppBar>

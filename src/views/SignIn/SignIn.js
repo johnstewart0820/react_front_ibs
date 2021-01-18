@@ -23,6 +23,8 @@ const SignIn = props => {
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
   const [progressStatus, setProgressStatus] = useState(false);
+  const [tryLogin, setTryLogin] = useState(false);
+
   const handleChange = event => {
     let arr = JSON.parse(JSON.stringify(input));
     arr[event.target.name] = event.target.value;
@@ -33,6 +35,7 @@ const SignIn = props => {
     setCheckStatus(!checkStatus);
   };
   const handleSignIn = event => {
+    setTryLogin(true);
     if ((error && ((error.email && error.email.length > 0 ) || (error.password && error.password.length > 0))) || !input.email || !input.password) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
@@ -109,9 +112,9 @@ const SignIn = props => {
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
                   <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} autocomplete='off'/>
-                  <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
+                  <div className={classes.error_log}>{tryLogin && error["email"] && error["email"].length > 0 && error.email}</div>
                   <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
-                  <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
+                  <div className={classes.error_log}>{tryLogin && error["password"] && error["password"].length > 0 && error.password}</div>
                   <FormControlLabel
                     className={classes.rememberMe}
                     control={

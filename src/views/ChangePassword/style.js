@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     color: theme.palette.gray,
     fontWeight: '500',
+    fontFamily: 'roboto',
     '&::placeholder': {
       color: theme.palette.gray,
       fontWeight: '600'
@@ -81,8 +82,9 @@ const useStyles = makeStyles(theme => ({
   },
   error_log: {
     color: 'red',
+    fontFamily: 'roboto',
     marginBottom: '20px',
-  }
+  },
 }));
 
 export default useStyles;

@@ -38,7 +38,7 @@ const DeleteModal = (props) => {
             </Grid>
             <Grid item xs={12}>
               <Button variant="contained" color="secondary" className={classes.btnSave} onClick={() => {handleDelete(selectedIndex); handleClose();}}>
-                Usunąć
+                Usuń
               </Button>
             </Grid>
           </Grid>

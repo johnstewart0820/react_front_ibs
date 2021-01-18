@@ -129,6 +129,7 @@ btn: {
     padding: '12px 30px',
     fontSize: '14px',
     width: '100%',
+    fontFamily: 'roboto',
     '&::placeholder': {
       color: theme.palette.gray,
       fontWeight: '400',
