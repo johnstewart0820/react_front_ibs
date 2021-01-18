@@ -10,8 +10,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0px 0px 20px grey',
   },
   public: {
-    color: '#44545e',
-    fontSize: '15px',
+    color: theme.palette.gray,
     fontFamily: 'roboto',
     fontWeight: 400,
   },
@@ -37,13 +36,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   selectTitle: {
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '14px',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '17px',
     fontFamily: 'roboto',
     fontWeight: 400,
@@ -59,20 +58,16 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '15px',
     },
     '&:hover': {
-        backgroundColor: '#a52b02'
+        backgroundColor: theme.palette.pink
     },
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: '#a52b02',
+    backgroundColor: theme.palette.pink,
     color: 'white',
     width: '100%',
     height: '100%',
     lineHeight: '1',
     padding: '10px',
-    '&:disabled': {
-      backgroundColor: '#b5502F',
-      color: 'darkgray'
-    }
   },
   input_box: {
     padding: '12px 20px',
@@ -81,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     width: '200px',
     fontSize: '14px',
     '&::placeholder': {
-      color: '#606C75',
+      color: theme.palette.gray,
       fontWeight: '400',
       fontStyle: 'italic'
     }
@@ -94,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   progress: {
-      color: '#b5502F'
+      color: theme.palette.pink
   },
   rowsBlock: {
     display: 'flex',
@@ -106,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   refresh_btn: {
-    color: '#a52b02',
+    color: theme.palette.pink,
     cursor: 'pointer',
   },
   filterBlock: {

@@ -8,11 +8,11 @@ const useStyles = makeStyles(theme => ({
           fontSize: '15px',
       },
       '&:hover': {
-          backgroundColor: '#a52b02'
+          backgroundColor: theme.palette.pink
       },
       borderRadius: '0px',
       fontWeight: '300',
-      backgroundColor: '#a52b02',
+      backgroundColor: theme.palette.pink,
       color: 'white',
       height: '100%',
       width: '40%',
@@ -20,10 +20,6 @@ const useStyles = makeStyles(theme => ({
       padding: '10px',
       marginLeft: '10px',
       marginRight: '10px',
-      '&:disabled': {
-        backgroundColor: '#b5502F',
-        color: 'darkgray'
-      }
     },
   btnDelete: {
     '& .MuiButton-label': {
@@ -31,11 +27,11 @@ const useStyles = makeStyles(theme => ({
         fontSize: '15px',
     },
     '&:hover': {
-        backgroundColor: '#44545e'
+        backgroundColor: theme.palette.gray
     },
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: '#44545e',
+    backgroundColor: theme.palette.gray,
     color: 'white',
     height: '100%',
     width: '40%',
@@ -43,10 +39,6 @@ const useStyles = makeStyles(theme => ({
     padding: '10px',
     marginLeft: '10px',
     marginRight: '10px',
-    '&:disabled': {
-      backgroundColor: '#44545e',
-      color: 'darkgray'
-    }
   },
 
 }));

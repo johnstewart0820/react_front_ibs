@@ -31,18 +31,18 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       textDecoration: 'none'
     },
-    color: '#b5502F',
+    color: theme.palette.pink,
     marginRight: '20px',
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'roboto',
   },
   tabRegister: {
     '&:hover': {
       textDecoration: 'none'
     },
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'roboto',
-    color: 'gray',
+    color: theme.palette.gray,
   },
   loginMainForm: {
     paddingLeft: '10px',
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '30px',
     '& .MuiTypography-body1': {
       fontSize: '16px',
-      color: 'gray',
+      color: theme.palette.gray,
     },
   },
   buttonContainer: {
@@ -74,8 +74,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: '20px',
     width: '330px',
     '&::placeholder': {
-      color: '#606C75',
-      fontWeight: '600'
+      color: theme.palette.gray,
+      fontWeight: '500'
     }
   },
   error_log: {
@@ -84,18 +84,18 @@ const useStyles = makeStyles(theme => ({
   btnLogin: {
     '& .MuiButton-label': {
       textTransform: 'none',
-      fontSize: '18px',
+      fontSize: '17px',
     },
     '& .MuiButton-containedSecondary:hover': {
 
     },
     '&:hover': {
-      backgroundColor: '#a52b02'
+      backgroundColor: theme.palette.pink
     },
     padding: '4px',
     borderRadius: '0px',
-    fontWeight: '400',
-    backgroundColor: '#a52b02',
+    fontWeight: '300',
+    backgroundColor: theme.palette.pink,
     color: 'white',
     width: '100%'
   },
@@ -106,10 +106,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     display: 'flex',
     width: '100%',
-    color: '#b5502F',
-    fontSize: '18px',
+    color: theme.palette.pink,
+    fontSize: '17px',
     fontFamily: 'roboto',
-    fontWeight: '500',
+    fontWeight: '400',
     lineHeight: '1.75',
   },
   footerContainer: {
@@ -136,11 +136,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   progress: {
-    color: '#b5502F'
+    color: theme.palette.pink
   },
   titleBlock: {
-    color: '#b5502F',
-    fontWeight: '500',
+    color: theme.palette.pink,
+    fontWeight: '400',
     fontSize: '18px',
     fontFamily: 'roboto',
     marginBottom: '25px'

@@ -17,15 +17,15 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     marginBottom: '20px',
     width: '100%',
-    color: '#606C75',
+    color: theme.palette.gray,
     fontWeight: '500',
     '&::placeholder': {
-      color: '#606C75',
+      color: theme.palette.gray,
       fontWeight: '600'
     }
   },
   title: {
-    color: '#606C75',
+    color: theme.palette.gray,
     fontSize: '18px',
     fontFamily: 'roboto',
     marginBottom: '5px',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     cursor: 'pointer',
     fontFamily: 'roboto',
-    color: '#b5502F'
+    color: theme.palette.pink
   },
   userImageBlock: {
     width: 'fit-content',
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   progress: {
-    color: '#b5502F'
+    color: theme.palette.pink
   }
 }));
 

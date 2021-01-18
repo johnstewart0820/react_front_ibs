@@ -12,14 +12,14 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
     },
     mainHeader: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '18px',
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: '500'        
     },
     titleHeader: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     secondTitleHeader: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '18px',
         fontFamily: 'roboto',
         marginBottom: '15px',
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     subHeader: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '13px',
         fontFamily: 'roboto',
         marginBottom: '20px',
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     titleInfo: {
-        color: '#a52b02',
+        color: theme.palette.pink,
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
@@ -65,14 +65,14 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: '#a52b02'
+            backgroundColor: theme.palette.pink
         },
         zIndex: 0,
         padding: '4px',
         border: '1px solid #a52b02',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: '#a52b02',
+        backgroundColor: theme.palette.pink,
         color: 'white',
         width: '25%',
         marginLeft: '15px'
@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: '#a52b02',
+            backgroundColor: theme.palette.pink,
             color: 'white',
         },
         padding: '4px 20px',
@@ -98,7 +98,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         border: '1px solid #a52b02',
         backgroundColor: 'white',
-        color: '#a52b02',
+        color: theme.palette.pink,
         width: '25%'
     },
     progressContainer: {
@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
     progress: {
-        color: '#b5502F'
+        color: theme.palette.pink
     },
     secondContainer: {
         marginTop: '20px'
@@ -128,13 +128,13 @@ const useStyles = makeStyles(theme => ({
         }
     },
     title: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '18px',
         fontFamily: 'roboto',
         fontWeight: 400,
         marginBottom: '20px',
         '& span': {
-            color: '#606C75',
+            color: theme.palette.gray,
             fontSize: '16px',
             fontFamily: 'roboto',
             fontWeight: 500,

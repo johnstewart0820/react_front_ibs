@@ -8,7 +8,7 @@ import { Sidebar, Topbar, Footer } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    // backgroundColor: '#ECECEC',
+    // backgroundColor: theme.palette.background.default,
     paddingTop: 95,
     // height: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     height: '100%',
-    backgroundColor: '#ECECEC'
+    backgroundColor: theme.palette.background.default
   },
   topbar_max: {
     transform: 'translateX(-300px)',

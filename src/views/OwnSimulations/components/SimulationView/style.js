@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
     description: {
         marginTop: '20px',
-        color: '#44545e',
+        color: theme.palette.gray,
         fontSize: '15px',
         fontFamily: 'roboto',
         fontWeight: 400,
@@ -45,16 +45,16 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         textAlign: 'center',
         border: '1px solid #44545e',
-        color: '#44545e',
+        color: theme.palette.gray,
         marginRight: '-1px',
         cursor: 'pointer',
         '&:hover': {
-            backgroundColor: '#44545e',
+            backgroundColor: theme.palette.gray,
             color: 'white',            
         }
     },
     seriesLabelItemActive: {
-        backgroundColor: '#44545e',
+        backgroundColor: theme.palette.gray,
         color: 'white',
     },
     progressContainer: {
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
     progress: {
-        color: '#b5502F'
+        color: theme.palette.pink
     },
     gridView: {
         height: '100%'

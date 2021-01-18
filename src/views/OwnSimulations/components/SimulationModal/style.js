@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: theme.shadows[5],
         padding: '25px',
         outline: 'none',
-        color: '#44545e',
+        color: theme.palette.gray,
         fontSize: '15px',
         fontFamily: 'roboto',
         fontWeight: 400,
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     },
     closeIcon: {
         color: 'white',
-        backgroundColor: '#a52b02'
+        backgroundColor: theme.palette.pink
     },
     closeIconBlock: {
         display: 'flex',

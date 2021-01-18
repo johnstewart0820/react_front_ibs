@@ -2,10 +2,17 @@ import { colors } from '@material-ui/core';
 
 const white = '#FFFFFF';
 const black = '#000000';
-
+const pink = '#a52b02';
+const gray = '#44545e';
+const pink_disable = '#a02000';
+const gray_disable = '#404040';
 export default {
   black,
   white,
+  pink,
+  gray,
+  pink_disable,
+  gray_disable,
   primary: {
     contrastText: white,
     dark: colors.indigo[900],

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   progress: {
-      color: '#b5502F'
+      color: theme.palette.pink
   },
 }));
 

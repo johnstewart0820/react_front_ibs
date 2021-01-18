@@ -5,27 +5,24 @@ const useStyles = makeStyles(theme => ({
         padding: '10px 20px 25px 10px',
     },
     title: {
-        color: '#606C75',
-        fontSize: '18px',
+        color: theme.palette.gray,
+        fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
-        fontWeight: '500'
+        fontWeight: 400
     },
     btnShowResult: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '18px',
-        },
-        '& .MuiButton-containedSecondary:hover': {
-
+            fontSize: '16px',
         },
         '&:hover': {
-            backgroundColor: '#a52b02'
+            backgroundColor: theme.palette.pink
         },
-        padding: '4px',
+        padding: '6px',
         borderRadius: '0px',
-        fontWeight: '400',
-        backgroundColor: '#a52b02',
+        fontWeight: 300,
+        backgroundColor: theme.palette.pink,
         color: 'white',
         width: '100%'
     },
@@ -36,33 +33,33 @@ const useStyles = makeStyles(theme => ({
     btnCreateSimulation: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '18px',
-        },
-        '& .MuiButton-containedSecondary:hover': {
-
+            fontSize: '16px',
         },
         '&:hover': {
-            backgroundColor: '#a52b02',
+            backgroundColor: theme.palette.pink,
             color: 'white',
         },
         padding: '4px 20px',
         borderRadius: '0px',
-        fontWeight: '400',
+        fontWeight: 400,
         border: '1px solid #a52b02',
-        backgroundColor: '#ECECEC',
-        color: '#a52b02',
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.pink,
         width: '100%'
     },
     name_select_box: {
         '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input' : {
             padding: '3.5px 4px',
+            color: theme.palette.gray,
+            fontWeight: 400
         },
         '& ::placeholder': {
             fontStyle: 'italic',
             marginTop: '-5px',
-            color: '#606C75',
-            fontWeight: '500'
-        }
+            color: theme.palette.gray,
+            fontWeight: 400
+        },
+
     },
     progressContainer: {
         position: 'absolute',
@@ -72,7 +69,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
     progress: {
-        color: '#b5502F'
+        color: theme.palette.pink
     }
 }));
 

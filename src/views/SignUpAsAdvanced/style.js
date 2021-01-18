@@ -31,18 +31,18 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       textDecoration: 'none'
     },
-    color: 'gray',
+    color: theme.palette.gray,
     marginRight: '20px',
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'roboto',
   },
   tabRegister: {
     '&:hover': {
       textDecoration: 'none'
     },
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'roboto',
-    color: '#b5502F',
+    color: theme.palette.pink,
   },
   loginMainForm: {
     paddingLeft: '10px',
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '30px',
     '& .MuiTypography-body1': {
       fontSize: '16px',
-      color: 'gray',
+      color: theme.palette.gray,
     },
   },
   buttonContainer: {
@@ -72,8 +72,8 @@ const useStyles = makeStyles(theme => ({
     marginTop: '20px',
     width: '330px',
     '&::placeholder': {
-      color: '#606C75',
-      fontWeight: '600'
+      color: theme.palette.gray,
+      fontWeight: '500'
     }
   },
   btnRegisterContainer: {
@@ -84,18 +84,18 @@ const useStyles = makeStyles(theme => ({
   btnRegister: {
     '& .MuiButton-label': {
       textTransform: 'none',
-      fontSize: '18px',
+      fontSize: '17px',
     },
     '& .MuiButton-containedSecondary:hover': {
 
     },
     '&:hover': {
-      backgroundColor: '#a52b02'
+      backgroundColor: theme.palette.pink
     },
     padding: '4px',
     borderRadius: '0px',
     fontWeight: '400',
-    backgroundColor: '#a52b02',
+    backgroundColor: theme.palette.pink,
     color: 'white',
     width: '100%'
   },
@@ -106,8 +106,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     display: 'flex',
     width: '100%',
-    color: '#b5502F',
-    fontSize: '18px',
+    color: theme.palette.pink,
+    fontSize: '17px',
     fontFamily: 'roboto',
     fontWeight: '500',
     lineHeight: '1.75',
@@ -136,7 +136,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   progress: {
-    color: '#b5502F'
+    color: theme.palette.pink
   }
 }));
 

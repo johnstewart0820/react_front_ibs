@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     '& .ql-size-small': {
       fontSize: '12px'
     },
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '15px',
     fontFamily: 'roboto',
     fontWeight: 400,
@@ -61,13 +61,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   selectTitle: {
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '14px',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '17px',
     fontFamily: 'roboto',
     fontWeight: 400,
@@ -89,11 +89,11 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '&:hover': {
-        backgroundColor: '#a52b02'
+        backgroundColor: theme.palette.pink
     },
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: '#a52b02',
+    backgroundColor: theme.palette.pink,
     color: 'white',
     width: '100%',
     height: '44px',
@@ -108,17 +108,17 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '&:hover': {
-        backgroundColor: '#44545e',
+        backgroundColor: theme.palette.gray,
         color: 'white',
     },
     '&:disabled': {
-      backgroundColor: 'gray',
+      backgroundColor: theme.palette.gray_disable,
       color: 'lightGray',
     },
     borderRadius: '0px',
     fontWeight: '300',
     // border: '1px solid gray',
-    backgroundColor: '#44545e',
+    backgroundColor: theme.palette.gray,
     color: 'white',
     lineHeight: '1'
 },
@@ -130,7 +130,7 @@ btn: {
     fontSize: '14px',
     width: '100%',
     '&::placeholder': {
-      color: '#606C75',
+      color: theme.palette.gray,
       fontWeight: '400',
       fontStyle: 'italic'
     }
@@ -146,7 +146,7 @@ btn: {
     justifyContent: 'center',
   },
   progress: {
-      color: '#b5502F'
+      color: theme.palette.pink
   },
   seriesLabelItem: {
     width: 'auto',
@@ -158,22 +158,22 @@ btn: {
     justifyContent: 'center',
     textAlign: 'center',
     border: '1px solid #a52b02',
-    color: '#a52b02',
+    color: theme.palette.pink,
     marginRight: '-1px',
     cursor: 'pointer',
     '&:hover': {
-        backgroundColor: '#a52b02',
+        backgroundColor: theme.palette.pink,
         color: 'white',            
     }
   },
   seriesLabelItemActive: {
-      backgroundColor: '#a52b02',
+      backgroundColor: theme.palette.pink,
       color: 'white',
   },
   scenariosDescription: {
     display: 'flex',
     justifyContent: 'center',
-    backgroundColor: '#44545e',
+    backgroundColor: theme.palette.gray,
     color: 'white',
     padding: '10px',
     marginTop: '30px',
@@ -181,7 +181,7 @@ btn: {
   },
   headerLabel: {
     textAlign: 'center',
-    backgroundColor: '#44545e',
+    backgroundColor: theme.palette.gray,
     paddingBottom: '10px',
     paddingTop: '10px',
     marginBottom: '10px',
@@ -194,7 +194,7 @@ btn: {
     paddingTop: '10px',
     marginBottom: '10px',
     border: '1px solid gray',
-    color: '#a52b02'
+    color: theme.palette.pink
   },
   inputBlock: {
     marginLeft: '20px',
@@ -221,7 +221,7 @@ btn: {
     border: '1px solid gray',
   },
   input_box_black: {
-    backgroundColor: '#44545e',
+    backgroundColor: theme.palette.gray,
     border: '1px solid gray',
     color: 'white'
   },
@@ -234,7 +234,7 @@ btn: {
       border: '1px solid #d5d5d5'
     },
     '&::-webkit-scrollbar-thumb:horizontal' :{
-      background: '#44545e',
+      background: theme.palette.gray,
       borderRadius: '5px'
     }
   },

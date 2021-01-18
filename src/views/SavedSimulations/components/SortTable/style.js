@@ -8,18 +8,18 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px',
         },
         '&:hover': {
-            backgroundColor: '#a52b02'
+            backgroundColor: theme.palette.pink
         },
         borderRadius: '0px',
         fontWeight: '300',
-        backgroundColor: '#a52b02',
+        backgroundColor: theme.palette.pink,
         color: 'white',
         height: '100%',
         width: '100%',
         lineHeight: '1',
         padding: '10px',
         '&:disabled': {
-          backgroundColor: '#b5502F',
+          backgroundColor: theme.palette.pink_disable,
           color: 'darkgray'
         }
       },

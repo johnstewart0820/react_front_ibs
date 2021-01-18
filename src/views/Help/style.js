@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     '& .ql-size-small': {
       fontSize: '12px'
     },
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '15px',
     fontFamily: 'roboto',
     fontWeight: 400,
@@ -53,13 +53,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   header: {
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '22px',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
-    color: '#44545e',
+    color: theme.palette.gray,
     fontSize: '15px',
     fontFamily: 'roboto',
     fontWeight: 400,
@@ -75,13 +75,13 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '&:hover': {
-        backgroundColor: '#a52b02'
+        backgroundColor: theme.palette.pink
     },
     padding: '4px',
     border: '1px solid #a52b02',
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: '#a52b02',
+    backgroundColor: theme.palette.pink,
     color: 'white',
     marginLeft: '20px',
     marginRight: '20px',
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   progress: {
-      color: '#b5502F'
+      color: theme.palette.pink
   },
 }));
 

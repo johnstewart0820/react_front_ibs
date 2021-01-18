@@ -15,15 +15,15 @@ const useStyles = makeStyles(theme => ({
     padding: '12px 30px',
     fontSize: '16px',
     width: '100%',
-    color: '#606C75',
+    color: theme.palette.gray,
     fontWeight: '500',
     '&::placeholder': {
-      color: '#606C75',
+      color: theme.palette.gray,
       fontWeight: '600'
     }
   },
   title: {
-    color: '#606C75',
+    color: theme.palette.gray,
     fontSize: '18px',
     fontFamily: 'roboto',
     marginBottom: '5px',
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px',
     cursor: 'pointer',
     fontFamily: 'roboto',
-    color: '#b5502F'
+    color: theme.palette.pink
   },
   userImageBlock: {
     maxWidth: '20%',
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   progress: {
-    color: '#b5502F'
+    color: theme.palette.pink
   },
   btnRegister: {
     '& .MuiButton-label': {
@@ -69,12 +69,12 @@ const useStyles = makeStyles(theme => ({
 
     },
     '&:hover': {
-      backgroundColor: '#a52b02'
+      backgroundColor: theme.palette.pink
     },
     padding: '4px',
     borderRadius: '0px',
     fontWeight: '400',
-    backgroundColor: '#a52b02',
+    backgroundColor: theme.palette.pink,
     color: 'white',
     width: '100%',
     marginTop: '20px'

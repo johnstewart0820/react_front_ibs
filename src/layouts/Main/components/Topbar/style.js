@@ -27,12 +27,12 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'center',
       '& .MuiSvgIcon-root': {
-        fontSize: '3em'
+        fontSize: '30px'
       }
     },
     title: {
-      color: 'gray',
-      fontSize: '22px',
+      color: theme.palette.gray,
+      fontSize: '20px',
       fontFamily: 'roboto',
       fontWeight: '400',
       display: 'flex',

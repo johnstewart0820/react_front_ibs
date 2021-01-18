@@ -12,44 +12,44 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
     },
     mainHeader: {
-        color: '#606C75',
-        fontSize: '18px',
+        color: theme.palette.gray,
+        fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '15px',
-        fontWeight: '500'        
+        fontWeight: 400        
     },
     titleHeader: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
-        fontWeight: '500'
+        fontWeight: 400
     },
 
     secondTitleHeader: {
-        color: '#606C75',
-        fontSize: '18px',
+        color: theme.palette.gray,
+        fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '15px',
-        fontWeight: '500'
+        fontWeight: 400
     },
 
     subHeader: {
-        color: '#606C75',
+        color: theme.palette.gray,
         fontSize: '13px',
         fontFamily: 'roboto',
         marginBottom: '20px',
-        fontWeight: '500',
+        fontWeight: 400,
         fontStyle: 'italic'
     },
 
     titleInfo: {
-        color: '#a52b02',
+        color: theme.palette.pink,
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
         marginLeft: '10px',
-        fontWeight: '500'
+        fontWeight: 400
     },
     btnOpen: {
         '& .MuiButton-label': {
@@ -60,13 +60,13 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: '#a52b02'
+            backgroundColor: theme.palette.pink
         },
         padding: '4px',
         border: '1px solid #a52b02',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: '#a52b02',
+        backgroundColor: theme.palette.pink,
         color: 'white',
         width: '100%'
     },
@@ -83,7 +83,7 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: '#a52b02',
+            backgroundColor: theme.palette.pink,
             color: 'white',
         },
         padding: '4px 20px',
@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         border: '1px solid #a52b02',
         backgroundColor: 'white',
-        color: '#a52b02',
+        color: theme.palette.pink,
         width: '100%'
     },
     progressContainer: {
@@ -102,7 +102,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
     progress: {
-        color: '#b5502F'
+        color: theme.palette.pink
     },
     secondContainer: {
         marginTop: '20px'
@@ -122,12 +122,12 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: '#44545e'
+            backgroundColor: theme.palette.gray
         },
         padding: '4px',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: '#44545e',
+        backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
         color: 'white',
         width: '100%'
@@ -141,7 +141,7 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: '#44545e',
+            backgroundColor: theme.palette.gray,
             color: 'white'
         },
         padding: '4px',
@@ -149,7 +149,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: 'white',
         border: '1px solid #44545e',
-        color: '#44545e',
+        color: theme.palette.gray,
         width: '100%'
     },
     controlContainer: {

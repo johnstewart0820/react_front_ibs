@@ -114,7 +114,7 @@ const SignUp = props => {
                     <Checkbox
                       checked={checkStatus}
                       onChange={handleRememberMe}
-                      color="#b5502F"
+                      color="theme.palette.pink"
                     />
                   }
                   label="Akceptuję Regulamin"

@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import useStyles from './style';
 import auth from '../../apis/auth';
-import contents from '../../apis/contents';
 import storage from 'utils/storage';
 import { useToasts } from 'react-toast-notifications';
 import constants from '../../utils/constants';
