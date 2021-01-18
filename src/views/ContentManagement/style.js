@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
         },
         zIndex: 0,
         padding: '4px',
-        border: '2px solid #a52b02',
+        border: '1px solid #a52b02',
         borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: '#a52b02',
@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
         padding: '4px 20px',
         borderRadius: '0px',
         fontWeight: '400',
-        border: '2px solid #a52b02',
+        border: '1px solid #a52b02',
         backgroundColor: 'white',
         color: '#a52b02',
         width: '100%'

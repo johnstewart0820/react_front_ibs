@@ -22,7 +22,7 @@ const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
-    borderBottom: '2px solid gray'
+    borderBottom: '1px solid gray'
   },
   body: {
     fontSize: 14,

@@ -8,6 +8,7 @@ import {
   Cockpit as CockpitView,
   ForecastingModule as ForecastingModuleView,
   SimulationInfo as SimulationInfoView,
+  SimulationInfoEdit as SimulationInfoEditView,
   OwnSimulations as OwnSimulationsView,
   CreateOwnSimulations as CreateOwnSimulationsView,
   JobOffer as JobOfferView,
@@ -51,6 +52,13 @@ const Routes = () => {
         layout={MainLayout}
         title='Moduł prognostyczny'
         path="/forecasting_module/simulation_info"
+      />
+      <RouteWithLayout
+        component={SimulationInfoEditView}
+        exact
+        layout={MainLayout}
+        title='Moduł prognostyczny'
+        path="/forecasting_module/simulation_info/edit"
       />
       <RouteWithLayout
         component={OwnSimulationsView}

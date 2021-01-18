@@ -72,12 +72,16 @@ const SavedSimulations = props => {
     }
   }
 
+  const handleCreateSimulation = () => {
+    history.push('/own_simulations');
+  }
+
   return (
     <>
       <div className={classes.public}>
         <Grid container spacing={3}>
           <Grid item xs={5} md={3} lg={2} >
-            <Button variant="contained" color="secondary" className={classes.btnCreate}>
+            <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleCreateSimulation}>
               Nowa symulacja
             </Button>
           </Grid>

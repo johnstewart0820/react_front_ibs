@@ -24,7 +24,7 @@ const ForecastingModule = (props) => {
   }
 
   const handleCreateSimulation = () => {
-
+    history.push('/own_simulations');
   }
 
   useEffect(() => {

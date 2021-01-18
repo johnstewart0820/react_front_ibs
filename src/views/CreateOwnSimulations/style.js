@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     },
     borderRadius: '0px',
     fontWeight: '300',
-    // border: '2px solid gray',
+    // border: '1px solid gray',
     backgroundColor: '#44545e',
     color: 'white',
     lineHeight: '1'
