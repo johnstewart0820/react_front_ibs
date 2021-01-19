@@ -9,9 +9,9 @@ import {
   OccupationSectorAdditionalOption,
   ProvinceOccupationAdditionalOption,
   NameModal
-} from './components';
+} from '../components';
 import { withRouter } from 'react-router-dom';
-import useStyles from './style';
+import useStyles from '../SimulationInfo/style';
 import { 
   Grid, 
   Card, 
@@ -19,10 +19,10 @@ import {
   CircularProgress
 } from '@material-ui/core';
 import { useToasts } from 'react-toast-notifications'
-import scenarios from '../../apis/scenarios';
-import analyzes from '../../apis/analyze';
+import scenarios from '../../../apis/scenarios';
+import analyzes from '../../../apis/analyze';
 
-const SimulationInfo = (props) => {
+const SimulationInfoEdit = (props) => {
   const classes = useStyles();
   const { addToast } = useToasts()
   const { history } = props;
@@ -44,9 +44,11 @@ const SimulationInfo = (props) => {
   const [sectionList, setSectionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   
-  const [openModal, setOpenModal] = useState(false);
-  const [name, setName] = useState(item.description);
+  const [idAnalyze, setIdAnalyze] = useState(0);
 
+  const [openModal, setOpenModal] = useState(false);
+  const [name, setName] = useState('');
+  const [scenario, setScenario] = useState({});
   const handleChange = (props) => {
     history.push('/forecasting_module');
   }
@@ -69,7 +71,7 @@ const SimulationInfo = (props) => {
 
   const handleSaveAnalyze = () => {
     setProgressStatus(true);
-    analyzes.createAnalyze(
+    analyzes.updateAnalyze(
       name, 
       selectedChartType, 
       selectedSection, 
@@ -78,7 +80,8 @@ const SimulationInfo = (props) => {
       selectedOccupation,
       selectedPkdSection,
       selectedShowChartsMode, 
-      item.id_scenario
+      scenario.id_scenario,
+      idAnalyze
     )
     .then(response => {
       setProgressStatus(false);
@@ -265,10 +268,18 @@ const SimulationInfo = (props) => {
     }
   }
 
+  const getNumArray = (str) => {
+    let arr = str ? str.split(',') : [];
+    for (let i = 0; i < arr.length; i ++) {
+      arr[i] = parseInt(arr[i]);
+    }
+    return arr;
+  }
+
   useEffect(() => {
     setProgressStatus(true);
-    scenarios
-      .getSelectionData()
+    analyzes
+      .get(item.id_analyze)
       .then(response => {
         setProgressStatus(false);
         if (response.code === 401) {
@@ -281,6 +292,16 @@ const SimulationInfo = (props) => {
           setSectionList(response.data.sections);
           setCategoryList(response.data.categories);
           setChartResultList(response.data.chart_result);
+          setScenario(response.data.scenario);
+          setName(response.data.analyze.name);
+          setIdAnalyze(response.data.analyze.id_analyze);
+          setSelectedChartType(response.data.analyze.id_chart_type);
+          setSelectedSection(response.data.analyze.id_section);
+          setSelectedCategory(getNumArray(response.data.analyze.id_category));
+          setSelectedPkdSection(getNumArray(response.data.analyze.id_pkd));
+          setSelectedProvince(getNumArray(response.data.analyze.id_province));
+          setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
+          setSelectedShowChartsMode(response.data.analyze.id_chart_result);
         }
       })
   }, []);
@@ -295,7 +316,7 @@ const SimulationInfo = (props) => {
                 Wybrana symulacja:
               </div>
               <div className={classes.titleInfo}>
-                {item.description}
+                {scenario.description}
               </div>
             </div>
           </Grid>
@@ -363,4 +384,4 @@ const SimulationInfo = (props) => {
   );
 };
 
-export default withRouter(SimulationInfo);
+export default withRouter(SimulationInfoEdit);

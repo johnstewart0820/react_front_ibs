@@ -16,14 +16,14 @@ const useStyles = makeStyles(theme => ({
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '15px',
-        fontWeight: '500'        
+        fontWeight: '400'        
     },
     titleHeader: {
         color: theme.palette.gray,
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '5px',
-        fontWeight: '500'
+        fontWeight: '400'
     },
 
     secondTitleHeader: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '15px',
-        fontWeight: '500'
+        fontWeight: '400'
     },
 
     subHeader: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '13px',
         fontFamily: 'roboto',
         marginBottom: '20px',
-        fontWeight: '500',
+        fontWeight: '400',
         fontStyle: 'italic'
     },
 
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'roboto',
         marginBottom: '5px',
         marginLeft: '10px',
-        fontWeight: '500'
+        fontWeight: '400'
     },
     btnOpen: {
         '& .MuiButton-label': {

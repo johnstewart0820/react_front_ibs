@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '16px',
         fontFamily: 'roboto',
         marginBottom: '15px',
-        fontWeight: 400        
+        fontWeight: 400       
     },
     titleHeader: {
         color: theme.palette.gray,
@@ -56,16 +56,13 @@ const useStyles = makeStyles(theme => ({
             textTransform: 'none',
             fontSize: '15px',
         },
-        '& .MuiButton-containedSecondary:hover': {
-
-        },
         '&:hover': {
             backgroundColor: theme.palette.pink
         },
         padding: '4px',
         border: '1px solid #a52b02',
         borderRadius: '0px',
-        fontWeight: '400',
+        fontWeight: 300,
         backgroundColor: theme.palette.pink,
         color: 'white',
         width: '100%'
@@ -78,9 +75,6 @@ const useStyles = makeStyles(theme => ({
         '& .MuiButton-label': {
             textTransform: 'none',
             fontSize: '15px',
-        },
-        '& .MuiButton-containedSecondary:hover': {
-
         },
         '&:hover': {
             backgroundColor: theme.palette.pink,
