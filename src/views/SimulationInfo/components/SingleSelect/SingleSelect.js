@@ -24,6 +24,7 @@ const SingleSelect = (props) => {
           name: 'age',
           id: 'outlined-age-native-simple',
         }}
+        className={classes.input_box}
       >
         <option aria-label="None" value={0} />
         {

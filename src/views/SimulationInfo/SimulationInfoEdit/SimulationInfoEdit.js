@@ -35,6 +35,7 @@ const SimulationInfoEdit = (props) => {
   const [selectedPkdSection, setSelectedPkdSection] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
+  const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
 
   const [pkdSectionList, setPkdSelectionList] = useState([]);
   const [provinceList, setProvinceList] = useState([]);
@@ -43,7 +44,8 @@ const SimulationInfoEdit = (props) => {
   const [chartResultList, setChartResultList] = useState([]);
   const [sectionList, setSectionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  
+  const [occupationSizeList, setOccupationSizeList] = useState([]);
+
   const [idAnalyze, setIdAnalyze] = useState(0);
 
   const [openModal, setOpenModal] = useState(false);
@@ -81,7 +83,8 @@ const SimulationInfoEdit = (props) => {
       selectedPkdSection,
       selectedShowChartsMode, 
       scenario.id_scenario,
-      idAnalyze
+      idAnalyze,
+      selectedOccupationSize
     )
     .then(response => {
       setProgressStatus(false);
@@ -224,45 +227,57 @@ const SimulationInfoEdit = (props) => {
             />
         case '3':
           return <TotalAdditionalOption
+              occupationValue={selectedOccupation}
               provinceValue={selectedProvince} 
-              occupationValue={selectedOccupation} 
+              occupationSizeValue={selectedOccupationSize}
               showChartModeValue={selectedShowChartsMode} 
               handleSelectedProvince={setSelectedProvince} 
               handleSelectedOccupation={setSelectedOccupation} 
               handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              handleSelectedOccupationSize={setSelectedOccupationSize}
               provinceList={provinceList}
               occupationList={occupationList}
               showChartsMode={chartResultList}
+              occupationSizeList={occupationSizeList}
             />
         case '4':
           return <OccupationAdditionalOption
               occupationValue={selectedOccupation}
               showChartModeValue={selectedShowChartsMode}
+              occupationSizeValue={selectedOccupationSize}
               handleSelectedOccupation={setSelectedOccupation}
               handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              handleSelectedOccupationSize={setSelectedOccupationSize}
               occupationList={occupationList}
               showChartsMode={chartResultList}
+              occupationSizeList={occupationSizeList}
             />
         case '5':
           return <OccupationSectorAdditionalOption
+              occupationValue={selectedOccupation}
               pkdSectionValue={selectedPkdSection} 
-              occupationValue={selectedOccupation} 
+              occupationSizeValue={selectedOccupationSize}
               showChartModeValue={selectedShowChartsMode} 
               handleSelectedPkdSection={setSelectedPkdSection} 
               handleSelectedOccupation={setSelectedOccupation} 
               handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              handleSelectedOccupationSize={setSelectedOccupationSize}
               pkdSectionList={pkdSectionList}
               occupationList={occupationList}
               showChartsMode={chartResultList}
+              occupationSizeList={occupationSizeList}
             />
         case '6':
           return <ProvinceOccupationAdditionalOption
+              occupationValue={selectedOccupation}
               provinceValue={selectedProvince} 
-              occupationValue={selectedOccupation} 
+              occupationSizeValue={selectedOccupationSize}
               handleSelectedProvince={setSelectedProvince} 
               handleSelectedOccupation={setSelectedOccupation} 
+              handleSelectedOccupationSize={setSelectedOccupationSize}
               provinceList={provinceList}
               occupationList={occupationList}
+              occupationSizeList={occupationSizeList}
             />
       }
     }
@@ -292,6 +307,7 @@ const SimulationInfoEdit = (props) => {
           setSectionList(response.data.sections);
           setCategoryList(response.data.categories);
           setChartResultList(response.data.chart_result);
+          setOccupationSizeList(response.data.profession_sizes);
           setScenario(response.data.scenario);
           setName(response.data.analyze.name);
           setIdAnalyze(response.data.analyze.id_analyze);
@@ -302,6 +318,7 @@ const SimulationInfoEdit = (props) => {
           setSelectedProvince(getNumArray(response.data.analyze.id_province));
           setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
           setSelectedShowChartsMode(response.data.analyze.id_chart_result);
+          setSelectedOccupationSize(response.data.analyze.id_occupation_size);
         }
       })
   }, []);

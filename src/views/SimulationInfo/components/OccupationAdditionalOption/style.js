@@ -68,7 +68,11 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.pink,
         color: 'white',
-        width: '100%'
+        width: '100%',
+        height: '100%'
+    },
+    occupationBlock: {
+        display: 'flex',
     },
     simulationBlock: {
         width: 'fit-content',
@@ -107,6 +111,17 @@ const useStyles = makeStyles(theme => ({
     secondContainer: {
         marginTop: '20px'
     },
+    input_box: {
+        padding: '17px 20px',
+        width: '100%',
+        fontSize: '14px',
+        '&::placeholder': {
+          color: theme.palette.gray,
+          fontWeight: '400',
+          fontStyle: 'italic',
+          fontFamily: 'roboto'
+        }
+      },
 }));
 
 export default useStyles;

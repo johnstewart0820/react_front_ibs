@@ -42,6 +42,7 @@
     "quill-image-resize-module": "^3.0.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
+    "react-checkbox-tree": "^1.6.0",
     "react-dom": "^16.8.6",
     "react-js-pagination": "^3.0.3",
     "react-perfect-scrollbar": "^1.5.3",

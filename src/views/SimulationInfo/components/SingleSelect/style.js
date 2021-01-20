@@ -9,9 +9,14 @@ const useStyles = makeStyles(theme => ({
         color: '#aeaeae',
         fontWeight: '400',
         '& .MuiInputLabel-outlined .MuiInputLabel-shrink': {
-            transform: 'translate(14px -100px) scale(0.5)'
-        }
+            transform: 'translate(14px -100px) scale(0.5)',
+        },
     },
+    input_box: {
+        '& select': {
+            border: '1px solid gray',
+        }
+    }
 }));
 
 export default useStyles;

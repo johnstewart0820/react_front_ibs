@@ -6,16 +6,19 @@ import {
   Grid, 
   Card, 
 } from '@material-ui/core';
-
+import OccupationSelectionModal from '../OccupationSelectionModal';
 const ProvinceOccupationAdditionalOption = (props) => {
   const classes = useStyles();
   const { 
     provinceValue, 
-    occupationValue, 
+    occupationSizeValue,
     handleSelectedProvince, 
     handleSelectedOccupation, 
+    handleSelectedOccupationSize,
     provinceList,
     occupationList,
+    occupationSizeList,
+    occupationValue
   } = props;
 
   return (
@@ -27,17 +30,22 @@ const ProvinceOccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
             <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList}/>
           </Grid>
-          <Grid item xs={6}>
-            <div className={classes.secondTitleHeader}>
-              Wybierz zawód
-            </div>
-            <MultiSelect value={occupationValue} handleChange={handleSelectedOccupation} list={occupationList}/>
+          <Grid item xs={8}>
+            <OccupationSelectionModal
+                node={occupationList}
+                occupationSize={occupationSizeValue}
+                handleSelectedOccupation={handleSelectedOccupation}
+                handleSelectedOccupationSize={handleSelectedOccupationSize}
+                occupationSizeList={occupationSizeList}
+                selectedOccupation={occupationValue}
+              // handleSave={handleSaveOccupation}
+              />
           </Grid>
         </Grid>
       </Card>
