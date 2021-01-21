@@ -37,7 +37,6 @@ const OccupationSelectionModal = (props) => {
   }
 
   useEffect(() => {
-    console.log(occupationSize);
     let result = [];
     let index_1 = 0;
     let index_2 = 0;
@@ -77,7 +76,6 @@ const OccupationSelectionModal = (props) => {
   }
 
   useEffect(() => {
-    console.log(node, selectedOccupation);
     if (!node || !selectedOccupation) 
       return
     let value = [];

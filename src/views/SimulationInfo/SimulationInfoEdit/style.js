@@ -106,6 +106,7 @@ const useStyles = makeStyles(theme => ({
     },
     controlBlock: {
         padding: '30px 40px 30px 20px',
+        height: '100%'
     },
     btnSave: {
         '& .MuiButton-label': {

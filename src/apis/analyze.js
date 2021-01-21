@@ -111,5 +111,26 @@ class Analyze {
         })
     }
 
+    getChartData = (id_section, id_category, id_scenario, year, id_occupation, id_show_chart_mode) => {
+        return axios
+        .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_chart_data`, {
+            id_section: id_section,
+            id_category: id_category,
+            id_scenario: id_scenario,
+            id_occupation: id_occupation,
+            year: year,
+            id_show_chart_mode: id_show_chart_mode
+        }, {
+            headers: authHeader(storage.getStorage('token'))
+        })
+        .then(response => {
+            if (response.data.code === 401)
+                storage.removeStorage('token');
+            return response.data;
+        }).catch(error => {
+            return error;
+        })
+    }
+
 }
 export default new Analyze();

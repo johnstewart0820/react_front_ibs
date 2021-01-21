@@ -7,3 +7,6 @@ export { default as OccupationAdditionalOption } from './OccupationAdditionalOpt
 export { default as OccupationSectorAdditionalOption } from './OccupationSectorAdditionalOption';
 export { default as ProvinceOccupationAdditionalOption } from './ProvinceOccupationAdditionalOption';
 export { default as NameModal } from './NameModal';
+export { default as YearSelect } from './YearSelect';
+export { default as ChartArea } from './ChartArea';
+export { default as SortTable } from './SortTable';

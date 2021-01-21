@@ -8,7 +8,10 @@ import {
   OccupationAdditionalOption,
   OccupationSectorAdditionalOption,
   ProvinceOccupationAdditionalOption,
-  NameModal
+  NameModal,
+  YearSelect,
+  ChartArea,
+  SortTable
 } from '../components';
 import { withRouter } from 'react-router-dom';
 import useStyles from '../SimulationInfo/style';
@@ -36,7 +39,10 @@ const SimulationInfoEdit = (props) => {
   const [selectedProvince, setSelectedProvince] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
-
+  const [selectedYear, setSelectedYear] = useState(2021);
+  const [chartData, setChartData] = useState([]);
+  const [tableData, setTableData] = useState([]);
+  const [field_list, setFieldList] = useState([]);
   const [pkdSectionList, setPkdSelectionList] = useState([]);
   const [provinceList, setProvinceList] = useState([]);
   const [occupationList, setOccupationList] = useState([]);
@@ -51,10 +57,19 @@ const SimulationInfoEdit = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState('');
   const [scenario, setScenario] = useState({});
+  const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
+
   const handleChange = (props) => {
     history.push('/forecasting_module');
   }
-
+  const requestSort = (pSortBy) => {
+    var sortOrder = "asc";
+    if (pSortBy === sortOption.sortBy) {
+      sortOrder = (sortOption.sortOrder === "asc" ? "desc" : "asc");
+    }
+    setSortOption({ sortBy: pSortBy, sortOrder: sortOrder })
+  }
+  
   const handleOpen = () => {
 
   }
@@ -167,32 +182,57 @@ const SimulationInfoEdit = (props) => {
         <Grid container spacing={2} className={classes.thirdContainer}>
           <Grid item xs={7} className={classes.controlContainer}>
             <Card className={classes.controlBlock}>
-  
+              <ChartArea
+                chart_data={chartData}
+              />
             </Card>
           </Grid>
           <Grid item xs={5} className={classes.controlContainer}>
             <Card className={classes.controlBlock}>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleExport} disabled>
-                    Eksportuj do CSV
-                  </Button>
-                </Grid>
-                <Grid item xs={6}>
-                  <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleSave}>
-                    Zapisz wybór
-                  </Button>
-                  <NameModal
-                    openModal={openModal}
-                    handleClose={handleCloseModal}
-                    name={name}
-                    handleChangeName={(e) => setName(e.target.value)}
-                    handleSave={handleSaveAnalyze}
-                  />
-                </Grid>
-              </Grid>
+              <SortTable
+                rows={tableData}
+                requestSort={requestSort}
+                sortOrder={sortOption.sortOrder}
+                sortBy={sortOption.sortBy}
+                field_list={field_list}
+              />
             </Card>
           </Grid>
+          <Grid container spacing={2} className={classes.controlGrid}>
+            <Grid item xs={7} className={classes.controlContainer}>
+              <Card className={classes.controlBlock}>
+                <YearSelect
+                  value={selectedYear}
+                  handleChange={setSelectedYear}
+                />
+              </Card>
+            </Grid>
+            <Grid item xs={5} className={classes.controlContainer}>
+              <Card className={classes.controlBlock}>
+                <Grid container spacing={2}>
+                  <Grid item xs={6}>
+                    <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleExport} disabled>
+                      Eksportuj do CSV
+                  </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleSave}>
+                      Zapisz wybór
+                  </Button>
+                    <NameModal
+                      openModal={openModal}
+                      handleClose={handleCloseModal}
+                      name={name}
+                      handleChangeName={(e) => setName(e.target.value)}
+                      handleSave={handleSaveAnalyze}
+                    />
+                  </Grid>
+                </Grid>
+              </Card>
+            </Grid>
+          </Grid>
+
+
         </Grid>
       )
     }
@@ -322,6 +362,28 @@ const SimulationInfoEdit = (props) => {
         }
       })
   }, []);
+
+  useEffect(() => {
+    analyzes.getChartData(
+      selectedSection,
+      selectedCategory,
+      item.id_scenario,
+      selectedYear,
+      selectedOccupation,
+      selectedShowChartsMode
+    ).then(response => {
+      if (response.code === 401) {
+        history.push('/login');
+      } else {
+        if (response.code === 200) {
+          setChartData(response.data.chart_data);
+          setTableData(response.data.table_data);
+          setFieldList(response.data.field_list);
+        } else {
+        }
+      }
+    })
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedShowChartsMode, selectedYear]);
 
   return (
     <>
