@@ -13,7 +13,7 @@ import useStyles from './style';
 
 const SortTable = (props) => {
   const classes = useStyles();
-  const { sortBy, sortOrder, requestSort, sum, rows, field_list } = props;
+  const { sortBy, sortOrder, requestSort, sum, rows, field_list, selectedChartType } = props;
   useEffect(() => {
   }, []);
 
@@ -27,7 +27,7 @@ const SortTable = (props) => {
               direction={sortOrder}
               onClick={() => requestSort(0)}
             >
-              Zawód
+              {selectedChartType == 1 ? 'Rok' : 'Zawód'}
             </TableSortLabel>
           </TableCell>
           {
@@ -48,11 +48,22 @@ const SortTable = (props) => {
       <TableBody>
         {rows.map((item, indx) => (
           <TableRow key={indx} className={classes.root}>
-            <TableCell>{item.name}</TableCell>
-            {item.data.map((value, index) => (
-              <TableCell>{value.value}</TableCell>
-            ))}
-
+            {selectedChartType == 1 ? 
+                <>
+                <TableCell>{item.year}</TableCell>
+                {field_list.map((value, index) => (
+                  <TableCell>{Number.parseFloat(item[value]).toFixed(2)}</TableCell>
+                ))}
+              </>
+              :
+              <>
+              <TableCell>{item.name}</TableCell>
+              {item.data.map((value, index) => (
+                <TableCell>{Number.parseFloat(value.value).toFixed(2)}</TableCell>
+              ))}
+              </>
+              
+            }
           </TableRow>
         ))}
       </TableBody>

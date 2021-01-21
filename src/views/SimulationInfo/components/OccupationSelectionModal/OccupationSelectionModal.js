@@ -75,6 +75,22 @@ const OccupationSelectionModal = (props) => {
 
   }
 
+  const onClickItem = (e) => {
+    let arr = selectedOccupation;
+    if (e.isLeaf) {
+      if (e.checked) {
+        for (let i = 0; i < arr.length; i ++) {
+          if (arr[i] == e.value) {
+            arr.splice(i, 1);
+          }
+        }
+      } else {
+        arr.push(e.value);
+      }
+      handleSelectedOccupation(JSON.parse(JSON.stringify(arr)));
+    }
+  }
+
   useEffect(() => {
     if (!node || !selectedOccupation) 
       return
@@ -149,6 +165,7 @@ const OccupationSelectionModal = (props) => {
                           }}
                           onlyLeafCheckboxes={true}
                           expandOnClick={true}
+                          onClick={(e) => {onClickItem(e)}}
                           checkModel="leaf"
                         />
                       </div>
@@ -156,7 +173,7 @@ const OccupationSelectionModal = (props) => {
                     <Grid item xs={12}>
                       <Grid container spacing={0} justify="flex-end">
                         <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={() => saveOccupationValue()}>
-                          Uratuj okupację
+                          Zapisz wybór
                       </Button>
                       </Grid>
                     </Grid>

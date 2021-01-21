@@ -111,9 +111,10 @@ class Analyze {
         })
     }
 
-    getChartData = (id_section, id_category, id_scenario, year, id_occupation, id_show_chart_mode) => {
+    getChartData = (id_chart_type, id_section, id_category, id_scenario, year, id_occupation, id_show_chart_mode) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_chart_data`, {
+            id_chart_type: id_chart_type,
             id_section: id_section,
             id_category: id_category,
             id_scenario: id_scenario,

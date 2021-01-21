@@ -116,6 +116,7 @@ const SimulationInfo = (props) => {
 
   useEffect(() => {
     analyze.getChartData(
+      selectedChartType,
       selectedSection,
       selectedCategory,
       item.id_scenario,
@@ -134,7 +135,13 @@ const SimulationInfo = (props) => {
         }
       }
     })
-  }, [selectedSection, selectedCategory, selectedOccupation, selectedShowChartsMode, selectedYear]);
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedShowChartsMode, selectedYear, selectedChartType]);
+  
+  const handleChangeChartType = (change) => {
+    setChartData([]);
+    setTableData([]);
+    setSelectedChartType(change);
+  }
 
   const renderControlView = () => {
     if (
@@ -199,24 +206,6 @@ const SimulationInfo = (props) => {
     } {
       return (
         <Grid container spacing={2} className={classes.thirdContainer}>
-          <Grid item xs={7} className={classes.controlContainer}>
-            <Card className={classes.controlBlock}>
-              <ChartArea
-                chart_data={chartData}
-              />
-            </Card>
-          </Grid>
-          <Grid item xs={5} className={classes.controlContainer}>
-            <Card className={classes.controlBlock}>
-              <SortTable
-                rows={tableData}
-                requestSort={requestSort}
-                sortOrder={sortOption.sortOrder}
-                sortBy={sortOption.sortBy}
-                field_list={field_list}
-              />
-            </Card>
-          </Grid>
           <Grid container spacing={2} className={classes.controlGrid}>
             <Grid item xs={7} className={classes.controlContainer}>
               <Card className={classes.controlBlock}>
@@ -250,12 +239,30 @@ const SimulationInfo = (props) => {
               </Card>
             </Grid>
           </Grid>
-
-
+          <Grid item xs={7} className={classes.controlContainer}>
+            <Card className={classes.controlBlock}>
+              <ChartArea
+                chart_data={chartData}
+                selectedChartType={selectedChartType}
+                selectedCategory={selectedCategory}
+              />
+            </Card>
+          </Grid>
+          <Grid item xs={5} className={classes.controlContainer}>
+            <Card className={classes.tableBlock}>
+              <SortTable
+                selectedChartType={selectedChartType}
+                rows={tableData}
+                requestSort={requestSort}
+                sortOrder={sortOption.sortOrder}
+                sortBy={sortOption.sortBy}
+                field_list={field_list}
+              />
+            </Card>
+          </Grid>
         </Grid>
       )
     }
-
   }
   const renderSwitchAddition = () => {
     if (
@@ -403,7 +410,7 @@ const SimulationInfo = (props) => {
             <div className={classes.subHeader}>
               (moźna wybrać tylko 1 z typów jednocześnie)
             </div>
-            <SingleSelect value={selectedChartType} handleChange={setSelectedChartType} list={chartTypeList} />
+            <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
           </Grid>
           <Grid item xs={4}>
             <div className={classes.titleHeader}>

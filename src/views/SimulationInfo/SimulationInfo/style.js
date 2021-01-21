@@ -108,6 +108,8 @@ const useStyles = makeStyles(theme => ({
         padding: '30px 40px 30px 20px',
         height: '100%'
     },
+    tableBlock: {
+    },
     btnSave: {
         '& .MuiButton-label': {
             textTransform: 'none',

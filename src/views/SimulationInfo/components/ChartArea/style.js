@@ -2,9 +2,8 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     simulationView: {
-        height: '400px',
+        height: '100%',
         width: '100%',
-        overflow: 'scroll'
     },
     chartView: {
         padding: '30px',
@@ -84,14 +83,16 @@ const useStyles = makeStyles(theme => ({
     },
     container: {
         width: '100%',
-        height: '100%',
-        display: 'flex'
+        height: '400px',
+        display: 'flex',
+        fontFamily: 'roboto',
+        marginBottom: '10px',
+        marginTop: '10px',
     },
     chartTitle: {
         writingMode: 'vertical-rl',
         transform: 'rotate(180deg)',
         textAlign: 'center',
-        fontFamily: 'roboto'
     }
 }));
 
