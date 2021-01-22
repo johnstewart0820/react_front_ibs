@@ -34,7 +34,7 @@ const ChartArea = (props) => {
                     data={item.data}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year" />
+                    <XAxis dataKey="Rok" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
@@ -57,7 +57,7 @@ const ChartArea = (props) => {
                   <BarChart
                     data={item.data}
                   >
-                    <CartesianGrid strokeDasharray="1 1" />
+                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />

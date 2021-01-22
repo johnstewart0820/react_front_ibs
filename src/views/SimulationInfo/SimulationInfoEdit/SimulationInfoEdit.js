@@ -24,6 +24,7 @@ import {
 import { useToasts } from 'react-toast-notifications'
 import scenarios from '../../../apis/scenarios';
 import analyzes from '../../../apis/analyze';
+import { ExportToCsv } from 'export-to-csv';
 
 const SimulationInfoEdit = (props) => {
   const classes = useStyles();
@@ -75,7 +76,21 @@ const SimulationInfoEdit = (props) => {
   }
 
   const handleExport = () => {
-
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: false, 
+      showTitle: false,
+      title: 'My Awesome CSV',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+    const csvExporter = new ExportToCsv(options);
+ 
+    csvExporter.generateCsv(tableData);
   }
 
   const handleSave = () => {
@@ -186,6 +201,7 @@ const SimulationInfoEdit = (props) => {
                 <YearSelect
                   value={selectedYear}
                   handleChange={setSelectedYear}
+                  disabled={selectedChartType == 1}
                 />
               </Card>
             </Grid>
@@ -193,7 +209,7 @@ const SimulationInfoEdit = (props) => {
               <Card className={classes.controlBlock}>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
-                    <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleExport} disabled>
+                    <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleExport} >
                       Eksportuj do CSV
                   </Button>
                   </Grid>
@@ -231,6 +247,7 @@ const SimulationInfoEdit = (props) => {
                 sortOrder={sortOption.sortOrder}
                 sortBy={sortOption.sortBy}
                 field_list={field_list}
+                handleChangeTableData={setTableData}
               />
             </Card>
           </Grid>

@@ -5,7 +5,7 @@ import useStyles from './style';
 
 const YearSelect = (props) => {
   const classes = useStyles();
-  const { value, handleChange} = props;
+  const { value, handleChange, disabled} = props;
   const [list, setList] = useState([]);
   useEffect(() => {
     let temp = [];
@@ -20,6 +20,7 @@ const YearSelect = (props) => {
       <Select
         native
         value={value}
+        disabled={disabled}
         onChange={(event) =>handleChange(event.target.value ? event.target.value : {})}
         inputProps={{
           name: 'age',

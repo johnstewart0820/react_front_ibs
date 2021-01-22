@@ -34,6 +34,7 @@
     "axios": "^0.21.1",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",
+    "export-to-csv": "^0.2.1",
     "history": "^4.9.0",
     "moment": "^2.29.1",
     "node-sass": "^4.12.0",
