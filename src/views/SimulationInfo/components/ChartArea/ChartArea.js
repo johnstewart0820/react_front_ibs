@@ -62,9 +62,17 @@ const ChartArea = (props) => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="Popyt na pracę" fill="#a52b02" />
-                    <Bar dataKey="Podaż pracy" fill="#b0a502" />
-                    <Bar dataKey="Luka" fill="#022ba5" />
+                    {
+                      selectedCategory.map((item, index) => (
+                        item == 1 ?
+                        <Bar dataKey="Popyt na pracę" fill="#a52b02" />
+                        :
+                          item == 2 ?
+                          <Bar dataKey="Podaż pracy" fill="#b0a502" />
+                          :
+                          <Bar dataKey="Luka" fill="#022ba5" />
+                      ))
+                    }
                   </BarChart>
               }
 
