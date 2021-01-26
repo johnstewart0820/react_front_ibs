@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
     },
     mainContainer: {
         padding: '30px 40px 30px 20px',
-        alignItems: 'center'
     },
     titleBlock: {
         display: 'flex',

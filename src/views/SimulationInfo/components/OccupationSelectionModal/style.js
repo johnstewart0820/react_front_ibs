@@ -58,23 +58,44 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: theme.palette.pink
+            backgroundColor: theme.palette.gray
         },
         '&:disabled': {
-            backgroundColor: theme.palette.pink_disable,
+            backgroundColor: theme.palette.gray_disable,
             color: 'darkgray'
         },
         padding: '4px',
-        border: '1px solid #a52b02',
+        // border: '1px solid #44545e',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: theme.palette.pink,
+        backgroundColor: theme.palette.gray,
         color: 'white',
         width: '100%'
     },
     checkboxblock: {
         overflow: 'auto',
-        height: '450px'
+        height: '400px',
+        fontFamily: 'roboto',
+        color: theme.palette.gray,
+        padding: '20px 20px 20px 10px',
+    },
+    occupationBlock: {
+        border: '1px solid #626262',
+        borderTop: '0px',
+        borderBottomLeftRadius: '4px',
+        borderBottomRightRadius: '4px',
+        position: 'absolute',
+        background: 'white',
+        zIndex: '100',
+    },
+    overBox: {
+        opacity: '1',
+        zIndex: '99',
+        width: '100%',
+        height: '100vh',
+        position: 'absolute',
+        top: '0px',
+        left: '0px',
     },
     btnOpen: {
         '& .MuiButton-label': {
@@ -85,20 +106,21 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: theme.palette.pink
+            backgroundColor: theme.palette.white
         },
         '&:disabled': {
-            backgroundColor: theme.palette.pink_disable,
+            backgroundColor: theme.palette.gray_disable,
             color: 'darkgray'
         },
-        padding: '4px',
-        border: '1px solid #a52b02',
+        padding: '13px',
+        border: '1px solid #626262',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: theme.palette.pink,
-        color: 'white',
+        backgroundColor: theme.palette.white,
+        color: theme.palette.gray,
         width: '100%',
-        height: '100%'
+        height: '100%',
+        zIndex: '100'
     },
 }));
 

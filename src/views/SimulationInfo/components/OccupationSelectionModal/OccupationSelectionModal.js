@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Modal,
-  Backdrop,
-  Fade,
   Grid,
-  Card,
-  Button
+  Button,
+  Popover
 } from '@material-ui/core';
 import CheckboxTree from 'react-checkbox-tree';
 import {
@@ -13,7 +10,9 @@ import {
   ChevronRight,
   CheckBox,
   CheckBoxOutlineBlank,
-  IndeterminateCheckBox
+  IndeterminateCheckBox,
+  ArrowDownward,
+  ArrowUpward
 } from '@material-ui/icons';
 import { SingleSelect, MultiSelect } from '..';
 import { withRouter } from 'react-router-dom';
@@ -27,27 +26,37 @@ const OccupationSelectionModal = (props) => {
   const { node, occupationSize, occupationSizeList, handleSelectedOccupationSize, handleSelectedOccupation, selectedOccupation } = props;
   const [nodes, setNodes] = useState([]);
   const [expanded, setExpanded] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [occupationValue, setOccupationValue] = useState('');
-
+  const [open, setOpen] = useState(false);
+  const [width, setWidth] = useState(0);
   const classes = useStyles();
 
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  }
+  const handleClick = (event) => {
+    setOpen(!open);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+  useEffect(() => {
+    function handleResize() {
+      setWidth(document.getElementById('btn_open').offsetWidth)
+    }
+    window.addEventListener('resize', handleResize)
+  }, []);
+  useEffect(() => {
+    setWidth(document.getElementById('btn_open').offsetWidth);
+  }, [open]);
   useEffect(() => {
     let result = [];
     let index_1 = 0;
     let index_2 = 0;
 
     if (isInitialRender >= 2) {
-      isInitialRender = 0;
       handleSelectedOccupation([]);
       setExpanded([]);
     }
-    
-    isInitialRender ++;
+
+    isInitialRender++;
     for (let i = 0; i < node.length; i++) {
       if (node[i].code.length == 1 && occupationSize >= 1) {
         result.push({ "value": node[i].id, "label": node[i].name })
@@ -69,17 +78,11 @@ const OccupationSelectionModal = (props) => {
     setNodes(result);
   }, [occupationSize]);
 
-  const saveOccupationValue = () => {
-    handleSelectedOccupation(selectedOccupation);
-    setOpenModal(false);
-
-  }
-
   const onClickItem = (e) => {
     let arr = selectedOccupation;
     if (e.isLeaf) {
       if (e.checked) {
-        for (let i = 0; i < arr.length; i ++) {
+        for (let i = 0; i < arr.length; i++) {
           if (arr[i] == e.value) {
             arr.splice(i, 1);
           }
@@ -91,100 +94,74 @@ const OccupationSelectionModal = (props) => {
     }
   }
 
-  useEffect(() => {
-    if (!node || !selectedOccupation) 
-      return
-    let value = [];
-    for (let i = 0; i < node.length; i++) {
-      for (let j = 0; j < selectedOccupation.length; j++) {
-        if (node[i].id == selectedOccupation[j]) {
-          value.push(node[i].name);
-        }
-      }
-    }
-    setOccupationValue(value.join(", "));
-  }, [selectedOccupation])
   return (
     <Grid container spacing={2}>
-    <Grid item xs={3}>
-      <div className={classes.secondTitleHeader}>
-        Wybierz rodzaj grupy
-      </div>
-      <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList}/>
-    </Grid>
-    <Grid item xs={9}>
-      <div className={classes.secondTitleHeader}>
-        Zawód
-      </div>
-      <div className={classes.occupationBlock}>
-        <Grid container spacing={1}>
-          <Grid item xs={9}>
-            <input className={classes.input_box} type="text" value={occupationValue} name="occupation" placeholder="Wybierz" />
-          </Grid>
-          <Grid item xs={3}>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={() => setOpenModal(true)} disabled={!occupationSize || occupationSize == 0}>
-              Wybierz zawód
+      <Grid item xs={3}>
+        <div className={classes.secondTitleHeader}>
+          Wybierz rodzaj grupy
+        </div>
+        <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
+      </Grid>
+      <Grid item xs={9}>
+        <div className={classes.secondTitleHeader}>
+          Zawód
+        </div>
+        <Grid item xs={12}>
+          <Button
+            variant="contained"
+            color="secondary"
+            id="btn_open"
+            className={classes.btnOpen}
+            onClick={handleClick} disabled={!occupationSize || occupationSize == 0}
+            startIcon={!open ? <ArrowDownward /> : <ArrowUpward />}
+            style={open ? {'border-bottom': '0px'} : {}}
+          >
+            Wybierz zawód
           </Button>
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className={classes.modal}
-              open={openModal}
-              onClose={handleCloseModal}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <Fade in={openModal}>
-                <Card className={classes.paper}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                      Wybierz zawód
-                  </Grid>
-                    <Grid item xs={12}>
-                      <div className={classes.checkboxblock}>
-                        <CheckboxTree
-                          nodes={nodes}
-                          checked={selectedOccupation}
-                          expanded={expanded}
-                          onCheck={(result) => handleSelectedOccupation(result)}
-                          onExpand={setExpanded}
-                          icons={{
-                            check: <CheckBox />,
-                            uncheck: <CheckBoxOutlineBlank />,
-                            halfCheck: <IndeterminateCheckBox />,
-                            expandClose: <ExpandMore />,
-                            expandOpen: <ChevronRight />,
-                            expandAll: <ChevronRight />,
-                            collapseAll: <ExpandMore />,
-                            parentClose: <></>,
-                            parentOpen: <></>,
-                            leaf: <></>,
-                          }}
-                          onlyLeafCheckboxes={true}
-                          expandOnClick={true}
-                          onClick={(e) => {onClickItem(e)}}
-                          checkModel="leaf"
-                        />
-                      </div>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Grid container spacing={0} justify="flex-end">
-                        <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={() => saveOccupationValue()}>
-                          Zapisz wybór
-                      </Button>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Card>
-              </Fade>
-            </Modal>
-          </Grid>
+          {
+            <>
+            <Grid container className={classes.occupationBlock} id="occupation_block" style={open ? { visibility: 'visible', width: width } : { visibility: 'hidden', width: width }}>
+              <Grid item xs={12}>
+                <div className={classes.checkboxblock}>
+                  <CheckboxTree
+                    nodes={nodes}
+                    checked={selectedOccupation}
+                    expanded={expanded}
+                    onCheck={(result) => handleSelectedOccupation(result)}
+                    onExpand={setExpanded}
+                    icons={{
+                      check: <CheckBox />,
+                      uncheck: <CheckBoxOutlineBlank />,
+                      halfCheck: <IndeterminateCheckBox />,
+                      expandClose: <ExpandMore />,
+                      expandOpen: <ChevronRight />,
+                      expandAll: <ChevronRight />,
+                      collapseAll: <ExpandMore />,
+                      parentClose: <></>,
+                      parentOpen: <></>,
+                      leaf: <></>,
+                    }}
+                    onlyLeafCheckboxes={true}
+                    expandOnClick={true}
+                    onClick={(e) => { onClickItem(e) }}
+                    checkModel="leaf"
+                  />
+                </div>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container spacing={0} justify="flex-end">
+                  <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleClose}>
+                    Zapisz wybór
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+            {open ? <div className={classes.overBox} onClick={handleClose}/> : <></>}
+            </>
+          }
+
         </Grid>
-      </div>
-    </Grid>
+      </Grid>
     </Grid>
   );
 };
