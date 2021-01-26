@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
-  TotalAdditionalOption,
+  ClusterAdditionalOption,
   PkdSectionAdditionalOption,
   ProvinceAdditionalOption,
   MultiSelect,
   SingleSelect,
   OccupationAdditionalOption,
-  OccupationSectorAdditionalOption,
   ProvinceOccupationAdditionalOption,
+  ClusterOccupationAdditionalOption,
   NameModal,
   YearSelect,
   ChartArea,
@@ -39,6 +39,7 @@ const SimulationInfo = (props) => {
   const [selectedShowChartsMode, setSelectedShowChartsMode] = useState(0);
   const [selectedPkdSection, setSelectedPkdSection] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState([]);
+  const [selectedCluster, setSelectedCluster] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
   const [selectedYear, setSelectedYear] = useState(2021);
@@ -51,6 +52,7 @@ const SimulationInfo = (props) => {
   const [sectionList, setSectionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [occupationSizeList, setOccupationSizeList] = useState([]);
+  const [clusterList, setClusterList] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [field_list, setFieldList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -75,11 +77,11 @@ const SimulationInfo = (props) => {
 
   const handleExport = () => {
 
-    const options = { 
+    const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
-      showLabels: false, 
+      showLabels: false,
       showTitle: false,
       title: 'My Awesome CSV',
       useTextFile: false,
@@ -88,7 +90,7 @@ const SimulationInfo = (props) => {
       // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     const csvExporter = new ExportToCsv(options);
- 
+
     csvExporter.generateCsv(tableData);
   }
 
@@ -112,7 +114,8 @@ const SimulationInfo = (props) => {
       selectedPkdSection,
       selectedShowChartsMode,
       item.id_scenario,
-      selectedOccupationSize
+      selectedOccupationSize,
+      selectedCluster
     )
       .then(response => {
         setProgressStatus(false);
@@ -152,7 +155,7 @@ const SimulationInfo = (props) => {
       }
     })
   }, [selectedSection, selectedCategory, selectedOccupation, selectedShowChartsMode, selectedYear, selectedChartType]);
-  
+
   const handleChangeChartType = (change) => {
     setChartData([]);
     setTableData([]);
@@ -171,7 +174,7 @@ const SimulationInfo = (props) => {
         case '1':
           if (
             selectedPkdSection.length === 0
-            || selectedShowChartsMode === 0
+            || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
@@ -179,16 +182,15 @@ const SimulationInfo = (props) => {
         case '2':
           if (
             selectedProvince.length === 0
-            || selectedShowChartsMode === 0
+            || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
           break;
         case '3':
           if (
-            selectedProvince.length === 0
-            || selectedOccupation.length === 0
-            || selectedShowChartsMode === 0
+            selectedCluster.length === 0
+            || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
@@ -196,24 +198,25 @@ const SimulationInfo = (props) => {
         case '4':
           if (
             selectedOccupation.length === 0
-            || selectedShowChartsMode === 0
+            || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
           break;
         case '5':
           if (
-            selectedPkdSection.length === 0
+            selectedProvince.length === 0
             || selectedOccupation.length === 0
-            || selectedShowChartsMode === 0
+            || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
           break;
         case '6':
           if (
-            selectedProvince.length === 0
+            selectedCluster.length === 0
             || selectedOccupation.length === 0
+            || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
@@ -309,19 +312,13 @@ const SimulationInfo = (props) => {
             showChartsMode={chartResultList}
           />
         case '3':
-          return <TotalAdditionalOption
-            occupationValue={selectedOccupation}
-            provinceValue={selectedProvince}
-            occupationSizeValue={selectedOccupationSize}
+          return <ClusterAdditionalOption
+            clusterValue={selectedCluster}
             showChartModeValue={selectedShowChartsMode}
-            handleSelectedProvince={setSelectedProvince}
-            handleSelectedOccupation={setSelectedOccupation}
+            handleSelectedCluster={setSelectedCluster}
             handleSelectedShowChartsMode={setSelectedShowChartsMode}
-            handleSelectedOccupationSize={setSelectedOccupationSize}
-            provinceList={provinceList}
-            occupationList={occupationList}
+            clusterList={clusterList}
             showChartsMode={chartResultList}
-            occupationSizeList={occupationSizeList}
           />
         case '4':
           return <OccupationAdditionalOption
@@ -336,31 +333,34 @@ const SimulationInfo = (props) => {
             occupationSizeList={occupationSizeList}
           />
         case '5':
-          return <OccupationSectorAdditionalOption
+          return <ProvinceOccupationAdditionalOption
             occupationValue={selectedOccupation}
-            pkdSectionValue={selectedPkdSection}
+            provinceValue={selectedProvince}
             occupationSizeValue={selectedOccupationSize}
             showChartModeValue={selectedShowChartsMode}
-            handleSelectedPkdSection={setSelectedPkdSection}
+            handleSelectedProvince={setSelectedProvince}
             handleSelectedOccupation={setSelectedOccupation}
             handleSelectedShowChartsMode={setSelectedShowChartsMode}
             handleSelectedOccupationSize={setSelectedOccupationSize}
-            pkdSectionList={pkdSectionList}
+            provinceList={provinceList}
             occupationList={occupationList}
             showChartsMode={chartResultList}
             occupationSizeList={occupationSizeList}
           />
         case '6':
-          return <ProvinceOccupationAdditionalOption
+          return <ClusterOccupationAdditionalOption
             occupationValue={selectedOccupation}
-            provinceValue={selectedProvince}
+            clusterValue={selectedCluster}
             occupationSizeValue={selectedOccupationSize}
-            handleSelectedProvince={setSelectedProvince}
+            showChartModeValue={selectedShowChartsMode}
+            handleSelectedCluster={setSelectedCluster}
             handleSelectedOccupation={setSelectedOccupation}
             handleSelectedOccupationSize={setSelectedOccupationSize}
-            provinceList={provinceList}
+            handleSelectedShowChartsMode={setSelectedShowChartsMode}
+            clusterList={clusterList}
             occupationList={occupationList}
             occupationSizeList={occupationSizeList}
+            showChartsMode={chartResultList}
           />
       }
     }
@@ -375,6 +375,7 @@ const SimulationInfo = (props) => {
         if (response.code === 401) {
           history.push('/login');
         } else {
+          setClusterList(response.data.clusters);
           setPkdSelectionList(response.data.pkdSections);
           setProvinceList(response.data.provinces);
           setOccupationList(response.data.professions);

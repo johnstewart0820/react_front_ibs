@@ -7,21 +7,21 @@ import {
   Card, 
 } from '@material-ui/core';
 import OccupationSelectionModal from '../OccupationSelectionModal';
-const OccupationSectorAdditionalOption = (props) => {
+const ClusterOccupationAdditionalOption = (props) => {
   const classes = useStyles();
   const { 
     occupationValue,
-    pkdSectionValue, 
+    clusterValue,
     occupationSizeValue,
-    showChartModeValue, 
-    handleSelectedPkdSection, 
-    handleSelectedOccupation, 
-    handleSelectedShowChartsMode,
+    showChartModeValue,
+    handleSelectedCluster,
+    handleSelectedOccupation,
     handleSelectedOccupationSize,
-    pkdSectionList,
+    handleSelectedShowChartsMode,
+    clusterList,
     occupationList,
-    showChartsMode,
-    occupationSizeList
+    occupationSizeList,
+    showChartsMode
   } = props;
 
   return (
@@ -35,9 +35,9 @@ const OccupationSectorAdditionalOption = (props) => {
           </Grid>
           <Grid item xs={2}>
             <div className={classes.secondTitleHeader}>
-              Wybierz sektor
+              Wybierz klaster powiatów
             </div>
-            <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
+            <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList}/>
           </Grid>
           <Grid item xs={8}>
             <OccupationSelectionModal
@@ -62,4 +62,4 @@ const OccupationSectorAdditionalOption = (props) => {
   );
 };
 
-export default withRouter(OccupationSectorAdditionalOption);
+export default withRouter(ClusterOccupationAdditionalOption);

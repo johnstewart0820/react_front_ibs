@@ -3,7 +3,7 @@ import authHeader from './auth-header';
 import storage from '../utils/storage';
 class Analyze {
 
-    createAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_occupation_size) => {
+    createAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_occupation_size, id_cluster) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze`, {
             name: name,
@@ -15,7 +15,8 @@ class Analyze {
             id_pkd: id_pkd,
             id_chart_result: id_chart_result,
             id_scenario: id_scenario,
-            id_occupation_size: id_occupation_size
+            id_occupation_size: id_occupation_size,
+            id_cluster: id_cluster
         }, {
             headers: authHeader(storage.getStorage('token'))
         })
@@ -28,7 +29,7 @@ class Analyze {
         })
     }
 
-    updateAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_analyze, id_occupation_size) => {
+    updateAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_analyze, id_occupation_size, id_cluster) => {
         return axios
         .put(`${process.env.REACT_APP_BACKEND_URL}/analyze`, {
             name: name,
@@ -42,6 +43,7 @@ class Analyze {
             id_scenario: id_scenario,
             id_analyze: id_analyze,
             id_occupation_size: id_occupation_size,
+            id_cluster: id_cluster
         }, {
             headers: authHeader(storage.getStorage('token'))
         })

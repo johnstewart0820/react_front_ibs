@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { 
-  TotalAdditionalOption, 
+  ClusterAdditionalOption, 
   PkdSectionAdditionalOption, 
   ProvinceAdditionalOption,
   MultiSelect, 
   SingleSelect, 
   OccupationAdditionalOption,
-  OccupationSectorAdditionalOption,
   ProvinceOccupationAdditionalOption,
+  ClusterOccupationAdditionalOption,
   NameModal,
   YearSelect,
   ChartArea,
@@ -32,6 +32,7 @@ const SimulationInfoEdit = (props) => {
   const { history } = props;
   const item = props.location.state.item;
   const [progressStatus, setProgressStatus] = useState(false);
+  const [selectedCluster, setSelectedCluster] = useState([]);
   const [selectedChartType, setSelectedChartType] = useState(0);
   const [selectedSection, setSelectedSection] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState([]);
@@ -52,6 +53,7 @@ const SimulationInfoEdit = (props) => {
   const [sectionList, setSectionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [occupationSizeList, setOccupationSizeList] = useState([]);
+  const [clusterList, setClusterList] = useState([]);
 
   const [idAnalyze, setIdAnalyze] = useState(0);
 
@@ -114,7 +116,8 @@ const SimulationInfoEdit = (props) => {
       selectedShowChartsMode, 
       scenario.id_scenario,
       idAnalyze,
-      selectedOccupationSize
+      selectedOccupationSize,
+      selectedCluster,
     )
     .then(response => {
       setProgressStatus(false);
@@ -144,7 +147,7 @@ const SimulationInfoEdit = (props) => {
         case '1':
           if (
             selectedPkdSection.length === 0
-            || selectedShowChartsMode === 0
+            ||  parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
@@ -152,16 +155,15 @@ const SimulationInfoEdit = (props) => {
         case '2':
           if (
             selectedProvince.length === 0
-            || selectedShowChartsMode === 0
+            ||  parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
           break;
         case '3':
           if (
-            selectedProvince.length === 0
-            || selectedOccupation.length === 0
-            || selectedShowChartsMode === 0
+            selectedCluster.length === 0
+            ||  parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
@@ -169,24 +171,25 @@ const SimulationInfoEdit = (props) => {
         case '4':
           if (
             selectedOccupation.length === 0
-            || selectedShowChartsMode === 0
+            ||  parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
           break;
         case '5':
           if (
-            selectedPkdSection.length === 0
+            selectedProvince.length === 0
             || selectedOccupation.length === 0
-            || selectedShowChartsMode === 0
+            ||  parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
           break;
         case '6':
           if (
-             selectedProvince.length === 0
+             selectedCluster.length === 0
              || selectedOccupation.length === 0
+             || parseInt(selectedShowChartsMode) === 0
           ) {
             return <></>
           }
@@ -284,20 +287,14 @@ const SimulationInfoEdit = (props) => {
               showChartsMode={chartResultList}
             />
         case '3':
-          return <TotalAdditionalOption
-              occupationValue={selectedOccupation}
-              provinceValue={selectedProvince} 
-              occupationSizeValue={selectedOccupationSize}
-              showChartModeValue={selectedShowChartsMode} 
-              handleSelectedProvince={setSelectedProvince} 
-              handleSelectedOccupation={setSelectedOccupation} 
-              handleSelectedShowChartsMode={setSelectedShowChartsMode}
-              handleSelectedOccupationSize={setSelectedOccupationSize}
-              provinceList={provinceList}
-              occupationList={occupationList}
-              showChartsMode={chartResultList}
-              occupationSizeList={occupationSizeList}
-            />
+          return <ClusterAdditionalOption
+            clusterValue={selectedCluster}
+            showChartModeValue={selectedShowChartsMode}
+            handleSelectedCluster={setSelectedCluster}
+            handleSelectedShowChartsMode={setSelectedShowChartsMode}
+            clusterList={clusterList}
+            showChartsMode={chartResultList}
+          />
         case '4':
           return <OccupationAdditionalOption
               occupationValue={selectedOccupation}
@@ -311,31 +308,34 @@ const SimulationInfoEdit = (props) => {
               occupationSizeList={occupationSizeList}
             />
         case '5':
-          return <OccupationSectorAdditionalOption
-              occupationValue={selectedOccupation}
-              pkdSectionValue={selectedPkdSection} 
-              occupationSizeValue={selectedOccupationSize}
-              showChartModeValue={selectedShowChartsMode} 
-              handleSelectedPkdSection={setSelectedPkdSection} 
-              handleSelectedOccupation={setSelectedOccupation} 
-              handleSelectedShowChartsMode={setSelectedShowChartsMode}
-              handleSelectedOccupationSize={setSelectedOccupationSize}
-              pkdSectionList={pkdSectionList}
-              occupationList={occupationList}
-              showChartsMode={chartResultList}
-              occupationSizeList={occupationSizeList}
-            />
-        case '6':
           return <ProvinceOccupationAdditionalOption
+            occupationValue={selectedOccupation}
+            provinceValue={selectedProvince}
+            occupationSizeValue={selectedOccupationSize}
+            showChartModeValue={selectedShowChartsMode}
+            handleSelectedProvince={setSelectedProvince}
+            handleSelectedOccupation={setSelectedOccupation}
+            handleSelectedShowChartsMode={setSelectedShowChartsMode}
+            handleSelectedOccupationSize={setSelectedOccupationSize}
+            provinceList={provinceList}
+            occupationList={occupationList}
+            showChartsMode={chartResultList}
+            occupationSizeList={occupationSizeList}
+          />
+        case '6':
+          return <ClusterOccupationAdditionalOption
               occupationValue={selectedOccupation}
-              provinceValue={selectedProvince} 
+              clusterValue={selectedCluster}
               occupationSizeValue={selectedOccupationSize}
-              handleSelectedProvince={setSelectedProvince} 
+              showChartModeValue={selectedShowChartsMode}
+              handleSelectedCluster={setSelectedCluster}
               handleSelectedOccupation={setSelectedOccupation} 
               handleSelectedOccupationSize={setSelectedOccupationSize}
-              provinceList={provinceList}
+              handleSelectedShowChartsMode={setSelectedShowChartsMode}
+              clusterList={clusterList}
               occupationList={occupationList}
               occupationSizeList={occupationSizeList}
+              showChartsMode={chartResultList}
             />
       }
     }
@@ -358,6 +358,7 @@ const SimulationInfoEdit = (props) => {
         if (response.code === 401) {
           history.push('/login');
         } else {
+          setClusterList(response.data.clusters);
           setPkdSelectionList(response.data.pkdSections);
           setProvinceList(response.data.provinces);
           setOccupationList(response.data.professions);
@@ -369,6 +370,7 @@ const SimulationInfoEdit = (props) => {
           setScenario(response.data.scenario);
           setName(response.data.analyze.name);
           setIdAnalyze(response.data.analyze.id_analyze);
+          setSelectedCluster(getNumArray(response.data.analyze.id_cluster));
           setSelectedChartType(response.data.analyze.id_chart_type);
           setSelectedSection(response.data.analyze.id_section);
           setSelectedCategory(getNumArray(response.data.analyze.id_category));

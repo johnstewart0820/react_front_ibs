@@ -10,15 +10,18 @@ import OccupationSelectionModal from '../OccupationSelectionModal';
 const ProvinceOccupationAdditionalOption = (props) => {
   const classes = useStyles();
   const { 
+    occupationValue,
     provinceValue, 
     occupationSizeValue,
+    showChartModeValue, 
     handleSelectedProvince, 
     handleSelectedOccupation, 
+    handleSelectedShowChartsMode,
     handleSelectedOccupationSize,
     provinceList,
     occupationList,
-    occupationSizeList,
-    occupationValue
+    showChartsMode,
+    occupationSizeList
   } = props;
 
   return (
@@ -30,7 +33,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
@@ -46,6 +49,12 @@ const ProvinceOccupationAdditionalOption = (props) => {
                 selectedOccupation={occupationValue}
               // handleSave={handleSaveOccupation}
               />
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.secondTitleHeader}>
+              Wyniki
+            </div>
+            <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
           </Grid>
         </Grid>
       </Card>
