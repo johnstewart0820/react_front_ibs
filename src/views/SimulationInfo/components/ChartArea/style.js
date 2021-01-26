@@ -81,9 +81,13 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         // alignItems: 'flex-end'
     },
+    italicLabel: {
+        writingMode: 'vertical-rl',
+        transform: 'rotate(180deg)'
+    },
     container: {
         width: '100%',
-        height: '400px',
+        height: '600px',
         display: 'flex',
         fontFamily: 'roboto',
         marginBottom: '10px',
