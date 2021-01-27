@@ -8,10 +8,10 @@ import {
   OccupationAdditionalOption,
   ProvinceOccupationAdditionalOption,
   ClusterOccupationAdditionalOption,
-  NameModal,
-  YearSelect,
-  ChartArea,
-  SortTable
+  ControllerArea,
+  ChartTableArea,
+  MapProvinceArea,
+  MapCountyArea,
 } from '../components';
 import { withRouter } from 'react-router-dom';
 import useStyles from '../SimulationInfo/style';
@@ -36,6 +36,7 @@ const SimulationInfoEdit = (props) => {
   const [selectedChartType, setSelectedChartType] = useState(0);
   const [selectedSection, setSelectedSection] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState([]);
+  const [selectedMapCategory, setSelectedMapCategory] = useState(0);
   const [selectedShowChartsMode, setSelectedShowChartsMode] = useState(0);
   const [selectedPkdSection, setSelectedPkdSection] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState([]);
@@ -49,6 +50,8 @@ const SimulationInfoEdit = (props) => {
   const [provinceList, setProvinceList] = useState([]);
   const [occupationList, setOccupationList] = useState([]);
   const [chartTypeList, setChartTypeList] = useState([]);
+  const [countyList, setCountyList] = useState([]);
+  const [sectionMapList,setSectionMapList] = useState([]);
   const [chartResultList, setChartResultList] = useState([]);
   const [sectionList, setSectionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
@@ -95,6 +98,12 @@ const SimulationInfoEdit = (props) => {
     csvExporter.generateCsv(tableData);
   }
 
+  useEffect(() => {
+    if (selectedChartType == 3) {
+      setSelectedSection(0);
+    }
+  }, [selectedChartType]);
+
   const handleSave = () => {
     setOpenModal(true);
   }
@@ -109,7 +118,7 @@ const SimulationInfoEdit = (props) => {
       name, 
       selectedChartType, 
       selectedSection, 
-      selectedCategory,
+      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
       selectedProvince,
       selectedOccupation,
       selectedPkdSection,
@@ -135,209 +144,140 @@ const SimulationInfoEdit = (props) => {
     })
   }
 
+  const renderResultView = () => {
+    if (parseInt(selectedSection) === 4) {
+      return <ChartTableArea 
+        chartData={chartData}
+        selectedChartType={selectedChartType}
+        selectedCategory={selectedCategory}
+        tableData={tableData}
+        requestSort={requestSort}
+        sortOption={sortOption}
+        field_list={field_list}
+        setTableData={setTableData}
+      />
+    }
+    if (parseInt(selectedChartType) === 3) {
+      if (parseInt(selectedSection) === 2 || parseInt(selectedSection) === 5) {
+        return <MapProvinceArea
+          provinceList={provinceList}
+          selectedProvince={selectedProvince}
+        />
+      } else {
+        return <MapCountyArea
+          clusterList={clusterList}
+          countyList={countyList}
+          selectedCluster={selectedCluster}
+        />
+      }
+    }
+  }
+
   const renderControlView = () => {
     if (
-      selectedChartType === 0 
-      || selectedSection === 0
-      || selectedCategory.length === 0
+      parseInt(selectedChartType) === 0
+      || parseInt(selectedSection) === 0
+      || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
+      || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 5 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 6 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
     ) {
       return <></>
-    } else {
-      switch(selectedSection) {
-        case '1':
-          if (
-            selectedPkdSection.length === 0
-            ||  parseInt(selectedShowChartsMode) === 0
-          ) {
-            return <></>
-          }
-          break;
-        case '2':
-          if (
-            selectedProvince.length === 0
-            ||  parseInt(selectedShowChartsMode) === 0
-          ) {
-            return <></>
-          }
-          break;
-        case '3':
-          if (
-            selectedCluster.length === 0
-            ||  parseInt(selectedShowChartsMode) === 0
-          ) {
-            return <></>
-          }
-          break;
-        case '4':
-          if (
-            selectedOccupation.length === 0
-            ||  parseInt(selectedShowChartsMode) === 0
-          ) {
-            return <></>
-          }
-          break;
-        case '5':
-          if (
-            selectedProvince.length === 0
-            || selectedOccupation.length === 0
-            ||  parseInt(selectedShowChartsMode) === 0
-          ) {
-            return <></>
-          }
-          break;
-        case '6':
-          if (
-             selectedCluster.length === 0
-             || selectedOccupation.length === 0
-             || parseInt(selectedShowChartsMode) === 0
-          ) {
-            return <></>
-          }
-          break;
-      }
-    } {
-      return (
-        <Grid container spacing={2} className={classes.thirdContainer}>
-          <Grid container spacing={2} className={classes.controlGrid}>
-            <Grid item xs={7} className={classes.controlContainer}>
-              <Card className={classes.controlBlock}>
-                <YearSelect
-                  value={selectedYear}
-                  handleChange={setSelectedYear}
-                  disabled={selectedChartType == 1}
-                />
-              </Card>
-            </Grid>
-            <Grid item xs={5} className={classes.controlContainer}>
-              <Card className={classes.controlBlock}>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleExport} >
-                      Eksportuj do CSV
-                  </Button>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleSave}>
-                      Zapisz wybór
-                  </Button>
-                    <NameModal
-                      openModal={openModal}
-                      handleClose={handleCloseModal}
-                      name={name}
-                      handleChangeName={(e) => setName(e.target.value)}
-                      handleSave={handleSaveAnalyze}
-                    />
-                  </Grid>
-                </Grid>
-              </Card>
-            </Grid>
-          </Grid>
-          <Grid item xs={7} className={classes.controlContainer}>
-            <Card className={classes.controlBlock}>
-              <ChartArea
-                chart_data={chartData}
-                selectedChartType={selectedChartType}
-                selectedCategory={selectedCategory}
-              />
-            </Card>
-          </Grid>
-          <Grid item xs={5} className={classes.controlContainer}>
-            <Card className={classes.tableBlock}>
-              <SortTable
-                selectedChartType={selectedChartType}
-                rows={tableData}
-                requestSort={requestSort}
-                sortOrder={sortOption.sortOrder}
-                sortBy={sortOption.sortBy}
-                field_list={field_list}
-                handleChangeTableData={setTableData}
-              />
-            </Card>
-          </Grid>
-        </Grid>
-      )
     }
-
+    return (
+      <Grid container spacing={2} className={classes.thirdContainer}>
+        <ControllerArea
+          setSelectedYear={setSelectedYear}
+          selectedYear={selectedYear}
+          handleExport={handleExport}
+          handleSave={handleSave}
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}
+          setName={setName}
+          handleSaveAnalyze={handleSaveAnalyze}
+          name={name}
+        />
+        {renderResultView()}
+      </Grid>
+    )
   }
   const renderSwitchAddition = () => {
-    if (
-      selectedChartType === 0
-      || selectedSection === 0
-      || selectedCategory.length === 0 
-    ) {
+    if (parseInt(selectedChartType) === 0 || parseInt(selectedSection) === 0 || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)) {
       return <></>;
-    } else {
-      switch(selectedSection) {
-        case '1': 
-           return <PkdSectionAdditionalOption
-            pkdSectionValue={selectedPkdSection}
-            showChartModeValue={selectedShowChartsMode}
-            handleSelectedPkdSection={setSelectedPkdSection}
-            handleSelectedShowChartsMode={setSelectedShowChartsMode}
-            pkdSectionList={pkdSectionList}
-            showChartsMode={chartResultList}
-          />
-        case '2':
-          return <ProvinceAdditionalOption
-              provinceValue={selectedProvince}
-              showChartModeValue={selectedShowChartsMode}
-              handleSelectedProvince={setSelectedProvince}
-              handleSelectedShowChartsMode={setSelectedShowChartsMode}
-              provinceList={provinceList}
-              showChartsMode={chartResultList}
-            />
-        case '3':
-          return <ClusterAdditionalOption
-            clusterValue={selectedCluster}
-            showChartModeValue={selectedShowChartsMode}
-            handleSelectedCluster={setSelectedCluster}
-            handleSelectedShowChartsMode={setSelectedShowChartsMode}
-            clusterList={clusterList}
-            showChartsMode={chartResultList}
-          />
-        case '4':
-          return <OccupationAdditionalOption
-              occupationValue={selectedOccupation}
-              showChartModeValue={selectedShowChartsMode}
-              occupationSizeValue={selectedOccupationSize}
-              handleSelectedOccupation={setSelectedOccupation}
-              handleSelectedShowChartsMode={setSelectedShowChartsMode}
-              handleSelectedOccupationSize={setSelectedOccupationSize}
-              occupationList={occupationList}
-              showChartsMode={chartResultList}
-              occupationSizeList={occupationSizeList}
-            />
-        case '5':
-          return <ProvinceOccupationAdditionalOption
-            occupationValue={selectedOccupation}
-            provinceValue={selectedProvince}
-            occupationSizeValue={selectedOccupationSize}
-            showChartModeValue={selectedShowChartsMode}
-            handleSelectedProvince={setSelectedProvince}
-            handleSelectedOccupation={setSelectedOccupation}
-            handleSelectedShowChartsMode={setSelectedShowChartsMode}
-            handleSelectedOccupationSize={setSelectedOccupationSize}
-            provinceList={provinceList}
-            occupationList={occupationList}
-            showChartsMode={chartResultList}
-            occupationSizeList={occupationSizeList}
-          />
-        case '6':
-          return <ClusterOccupationAdditionalOption
-              occupationValue={selectedOccupation}
-              clusterValue={selectedCluster}
-              occupationSizeValue={selectedOccupationSize}
-              showChartModeValue={selectedShowChartsMode}
-              handleSelectedCluster={setSelectedCluster}
-              handleSelectedOccupation={setSelectedOccupation} 
-              handleSelectedOccupationSize={setSelectedOccupationSize}
-              handleSelectedShowChartsMode={setSelectedShowChartsMode}
-              clusterList={clusterList}
-              occupationList={occupationList}
-              occupationSizeList={occupationSizeList}
-              showChartsMode={chartResultList}
-            />
-      }
+    }
+    switch (parseInt(selectedSection)) {
+      case 1:
+        return <PkdSectionAdditionalOption
+          pkdSectionValue={selectedPkdSection}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedPkdSection={setSelectedPkdSection}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          pkdSectionList={pkdSectionList}
+          showChartsMode={chartResultList}
+        />
+      case 2:
+        return <ProvinceAdditionalOption
+          provinceValue={selectedProvince}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedProvince={setSelectedProvince}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          provinceList={provinceList}
+          showChartsMode={chartResultList}
+        />
+      case 3:
+        return <ClusterAdditionalOption
+          clusterValue={selectedCluster}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedCluster={setSelectedCluster}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          clusterList={clusterList}
+          showChartsMode={chartResultList}
+        />
+      case 4:
+        return <OccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          showChartModeValue={selectedShowChartsMode}
+          occupationSizeValue={selectedOccupationSize}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          occupationList={occupationList}
+          showChartsMode={chartResultList}
+          occupationSizeList={occupationSizeList}
+        />
+      case 5:
+        return <ProvinceOccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          provinceValue={selectedProvince}
+          occupationSizeValue={selectedOccupationSize}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedProvince={setSelectedProvince}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          provinceList={provinceList}
+          occupationList={occupationList}
+          showChartsMode={chartResultList}
+          occupationSizeList={occupationSizeList}
+        />
+      case 6:
+        return <ClusterOccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          clusterValue={selectedCluster}
+          occupationSizeValue={selectedOccupationSize}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedCluster={setSelectedCluster}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          clusterList={clusterList}
+          occupationList={occupationList}
+          occupationSizeList={occupationSizeList}
+          showChartsMode={chartResultList}
+        />
     }
   }
 
@@ -373,12 +313,24 @@ const SimulationInfoEdit = (props) => {
           setSelectedCluster(getNumArray(response.data.analyze.id_cluster));
           setSelectedChartType(response.data.analyze.id_chart_type);
           setSelectedSection(response.data.analyze.id_section);
-          setSelectedCategory(getNumArray(response.data.analyze.id_category));
+          if (parseInt(response.data.analyze.id_chart_type) === 3) {
+            setSelectedMapCategory(response.data.analyze.id_category)
+          } else {
+            setSelectedCategory(getNumArray(response.data.analyze.id_category));
+          }
           setSelectedPkdSection(getNumArray(response.data.analyze.id_pkd));
           setSelectedProvince(getNumArray(response.data.analyze.id_province));
           setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
           setSelectedShowChartsMode(response.data.analyze.id_chart_result);
           setSelectedOccupationSize(response.data.analyze.id_occupation_size);
+          setCountyList(response.data.counties);
+          let sections = [];
+          response.data.sections.map((item, index) => {
+            if (index != 0 && index != 3) {
+              sections.push(item);
+            }
+          })
+          setSectionMapList(sections);
         }
       })
   }, []);
@@ -460,7 +412,7 @@ const SimulationInfoEdit = (props) => {
             <div className={classes.subHeader}>
               (moźna wybrać tylko 1 z typów jednocześnie)
             </div>
-            <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={sectionList}/>
+            <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={selectedChartType != 3 ? sectionList : sectionMapList} />
           </Grid>
           <Grid item xs={4}>
             <div className={classes.titleHeader}>
@@ -469,7 +421,13 @@ const SimulationInfoEdit = (props) => {
             <div className={classes.subHeader}>
               (można wybrać 1, 2 lub 3 kategorie)
             </div>
-            <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList}/>
+            {
+              selectedChartType == 3
+                ?
+                <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
+                :
+                <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
+            }
           </Grid>
         </Grid>
       </Card>

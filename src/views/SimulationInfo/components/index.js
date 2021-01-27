@@ -10,3 +10,7 @@ export { default as NameModal } from './NameModal';
 export { default as YearSelect } from './YearSelect';
 export { default as ChartArea } from './ChartArea';
 export { default as SortTable } from './SortTable';
+export { default as ControllerArea } from './ControllerArea';
+export { default as ChartTableArea } from './ChartTableArea';
+export { default as MapProvinceArea } from './MapProvinceArea';
+export { default as MapCountyArea } from './MapCountyArea';
