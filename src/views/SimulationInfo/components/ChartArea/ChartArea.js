@@ -8,6 +8,21 @@ import {
 } from 'recharts';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
+const NotAxisTickButLabel = props=> {
+  const value = props.payload.value + '';
+  let arr = value.match(/.{1,11}/g);
+  return (
+   <g transform={"translate( " + props.x + "," + props.y + " )" }>
+     {
+       arr.map((item, index) => (
+        <text x={-7 * item.length / 2} y={index * 16} dy={16}  fontFamily="Roboto"  fontSize="14px"  fill={props.color || "#44545e" } >
+          {item}
+        </text>
+       ))
+     }
+    </g>  
+  ); 
+}
 
 const ChartArea = (props) => {
   const { chart_data, selectedChartType, selectedCategory } = props;
@@ -57,7 +72,7 @@ const ChartArea = (props) => {
             data={chartData}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" interval={0} height={300} width={50} angle={90} textAnchor="start"/>
+            <XAxis dataKey="name" interval={0} angle={0} height={100}  tick={<NotAxisTickButLabel/> }/>
             <YAxis />
             <Tooltip />
             <Legend />
