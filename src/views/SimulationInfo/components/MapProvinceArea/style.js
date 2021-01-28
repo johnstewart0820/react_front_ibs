@@ -56,8 +56,8 @@ const useStyles = makeStyles(theme => ({
     layoutOverflow: {
         border: '1px solid gray',
         borderRadius: '4px',
-        padding: '30px',
-        width: '180px'
+        padding: '30px 30px 15px 30px',
+        width: '180px',
     },
     overflowCotainer: {
         display: 'flex',
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     },
     colorBlock: {
         display: 'flex',
-        marginBottom: '20px'
+        marginBottom: '15px'
     }
 }));
 

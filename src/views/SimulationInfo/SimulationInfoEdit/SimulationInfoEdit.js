@@ -162,12 +162,14 @@ const SimulationInfoEdit = (props) => {
         return <MapProvinceArea
           provinceList={provinceList}
           selectedProvince={selectedProvince}
+          selectedShowChartsMode={selectedShowChartsMode}
         />
       } else {
         return <MapCountyArea
           clusterList={clusterList}
           countyList={countyList}
           selectedCluster={selectedCluster}
+          selectedShowChartsMode={selectedShowChartsMode}
         />
       }
     }

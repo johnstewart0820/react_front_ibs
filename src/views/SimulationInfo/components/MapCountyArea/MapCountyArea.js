@@ -8,9 +8,9 @@ import { ReactSVG } from 'react-svg'
 import useStyles from './style';
 
 const MapCountyArea = (props) => {
-  const { clusterList, selectedCluster, countyList } = props;
+  const { clusterList, selectedCluster, countyList, selectedShowChartsMode } = props;
   const classes = useStyles();
-
+  const color_list = ['#fd533c', '#9b210a', '#870d00', '#730000', '#5f0000', '#4b0000', '#230000', '#190000'];
   function showTooltip(evt, text) {
     let tooltip = document.getElementById("tooltip");
     tooltip.innerHTML = text;
@@ -28,96 +28,103 @@ const MapCountyArea = (props) => {
     <>
       <Grid item xs={7} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
-          <div id="tooltip" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />
-          <ReactSVG
-            afterInjection={(error, svg) => {
-              for (let i = 0; i < svg.children.length; i++) {
-                if (svg.children[i].tagName === 'path') {
-                  let title = '';
-                  for (let j = 0; j < countyList.length; j++) {
-                    if (countyList[j].id === parseInt(svg.children[i].getAttribute('data-id'))) {
-                      title = clusterList[countyList[j].cluster_id - 1].name;
-                    }
-                  }
-                  svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
-                  svg.children[i].onmouseout = hideTooltip;
-                }
-              }
-              for (let i = 0; i < selectedCluster.length; i++) {
-                let temp = [];
-                let value = i * 70 + 10;
-                for (let j = 0; j < countyList.length; j++) {
-                  if (parseInt(countyList[j].cluster_id) === parseInt(selectedCluster[i])) {
-                    temp.push(j);
-                  }
-                }
-                for (let i = 0; i < svg.children.length; i++) {
-                  // console.log(parseInt(svg.children[k].getAttribute('data-id')), parseInt(countyList[temp].id));
-                  for (let j = 0; j < temp.length ; j ++) {
-                    if (parseInt(svg.children[i].getAttribute('data-id')) === parseInt(countyList[temp[j]].id)) {
-                      if (value >= 0 && value < 80) {
-                        svg.children[i].style.fill = '#d75d34';
-                      } else if (value >= 80 && value < 150) {
-                        svg.children[i].style.fill = '#cd532a';                        
-                      } else if (value >= 150 && value < 220) {
-                        svg.children[i].style.fill = '#c34920';
-                      } else if (value >= 220 && value < 290) {
-                        svg.children[i].style.fill = '#b93f16';
-                      } else if (value >= 290 && value < 360) {
-                        svg.children[i].style.fill = '#af350c';
-                      } else if (value >= 360 && value < 430) {
-                        svg.children[i].style.fill = '#a52b02';
-                      } else if (value >= 430 && value < 500) {
-                        svg.children[i].style.fill = '#9b2100';
-                      } else if (value >= 500) {
-                        svg.children[i].style.fill = '#911700';
+          <Grid container>
+            <Grid item xs={8}>
+              <div id="tooltip" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />
+              {
+                parseInt(selectedShowChartsMode) === 1
+                  ?
+                  <ReactSVG
+                    afterInjection={(error, svg) => {
+                      for (let i = 0; i < svg.children.length; i++) {
+                        if (svg.children[i].tagName === 'path') {
+                          let title = '';
+                          for (let j = 0; j < countyList.length; j++) {
+                            if (countyList[j].id === parseInt(svg.children[i].getAttribute('data-id'))) {
+                              title = clusterList[countyList[j].cluster_id - 1].name;
+                            }
+                          }
+                          svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
+                          svg.children[i].onmouseout = hideTooltip;
+                        }
+                      }
+                      for (let i = 0; i < selectedCluster.length; i++) {
+                        let temp = [];
+                        for (let j = 0; j < countyList.length; j++) {
+                          if (parseInt(countyList[j].cluster_id) === parseInt(selectedCluster[i])) {
+                            temp.push(j);
+                          }
+                        }
+                        for (let k = 0; k < svg.children.length; k++) {
+                          // console.log(parseInt(svg.children[k].getAttribute('data-id')), parseInt(countyList[temp].id));
+                          for (let j = 0; j < temp.length; j++) {
+                            if (parseInt(svg.children[k].getAttribute('data-id')) === parseInt(countyList[temp[j]].id)) {
+                              svg.children[k].style.fill = color_list[i];
+                            }
+                          }
+                        }
                       }
                     }
-                  }                  
-                }
+                    }
+                    beforeInjection={(svg) => {
+                      svg.classList.add('county_map')
+                    }}
+                    src={map_province_svg} />
+                :
+                  selectedCluster.map((item, index) => (
+                    <ReactSVG
+                    afterInjection={(error, svg) => {
+                      for (let i = 0; i < svg.children.length; i++) {
+                        if (svg.children[i].tagName === 'path') {
+                          let title = '';
+                          for (let j = 0; j < countyList.length; j++) {
+                            if (countyList[j].id === parseInt(svg.children[i].getAttribute('data-id'))) {
+                              title = clusterList[countyList[j].cluster_id - 1].name;
+                            }
+                          }
+                          svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
+                          svg.children[i].onmouseout = hideTooltip;
+                        }
+                      }
+                      for (let i = 0; i < selectedCluster.length; i++) {
+                        let temp = [];
+                        for (let j = 0; j < countyList.length; j++) {
+                          if (parseInt(countyList[j].cluster_id) === parseInt(selectedCluster[index])) {
+                            temp.push(j);
+                          }
+                        }
+                        for (let k = 0; k < svg.children.length; k++) {
+                          // console.log(parseInt(svg.children[k].getAttribute('data-id')), parseInt(countyList[temp].id));
+                          for (let j = 0; j < temp.length; j++) {
+                            if (parseInt(svg.children[k].getAttribute('data-id')) === parseInt(countyList[temp[j]].id)) {
+                              svg.children[k].style.fill = color_list[index];
+                            }
+                          }
+                        }
+                      }
+                    }
+                    }
+                    beforeInjection={(svg) => {
+                      svg.classList.add('county_map')
+                    }}
+                    src={map_province_svg} />
+                  ))
               }
-            }
-          }
-          beforeInjection={(svg) => {
-            svg.classList.add('county_map')
-          }}
-          src={map_province_svg} />
-          <div className={classes.overflowCotainer}>
-            <div className={classes.layoutOverflow}>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#d75d34'}}/>
-                <div style={{marginLeft: '20px'}}>&nbsp;&nbsp;&nbsp;&nbsp;0 ~ &nbsp;79</div>
+
+            </Grid>
+            <Grid item xs={4} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
+              <div className={classes.overflowCotainer}>
+                <div className={classes.layoutOverflow}>
+                  {selectedCluster.map((item, index) => (
+                    <div className={classes.colorBlock}>
+                      <div style={{ width: '20px', height: '10px', border: '1px solid gray', backgroundColor: color_list[index] }} />
+                      <div style={{ marginLeft: '20px' }}>{(index) * 70} ~ {(index + 1) * 70 - 1}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#cd532a'}}/>
-                <div style={{marginLeft: '20px'}}>&nbsp;&nbsp;80 ~ 149</div>
-              </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#c34920'}}/>
-                <div style={{marginLeft: '20px'}}>150 ~ 219</div>
-              </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#b93f16'}}/>
-                <div style={{marginLeft: '20px'}}>220 ~ 289</div>
-              </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#af350c'}}/>
-                <div style={{marginLeft: '20px'}}>290 ~ 359</div>
-              </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#a52b02'}}/>
-                <div style={{marginLeft: '20px'}}>360 ~ 429</div>
-              </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#9b2100'}}/>
-                <div style={{marginLeft: '20px'}}>430 ~ 499</div>
-              </div>
-              <div className={classes.colorBlock}>
-                <div style={{width: '20px', height: '10px', border: '1px solid gray', backgroundColor: '#911700'}}/>
-                <div style={{marginLeft: '20px'}}>500 ~ </div>
-              </div>
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </Card>
       </Grid>
     </>
