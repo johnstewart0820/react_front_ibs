@@ -20,6 +20,7 @@ import useStyles from './style';
 // import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 // import 'react-checkbox-tree/src/less/react-checkbox-tree.less';
 import 'react-checkbox-tree/src/scss/react-checkbox-tree.scss';
+import './style.css';
 
 var isInitialRender = 0;
 const OccupationSelectionModal = (props) => {
@@ -37,12 +38,12 @@ const OccupationSelectionModal = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  useEffect(() => {
-    function handleResize() {
-      setWidth(document.getElementById('btn_open').offsetWidth)
-    }
-    window.addEventListener('resize', handleResize)
-  }, []);
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setWidth(document.getElementById('btn_open').offsetWidth)
+  //   }
+  //   window.addEventListener('resize', handleResize)
+  // }, []);
   useEffect(() => {
     setWidth(document.getElementById('btn_open').offsetWidth);
   }, [open]);

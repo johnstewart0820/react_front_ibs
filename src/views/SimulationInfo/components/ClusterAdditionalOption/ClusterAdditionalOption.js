@@ -19,7 +19,6 @@ const ClusterAdditionalOption = (props) => {
   } = props;
 
   return (
-    console.log(clusterValue, clusterList),
     <>
       <Card className={classes.secondContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>

@@ -50,6 +50,20 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.gray,
         width: '100%'
     },
+    layoutOverflow: {
+        border: '1px solid gray',
+        borderRadius: '4px',
+        padding: '30px',
+        width: '180px'
+    },
+    overflowCotainer: {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    colorBlock: {
+        display: 'flex',
+        marginBottom: '20px'
+    }
 }));
 
 export default useStyles;
