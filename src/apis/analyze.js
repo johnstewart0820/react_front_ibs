@@ -138,5 +138,25 @@ class Analyze {
         })
     }
 
+    getTotalData = (id_section, id_occupation, id_pkd, id_province, id_cluster) => {
+        return axios
+        .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_total_data`, {
+            id_section: id_section,
+            id_occupation: id_occupation,
+            id_pkd: id_pkd,
+            id_province: id_province,
+            id_cluster: id_cluster,
+        }, {
+            headers: authHeader(storage.getStorage('token'))
+        })
+        .then(response => {
+            if (response.data.code === 401)
+                storage.removeStorage('token');
+            return response.data;
+        }).catch(error => {
+            return error;
+        })
+    }
+
 }
 export default new Analyze();

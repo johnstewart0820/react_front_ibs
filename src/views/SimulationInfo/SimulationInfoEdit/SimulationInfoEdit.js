@@ -12,6 +12,7 @@ import {
   ChartTableArea,
   MapProvinceArea,
   MapCountyArea,
+  SortTable
 } from '../components';
 import { withRouter } from 'react-router-dom';
 import useStyles from '../SimulationInfo/style';
@@ -64,7 +65,9 @@ const SimulationInfoEdit = (props) => {
   const [name, setName] = useState('');
   const [scenario, setScenario] = useState({});
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
-
+  const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
+  const [totalTableData, setTotalTableData] = useState([]);
+  const [totalFieldList, setTotalFieldList] = useState([]);
   const handleChange = (props) => {
     history.push('/forecasting_module');
   }
@@ -74,6 +77,14 @@ const SimulationInfoEdit = (props) => {
       sortOrder = (sortOption.sortOrder === "asc" ? "desc" : "asc");
     }
     setSortOption({ sortBy: pSortBy, sortOrder: sortOrder })
+  }
+
+  const requestTotalSort = (pSortBy) => {
+    var sortOrder = "asc";
+    if (pSortBy === sortTotalOption.sortBy) {
+      sortOrder = (sortTotalOption.sortOrder === "asc" ? "desc" : "asc");
+    }
+    setSortTotalOption({ sortBy: pSortBy, sortOrder: sortOrder })
   }
   
   const handleOpen = () => {
@@ -174,6 +185,21 @@ const SimulationInfoEdit = (props) => {
     }
   }
 
+  const renderTotalView = () => (
+    <Grid item xs={12}>
+    <Card className={classes.totalView}>
+        <SortTable
+          rows={totalTableData}
+          requestSort={requestTotalSort}
+          sortOrder={sortTotalOption.sortOrder}
+          sortBy={sortTotalOption.sortBy}
+          field_list={totalFieldList}
+          handleChangeTableData={setTotalTableData}
+        />
+    </Card>
+    </Grid>
+  )
+
   const renderControlView = () => {
     if (
       parseInt(selectedChartType) === 0
@@ -202,6 +228,7 @@ const SimulationInfoEdit = (props) => {
           name={name}
         />
         {renderResultView()}
+        {renderTotalView()}
       </Grid>
     )
   }
@@ -357,6 +384,23 @@ const SimulationInfoEdit = (props) => {
           setChartData(response.data.chart_data);
           setTableData(response.data.table_data);
           setFieldList(response.data.field_list);
+        } else {
+        }
+      }
+    })
+    analyzes.getTotalData(
+      selectedSection,
+      selectedOccupation,
+      selectedPkdSection,
+      selectedProvince,
+      selectedCluster,
+    ).then(response => {
+      if (response.code === 401) {
+        history.push('/login');
+      } else {
+        if (response.code === 200) {
+          setTotalTableData(response.data.table_data);
+          setTotalFieldList(response.data.field_list);
         } else {
         }
       }

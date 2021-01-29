@@ -154,6 +154,10 @@ const useStyles = makeStyles(theme => ({
     },
     controlGrid: {
         padding: '10px'
+    },
+    totalView: {
+        width: '100%',
+        overflow: 'auto'
     }
 }));
 

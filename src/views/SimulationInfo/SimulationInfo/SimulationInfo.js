@@ -12,6 +12,7 @@ import {
   ChartTableArea,
   MapProvinceArea,
   MapCountyArea,
+  SortTable
 } from '../components';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
@@ -60,14 +61,25 @@ const SimulationInfo = (props) => {
   const [field_list, setFieldList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState(item.description);
+  const [totalTableData, setTotalTableData] = useState([]);
+  const [totalFieldList, setTotalFieldList] = useState([]);
 
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
+  const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const requestSort = (pSortBy) => {
     var sortOrder = "asc";
     if (pSortBy === sortOption.sortBy) {
       sortOrder = (sortOption.sortOrder === "asc" ? "desc" : "asc");
     }
     setSortOption({ sortBy: pSortBy, sortOrder: sortOrder })
+  }
+
+  const requestTotalSort = (pSortBy) => {
+    var sortOrder = "asc";
+    if (pSortBy === sortTotalOption.sortBy) {
+      sortOrder = (sortTotalOption.sortOrder === "asc" ? "desc" : "asc");
+    }
+    setSortTotalOption({ sortBy: pSortBy, sortOrder: sortOrder })
   }
 
   const handleChange = (props) => {
@@ -160,6 +172,24 @@ const SimulationInfo = (props) => {
         }
       }
     })
+
+    analyze.getTotalData(
+      selectedSection,
+      selectedOccupation,
+      selectedPkdSection,
+      selectedProvince,
+      selectedCluster,
+    ).then(response => {
+      if (response.code === 401) {
+        history.push('/login');
+      } else {
+        if (response.code === 200) {
+          setTotalTableData(response.data.table_data);
+          setTotalFieldList(response.data.field_list);
+        } else {
+        }
+      }
+    })
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedChartType]);
 
   useEffect(() => {
@@ -204,6 +234,21 @@ const SimulationInfo = (props) => {
     }
   }
 
+  const renderTotalView = () => (
+    <Grid item xs={12}>
+    <Card className={classes.totalView}>
+        <SortTable
+          rows={totalTableData}
+          requestSort={requestTotalSort}
+          sortOrder={sortTotalOption.sortOrder}
+          sortBy={sortTotalOption.sortBy}
+          field_list={totalFieldList}
+          handleChangeTableData={setTotalTableData}
+        />
+    </Card>
+    </Grid>
+  )
+
   const renderControlView = () => {
     if (
       parseInt(selectedChartType) === 0
@@ -232,6 +277,7 @@ const SimulationInfo = (props) => {
           name={name}
         />
         {renderResultView()}
+        {renderTotalView()}
       </Grid>
     )
   }
