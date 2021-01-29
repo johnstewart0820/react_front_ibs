@@ -52,10 +52,7 @@ const SortTable = (props) => {
         {rows.map((item, indx) => (
           <TableRow key={indx} className={classes.root}>
             {field_list.map((value, index) => (
-              index == 0 ? 
               <TableCell>{item[value]}</TableCell>
-              :
-              <TableCell>{Number.parseFloat(item[value]).toFixed(2)}</TableCell>
             ))}
           </TableRow>
         ))}

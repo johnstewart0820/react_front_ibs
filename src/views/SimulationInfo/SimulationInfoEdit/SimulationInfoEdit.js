@@ -145,18 +145,6 @@ const SimulationInfoEdit = (props) => {
   }
 
   const renderResultView = () => {
-    if (parseInt(selectedSection) === 4) {
-      return <ChartTableArea 
-        chartData={chartData}
-        selectedChartType={selectedChartType}
-        selectedCategory={selectedCategory}
-        tableData={tableData}
-        requestSort={requestSort}
-        sortOption={sortOption}
-        field_list={field_list}
-        setTableData={setTableData}
-      />
-    }
     if (parseInt(selectedChartType) === 3) {
       if (parseInt(selectedSection) === 2 || parseInt(selectedSection) === 5) {
         return <MapProvinceArea
@@ -172,6 +160,17 @@ const SimulationInfoEdit = (props) => {
           selectedShowChartsMode={selectedShowChartsMode}
         />
       }
+    } else {
+      return <ChartTableArea 
+        chartData={chartData}
+        selectedChartType={selectedChartType}
+        selectedCategory={selectedCategory}
+        tableData={tableData}
+        requestSort={requestSort}
+        sortOption={sortOption}
+        field_list={field_list}
+        setTableData={setTableData}
+      />
     }
   }
 
@@ -346,6 +345,9 @@ const SimulationInfoEdit = (props) => {
       item.id_scenario,
       selectedYear,
       selectedOccupation,
+      selectedPkdSection,
+      selectedProvince,
+      selectedCluster,
       selectedShowChartsMode
     ).then(response => {
       if (response.code === 401) {
@@ -359,7 +361,7 @@ const SimulationInfoEdit = (props) => {
         }
       }
     })
-  }, [selectedSection, selectedCategory, selectedOccupation, selectedShowChartsMode, selectedYear, selectedChartType]);
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster,  selectedShowChartsMode, selectedYear, selectedChartType]);
   const handleChangeChartType = (change) => {
     setChartData([]);
     setTableData([]);

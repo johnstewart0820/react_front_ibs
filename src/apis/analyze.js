@@ -113,7 +113,7 @@ class Analyze {
         })
     }
 
-    getChartData = (id_chart_type, id_section, id_category, id_scenario, year, id_occupation, id_show_chart_mode) => {
+    getChartData = (id_chart_type, id_section, id_category, id_scenario, year, id_occupation, id_pkd, id_province, id_cluster, id_show_chart_mode) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_chart_data`, {
             id_chart_type: id_chart_type,
@@ -121,6 +121,9 @@ class Analyze {
             id_category: id_category,
             id_scenario: id_scenario,
             id_occupation: id_occupation,
+            id_pkd: id_pkd,
+            id_province: id_province,
+            id_cluster: id_cluster,
             year: year,
             id_show_chart_mode: id_show_chart_mode
         }, {
