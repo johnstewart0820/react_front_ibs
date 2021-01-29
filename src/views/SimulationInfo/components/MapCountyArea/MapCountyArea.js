@@ -26,10 +26,10 @@ const MapCountyArea = (props) => {
   }
   return (
     <>
-      <Grid item xs={7} className={classes.controlContainer}>
+      <Grid item xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item xs={9}>
               <div id="tooltip" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />
               {
                 parseInt(selectedShowChartsMode) === 1
@@ -56,7 +56,6 @@ const MapCountyArea = (props) => {
                           }
                         }
                         for (let k = 0; k < svg.children.length; k++) {
-                          // console.log(parseInt(svg.children[k].getAttribute('data-id')), parseInt(countyList[temp].id));
                           for (let j = 0; j < temp.length; j++) {
                             if (parseInt(svg.children[k].getAttribute('data-id')) === parseInt(countyList[temp[j]].id)) {
                               svg.children[k].style.fill = color_list[i];
@@ -112,7 +111,7 @@ const MapCountyArea = (props) => {
               }
 
             </Grid>
-            <Grid item xs={4} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
+            <Grid item xs={3} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
               <div className={classes.overflowCotainer}>
                 <div className={classes.layoutOverflow}>
                   {selectedCluster.map((item, index) => (

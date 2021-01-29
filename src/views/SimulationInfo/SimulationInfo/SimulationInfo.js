@@ -106,7 +106,7 @@ const SimulationInfo = (props) => {
     };
     const csvExporter = new ExportToCsv(options);
 
-    csvExporter.generateCsv(tableData);
+    csvExporter.generateCsv(totalTableData);
   }
 
   const handleSave = () => {
@@ -174,11 +174,16 @@ const SimulationInfo = (props) => {
     })
 
     analyze.getTotalData(
+      selectedChartType,
       selectedSection,
+      selectedCategory,
+      item.id_scenario,
+      selectedYear,
       selectedOccupation,
       selectedPkdSection,
       selectedProvince,
       selectedCluster,
+      selectedShowChartsMode
     ).then(response => {
       if (response.code === 401) {
         history.push('/login');

@@ -138,14 +138,19 @@ class Analyze {
         })
     }
 
-    getTotalData = (id_section, id_occupation, id_pkd, id_province, id_cluster) => {
+    getTotalData = (id_chart_type, id_section, id_category, id_scenario, year, id_occupation, id_pkd, id_province, id_cluster, id_show_chart_mode) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_total_data`, {
+            id_chart_type: id_chart_type,
             id_section: id_section,
+            id_category: id_category,
+            id_scenario: id_scenario,
             id_occupation: id_occupation,
             id_pkd: id_pkd,
             id_province: id_province,
             id_cluster: id_cluster,
+            year: year,
+            id_show_chart_mode: id_show_chart_mode
         }, {
             headers: authHeader(storage.getStorage('token'))
         })

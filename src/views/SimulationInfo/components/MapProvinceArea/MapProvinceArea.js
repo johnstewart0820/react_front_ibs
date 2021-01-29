@@ -25,10 +25,10 @@ const MapProvinceArea = (props) => {
   }
   return (
     <>
-      <Grid item xs={7} className={classes.controlContainer}>
+      <Grid item xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item xs={9}>
               <div id="tooltip" className={classes.tooltip} display="none" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />
               {
                 parseInt(selectedShowChartsMode) === 1
@@ -89,7 +89,7 @@ const MapProvinceArea = (props) => {
               }
 
             </Grid>
-            <Grid item xs={4} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
+            <Grid item xs={3} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
               <div className={classes.overflowCotainer}>
                 <div className={classes.layoutOverflow}>
                   {selectedProvince.map((item, index) => (

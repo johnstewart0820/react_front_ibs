@@ -15,7 +15,7 @@ const ChartTableArea = (props) => {
 
   return (
     <>
-      <Grid item xs={7} className={classes.controlContainer}>
+      <Grid item xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
           <ChartArea
             chart_data={chartData}
@@ -24,7 +24,7 @@ const ChartTableArea = (props) => {
           />
         </Card>
       </Grid>
-      <Grid item xs={5} className={classes.controlContainer}>
+      {/* <Grid item xs={5} className={classes.controlContainer}>
         <Card className={classes.tableBlock}>
           <SortTable
             selectedChartType={selectedChartType}
@@ -36,7 +36,7 @@ const ChartTableArea = (props) => {
             handleChangeTableData={setTableData}
           />
         </Card>
-      </Grid>
+      </Grid> */}
     </>
   );
 };

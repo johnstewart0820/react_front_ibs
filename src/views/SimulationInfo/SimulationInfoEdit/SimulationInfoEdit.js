@@ -106,7 +106,7 @@ const SimulationInfoEdit = (props) => {
     };
     const csvExporter = new ExportToCsv(options);
  
-    csvExporter.generateCsv(tableData);
+    csvExporter.generateCsv(totalTableData);
   }
 
   useEffect(() => {
@@ -389,11 +389,16 @@ const SimulationInfoEdit = (props) => {
       }
     })
     analyzes.getTotalData(
+      selectedChartType,
       selectedSection,
+      selectedCategory,
+      item.id_scenario,
+      selectedYear,
       selectedOccupation,
       selectedPkdSection,
       selectedProvince,
       selectedCluster,
+      selectedShowChartsMode
     ).then(response => {
       if (response.code === 401) {
         history.push('/login');
