@@ -11,6 +11,7 @@ import {
   SimulationInfoEdit as SimulationInfoEditView,
   OwnSimulations as OwnSimulationsView,
   CreateOwnSimulations as CreateOwnSimulationsView,
+  ImportJobOffer as ImportJobOfferView,
   JobOffer as JobOfferView,
   Profile as ProfileView,
   ChangePassword as ChangePasswordView,
@@ -73,6 +74,13 @@ const Routes = () => {
         layout={MainLayout}
         title='Własna symulacje'
         path="/own_simulations/create"
+      />
+      <RouteWithLayout
+        component={ImportJobOfferView}
+        exact
+        layout={MainLayout}
+        title='Import Ofert Pracy'
+        path="/import_job_offer"
       />
       <RouteWithLayout
         component={JobOfferView}

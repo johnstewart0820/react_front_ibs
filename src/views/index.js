@@ -4,6 +4,7 @@ export { SimulationInfo as SimulationInfo } from './SimulationInfo';
 export { SimulationInfoEdit as SimulationInfoEdit } from './SimulationInfo';
 export { default as OwnSimulations } from './OwnSimulations';
 export { default as CreateOwnSimulations } from './CreateOwnSimulations';
+export { default as ImportJobOffer } from './ImportJobOffer';
 export { default as JobOffer } from './JobOffer';
 export { default as Profile } from './Profile';
 export { default as ChangePassword } from './ChangePassword';

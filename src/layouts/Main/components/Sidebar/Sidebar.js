@@ -63,17 +63,66 @@ const Sidebar = props => {
       icon: <HelpOutlineOutlinedIcon />
     },
   ];
+
+  const items_admin = [
+    {
+      title: 'Kokpit',
+      href: '/cockpit',
+      icon: <DashboardIcon />
+    },
+    {
+      title: 'Moduł prognostyczny',
+      href: '/forecasting_module',
+      icon: <PeopleIcon />
+    },
+    {
+      title: 'Własna symulacje',
+      href: '/own_simulations',
+      icon: <ShoppingBasketIcon />
+    },
+    {
+      title: 'Import Ofert Pracy',
+      href: '/import_job_offer',
+      icon: <LockOpenIcon />
+    },
+    {
+      title: 'Moduł Internetowych Ofert Pracy',
+      href: '/job_offer',
+      icon: <LockOpenIcon />
+    },
+    {
+      title: 'Twój Profil',
+      href: '/profile',
+      icon: <TextFieldsIcon />
+    },
+    {
+      title: 'Zapisane analizy',
+      href: '/analyzes',
+      icon: <ImageIcon />
+    },
+    {
+      title: 'Zapisane symulacje',
+      href: '/saved_simulations',
+      icon: <AccountBoxIcon />
+    },
+    {
+      title: 'Pomoc',
+      href: '/help',
+      icon: <HelpOutlineOutlinedIcon />
+    },
+    {
+      title: 'Zarządzanie treścią',
+      href: '/content_management',
+      icon: <SettingsIcon />
+    }
+  ];
   const logout = () => {
     storage.removeStorage('token');
     history.push('/login');
   };
   useEffect(() => {
     if (storage.getStorage('role') === '1') {
-      setPages([...items, {
-        title: 'Zarządzanie treścią',
-        href: '/content_management',
-        icon: <SettingsIcon />
-      }]);
+      setPages(items_admin);
     } else {
       setPages(items);
     }
