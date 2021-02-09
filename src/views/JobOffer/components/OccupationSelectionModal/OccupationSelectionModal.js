@@ -76,7 +76,6 @@ const OccupationSelectionModal = (props) => {
         result[index_1 - 1].children[index_2 - 1].children.push({ "value": node[i].id, "label": node[i].name })
       }
     }
-    console.log(result);
     setNodes(result);
   }, [occupationSize]);
 
@@ -98,13 +97,13 @@ const OccupationSelectionModal = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <div className={classes.secondTitleHeader}>
           Wybierz rodzaj grupy
         </div>
         <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={8}>
         <div className={classes.secondTitleHeader}>
           Zawód
         </div>
