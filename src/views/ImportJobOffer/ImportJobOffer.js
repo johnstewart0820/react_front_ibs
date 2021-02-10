@@ -35,7 +35,7 @@ const ImportJobOffer = props => {
   const theme = useTheme();
   const { addToast } = useToasts()
   const classes = useStyles(theme);
-
+  const [key, setKey] = useState(0);
   useEffect(() => {
 
     job_offers.getInfo()
@@ -118,6 +118,9 @@ const ImportJobOffer = props => {
             addToast(response.message, { appearance: 'success', autoDismissTimeout: 3000, autoDismiss: true });
           }
           setProgressStatus(false);
+          setFiles([]);
+          setIsRightFile(false);
+          setKey(key + 1);
         }
       })
   }
@@ -148,6 +151,7 @@ const ImportJobOffer = props => {
               </div>
               <div>
                 <DropzoneArea
+                  key={key}
                   className={classes.dropZone}
                   onChange={setFiles}
                   fileObjects={[]}
@@ -160,7 +164,7 @@ const ImportJobOffer = props => {
               </div>
               <div className={classes.uploadButtonBlock}>
                 <Button variant="contained" color="secondary" className={classes.btnSimulate} onClick={handleUpload} disabled={!isRightFile}>
-                  Przekazać plik
+                  Zaimportuj plik
                 </Button>
               </div>
             </Card>
