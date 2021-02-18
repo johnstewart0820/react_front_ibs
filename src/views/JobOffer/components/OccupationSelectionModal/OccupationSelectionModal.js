@@ -99,7 +99,7 @@ const OccupationSelectionModal = (props) => {
     <Grid container spacing={2}>
       <Grid item xs={4}>
         <div className={classes.secondTitleHeader}>
-          Wybierz rodzaj grupy
+          Wybierz rodzaj grupy KZiS
         </div>
         <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
       </Grid>

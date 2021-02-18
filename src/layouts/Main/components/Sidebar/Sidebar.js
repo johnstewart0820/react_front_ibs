@@ -14,7 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import storage from '../../../../utils/storage';
 import { SidebarNav } from './components';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import useStyles from './style';
 
 const Sidebar = props => {
@@ -120,6 +120,7 @@ const Sidebar = props => {
     storage.removeStorage('token');
     history.push('/login');
   };
+
   useEffect(() => {
     if (storage.getStorage('role') === '1') {
       setPages(items_admin);
@@ -141,7 +142,7 @@ const Sidebar = props => {
         {...rest}
         className={clsx(classes.root, className)}
       >
-        <img src="/images/logos/main-logo.png" className={classes.main_logo}/>
+        <Link to="/cockpit"><img src="/images/logos/main-logo.png" className={classes.main_logo}/></Link>
         <SidebarNav
           className={classes.nav}
           pages={pages}

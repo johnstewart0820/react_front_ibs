@@ -26,7 +26,7 @@ import { useToasts } from 'react-toast-notifications'
 import scenarios from '../../../apis/scenarios';
 import analyzes from '../../../apis/analyze';
 import analyze from '../../../apis/analyze';
-import { ExportToCsv } from 'export-to-csv';
+import { CSVLink } from "react-csv";
 
 const SimulationInfo = (props) => {
   const classes = useStyles();
@@ -63,7 +63,7 @@ const SimulationInfo = (props) => {
   const [name, setName] = useState(item.description);
   const [totalTableData, setTotalTableData] = useState([]);
   const [totalFieldList, setTotalFieldList] = useState([]);
-
+  const [headers, setHeaders] = useState([]);
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const requestSort = (pSortBy) => {
@@ -91,22 +91,7 @@ const SimulationInfo = (props) => {
   }
 
   const handleExport = () => {
-
-    const options = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalSeparator: '.',
-      showLabels: false,
-      showTitle: false,
-      title: 'My Awesome CSV',
-      useTextFile: false,
-      useBom: true,
-      useKeysAsHeaders: true,
-      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-    };
-    const csvExporter = new ExportToCsv(options);
-
-    csvExporter.generateCsv(totalTableData);
+    document.getElementById('export').click();
   }
 
   const handleSave = () => {
@@ -191,6 +176,14 @@ const SimulationInfo = (props) => {
         if (response.code === 200) {
           setTotalTableData(response.data.table_data);
           setTotalFieldList(response.data.field_list);
+          let _arr = [];
+          for (let i = 0; i < response.data.field_list.length; i ++) {
+            let _item = {};
+            _item.label = response.data.field_list[i].toString();
+            _item.key = response.data.field_list[i].toString();
+            _arr.push(_item);
+          }
+          setHeaders(_arr);
         } else {
         }
       }
@@ -281,6 +274,7 @@ const SimulationInfo = (props) => {
           handleSaveAnalyze={handleSaveAnalyze}
           name={name}
         />
+        <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
         {renderResultView()}
         {renderTotalView()}
       </Grid>

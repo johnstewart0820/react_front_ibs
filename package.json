@@ -45,6 +45,7 @@
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",
     "react-checkbox-tree": "^1.6.0",
+    "react-csv": "^2.0.3",
     "react-dom": "^16.8.6",
     "react-js-pagination": "^3.0.3",
     "react-month-picker": "^2.2.0",
