@@ -51,6 +51,7 @@ const SimulationInfo = (props) => {
   const [occupationList, setOccupationList] = useState([]);
   const [chartTypeList, setChartTypeList] = useState([]);
   const [chartResultList, setChartResultList] = useState([]);
+  const [totalChartResultList, setTotalChartResultList] = useState([]);
   const [sectionList, setSectionList] = useState([]);
   const [countyList, setCountyList] = useState([]);
   const [sectionMapList,setSectionMapList] = useState([]);
@@ -191,8 +192,13 @@ const SimulationInfo = (props) => {
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedChartType]);
 
   useEffect(() => {
+    setChartResultList(totalChartResultList);
     if (selectedChartType == 3) {
       setSelectedSection(0);
+    }
+    if (selectedChartType == 2) {
+      let _arr = JSON.parse(JSON.stringify(totalChartResultList));
+      setChartResultList([_arr[1]]);
     }
   }, [selectedChartType]);
 
@@ -382,6 +388,7 @@ const SimulationInfo = (props) => {
           setSectionMapList(sections);
           setCategoryList(response.data.categories);
           setChartResultList(response.data.chart_result);
+          setTotalChartResultList(response.data.chart_result);
           setOccupationSizeList(response.data.profession_sizes);
         }
       })

@@ -51,6 +51,7 @@ const SimulationInfoEdit = (props) => {
   const [provinceList, setProvinceList] = useState([]);
   const [occupationList, setOccupationList] = useState([]);
   const [chartTypeList, setChartTypeList] = useState([]);
+  const [totalChartResultList, setTotalChartResultList] = useState([]);
   const [countyList, setCountyList] = useState([]);
   const [sectionMapList,setSectionMapList] = useState([]);
   const [chartResultList, setChartResultList] = useState([]);
@@ -97,8 +98,13 @@ const SimulationInfoEdit = (props) => {
   }
 
   useEffect(() => {
+    setChartResultList(totalChartResultList);
     if (selectedChartType == 3) {
       setSelectedSection(0);
+    }
+    if (selectedChartType == 2) {
+      let _arr = JSON.parse(JSON.stringify(totalChartResultList));
+      setChartResultList([_arr[1]]);
     }
   }, [selectedChartType]);
 
@@ -322,6 +328,7 @@ const SimulationInfoEdit = (props) => {
           setSectionList(response.data.sections);
           setCategoryList(response.data.categories);
           setChartResultList(response.data.chart_result);
+          setTotalChartResultList(response.data.chart_result);
           setOccupationSizeList(response.data.profession_sizes);
           setScenario(response.data.scenario);
           setName(response.data.analyze.name);
