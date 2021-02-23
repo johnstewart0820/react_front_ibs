@@ -88,7 +88,7 @@ const MapCountyArea = (props) => {
                           let color = 0;
                           for (let l = 0; l < chartData.length ; l ++) {
                             if (parseInt(chartData[l].code) === parseInt(selectedCluster[i]))
-                              color = color_list[parseInt((parseInt(chartData[l].value) - min) / margin)];
+                              color = color_list[Math.round((parseInt(chartData[l].value) - min) / margin) - 1];
                           }
                           svg.children[k].style.fill = color;
                         }

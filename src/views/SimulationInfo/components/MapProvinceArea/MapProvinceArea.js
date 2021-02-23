@@ -75,9 +75,11 @@ const MapProvinceArea = (props) => {
                             if (parseInt(selectedProvince[j]) === parseInt(svg.children[i].getAttribute('data-id'))) {
                               let color = 0;
                               for (let k = 0; k < chartData.length ; k ++) {
-                                if (parseInt(chartData[k].code) === parseInt(selectedProvince[j]))
-                                  color = color_list[parseInt((parseInt(chartData[k].value) - min) / margin)];
+                                if (parseInt(chartData[k].code) === parseInt(selectedProvince[j])) {
+                                  color = color_list[Math.round((parseInt(chartData[k].value) - min) / margin) - 1];
+                                }
                               }
+
                               svg.children[i].style.fill = color;
                             }
                           }

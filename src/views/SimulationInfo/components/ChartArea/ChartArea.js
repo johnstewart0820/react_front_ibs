@@ -48,6 +48,7 @@ const ChartArea = (props) => {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="Rok" />
                 <YAxis />
+                <YAxis yAxisId="right" orientation="right" />
                 <Tooltip />
                 <Legend />
                 {
@@ -61,7 +62,7 @@ const ChartArea = (props) => {
                         item == 3 ?
                           <Line type="monotone" dataKey="Zatrudnienie" stroke="#30a2cb" />
                           :
-                          <Line type="monotone" dataKey="Luka" stroke="#022ba5" />
+                          <Line yAxisId="right" type="monotone" dataKey="Luka" stroke="#022ba5" />
                   ))
                 }
               </LineChart>
@@ -77,6 +78,7 @@ const ChartArea = (props) => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" interval={0} angle={0} height={100}  tick={<NotAxisTickButLabel/> }/>
             <YAxis />
+            <YAxis yAxisId="right" orientation="right" />
             <Tooltip />
             <Legend />
             {
@@ -91,7 +93,7 @@ const ChartArea = (props) => {
                     item == 3 ?
                     <Bar dataKey="Zatrudnienie" fill="#30a2cb" />                    
                     :
-                    <Bar dataKey="Luka" fill="#022ba5" />
+                    <Bar yAxisId="right" dataKey="Luka" fill="#022ba5" />
               ))
             }
           </BarChart>

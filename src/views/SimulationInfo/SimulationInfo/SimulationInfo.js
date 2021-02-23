@@ -203,6 +203,17 @@ const SimulationInfo = (props) => {
     if (selectedChartType == 3) {
       setSelectedSection(0);
       setSelectedCategory([]);
+      let _arr = [];
+      for (let i = 0; i < provinceList.length; i ++) {
+        _arr.push(provinceList[i].id);
+      }
+      setSelectedProvince(_arr);
+      _arr = [];
+      for (let i = 0; i < clusterList.length; i ++) {
+        _arr.push(clusterList[i].id);
+      }
+      setSelectedCluster(_arr);
+
     }
     if (selectedChartType == 2) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
