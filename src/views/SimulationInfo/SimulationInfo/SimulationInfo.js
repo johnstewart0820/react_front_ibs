@@ -45,8 +45,9 @@ const SimulationInfo = (props) => {
   const [selectedCluster, setSelectedCluster] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
-  const [selectedYear, setSelectedYear] = useState(2021);
+  const [selectedYear, setSelectedYear] = useState(2020);
   const [yearList, setYearList] = useState([2019, 2020, 2021]);
+  const [selectedToYear, setSelectedToYear] = useState(2021);
   const [chartData, setChartData] = useState([]);
   const [pkdSectionList, setPkdSelectionList] = useState([]);
   const [provinceList, setProvinceList] = useState([]);
@@ -143,6 +144,7 @@ const SimulationInfo = (props) => {
       parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
       item.id_scenario,
       selectedYear,
+      selectedToYear,
       selectedOccupation,
       selectedPkdSection,
       selectedProvince,
@@ -167,6 +169,7 @@ const SimulationInfo = (props) => {
       parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
       item.id_scenario,
       selectedYear,
+      selectedToYear,
       selectedOccupation,
       selectedPkdSection,
       selectedProvince,
@@ -196,7 +199,7 @@ const SimulationInfo = (props) => {
         }
       }
     })
-  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedChartType, selectedMapCategory]);
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory]);
 
   useEffect(() => {
     setChartResultList(totalChartResultList);
@@ -294,6 +297,8 @@ const SimulationInfo = (props) => {
         <ControllerArea
           setSelectedYear={setSelectedYear}
           selectedYear={selectedYear}
+          setSelectedToYear={setSelectedToYear}
+          selectedToYear={selectedToYear}
           handleExport={handleExport}
           handleSave={handleSave}
           openModal={openModal}
@@ -302,6 +307,7 @@ const SimulationInfo = (props) => {
           handleSaveAnalyze={handleSaveAnalyze}
           name={name}
           yearList={yearList}
+          selectedChartType={selectedChartType}
         />
         <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
         {renderResultView()}

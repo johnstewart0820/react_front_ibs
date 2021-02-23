@@ -44,8 +44,9 @@ const SimulationInfoEdit = (props) => {
   const [selectedProvince, setSelectedProvince] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
-  const [selectedYear, setSelectedYear] = useState(2021);
+  const [selectedYear, setSelectedYear] = useState(2020);
   const [yearList, setYearList] = useState([2019, 2020, 2021]);
+  const [selectedToYear, setSelectedToYear] = useState(2021);
   const [chartData, setChartData] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [field_list, setFieldList] = useState([]);
@@ -217,6 +218,8 @@ const SimulationInfoEdit = (props) => {
         <ControllerArea
           setSelectedYear={setSelectedYear}
           selectedYear={selectedYear}
+          setSelectedToYear={setSelectedToYear}
+          selectedToYear={selectedToYear}
           handleExport={handleExport}
           handleSave={handleSave}
           openModal={openModal}
@@ -225,6 +228,7 @@ const SimulationInfoEdit = (props) => {
           handleSaveAnalyze={handleSaveAnalyze}
           name={name}
           yearList={yearList}
+          selectedChartType={selectedChartType}
         />
         <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
         {renderResultView()}
@@ -370,7 +374,7 @@ const SimulationInfoEdit = (props) => {
           setCountyList(response.data.counties);
           let sections = [];
           response.data.sections.map((item, index) => {
-            if (index == 5 && index == 6) {
+            if (index == 5 || index == 6) {
               sections.push(item);
             }
           })
@@ -387,6 +391,7 @@ const SimulationInfoEdit = (props) => {
       parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
       item.id_scenario,
       selectedYear,
+      selectedToYear,
       selectedOccupation,
       selectedPkdSection,
       selectedProvince,
@@ -410,6 +415,7 @@ const SimulationInfoEdit = (props) => {
       parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
       item.id_scenario,
       selectedYear,
+      selectedToYear,
       selectedOccupation,
       selectedPkdSection,
       selectedProvince,
@@ -439,7 +445,7 @@ const SimulationInfoEdit = (props) => {
         }
       }
     })
-  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster,  selectedShowChartsMode, selectedYear, selectedChartType]);
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster,  selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType]);
   const handleChangeChartType = (change) => {
     setChartData([]);
     setTableData([]);
@@ -494,7 +500,7 @@ const SimulationInfoEdit = (props) => {
             <div className={classes.subHeader}>
               (moźna wybrać tylko 1 z typów jednocześnie)
             </div>
-            <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={selectedChartType != 3 ? sectionList : sectionMapList} />
+            <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) != 3 ? sectionList : sectionMapList} />
           </Grid>
           <Grid item xs={4}>
             <div className={classes.titleHeader}>

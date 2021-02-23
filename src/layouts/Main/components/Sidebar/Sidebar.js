@@ -142,7 +142,7 @@ const Sidebar = props => {
         {...rest}
         className={clsx(classes.root, className)}
       >
-        <Link to="/cockpit"><img src="/images/logos/main-logo.png" className={classes.main_logo}/></Link>
+        <Link to="/cockpit"><img src="/images/logos/main-logo.png" className={classes.main_logo} style={{width: '100%', height: '100%'}}/></Link>
         <SidebarNav
           className={classes.nav}
           pages={pages}
