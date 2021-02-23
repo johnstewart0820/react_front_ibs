@@ -5,15 +5,7 @@ import useStyles from './style';
 
 const YearSelect = (props) => {
   const classes = useStyles();
-  const { value, handleChange, disabled} = props;
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    let temp = [];
-    for (let i = 0; i < 31; i ++) {
-      temp.push(i + 2020);
-    }
-    setList(temp);
-  }, []);
+  const { value, handleChange, list, disabled} = props;
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>

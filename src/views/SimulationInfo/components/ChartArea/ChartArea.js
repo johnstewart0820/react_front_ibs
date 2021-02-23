@@ -58,6 +58,9 @@ const ChartArea = (props) => {
                       item == 2 ?
                         <Line type="monotone" dataKey="Podaż pracy" stroke="#b0a502" />
                       :
+                        item == 3 ?
+                          <Line type="monotone" dataKey="Zatrudnienie" stroke="#30a2cb" />
+                          :
                           <Line type="monotone" dataKey="Luka" stroke="#022ba5" />
                   ))
                 }
@@ -85,7 +88,10 @@ const ChartArea = (props) => {
                   item == 2 ?
                   <Bar dataKey="Podaż pracy" fill="#b0a502" />
                   :
-                  <Bar dataKey="Luka" fill="#022ba5" />
+                    item == 3 ?
+                    <Bar dataKey="Zatrudnienie" fill="#30a2cb" />                    
+                    :
+                    <Bar dataKey="Luka" fill="#022ba5" />
               ))
             }
           </BarChart>

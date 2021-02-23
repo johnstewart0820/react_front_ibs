@@ -4,6 +4,7 @@ export { default as ClusterAdditionalOption } from './ClusterAdditionalOption';
 export { default as PkdSectionAdditionalOption } from './PkdSectionAdditionalOption';
 export { default as ProvinceAdditionalOption } from './ProvinceAdditionalOption';
 export { default as OccupationAdditionalOption } from './OccupationAdditionalOption';
+export { default as PkdOccupationAdditionalOption } from './PkdOccupationAdditionalOption';
 export { default as ClusterOccupationAdditionalOption } from './ClusterOccupationAdditionalOption';
 export { default as ProvinceOccupationAdditionalOption } from './ProvinceOccupationAdditionalOption';
 export { default as NameModal } from './NameModal';

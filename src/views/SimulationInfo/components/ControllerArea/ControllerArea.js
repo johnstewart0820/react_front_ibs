@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
 const ControllerArea = (props) => {
-  const { setSelectedYear, selectedYear, handleExport, handleSave, openModal, handleCloseModal, setName, handleSaveAnalyze, name } = props;
+  const { setSelectedYear, selectedYear, handleExport, handleSave, openModal, handleCloseModal, setName, handleSaveAnalyze, name, yearList } = props;
   const classes = useStyles();
 
   return (
@@ -20,6 +20,7 @@ const ControllerArea = (props) => {
           <YearSelect
             value={selectedYear}
             handleChange={setSelectedYear}
+            list={yearList}
           />
         </Card>
       </Grid>
