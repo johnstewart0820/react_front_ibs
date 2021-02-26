@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     },
     input_box: {
         '& select': {
-            border: '1px solid gray',
+            border: `1px solid ${theme.palette.gray}`,
         }
     }
 }));

@@ -440,7 +440,7 @@ const SimulationInfo = (props) => {
 
   return (
     <>
-      <Card>
+      <Card className={classes.card}>
         <Grid container spacing={2} className={classes.mainContainer}>
           <Grid item lg={5} sm={5}>
             <div className={classes.titleBlock}>

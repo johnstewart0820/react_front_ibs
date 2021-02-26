@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         padding: '25px',
         outline: 'none',
         color: theme.palette.gray,
-        fontSize: '15px',
+        fontSize: '0.9375em',
         fontFamily: 'roboto',
         fontWeight: 400,
         width: '800px',
@@ -28,14 +28,14 @@ const useStyles = makeStyles(theme => ({
     },
     secondTitleHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: '400'
     },
     input_box: {
         padding: '17px 30px',
-        fontSize: '14px',
+        fontSize: '0.8750em',
         width: '100%',
         color: theme.palette.gray,
         fontWeight: '400',
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     btnSave: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -100,7 +100,7 @@ const useStyles = makeStyles(theme => ({
     btnOpen: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 

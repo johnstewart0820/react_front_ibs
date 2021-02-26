@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     description: {
         marginTop: '20px',
         color: theme.palette.gray,
-        fontSize: '15px',
+        fontSize: '0.9375em',
         fontFamily: 'roboto',
         fontWeight: 400,
     },

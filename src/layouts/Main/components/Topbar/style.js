@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      zIndex: '101'
+      zIndex: '101',
+      borderBottom: theme.palette.contrastColor,
     },
     flexGrow: {
       flexGrow: 1
@@ -28,12 +29,12 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'center',
       '& .MuiSvgIcon-root': {
-        fontSize: '30px'
+        fontSize: '1.875em'
       }
     },
     title: {
       color: theme.palette.gray,
-      fontSize: '20px',
+      fontSize: '1.25em',
       fontFamily: 'roboto',
       fontWeight: '400',
       display: 'flex',
@@ -43,12 +44,31 @@ const useStyles = makeStyles(theme => ({
     avatar: {
 
     },
+    rightControllerArea: {
+      display: 'flex'
+    },
     titlebar: {
       display: 'flex'
     },
     avataricon: {
-      fontSize: '40px'
+      fontSize: '2.5em'
     },
+    helper: {
+      color: theme.palette.blue,
+      fontSize: '8px',
+      margin: theme.spacing(0, 2.5),
+      display: 'flex',
+      alignItems: 'center'
+    },
+    controllerArea: {
+      display: 'flex',
+    },
+    vertical_separator: {
+      height: '60%',
+      width: '1px',
+      backgroundColor: theme.palette.select_title,
+      marginTop: '7%'
+    }
   }));
 
   export default useStyles;

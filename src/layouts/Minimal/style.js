@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     width: '600px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(5),
     paddingRight: theme.spacing(5),
     paddingBottom: theme.spacing(8),
-    fontSize: '16px',
+    
     fontFamily: 'roboto',
     marginBottom: '5px',
     marginLeft: '10px',

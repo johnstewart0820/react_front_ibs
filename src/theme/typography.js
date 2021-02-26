@@ -25,52 +25,52 @@ export default {
   h4: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '20px',
+    fontSize: '1.25em',
     letterSpacing: '-0.06px',
     lineHeight: '24px'
   },
   h5: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '16px',
+    
     letterSpacing: '-0.05px',
     lineHeight: '20px'
   },
   h6: {
     color: palette.text.primary,
     fontWeight: 500,
-    fontSize: '14px',
+    fontSize: '0.8750em',
     letterSpacing: '-0.05px',
     lineHeight: '20px'
   },
   subtitle1: {
     color: palette.text.primary,
-    fontSize: '16px',
+    
     letterSpacing: '-0.05px',
     lineHeight: '25px'
   },
   subtitle2: {
     color: palette.text.secondary,
     fontWeight: 400,
-    fontSize: '14px',
+    fontSize: '0.8750em',
     letterSpacing: '-0.05px',
     lineHeight: '21px'
   },
   body1: {
     color: palette.text.primary,
-    fontSize: '14px',
+    fontSize: '0.8750em',
     letterSpacing: '-0.05px',
     lineHeight: '21px'
   },
   body2: {
     color: palette.text.secondary,
-    fontSize: '12px',
+    fontSize: '0.75em',
     letterSpacing: '-0.04px',
     lineHeight: '18px'
   },
   button: {
     color: palette.text.primary,
-    fontSize: '14px'
+    fontSize: '0.8750em'
   },
   caption: {
     color: palette.text.secondary,

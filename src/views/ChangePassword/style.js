@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   input_box: {
     padding: '12px 30px',
-    fontSize: '16px',
+    
     width: '100%',
     color: theme.palette.gray,
     fontWeight: '500',
@@ -25,13 +25,13 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     color: theme.palette.gray,
-    fontSize: '18px',
+    fontSize: '1.125em',
     fontFamily: 'roboto',
     marginBottom: '5px',
     fontWeight: '500'
   },
   resetbtn: {
-    fontSize: '16px',
+    
     cursor: 'pointer',
     fontFamily: 'roboto',
     color: theme.palette.pink
@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
   btnRegister: {
     '& .MuiButton-label': {
       textTransform: 'none',
-      fontSize: '18px',
+      fontSize: '1.125em',
     },
     '& .MuiButton-containedSecondary:hover': {
 

@@ -1,28 +1,31 @@
 import { colors } from '@material-ui/core';
 
-const white = '#FFFFFF';
+const yellow = '#ffd401';
+const white = yellow;
 const black = '#000000';
+const black_disable = '#111111';
 const pink = '#D6324B';
-const gray = '#44545e';
-const blue = '#05295b';
-const blue_disable = '#082245';
+const gray = yellow;
+const blue = pink;
+const blue_disable = pink;
 const normal = '#8b919a';
 const normal_disable = '#EBECF0';
 const select_title = '#aeaeae';
 const checked_color = '#546e7a';
-const sidebar_background = blue;
-const sidebar_active_background = blue_disable;
+const sidebar_background = black;
+const sidebar_active_background = black_disable;
 const sidebar_color = normal;
 const sidebar_active_color = normal_disable;
-const topbar_background = '#FCFCFC';
+const topbar_background = black;
 const pink_disable = '#a02000';
 const gray_disable = '#404040';
-const mainBackground = white;
-const contrastColor = 'none';
-const table_head = '#fafafa';
-const input_back = white;
+const mainBackground = black;
+const contrastColor = `1px solid ${yellow}`;
+const table_head = black;
+const input_back = black;
 export default {
   black,
+  input_back,
   white,
   pink,
   gray,
@@ -42,7 +45,6 @@ export default {
   mainBackground,
   contrastColor,
   table_head,
-  input_back,
   primary: {
     contrastText: white,
     dark: colors.indigo[900],
@@ -85,8 +87,8 @@ export default {
     link: colors.blue[600]
   },
   background: {
-    default: '#F4F6F8',
-    paper: white
+    default: black,
+    paper: black
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200]

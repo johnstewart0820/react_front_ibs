@@ -13,14 +13,14 @@ const useStyles = makeStyles(theme => ({
     },
     mainHeader: {
         color: theme.palette.gray,
-        fontSize: '18px',
+        fontSize: '1.125em',
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: '500'        
     },
     titleHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         fontWeight: '500'
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
     secondTitleHeader: {
         color: theme.palette.gray,
-        fontSize: '18px',
+        fontSize: '1.125em',
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: '500'
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 
     subHeader: {
         color: theme.palette.gray,
-        fontSize: '13px',
+        fontSize: '0.8125em',
         fontFamily: 'roboto',
         marginBottom: '20px',
         fontWeight: '500',
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 
     titleInfo: {
         color: theme.palette.pink,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         marginLeft: '10px',
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     btnOpen: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
     btnChange: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -97,7 +97,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '0px',
         fontWeight: '400',
         border: '1px solid #D6324B',
-        backgroundColor: 'white',
+        backgroundColor: theme.palette.white,
         color: theme.palette.pink,
         width: '25%'
     },
@@ -129,13 +129,13 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         color: theme.palette.gray,
-        fontSize: '18px',
+        fontSize: '1.125em',
         fontFamily: 'roboto',
         fontWeight: 400,
         marginBottom: '20px',
         '& span': {
             color: theme.palette.gray,
-            fontSize: '16px',
+            
             fontFamily: 'roboto',
             fontWeight: 500,
             marginBottom: '15px',

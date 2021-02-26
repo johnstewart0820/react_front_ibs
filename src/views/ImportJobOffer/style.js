@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     width: '600px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '& .ql-size-small': {
-      fontSize: '12px'
+      fontSize: '0.75em'
     },
     color: theme.palette.gray,
-    fontSize: '15px',
+    fontSize: '0.9375em',
     fontFamily: 'roboto',
     fontWeight: 400,
   },
@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
   },
   headerBlock: {
     padding: '20px 20px 40px 20px',
-    height: '100%'
+    height: '100%',
+    border: theme.palette.contrastColor
   },
   buttonBlock: {
     display: 'flex',
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subHeader: {
     color: theme.palette.gray,
-    fontSize: '17px',
+    fontSize: '1.0625em',
     fontFamily: 'roboto',
     fontWeight: 400,
     marginBottom: theme.spacing(3)
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   btnSimulate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '&:hover': {
         backgroundColor: theme.palette.pink
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   btnSee: {
       '& .MuiButton-label': {
           textTransform: 'none',
-          fontSize: '15px',
+          fontSize: '0.9375em',
       },
       '& .MuiButton-containedSecondary:hover': {
 
@@ -104,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: '0px',
       fontWeight: '300',
       border: '1px solid #D6324B',
-      backgroundColor: 'white',
+      backgroundColor: theme.palette.mainBackground,
       color: theme.palette.pink,
       width: '100%',
       height: '100%',
@@ -113,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
   btnCreate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
@@ -133,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
 },
   input_box: {
     padding: '12px 30px',
-    fontSize: '14px',
+    fontSize: '0.8750em',
     width: '100%',
     fontFamily: 'roboto',
     '&::placeholder': {

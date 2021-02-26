@@ -9,12 +9,13 @@ const useStyles = makeStyles(theme => ({
     },
     controlBlock: {
         padding: '30px 40px 30px 20px',
-        height: '100%'
+        height: '100%',
+        border: theme.palette.contrastColor,
     },
     btnSave: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     btnExport: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
         padding: '4px',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: 'white',
+        backgroundColor: theme.palette.mainBackground,
         border: `1px solid ${theme.palette.blue}`,
         color: theme.palette.blue,
         width: '100%'

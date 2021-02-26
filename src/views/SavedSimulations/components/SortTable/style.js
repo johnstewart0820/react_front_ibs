@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
     btnCreate: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '&:hover': {
             backgroundColor: theme.palette.pink

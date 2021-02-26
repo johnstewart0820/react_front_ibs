@@ -31,7 +31,7 @@ const SortTable = (props) => {
 
   return (
     <Table>
-      <TableHead>
+      <TableHead className={classes.head}>
         <TableRow>
           {
             field_list.map((item, indx) => (

@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         padding: '25px',
         outline: 'none',
         color: theme.palette.gray,
-        fontSize: '15px',
+        fontSize: '0.9375em',
         fontFamily: 'roboto',
         fontWeight: 400,
         width: '1000px',

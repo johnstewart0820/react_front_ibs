@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SiteInfoContextConsumer } from "App";
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { AppBar, Button, IconButton, Menu, MenuItem } from '@material-ui/core';
@@ -8,10 +9,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './style';
 import { useHistory } from "react-router-dom";
 import storage from '../../../../utils/storage';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faFont, faLink, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Topbar = props => {
   const { className, title, onSidebarOpen, onSidebarClose, ...rest } = props;
-  const [ open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [avatarOpen, setAvatarOpen] = useState(Boolean(anchorEl));
   const classes = useStyles();
@@ -20,7 +23,7 @@ const Topbar = props => {
   const onMaxTopbar = () => {
     if (open === true)
       onSidebarOpen();
-    else 
+    else
       onSidebarClose();
     setOpen(!open);
   }
@@ -46,51 +49,119 @@ const Topbar = props => {
     history.push('/login');
   }
 
+  const changeFontSize = e => {
+    e.preventDefault();
+
+    let
+      target = e.target,
+      body = document.body,
+      fontSize = parseInt(window.getComputedStyle(body).fontSize.replace("px", "")),
+      fontAction;
+    if (target.tagName === 'svg')
+      target = target.parentElement;
+    if (target.tagName === 'path')
+      target = target.parentElement.parentElement;
+    if (target.name === 'plus')
+      fontAction = 'more';
+    else if (target.name === 'minus')
+      fontAction = 'less';
+    else if (target.name === 'normal')
+      fontAction = 'normal';
+    if (fontAction === 'less' && fontSize > 10) fontSize -= 1;
+    if (fontAction === 'more' && fontSize < 22) fontSize += 1;
+    if (fontAction === 'normal') fontSize = 16;
+
+    fontSize += "px";
+    body.style.fontSize = fontSize;
+  }
+
+  const toggleUnderlineLinks = e => {
+    e.preventDefault();
+    document.body.classList.toggle("links-underline");
+  }
+
+  const toggleDarkContrast = (e) => {
+    e.preventDefault();
+  }
+
   return (
+    <SiteInfoContextConsumer>
+    { (props) => (
     <AppBar
       {...rest}
       className={clsx(classes.root, className)}
     >
       <div className={classes.toolbar}>
-        
         <div className={classes.titlebar}>
           <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
-            {open ? <KeyboardBackspaceIcon/> : <MenuIcon/>}
+            {open ? <KeyboardBackspaceIcon /> : <MenuIcon />}
           </Button>
           <div className={classes.title}>
             {title}
           </div>
         </div>
-        <div className={classes.avatar}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-          >
-            <AccountCircle className={classes.avataricon}/>
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={avatarOpen}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleProfile}>Ustawienia</MenuItem>
-            <MenuItem onClick={handleLogout}>Wyloguj</MenuItem>
-          </Menu>
+        <div className={classes.rightControllerArea}>
+          <div className={classes.controllerArea}>
+            <div className={classes.vertical_separator}/>
+            <a href="#" className={classes.helper} name="plus"
+              onClick={(e) => changeFontSize(e)}>
+              <FontAwesomeIcon icon={faFont} size="2x" />
+              <FontAwesomeIcon icon={faPlus} size="1x" />
+            </a>
+            <div className={classes.vertical_separator}/>
+            <a href="#" className={classes.helper} name="normal"
+                onClick={(e) => changeFontSize(e)}>
+                <FontAwesomeIcon icon={faFont} size="2x"/>
+            </a>
+            <div className={classes.vertical_separator}/>
+            <a href="#" className={classes.helper} name="minus"
+                onClick={(e) => changeFontSize(e)}>
+                <FontAwesomeIcon icon={faFont} size="2x"/>
+                <FontAwesomeIcon icon={faMinus} size="1x"/>
+            </a>
+            <div className={classes.vertical_separator}/>
+            <a href="#" className={classes.helper} onClick={(e) => {e.preventDefault(); props.toggleContrast();}}>
+                <FontAwesomeIcon icon={faEye} size="2x"/>
+            </a>
+            <div className={classes.vertical_separator}/>
+            <a href="#" className={classes.helper} onClick={(e) => toggleUnderlineLinks(e)}>
+                <FontAwesomeIcon icon={faLink} size="2x"/>
+            </a>
+            <div className={classes.vertical_separator}/>
+          </div>
+          <div className={classes.avatar}>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+            >
+              <AccountCircle className={classes.avataricon} />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={avatarOpen}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleProfile}>Ustawienia</MenuItem>
+              <MenuItem onClick={handleLogout}>Wyloguj</MenuItem>
+            </Menu>
+          </div>
         </div>
       </div>
     </AppBar>
+    )}
+    </SiteInfoContextConsumer>
   );
 };
 

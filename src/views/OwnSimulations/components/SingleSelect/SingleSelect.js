@@ -20,6 +20,7 @@ const SingleSelect = (props) => {
         native
         value={value}
         onChange={(event) =>handleChange(event.target.value ? event.target.value : {})}
+        className={classes.select}
         inputProps={{
           name: 'age',
           id: 'outlined-age-native-simple',

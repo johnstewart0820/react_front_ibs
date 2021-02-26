@@ -12,14 +12,14 @@ const useStyles = makeStyles(theme => ({
     },
     mainHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: '400'        
     },
     titleHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         fontWeight: '400'
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
     secondTitleHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: '400'
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 
     subHeader: {
         color: theme.palette.gray,
-        fontSize: '13px',
+        fontSize: '0.8125em',
         fontFamily: 'roboto',
         marginBottom: '20px',
         fontWeight: '400',
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 
     titleInfo: {
         color: theme.palette.pink,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         marginLeft: '10px',
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     btnOpen: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
     btnChange: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '0px',
         fontWeight: '400',
         border: '1px solid #D6324B',
-        backgroundColor: 'white',
+        backgroundColor: theme.palette.mainBackground,
         color: theme.palette.pink,
         width: '100%'
     },
@@ -104,7 +104,8 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.pink
     },
     secondContainer: {
-        marginTop: '20px'
+        marginTop: '20px',
+        border: theme.palette.contrastColor
     },
 }));
 

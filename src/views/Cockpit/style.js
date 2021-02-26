@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     width: '600px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center'
     },
     color: theme.palette.gray,
-    fontSize: '15px',
+    fontSize: '0.9375em',
     fontFamily: 'roboto',
     fontWeight: 400,
   },
@@ -29,12 +29,14 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     '& img': {
       width: '100%'
-    }
+    },
+    border: theme.palette.contrastColor
   },
   controlBlock: {
     padding: '30px 30px 70px 30px',
     height: '100%',
-    textAlign: 'center'
+    textAlign: 'center',
+    border: theme.palette.contrastColor
   },
   buttonBlock: {
     display: 'flex',
@@ -42,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     color: theme.palette.gray,
-    fontSize: '22px',
+    fontSize: '1.375em',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
     color: theme.palette.gray,
-    fontSize: '15px',
+    fontSize: '0.9375em',
     fontFamily: 'roboto',
     fontWeight: 400,
     marginTop: '60px',
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   btnOpen: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 

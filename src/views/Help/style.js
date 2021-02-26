@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     width: '600px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '& .ql-size-small': {
-      fontSize: '12px'
+      fontSize: '0.75em'
     },
     color: theme.palette.gray,
-    fontSize: '15px',
+    fontSize: '0.9375em',
     fontFamily: 'roboto',
     fontWeight: 400,
   },
@@ -54,13 +54,13 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     color: theme.palette.gray,
-    fontSize: '22px',
+    fontSize: '1.375em',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
     color: theme.palette.gray,
-    fontSize: '15px',
+    fontSize: '0.9375em',
     fontFamily: 'roboto',
     fontWeight: 400,
     marginTop: '60px',
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   btnOpen: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 

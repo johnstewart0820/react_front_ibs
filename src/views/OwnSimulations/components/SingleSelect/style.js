@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
             transform: 'translate(14px -100px) scale(0.5)'
         }
     },
+    select: {
+        border: theme.palette.contrastColor,
+    }
 }));
 
 export default useStyles;

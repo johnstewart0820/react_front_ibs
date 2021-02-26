@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: 0,
     width: '100%',
     fontWeight: 400,
-    fontSize: '16px',
+    
     color: theme.palette.sidebar_color,
     lineHeight: '1em',
     '&:hover': {

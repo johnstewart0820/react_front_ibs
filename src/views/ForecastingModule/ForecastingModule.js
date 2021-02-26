@@ -44,7 +44,7 @@ const ForecastingModule = (props) => {
   return (
     <>
       <Card className={classes.mainContainer}>
-        <Grid container spacing={2} className={classes.mainContainer}>
+        <Grid container spacing={2} className={classes.gridBlock}>
           <Grid item xs={12}>
             <div className={classes.title}>
               Wybierz symulację do analizy wyników

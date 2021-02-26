@@ -3,10 +3,14 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
     mainContainer: {
         padding: '10px 20px 25px 10px',
+        border: theme.palette.contrastColor
+    },
+    gridBlock: {
+        padding: '10px 20px 25px 10px',
     },
     title: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         fontWeight: 400
@@ -14,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     btnShowResult: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '16px',
+            
         },
         '&:hover': {
             backgroundColor: theme.palette.blue
@@ -33,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     btnCreateSimulation: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '16px',
+            
         },
         '&:hover': {
             backgroundColor: theme.palette.pink,
@@ -48,10 +52,12 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     name_select_box: {
+        color: theme.palette.gray,
+        border: `1px solid ${theme.palette.gray}`,
         '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input' : {
             padding: '3.5px 4px',
             color: theme.palette.gray,
-            fontWeight: 400
+            fontWeight: 400,
         },
         '& ::placeholder': {
             fontStyle: 'italic',

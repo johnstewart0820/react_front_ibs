@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     width: '600px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
@@ -27,15 +27,16 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '& .ql-size-small': {
-      fontSize: '12px'
+      fontSize: '0.75em'
     },
     color: theme.palette.gray,
-    fontSize: '15px',
+    fontSize: '0.9375em',
     fontFamily: 'roboto',
     fontWeight: 400,
   },
   normalBlock: {
     padding: '20px 20px 20px 20px',
+    border: theme.palette.contrastColor
   },
   approveBlock: {
     display: 'flex',
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerBlock: {
     padding: '20px 20px 40px 20px',
+    border: theme.palette.contrastColor
   },
   buttonBlock: {
     display: 'flex',
@@ -62,13 +64,13 @@ const useStyles = makeStyles((theme) => ({
   },
   selectTitle: {
     color: theme.palette.gray,
-    fontSize: '14px',
+    fontSize: '0.8750em',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
     color: theme.palette.gray,
-    fontSize: '17px',
+    fontSize: '1.0625em',
     fontFamily: 'roboto',
     fontWeight: 400,
   },
@@ -83,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
   btnSimulate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
@@ -102,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   btnCreate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
@@ -127,7 +129,7 @@ btn: {
 },
   input_box: {
     padding: '12px 30px',
-    fontSize: '14px',
+    fontSize: '0.8750em',
     width: '100%',
     fontFamily: 'roboto',
     '&::placeholder': {
@@ -217,7 +219,7 @@ btn: {
   },
   input_box: {
     padding: '12px 10px',
-    fontSize: '14px',
+    fontSize: '0.8750em',
     width: '100%',
     border: '1px solid gray',
   },

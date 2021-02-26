@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
   btnOpen: {
       '& .MuiButton-label': {
           textTransform: 'none',
-          fontSize: '15px',
+          fontSize: '0.9375em',
       },
       '&:hover': {
           backgroundColor: theme.palette.pink
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   btnDelete: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '&:hover': {
         backgroundColor: theme.palette.gray

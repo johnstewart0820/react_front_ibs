@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   content: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     width: '600px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
   },
   selectTitle: {
     color: theme.palette.gray,
-    fontSize: '14px',
+    fontSize: '0.8750em',
     fontFamily: 'roboto',
     fontWeight: 400
   },
   subHeader: {
     color: theme.palette.gray,
-    fontSize: '17px',
+    fontSize: '1.0625em',
     fontFamily: 'roboto',
     fontWeight: 400,
   },
@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   btnCreate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '15px',
+        fontSize: '0.9375em',
     },
     '&:hover': {
         backgroundColor: theme.palette.blue
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '10px',
     marginRight: '10px',
     width: '200px',
-    fontSize: '14px',
+    fontSize: '0.8750em',
     '&::placeholder': {
       color: theme.palette.gray,
       fontWeight: '400',

@@ -5,6 +5,9 @@ const useStyles = makeStyles(theme => ({
         '&:nth-of-type(even)': {
             backgroundColor: 'rgba(0,0,0,0.04)'
         },
+    },
+    head: {
+        backgroundColor: theme.palette.table_head,
     }
 
 }));

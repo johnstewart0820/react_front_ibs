@@ -2,25 +2,26 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        backgroundColor: theme.palette.topbar_background
+        backgroundColor: theme.palette.topbar_background,
+        border: theme.palette.contrastColor
     },
     mainContainer: {
         padding: '30px 40px 30px 20px',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleBlock: {
         display: 'flex',
     },
     mainHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: 400       
     },
     titleHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         fontWeight: 400
@@ -28,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
     secondTitleHeader: {
         color: theme.palette.gray,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '15px',
         fontWeight: 400
@@ -36,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
     subHeader: {
         color: theme.palette.gray,
-        fontSize: '13px',
+        fontSize: '0.8125em',
         fontFamily: 'roboto',
         marginBottom: '20px',
         fontWeight: 400,
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 
     titleInfo: {
         color: theme.palette.pink,
-        fontSize: '16px',
+        
         fontFamily: 'roboto',
         marginBottom: '5px',
         marginLeft: '10px',
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     btnOpen: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '&:hover': {
             backgroundColor: theme.palette.blue
@@ -73,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     btnChange: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '&:hover': {
             backgroundColor: theme.palette.blue,
@@ -83,7 +84,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '0px',
         fontWeight: '400',
         border: `1px solid ${theme.palette.blue}`,
-        backgroundColor: 'white',
+        backgroundColor: theme.palette.mainBackground,
         color: theme.palette.blue,
         width: '100%'
     },
@@ -98,7 +99,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.pink
     },
     secondContainer: {
-        marginTop: '20px'
+        marginTop: '20px',
     },
     thirdContainer: {
         marginTop: '10px',
@@ -112,7 +113,7 @@ const useStyles = makeStyles(theme => ({
     btnSave: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -131,7 +132,7 @@ const useStyles = makeStyles(theme => ({
     btnExport: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '15px',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 
@@ -143,7 +144,7 @@ const useStyles = makeStyles(theme => ({
         padding: '4px',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: 'white',
+        backgroundColor: theme.palette.mainBackground,
         border: '1px solid #44545e',
         color: theme.palette.gray,
         width: '100%'
@@ -156,7 +157,8 @@ const useStyles = makeStyles(theme => ({
     },
     totalView: {
         width: '100%',
-        overflow: 'auto'
+        overflow: 'auto',
+        border: theme.palette.contrastColor
     }
 }));
 

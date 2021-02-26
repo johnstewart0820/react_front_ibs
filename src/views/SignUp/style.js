@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     padding: '70px 80px 30px 120px',
   },
   mainContainer: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   rememberMe: {
     marginTop: '40px',
     '& .MuiTypography-body1': {
-      fontSize: '16px',
+      
       color: theme.palette.gray,
     },
   },
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
   input_box: {
     padding: '12px 30px',
-    fontSize: '16px',
+    
     marginTop: '20px',
     width: '330px',
     fontFamily: 'roboto',
@@ -84,7 +84,7 @@ const useStyles = makeStyles(theme => ({
   btnRegister: {
     '& .MuiButton-label': {
       textTransform: 'none',
-      fontSize: '17px',
+      fontSize: '1.0625em',
     },
     '&:hover': {
       backgroundColor: theme.palette.blue
@@ -103,7 +103,7 @@ const useStyles = makeStyles(theme => ({
     },
     width: '100%',
     color: theme.palette.blue,
-    fontSize: '17px',
+    fontSize: '1.0625em',
     fontFamily: 'roboto',
     fontWeight: '400',
   },

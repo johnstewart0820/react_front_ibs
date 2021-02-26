@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.mainBackground,
     padding: '70px 80px 30px 120px',
   },
   mainContainer: {
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '30px',
     '& .MuiTypography-body1': {
       color: theme.palette.gray,
-      fontSize: '16px',
+      
     },
     '& .MuiCheckbox-colorSecondary.Mui-checked' : {
       color: theme.palette.checked_color,
@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   },
   input_box: {
     padding: '12px 30px',
-    fontSize: '16px',
+    
     marginTop: '20px',
     width: '330px',
     fontFamily: 'roboto',
@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
   btnLogin: {
     '& .MuiButton-label': {
       textTransform: 'none',
-      fontSize: '17px',
+      fontSize: '1.0625em',
     },
     '&:hover': {
       backgroundColor: theme.palette.blue
@@ -113,7 +113,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     width: '100%',
     color: theme.palette.blue,
-    fontSize: '17px',
+    fontSize: '1.0625em',
     fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: '1.75',
