@@ -58,11 +58,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '15px',
     },
     '&:hover': {
-        backgroundColor: theme.palette.pink
+        backgroundColor: theme.palette.blue
     },
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: theme.palette.pink,
+    backgroundColor: theme.palette.blue,
     color: 'white',
     width: '100%',
     height: '100%',

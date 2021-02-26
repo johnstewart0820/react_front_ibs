@@ -87,12 +87,12 @@ const useStyles = makeStyles(theme => ({
       fontSize: '17px',
     },
     '&:hover': {
-      backgroundColor: theme.palette.pink
+      backgroundColor: theme.palette.blue
     },
     padding: '4px',
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: theme.palette.pink,
+    backgroundColor: theme.palette.blue,
     color: 'white',
     width: '100%',
     marginBottom: '20px'
@@ -102,7 +102,7 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none'
     },
     width: '100%',
-    color: theme.palette.pink,
+    color: theme.palette.blue,
     fontSize: '17px',
     fontFamily: 'roboto',
     fontWeight: '400',

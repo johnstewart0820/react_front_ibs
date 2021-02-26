@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        backgroundColor: '#FCFCFC'
+        backgroundColor: theme.palette.topbar_background
     },
     mainContainer: {
         padding: '30px 40px 30px 20px',
@@ -57,13 +57,13 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px',
         },
         '&:hover': {
-            backgroundColor: theme.palette.pink
+            backgroundColor: theme.palette.blue
         },
         padding: '4px',
-        border: '1px solid #a52b02',
+        border: '1px solid #D6324B',
         borderRadius: '0px',
         fontWeight: 300,
-        backgroundColor: theme.palette.pink,
+        backgroundColor: theme.palette.blue,
         color: 'white',
         width: '100%'
     },
@@ -77,15 +77,15 @@ const useStyles = makeStyles(theme => ({
             fontSize: '15px',
         },
         '&:hover': {
-            backgroundColor: theme.palette.pink,
+            backgroundColor: theme.palette.blue,
             color: 'white',
         },
         padding: '4px 20px',
         borderRadius: '0px',
         fontWeight: '400',
-        border: '1px solid #a52b02',
+        border: `1px solid ${theme.palette.blue}`,
         backgroundColor: 'white',
-        color: theme.palette.pink,
+        color: theme.palette.blue,
         width: '100%'
     },
     progressContainer: {

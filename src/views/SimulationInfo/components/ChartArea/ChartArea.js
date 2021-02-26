@@ -54,7 +54,7 @@ const ChartArea = (props) => {
                 {
                   selectedCategory.map((item, index) => (
                     item == 1 ?
-                      <Line type="monotone" dataKey="Popyt na pracę" stroke="#a52b02" />
+                      <Line type="monotone" dataKey="Popyt na pracę" stroke="#D6324B" />
                     :
                       item == 2 ?
                         <Line type="monotone" dataKey="Podaż pracy" stroke="#b0a502" />
@@ -84,7 +84,7 @@ const ChartArea = (props) => {
             {
               selectedCategory.map((item, index) => (
                 item == 1 ?
-                <Bar dataKey="Popyt na pracę" fill="#a52b02" >
+                <Bar dataKey="Popyt na pracę" fill="#D6324B" >
                 </Bar>
                 :
                   item == 2 ?

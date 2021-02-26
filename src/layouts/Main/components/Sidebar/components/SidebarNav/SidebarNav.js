@@ -22,33 +22,33 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     fontWeight: 400,
     fontSize: '16px',
-    color: '#8b919a',
+    color: theme.palette.sidebar_color,
     lineHeight: '1em',
     '&:hover': {
-      backgroundColor: '#1e202c',
-      color: '#EBECF0',
+      backgroundColor: theme.palette.sidebar_active_background,
+      color: theme.palette.sidebar_active_color,
       fontWeight: 400,
       borderRadius: '0px'
     },
   },
   icon: {
-    color: '#8b919a',
+    color: theme.palette.sidebar_color,
     width: 20,
     height: 20,
     display: 'flex',
     alignItems: 'center',
     marginRight: theme.spacing(3),
     '&:hover': {
-      color: '#EBECF0'
+      color: theme.palette.sidebar_active_color
     },
   },
   active: {
     fontWeight: 400,
     '& $icon': {
-      color: '#EBECF0',
+      color: theme.palette.sidebar_active_color
     },
-    backgroundColor: '#1e202c',
-    color: '#EBECF0',
+    backgroundColor: theme.palette.sidebar_active_background,
+    color: theme.palette.sidebar_active_color,
     borderRadius: '0px'
   }
 }));

@@ -70,7 +70,7 @@ const ChartArea = (props) => {
                 <XAxis dataKey="name" />
                 <YAxis type="number" domain={[0, parseInt(max / 1000 + 1) * 1000]}/>
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#a52b02" />
+                <Line type="monotone" dataKey="value" stroke="#D6324B" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -85,7 +85,7 @@ const ChartArea = (props) => {
             <XAxis dataKey="name" interval={0} angle={0} height={100}  tick={<NotAxisTickButLabel/> }/>
             <YAxis />
             <Tooltip />
-            <Bar dataKey="value" fill="#a52b02" />
+            <Bar dataKey="value" fill="#D6324B" />
           </BarChart>
         </ResponsiveContainer>
         </div>

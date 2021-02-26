@@ -31,7 +31,7 @@ const BlockText = (props) => {
       [{size: []}],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
       [{
-        'color': ['#a52b02', '#44545e']
+        'color': ['#D6324B', '#44545e']
       }],
       [{'list': 'ordered'}, {'list': 'bullet'}, 
        {'indent': '-1'}, {'indent': '+1'}],

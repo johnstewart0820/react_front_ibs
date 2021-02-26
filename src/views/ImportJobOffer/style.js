@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
       },
       borderRadius: '0px',
       fontWeight: '300',
-      border: '1px solid #a52b02',
+      border: '1px solid #D6324B',
       backgroundColor: 'white',
       color: theme.palette.pink,
       width: '100%',

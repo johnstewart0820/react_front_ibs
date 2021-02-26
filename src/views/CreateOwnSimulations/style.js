@@ -89,11 +89,11 @@ const useStyles = makeStyles((theme) => ({
 
     },
     '&:hover': {
-        backgroundColor: theme.palette.pink
+        backgroundColor: theme.palette.blue
     },
     borderRadius: '0px',
     fontWeight: '300',
-    backgroundColor: theme.palette.pink,
+    backgroundColor: theme.palette.blue,
     color: 'white',
     width: '100%',
     height: '44px',
@@ -158,7 +158,7 @@ btn: {
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    border: '1px solid #a52b02',
+    border: '1px solid #D6324B',
     color: theme.palette.pink,
     marginRight: '-1px',
     cursor: 'pointer',

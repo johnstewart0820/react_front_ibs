@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
       left: '299px',
       width: 'calc(100% - 299px)',
       height: '80px',
-      backgroundColor: '#FCFCFC',
+      backgroundColor: theme.palette.topbar_background,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

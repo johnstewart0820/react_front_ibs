@@ -262,7 +262,7 @@ const CreateOwnSimulations = props => {
                       <div className={classes.approveBlock}>
                         <Button variant="contained" color="secondary" className={classes.btnSimulate} onClick={handleSyncValue}>
                           Zatwierdź
-                    </Button>
+                        </Button>
                       </div>
                     </Grid>
                   </Grid>

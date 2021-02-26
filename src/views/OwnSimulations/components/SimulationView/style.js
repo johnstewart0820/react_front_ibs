@@ -44,17 +44,17 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        border: '1px solid #44545e',
-        color: theme.palette.gray,
+        border: `1px solid ${theme.palette.blue}`,
+        color: theme.palette.normal,
         marginRight: '-1px',
         cursor: 'pointer',
         '&:hover': {
-            backgroundColor: theme.palette.gray,
+            backgroundColor: theme.palette.blue,
             color: 'white',            
         }
     },
     seriesLabelItemActive: {
-        backgroundColor: theme.palette.gray,
+        backgroundColor: theme.palette.blue,
         color: 'white',
     },
     progressContainer: {

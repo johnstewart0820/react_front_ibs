@@ -20,13 +20,12 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: theme.palette.gray
+            backgroundColor: theme.palette.blue
         },
         padding: '4px',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: theme.palette.gray,
-        border: '1px solid #44545e',
+        backgroundColor: theme.palette.blue,
         color: 'white',
         width: '100%'
     },
@@ -39,15 +38,15 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: theme.palette.gray,
+            backgroundColor: theme.palette.blue,
             color: 'white'
         },
         padding: '4px',
         borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: 'white',
-        border: '1px solid #44545e',
-        color: theme.palette.gray,
+        border: `1px solid ${theme.palette.blue}`,
+        color: theme.palette.blue,
         width: '100%'
     },
 }));

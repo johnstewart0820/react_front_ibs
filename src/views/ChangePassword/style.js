@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   },
   profileContainer: {
     padding: '30px 20px 80px 30px',
-    backgroundColor: '#FCFCFC'
+    backgroundColor: theme.palette.topbar_background
   },
   input_box: {
     padding: '12px 30px',

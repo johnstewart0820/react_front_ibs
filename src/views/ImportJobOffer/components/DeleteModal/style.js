@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
     },
     paper: {
-        backgroundColor: '#E6E9EE',
         boxShadow: theme.shadows[5],
         padding: '25px',
         outline: 'none',
@@ -50,7 +49,7 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.pink
         },
         padding: '4px',
-        border: '1px solid #a52b02',
+        border: '1px solid #D6324B',
         borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.pink,

@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
       width: 300,
     },
     root: {
-      backgroundColor: '#323444',
+      backgroundColor: theme.palette.sidebar_background,
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
@@ -19,14 +19,14 @@ const useStyles = makeStyles(theme => ({
     main_logo: {
     },
     icon: {
-      color: '#8b919a',
+      color: theme.palette.sidebar_color,
       width: 24,
       height: 24,
       display: 'flex',
       alignItems: 'center',
       marginRight: theme.spacing(3),
       '&:hover': {
-        color: '#EBECF0'
+        color: theme.palette.sidebar_active_color
       },
     },
     logout: {
@@ -37,11 +37,11 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       fontWeight: 400,
       fontSize: '16px',
-      color: '#8b919a',
+      color: theme.palette.sidebar_color,
       lineHeight: '1em',
       '&:hover': {
-        backgroundColor: '#1e202c',
-        color: '#EBECF0',
+        backgroundColor: theme.palette.sidebar_active_background,
+        color: theme.palette.sidebar_active_color,
       },
       position: 'absolute',
       bottom: '0px'

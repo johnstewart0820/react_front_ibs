@@ -2,8 +2,19 @@ import { colors } from '@material-ui/core';
 
 const white = '#FFFFFF';
 const black = '#000000';
-const pink = '#a52b02';
+const pink = '#D6324B';
 const gray = '#44545e';
+const blue = '#05295b';
+const blue_disable = '#082245';
+const normal = '#8b919a';
+const normal_disable = '#EBECF0';
+const select_title = '#aeaeae';
+const checked_color = '#546e7a';
+const sidebar_background = blue;
+const sidebar_active_background = blue_disable;
+const sidebar_color = normal;
+const sidebar_active_color = normal_disable;
+const topbar_background = '#FCFCFC';
 const pink_disable = '#a02000';
 const gray_disable = '#404040';
 export default {
@@ -11,6 +22,17 @@ export default {
   white,
   pink,
   gray,
+  blue,
+  blue_disable,
+  normal,
+  normal_disable,
+  select_title,
+  checked_color,
+  sidebar_background,
+  sidebar_active_background,
+  sidebar_color,
+  sidebar_active_color,
+  topbar_background,
   pink_disable,
   gray_disable,
   primary: {

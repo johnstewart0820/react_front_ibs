@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     },
     name_select_box: {
         fontStyle: 'italic',
-        color: '#aeaeae',
+        color: theme.palette.select_title,
         fontWeight: '400',
         paddingLeft: '14px',
         marginTop: '-1px'

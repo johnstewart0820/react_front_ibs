@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     },
     name_select_box: {
         fontStyle: 'italic',
-        color: '#aeaeae',
+        color: theme.palette.select_title,
         fontWeight: '400',
         '& .MuiInputLabel-outlined .MuiInputLabel-shrink': {
             transform: 'translate(14px -100px) scale(0.5)',
