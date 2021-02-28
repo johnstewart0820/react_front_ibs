@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import domtoimage from 'dom-to-image';
+import domtopdf from 'dom-to-pdf';
 import {
   MultiSelect,
   SingleSelect,
@@ -22,6 +24,7 @@ import { ExportToCsv } from 'export-to-csv';
 
 const JobOffer = (props) => {
   const classes = useStyles();
+  const chart = useRef(null);
   const { addToast } = useToasts()
   const { history } = props;
   const [progressStatus, setProgressStatus] = useState(false);
@@ -55,7 +58,7 @@ const JobOffer = (props) => {
     setSortTotalOption({ sortBy: pSortBy, sortOrder: sortOrder })
   }
 
-  const handleExport = () => {
+  const handleExportCSV = () => {
 
     const options = {
       fieldSeparator: ',',
@@ -72,6 +75,54 @@ const JobOffer = (props) => {
     const csvExporter = new ExportToCsv(options);
 
     csvExporter.generateCsv(totalTableData);
+  }
+
+  const handleExport = (type) => {
+    if (type === 0)
+      handleExportCSV();
+    if (type === 1)
+      handleExportAsPng();
+    if (type === 2)
+      handleExportAsJpg();
+    if (type === 3)
+      handleExportAsPdf();
+  }
+
+  const handleExportAsPng = () => {
+    const dom = chart.current;
+    domtoimage.toPng(dom)
+    .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'download.png';
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+  }
+
+  const handleExportAsJpg = () => {
+    const dom = chart.current;
+    domtoimage.toJpeg(dom)
+    .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'download.jpg';
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+  }
+
+  const handleExportAsPdf = () => {
+    const dom = chart.current;
+    var options = {
+      filename: 'download.pdf'
+    };
+    domtopdf(dom, options, function() {
+    });
   }
 
   useEffect(() => {
@@ -111,18 +162,21 @@ const JobOffer = (props) => {
   const renderResultView = () => {
     if (parseInt(selectedChartType) === 1 || parseInt(selectedChartType) === 2 || parseInt(selectedChartType) === 3) {
       return <ChartTableArea 
+        data={chart}
         chartData={chartData}
         selectedChartType={selectedChartType}
         />
     } else if (parseInt(selectedChartType) === 4) {
       if (parseInt(selectedSection) === 2) {
         return <MapProvinceArea
+          data={chart}
           provinceList={provinceList}
           selectedProvince={selectedProvince}
           chartData={chartData}
         />
       } else {
         return <MapCountyArea
+          data={chart}
           clusterList={clusterList}
           countyList={countyList}
           selectedCluster={selectedCluster}

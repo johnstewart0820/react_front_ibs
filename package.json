@@ -37,6 +37,8 @@
     "axios": "^0.21.1",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",
+    "dom-to-image": "^2.6.0",
+    "dom-to-pdf": "^0.2.0",
     "export-to-csv": "^0.2.1",
     "history": "^4.9.0",
     "material-ui-dropzone": "^3.5.0",

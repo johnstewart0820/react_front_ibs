@@ -30,9 +30,24 @@ const ControllerArea = (props) => {
         <Card className={classes.controlBlock}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleExport}>
+              <Button variant="contained" color="secondary" className={classes.btnExport} onClick={() => handleExport(0)}>
                 Eksportuj do CSV
                 </Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="contained" color="secondary" className={classes.btnSave} onClick={() => handleExport(1)}>
+                Eksportuj do PNG
+              </Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="contained" color="secondary" className={classes.btnSave} onClick={() => handleExport(2)}>
+                Eksportuj do JPG
+              </Button>
+            </Grid>
+            <Grid item xs={4}>
+              <Button variant="contained" color="secondary" className={classes.btnSave} onClick={() => handleExport(3)}>
+                Eksportuj do PDF
+              </Button>
             </Grid>
           </Grid>
         </Card>

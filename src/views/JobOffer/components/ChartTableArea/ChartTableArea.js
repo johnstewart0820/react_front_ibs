@@ -10,13 +10,13 @@ import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
 const ChartTableArea = (props) => {
-  const { chartData, selectedChartType} = props;
+  const { chartData, selectedChartType, data} = props;
   const classes = useStyles();
 
   return (
     <>
       <Grid item xs={12} className={classes.controlContainer}>
-        <Card className={classes.controlBlock}>
+        <Card className={classes.controlBlock} ref={data}>
           <ChartArea
             chart_data={chartData}
             selectedChartType={selectedChartType}

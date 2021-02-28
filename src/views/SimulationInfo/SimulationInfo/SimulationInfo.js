@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import domtoimage from 'dom-to-image';
+import domtopdf from 'dom-to-pdf';
 import {
   ClusterAdditionalOption,
   PkdSectionAdditionalOption,
@@ -31,6 +33,7 @@ import { CSVLink } from "react-csv";
 
 const SimulationInfo = (props) => {
   const classes = useStyles();
+  const chart = useRef(null);
   const { addToast } = useToasts()
   const { history } = props;
   const item = props.location.state.item;
@@ -94,8 +97,52 @@ const SimulationInfo = (props) => {
 
   }
 
-  const handleExport = () => {
-    document.getElementById('export').click();
+  const handleExport = (type) => {
+    if (type === 0)
+      document.getElementById('export').click();
+    if (type === 1)
+      handleExportAsPng();
+    if (type === 2)
+      handleExportAsJpg();
+    if (type === 3)
+      handleExportAsPdf();
+  }
+
+  const handleExportAsPng = () => {
+    const dom = chart.current;
+    domtoimage.toPng(dom)
+    .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'download.png';
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+  }
+
+  const handleExportAsJpg = () => {
+    const dom = chart.current;
+    domtoimage.toJpeg(dom)
+    .then(function (dataUrl) {
+      var link = document.createElement('a');
+      link.download = 'download.jpg';
+      link.href = dataUrl;
+      link.click();
+    })
+    .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+    });
+  }
+
+  const handleExportAsPdf = () => {
+    const dom = chart.current;
+    var options = {
+      filename: 'download.pdf'
+    };
+    domtopdf(dom, options, function() {
+    });
   }
 
   const handleSave = () => {
@@ -234,6 +281,7 @@ const SimulationInfo = (props) => {
     if (parseInt(selectedChartType) === 3) {
       if (parseInt(selectedSection) === 6) {
         return <MapProvinceArea
+          data={chart}
           provinceList={provinceList}
           selectedProvince={selectedProvince}
           selectedShowChartsMode={selectedShowChartsMode}
@@ -241,6 +289,7 @@ const SimulationInfo = (props) => {
         />
       } else {
         return <MapCountyArea
+          data={chart}
           clusterList={clusterList}
           countyList={countyList}
           selectedCluster={selectedCluster}
@@ -250,6 +299,7 @@ const SimulationInfo = (props) => {
       }
     } else {
       return <ChartTableArea 
+        data={chart}
         chartData={chartData}
         selectedChartType={selectedChartType}
         selectedCategory={selectedCategory}
