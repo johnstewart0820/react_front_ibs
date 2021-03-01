@@ -199,6 +199,9 @@ const SimulationInfo = (props) => {
   }
   useEffect(() => {
     setAbleRender(!checkRenderStatus());
+    setTotalTableData([]);
+    setTotalFieldList([]);
+    setChartData([]);
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory]);
 
   useEffect(() => {
@@ -221,6 +224,7 @@ const SimulationInfo = (props) => {
     if (selectedChartType == 2) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
       setChartResultList([_arr[1]]);
+      setSelectedShowChartsMode(2);
     }
   }, [selectedChartType]);
 

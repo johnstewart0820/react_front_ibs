@@ -53,12 +53,16 @@ const ProvinceOccupationAdditionalOption = (props) => {
               // handleSave={handleSaveOccupation}
               />
           </Grid>
-          <Grid item xs={2}>
-            <div className={classes.secondTitleHeader}>
-              Wyniki
-            </div>
-            <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
-          </Grid>
+          {showChartsMode.length > 1 ?
+            <Grid item xs={2}>
+              <div className={classes.secondTitleHeader}>
+                Wyniki
+              </div>
+              <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+            </Grid>
+            :
+            <></>
+          }
           <Grid item xs={2}>
             <div className={classes.secondTitleHeader}>
               &nbsp;

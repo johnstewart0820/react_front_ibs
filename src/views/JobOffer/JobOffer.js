@@ -164,6 +164,9 @@ const JobOffer = (props) => {
   }
   useEffect(() => {
     setAbleRender(!checkRenderStatus());
+    setTotalTableData([]);
+    setTotalFieldList([]);
+    setChartData([]);
   }, [selectedSection, selectedOccupation, selectedProvince, selectedCluster, fromDate, toDate, selectedChartType]);
 
   useEffect(() => {
@@ -273,14 +276,14 @@ const JobOffer = (props) => {
         <Grid container spacing={2} className={classes.mainContainer}>
           <Grid item xs={12}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <div className={classes.mainHeader}>
                   Przeglądaj wyniki
                 </div>
               </Grid>
               {
                 parseInt(selectedSection) !== 0 ?
-                  <Grid item xs={6}>
+                  <Grid item xs={8}>
                     <div className={classes.mainHeader}>
                       Dodatkowe opcje
                   </div>
@@ -290,7 +293,7 @@ const JobOffer = (props) => {
               }
             </Grid>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <div className={classes.titleHeader}>
               Wybierz typ wykresu
             </div>
@@ -299,7 +302,7 @@ const JobOffer = (props) => {
             </div>
             <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <div className={classes.titleHeader}>
               Wybierz przekrój
             </div>
@@ -308,7 +311,7 @@ const JobOffer = (props) => {
             </div>
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) !== 4 ? sectionList : sectionMapList} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             {
               parseInt(selectedSection) === 1 ?
                 <OccupationSelectionModal
