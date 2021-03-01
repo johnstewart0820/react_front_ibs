@@ -22,6 +22,8 @@ const OccupationAdditionalOption = (props) => {
     occupationList,
     showChartsMode,
     occupationSizeList,
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -44,11 +46,19 @@ const OccupationAdditionalOption = (props) => {
             // handleSave={handleSaveOccupation}
             />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={2}>
             <div className={classes.secondTitleHeader}>
               Wyniki
             </div>
             <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.secondTitleHeader}>
+              &nbsp;
+            </div>
+            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
+              Pokaż
+            </Button>
           </Grid>
         </Grid>
       </Card>

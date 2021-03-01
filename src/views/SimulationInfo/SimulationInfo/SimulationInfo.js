@@ -73,6 +73,8 @@ const SimulationInfo = (props) => {
   const [headers, setHeaders] = useState([]);
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
+  const [ableRender, setAbleRender] = useState(false);
+  const [renderStatus, setRenderStatus] = useState(false);
   const requestSort = (pSortBy) => {
     var sortOrder = "asc";
     if (pSortBy === sortOption.sortBy) {
@@ -183,69 +185,20 @@ const SimulationInfo = (props) => {
         }
       })
   }
-
+  const checkRenderStatus = () => {
+    return parseInt(selectedChartType) === 0
+    || parseInt(selectedSection) === 0
+    || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
+    || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0));
+  }
   useEffect(() => {
-    analyze.getChartData(
-      selectedChartType,
-      selectedSection,
-      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-      item.id_scenario,
-      selectedYear,
-      selectedToYear,
-      selectedOccupation,
-      selectedPkdSection,
-      selectedProvince,
-      selectedCluster,
-      selectedShowChartsMode
-    ).then(response => {
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          setChartData(response.data.chart_data);
-          setTableData(response.data.table_data);
-          setFieldList(response.data.field_list);
-        } else {
-        }
-      }
-    })
-
-    analyze.getTotalData(
-      selectedChartType,
-      selectedSection,
-      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-      item.id_scenario,
-      selectedYear,
-      selectedToYear,
-      selectedOccupation,
-      selectedPkdSection,
-      selectedProvince,
-      selectedCluster,
-      selectedShowChartsMode
-    ).then(response => {
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          setTotalTableData(response.data.table_data);
-          setTotalFieldList(response.data.field_list);
-          let _arr = [];
-          for (let i = 0; i < response.data.field_list.length; i ++) {
-            let _item = {};
-            _item.label = response.data.field_list[i].toString();
-            _item.key = response.data.field_list[i].toString();
-            _arr.push(_item);
-          }
-          setHeaders(_arr);
-          let _year_arr = [];
-          for (let i = parseInt(response.data.min); i <= parseInt(response.data.max); i ++) {
-            _year_arr.push(i);
-          }
-          setYearList(_year_arr);
-        } else {
-        }
-      }
-    })
+    setAbleRender(!checkRenderStatus());
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory]);
 
   useEffect(() => {
@@ -327,19 +280,72 @@ const SimulationInfo = (props) => {
     </Grid>
   )
 
+  const handleRender = () => {
+    analyze.getChartData(
+      selectedChartType,
+      selectedSection,
+      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+      item.id_scenario,
+      selectedYear,
+      selectedToYear,
+      selectedOccupation,
+      selectedPkdSection,
+      selectedProvince,
+      selectedCluster,
+      selectedShowChartsMode
+    ).then(response => {
+      if (response.code === 401) {
+        history.push('/login');
+      } else {
+        if (response.code === 200) {
+          setChartData(response.data.chart_data);
+          setTableData(response.data.table_data);
+          setFieldList(response.data.field_list);
+        } else {
+        }
+      }
+    })
+
+    analyze.getTotalData(
+      selectedChartType,
+      selectedSection,
+      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+      item.id_scenario,
+      selectedYear,
+      selectedToYear,
+      selectedOccupation,
+      selectedPkdSection,
+      selectedProvince,
+      selectedCluster,
+      selectedShowChartsMode
+    ).then(response => {
+      if (response.code === 401) {
+        history.push('/login');
+      } else {
+        if (response.code === 200) {
+          setTotalTableData(response.data.table_data);
+          setTotalFieldList(response.data.field_list);
+          let _arr = [];
+          for (let i = 0; i < response.data.field_list.length; i ++) {
+            let _item = {};
+            _item.label = response.data.field_list[i].toString();
+            _item.key = response.data.field_list[i].toString();
+            _arr.push(_item);
+          }
+          setHeaders(_arr);
+          let _year_arr = [];
+          for (let i = parseInt(response.data.min); i <= parseInt(response.data.max); i ++) {
+            _year_arr.push(i);
+          }
+          setYearList(_year_arr);
+        } else {
+        }
+      }
+    })
+    setRenderStatus(true);
+  }
   const renderControlView = () => {
-    if (
-      parseInt(selectedChartType) === 0
-      || parseInt(selectedSection) === 0
-      || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
-      || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    ) {
+    if (checkRenderStatus() || !renderStatus) {
       return <></>
     }
     return (
@@ -378,6 +384,8 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           pkdSectionList={pkdSectionList}
           showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
       case 2:
         return <ProvinceAdditionalOption
@@ -387,6 +395,8 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           provinceList={provinceList}
           showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
       case 3:
         return <ClusterAdditionalOption
@@ -396,6 +406,8 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           clusterList={clusterList}
           showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
       case 4:
         return <OccupationAdditionalOption
@@ -408,6 +420,8 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
       case 5:
         return <PkdOccupationAdditionalOption
@@ -423,6 +437,8 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
       case 6:
         return <ProvinceOccupationAdditionalOption
@@ -438,6 +454,8 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
       case 7:
         return <ClusterOccupationAdditionalOption
@@ -453,6 +471,8 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           occupationSizeList={occupationSizeList}
           showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
         />
     }
   }

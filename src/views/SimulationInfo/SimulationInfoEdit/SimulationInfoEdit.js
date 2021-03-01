@@ -76,6 +76,9 @@ const SimulationInfoEdit = (props) => {
   const [totalTableData, setTotalTableData] = useState([]);
   const [totalFieldList, setTotalFieldList] = useState([]);
   const [headers, setHeaders] = useState([]);
+  const [ableRender, setAbleRender] = useState(false);
+  const [renderStatus, setRenderStatus] = useState(false);
+
   const handleChange = (props) => {
     history.push('/forecasting_module');
   }
@@ -166,6 +169,19 @@ const SimulationInfoEdit = (props) => {
     setOpenModal(false);
   }
 
+  const checkRenderStatus = () => {
+    return parseInt(selectedChartType) === 0
+    || parseInt(selectedSection) === 0
+    || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
+    || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0));
+  }
+
   const handleSaveAnalyze = () => {
     setProgressStatus(true);
     analyzes.updateAnalyze(
@@ -198,242 +214,7 @@ const SimulationInfoEdit = (props) => {
     })
   }
 
-  const renderResultView = () => {
-    if (parseInt(selectedChartType) === 3) {
-      if (parseInt(selectedSection) === 6) {
-        return <MapProvinceArea
-          data={chart}
-          provinceList={provinceList}
-          selectedProvince={selectedProvince}
-          selectedShowChartsMode={selectedShowChartsMode}
-          chartData={chartData}
-        />
-      } else {
-        return <MapCountyArea
-          data={chart}
-          clusterList={clusterList}
-          countyList={countyList}
-          selectedCluster={selectedCluster}
-          selectedShowChartsMode={selectedShowChartsMode}
-          chartData={chartData}
-        />
-      }
-    } else {
-      return <ChartTableArea 
-        data={chart}
-        chartData={chartData}
-        selectedChartType={selectedChartType}
-        selectedCategory={selectedCategory}
-        tableData={tableData}
-        requestSort={requestSort}
-        sortOption={sortOption}
-        field_list={field_list}
-        setTableData={setTableData}
-      />
-    }
-  }
-
-  const renderTotalView = () => (
-    <Grid item xs={12}>
-    <Card className={classes.totalView}>
-        <SortTable
-          rows={totalTableData}
-          requestSort={requestTotalSort}
-          sortOrder={sortTotalOption.sortOrder}
-          sortBy={sortTotalOption.sortBy}
-          field_list={totalFieldList}
-          handleChangeTableData={setTotalTableData}
-        />
-    </Card>
-    </Grid>
-  )
-
-  const renderControlView = () => {
-    if (
-      parseInt(selectedChartType) === 0
-      || parseInt(selectedSection) === 0
-      || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
-      || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    ) {
-      return <></>
-    }
-    return (
-      <Grid container spacing={2} className={classes.thirdContainer}>
-        <ControllerArea
-          setSelectedYear={setSelectedYear}
-          selectedYear={selectedYear}
-          setSelectedToYear={setSelectedToYear}
-          selectedToYear={selectedToYear}
-          handleExport={handleExport}
-          handleSave={handleSave}
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}
-          setName={setName}
-          handleSaveAnalyze={handleSaveAnalyze}
-          name={name}
-          yearList={yearList}
-          selectedChartType={selectedChartType}
-        />
-        <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
-        {renderResultView()}
-        {renderTotalView()}
-      </Grid>
-    )
-  }
-  const renderSwitchAddition = () => {
-    if (parseInt(selectedChartType) === 0 || parseInt(selectedSection) === 0 || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)) {
-      return <></>;
-    }
-    switch (parseInt(selectedSection)) {
-      case 1:
-        return <PkdSectionAdditionalOption
-          pkdSectionValue={selectedPkdSection}
-          showChartModeValue={selectedShowChartsMode}
-          handleSelectedPkdSection={setSelectedPkdSection}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          pkdSectionList={pkdSectionList}
-          showChartsMode={chartResultList}
-        />
-      case 2:
-        return <ProvinceAdditionalOption
-          provinceValue={selectedProvince}
-          showChartModeValue={selectedShowChartsMode}
-          handleSelectedProvince={setSelectedProvince}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          provinceList={provinceList}
-          showChartsMode={chartResultList}
-        />
-      case 3:
-        return <ClusterAdditionalOption
-          clusterValue={selectedCluster}
-          showChartModeValue={selectedShowChartsMode}
-          handleSelectedCluster={setSelectedCluster}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          clusterList={clusterList}
-          showChartsMode={chartResultList}
-        />
-      case 4:
-        return <OccupationAdditionalOption
-          occupationValue={selectedOccupation}
-          showChartModeValue={selectedShowChartsMode}
-          occupationSizeValue={selectedOccupationSize}
-          handleSelectedOccupation={setSelectedOccupation}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          handleSelectedOccupationSize={setSelectedOccupationSize}
-          occupationList={occupationList}
-          showChartsMode={chartResultList}
-          occupationSizeList={occupationSizeList}
-        />
-      case 5:
-        return <PkdOccupationAdditionalOption
-          occupationValue={selectedOccupation}
-          pkdSectionValue={selectedPkdSection}
-          occupationSizeValue={selectedOccupationSize}
-          showChartModeValue={selectedShowChartsMode}
-          handleSelectedPkdSection={setSelectedPkdSection}
-          handleSelectedOccupation={setSelectedOccupation}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          handleSelectedOccupationSize={setSelectedOccupationSize}
-          pkdSectionList={pkdSectionList}
-          occupationList={occupationList}
-          showChartsMode={chartResultList}
-          occupationSizeList={occupationSizeList}
-        />
-      case 6:
-        return <ProvinceOccupationAdditionalOption
-          occupationValue={selectedOccupation}
-          provinceValue={selectedProvince}
-          occupationSizeValue={selectedOccupationSize}
-          showChartModeValue={selectedShowChartsMode}
-          handleSelectedProvince={setSelectedProvince}
-          handleSelectedOccupation={setSelectedOccupation}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          handleSelectedOccupationSize={setSelectedOccupationSize}
-          provinceList={provinceList}
-          occupationList={occupationList}
-          showChartsMode={chartResultList}
-          occupationSizeList={occupationSizeList}
-        />
-      case 7:
-        return <ClusterOccupationAdditionalOption
-          occupationValue={selectedOccupation}
-          clusterValue={selectedCluster}
-          occupationSizeValue={selectedOccupationSize}
-          showChartModeValue={selectedShowChartsMode}
-          handleSelectedCluster={setSelectedCluster}
-          handleSelectedOccupation={setSelectedOccupation}
-          handleSelectedOccupationSize={setSelectedOccupationSize}
-          handleSelectedShowChartsMode={setSelectedShowChartsMode}
-          clusterList={clusterList}
-          occupationList={occupationList}
-          occupationSizeList={occupationSizeList}
-          showChartsMode={chartResultList}
-        />
-    }
-  }
-
-  const getNumArray = (str) => {
-    let arr = str ? str.split(',') : [];
-    for (let i = 0; i < arr.length; i ++) {
-      arr[i] = parseInt(arr[i]);
-    }
-    return arr;
-  }
-
-  useEffect(() => {
-    setProgressStatus(true);
-    analyzes
-      .get(item.id_analyze)
-      .then(response => {
-        setProgressStatus(false);
-        if (response.code === 401) {
-          history.push('/login');
-        } else {
-          setClusterList(response.data.clusters);
-          setPkdSelectionList(response.data.pkdSections);
-          setProvinceList(response.data.provinces);
-          setOccupationList(response.data.professions);
-          setChartTypeList(response.data.chart_type);
-          setSectionList(response.data.sections);
-          setCategoryList(response.data.categories);
-          setChartResultList(response.data.chart_result);
-          setTotalChartResultList(response.data.chart_result);
-          setOccupationSizeList(response.data.profession_sizes);
-          setScenario(response.data.scenario);
-          setName(response.data.analyze.name);
-          setIdAnalyze(response.data.analyze.id_analyze);
-          setSelectedCluster(getNumArray(response.data.analyze.id_cluster));
-          setSelectedChartType(response.data.analyze.id_chart_type);
-          setSelectedSection(response.data.analyze.id_section);
-          if (parseInt(response.data.analyze.id_chart_type) === 3) {
-            setSelectedMapCategory(response.data.analyze.id_category)
-          } else {
-            setSelectedCategory(getNumArray(response.data.analyze.id_category));
-          }
-          setSelectedPkdSection(getNumArray(response.data.analyze.id_pkd));
-          setSelectedProvince(getNumArray(response.data.analyze.id_province));
-          setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
-          setSelectedShowChartsMode(response.data.analyze.id_chart_result);
-          setSelectedOccupationSize(response.data.analyze.id_occupation_size);
-          setCountyList(response.data.counties);
-          let sections = [];
-          response.data.sections.map((item, index) => {
-            if (index == 5 || index == 6) {
-              sections.push(item);
-            }
-          })
-          setSectionMapList(sections);
-        }
-      })
-  }, []);
-
-  useEffect(() => {
+  const handleRender = () => {
     setTableData([]);
     analyzes.getChartData(
       selectedChartType,
@@ -495,6 +276,249 @@ const SimulationInfoEdit = (props) => {
         }
       }
     })
+    setRenderStatus(true);
+  }
+
+  const renderResultView = () => {
+    if (parseInt(selectedChartType) === 3) {
+      if (parseInt(selectedSection) === 6) {
+        return <MapProvinceArea
+          data={chart}
+          provinceList={provinceList}
+          selectedProvince={selectedProvince}
+          selectedShowChartsMode={selectedShowChartsMode}
+          chartData={chartData}
+        />
+      } else {
+        return <MapCountyArea
+          data={chart}
+          clusterList={clusterList}
+          countyList={countyList}
+          selectedCluster={selectedCluster}
+          selectedShowChartsMode={selectedShowChartsMode}
+          chartData={chartData}
+        />
+      }
+    } else {
+      return <ChartTableArea 
+        data={chart}
+        chartData={chartData}
+        selectedChartType={selectedChartType}
+        selectedCategory={selectedCategory}
+        tableData={tableData}
+        requestSort={requestSort}
+        sortOption={sortOption}
+        field_list={field_list}
+        setTableData={setTableData}
+      />
+    }
+  }
+
+  const renderTotalView = () => (
+    <Grid item xs={12}>
+    <Card className={classes.totalView}>
+        <SortTable
+          rows={totalTableData}
+          requestSort={requestTotalSort}
+          sortOrder={sortTotalOption.sortOrder}
+          sortBy={sortTotalOption.sortBy}
+          field_list={totalFieldList}
+          handleChangeTableData={setTotalTableData}
+        />
+    </Card>
+    </Grid>
+  )
+
+  const renderControlView = () => {
+    if (checkRenderStatus() || !renderStatus) {
+      return <></>
+    }
+    return (
+      <Grid container spacing={2} className={classes.thirdContainer}>
+        <ControllerArea
+          setSelectedYear={setSelectedYear}
+          selectedYear={selectedYear}
+          setSelectedToYear={setSelectedToYear}
+          selectedToYear={selectedToYear}
+          handleExport={handleExport}
+          handleSave={handleSave}
+          openModal={openModal}
+          handleCloseModal={handleCloseModal}
+          setName={setName}
+          handleSaveAnalyze={handleSaveAnalyze}
+          name={name}
+          yearList={yearList}
+          selectedChartType={selectedChartType}
+        />
+        <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
+        {renderResultView()}
+        {renderTotalView()}
+      </Grid>
+    )
+  }
+  const renderSwitchAddition = () => {
+    if (parseInt(selectedChartType) === 0 || parseInt(selectedSection) === 0 || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)) {
+      return <></>;
+    }
+    switch (parseInt(selectedSection)) {
+      case 1:
+        return <PkdSectionAdditionalOption
+          pkdSectionValue={selectedPkdSection}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedPkdSection={setSelectedPkdSection}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          pkdSectionList={pkdSectionList}
+          showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+      case 2:
+        return <ProvinceAdditionalOption
+          provinceValue={selectedProvince}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedProvince={setSelectedProvince}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          provinceList={provinceList}
+          showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+      case 3:
+        return <ClusterAdditionalOption
+          clusterValue={selectedCluster}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedCluster={setSelectedCluster}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          clusterList={clusterList}
+          showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+      case 4:
+        return <OccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          showChartModeValue={selectedShowChartsMode}
+          occupationSizeValue={selectedOccupationSize}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          occupationList={occupationList}
+          showChartsMode={chartResultList}
+          occupationSizeList={occupationSizeList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+      case 5:
+        return <PkdOccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          pkdSectionValue={selectedPkdSection}
+          occupationSizeValue={selectedOccupationSize}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedPkdSection={setSelectedPkdSection}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          pkdSectionList={pkdSectionList}
+          occupationList={occupationList}
+          showChartsMode={chartResultList}
+          occupationSizeList={occupationSizeList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+      case 6:
+        return <ProvinceOccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          provinceValue={selectedProvince}
+          occupationSizeValue={selectedOccupationSize}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedProvince={setSelectedProvince}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          provinceList={provinceList}
+          occupationList={occupationList}
+          showChartsMode={chartResultList}
+          occupationSizeList={occupationSizeList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+      case 7:
+        return <ClusterOccupationAdditionalOption
+          occupationValue={selectedOccupation}
+          clusterValue={selectedCluster}
+          occupationSizeValue={selectedOccupationSize}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedCluster={setSelectedCluster}
+          handleSelectedOccupation={setSelectedOccupation}
+          handleSelectedOccupationSize={setSelectedOccupationSize}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          clusterList={clusterList}
+          occupationList={occupationList}
+          occupationSizeList={occupationSizeList}
+          showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
+    }
+  }
+
+  const getNumArray = (str) => {
+    let arr = str ? str.split(',') : [];
+    for (let i = 0; i < arr.length; i ++) {
+      arr[i] = parseInt(arr[i]);
+    }
+    return arr;
+  }
+
+  useEffect(() => {
+    setProgressStatus(true);
+    analyzes
+      .get(item.id_analyze)
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          setClusterList(response.data.clusters);
+          setPkdSelectionList(response.data.pkdSections);
+          setProvinceList(response.data.provinces);
+          setOccupationList(response.data.professions);
+          setChartTypeList(response.data.chart_type);
+          setSectionList(response.data.sections);
+          setCategoryList(response.data.categories);
+          setChartResultList(response.data.chart_result);
+          setTotalChartResultList(response.data.chart_result);
+          setOccupationSizeList(response.data.profession_sizes);
+          setScenario(response.data.scenario);
+          setName(response.data.analyze.name);
+          setIdAnalyze(response.data.analyze.id_analyze);
+          setSelectedCluster(getNumArray(response.data.analyze.id_cluster));
+          setSelectedChartType(response.data.analyze.id_chart_type);
+          setSelectedSection(response.data.analyze.id_section);
+          if (parseInt(response.data.analyze.id_chart_type) === 3) {
+            setSelectedMapCategory(response.data.analyze.id_category)
+          } else {
+            setSelectedCategory(getNumArray(response.data.analyze.id_category));
+          }
+          setSelectedPkdSection(getNumArray(response.data.analyze.id_pkd));
+          setSelectedProvince(getNumArray(response.data.analyze.id_province));
+          setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
+          setSelectedShowChartsMode(response.data.analyze.id_chart_result);
+          setSelectedOccupationSize(response.data.analyze.id_occupation_size);
+          setCountyList(response.data.counties);
+          let sections = [];
+          response.data.sections.map((item, index) => {
+            if (index == 5 || index == 6) {
+              sections.push(item);
+            }
+          })
+          setSectionMapList(sections);
+        }
+      })
+  }, []);
+
+  useEffect(() => {
+    setAbleRender(!checkRenderStatus());
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster,  selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType]);
   const handleChangeChartType = (change) => {
     setChartData([]);

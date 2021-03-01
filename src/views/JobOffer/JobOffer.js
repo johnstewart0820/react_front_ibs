@@ -16,7 +16,8 @@ import useStyles from './style';
 import {
   Grid,
   Card,
-  CircularProgress
+  CircularProgress,
+  Button
 } from '@material-ui/core';
 import { useToasts } from 'react-toast-notifications'
 import job from '../../apis/job';
@@ -49,6 +50,9 @@ const JobOffer = (props) => {
   const [fromDate, setFromDate] = useState({year: 2020, month: 0});
   const [toDate, setToDate] = useState({year: 2021, month: 1});
   const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
+
+  const [ableRender, setAbleRender] = useState(false);
+  const [renderStatus, setRenderStatus] = useState(false);
 
   const requestTotalSort = (pSortBy) => {
     var sortOrder = "asc";
@@ -125,7 +129,17 @@ const JobOffer = (props) => {
     });
   }
 
-  useEffect(() => {
+  const checkRenderStatus = () => {
+    return (
+      parseInt(selectedChartType) === 0
+      || parseInt(selectedSection) === 0
+      || (parseInt(selectedSection) == 2 && selectedProvince.length === 0)
+      || (parseInt(selectedSection) == 3 && selectedCluster.length === 0)
+      || (parseInt(selectedChartType) !== 4 && parseInt(selectedSection) === 1 && selectedOccupation.length === 0)
+    );
+  }
+
+  const handleRender = () => {
     job.getChartData(
       selectedChartType,
       selectedSection,
@@ -146,6 +160,10 @@ const JobOffer = (props) => {
         }
       }
     })
+    setRenderStatus(true);
+  }
+  useEffect(() => {
+    setAbleRender(!checkRenderStatus());
   }, [selectedSection, selectedOccupation, selectedProvince, selectedCluster, fromDate, toDate, selectedChartType]);
 
   useEffect(() => {
@@ -202,13 +220,7 @@ const JobOffer = (props) => {
   )
 
   const renderControlView = () => {
-    if (
-      parseInt(selectedChartType) === 0
-      || parseInt(selectedSection) === 0
-      || (parseInt(selectedSection) == 2 && selectedProvince.length === 0)
-      || (parseInt(selectedSection) == 3 && selectedCluster.length === 0)
-      || (parseInt(selectedChartType) !== 4 && parseInt(selectedSection) === 1 && selectedOccupation.length === 0)
-    ) {
+    if (checkRenderStatus() || !renderStatus) {
       return <></>
     }
     return (
@@ -255,12 +267,6 @@ const JobOffer = (props) => {
       })
   }, []);
 
-  useEffect(() => {
-    if (parseInt(selectedChartType) === 4) {
-
-    }
-  }, [selectedChartType])
-
   return (
     <>
       <Card className={classes.secondContainer}>
@@ -302,7 +308,7 @@ const JobOffer = (props) => {
             </div>
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) !== 4 ? sectionList : sectionMapList} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             {
               parseInt(selectedSection) === 1 ?
                 <OccupationSelectionModal
@@ -312,7 +318,6 @@ const JobOffer = (props) => {
                   handleSelectedOccupationSize={setSelectedOccupationSize}
                   occupationSizeList={occupationSizeList}
                   selectedOccupation={selectedOccupation}
-                // handleSave={handleSaveOccupation}
                 />
                 :
                 parseInt(selectedSection) === 2 ?
@@ -321,7 +326,6 @@ const JobOffer = (props) => {
                     Wybierz województwo
                   </div>
                   <div className={classes.subSecondHeader}>
-                    
                   </div>
                   <MultiSelect value={selectedProvince} handleChange={setSelectedProvince} list={provinceList} />
                 </>
@@ -332,7 +336,6 @@ const JobOffer = (props) => {
                     Wybierz klastry
                   </div>
                   <div className={classes.subSecondHeader}>
-                    
                   </div>
                   <MultiSelect value={selectedCluster} handleChange={setSelectedCluster} list={clusterList} />
                 </>
@@ -341,6 +344,23 @@ const JobOffer = (props) => {
             }
 
           </Grid>
+          {
+            parseInt(selectedSection) === 0 ?
+            <></>
+            :
+            <Grid item xs={2}>
+              <div className={classes.titleHeader}>
+                &nbsp;
+              </div>
+              <div className={classes.secondTitleHeader}>
+                &nbsp;
+              </div>
+              <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
+                Pokaż
+              </Button>
+            </Grid>
+          }
+          
         </Grid>
       </Card>
       {renderControlView()}

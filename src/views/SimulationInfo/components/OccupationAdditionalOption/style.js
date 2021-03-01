@@ -59,16 +59,16 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: theme.palette.pink
+            backgroundColor: theme.palette.blue
         },
         padding: '4px',
-        border: '1px solid #D6324B',
+        border: 'none',
         borderRadius: '0px',
         fontWeight: '400',
-        backgroundColor: theme.palette.pink,
+        backgroundColor: theme.palette.blue,
         color: 'white',
         width: '100%',
-        height: '100%'
+        height: '50px'
     },
     occupationBlock: {
         display: 'flex',

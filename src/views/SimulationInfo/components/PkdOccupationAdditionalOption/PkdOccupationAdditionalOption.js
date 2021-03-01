@@ -5,6 +5,7 @@ import useStyles from './style';
 import { 
   Grid, 
   Card, 
+  Button
 } from '@material-ui/core';
 import OccupationSelectionModal from '../OccupationSelectionModal';
 const ProvinceOccupationAdditionalOption = (props) => {
@@ -21,7 +22,9 @@ const ProvinceOccupationAdditionalOption = (props) => {
     pkdSectionList,
     occupationList,
     showChartsMode,
-    occupationSizeList
+    occupationSizeList,
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -39,7 +42,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
             </div>
             <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <OccupationSelectionModal
                 node={occupationList}
                 occupationSize={occupationSizeValue}
@@ -55,6 +58,14 @@ const ProvinceOccupationAdditionalOption = (props) => {
               Wyniki
             </div>
             <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.secondTitleHeader}>
+              &nbsp;
+            </div>
+            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() =>handleRender()}>
+              Pokaż
+            </Button>
           </Grid>
         </Grid>
       </Card>

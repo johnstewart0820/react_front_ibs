@@ -5,6 +5,7 @@ import useStyles from './style';
 import { 
   Grid, 
   Card, 
+  Button
 } from '@material-ui/core';
 import OccupationSelectionModal from '../OccupationSelectionModal';
 const ClusterOccupationAdditionalOption = (props) => {
@@ -21,7 +22,9 @@ const ClusterOccupationAdditionalOption = (props) => {
     clusterList,
     occupationList,
     occupationSizeList,
-    showChartsMode
+    showChartsMode,
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -39,7 +42,7 @@ const ClusterOccupationAdditionalOption = (props) => {
             </div>
             <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList}/>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={6}>
             <OccupationSelectionModal
                 node={occupationList}
                 occupationSize={occupationSizeValue}
@@ -55,6 +58,14 @@ const ClusterOccupationAdditionalOption = (props) => {
               Wyniki
             </div>
             <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.secondTitleHeader}>
+              &nbsp;
+            </div>
+            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
+              Pokaż
+            </Button>
           </Grid>
         </Grid>
       </Card>

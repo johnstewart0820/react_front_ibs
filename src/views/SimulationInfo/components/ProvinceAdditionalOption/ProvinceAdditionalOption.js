@@ -5,6 +5,7 @@ import useStyles from './style';
 import { 
   Grid, 
   Card, 
+  Button,
 } from '@material-ui/core';
 
 const ProvinceAdditionalOption = (props) => {
@@ -15,7 +16,9 @@ const ProvinceAdditionalOption = (props) => {
     handleSelectedProvince,
     handleSelectedShowChartsMode,
     provinceList,
-    showChartsMode
+    showChartsMode,
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -27,7 +30,7 @@ const ProvinceAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={5}>
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
@@ -38,6 +41,14 @@ const ProvinceAdditionalOption = (props) => {
               Wyniki
             </div>
             <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+          </Grid>
+          <Grid item xs={3}>
+            <div className={classes.secondTitleHeader}>
+              &nbsp;
+            </div>
+            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
+              Pokaż
+            </Button>
           </Grid>
         </Grid>
       </Card>
