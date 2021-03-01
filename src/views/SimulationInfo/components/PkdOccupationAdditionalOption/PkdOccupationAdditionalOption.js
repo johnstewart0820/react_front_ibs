@@ -38,7 +38,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
           </Grid>
           <Grid item xs={2}>
             <div className={classes.secondTitleHeader}>
-              Wybierz województwo
+              Wybierz Sektor
             </div>
             <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
           </Grid>

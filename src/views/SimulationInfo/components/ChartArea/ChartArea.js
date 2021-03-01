@@ -9,17 +9,14 @@ import {
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 const NotAxisTickButLabel = props=> {
-  const value = props.payload.value + '';
-  let arr = value.match(/.{1,11}/g);
+  let value = props.payload.value + '';
+  if (value.length > 20)
+    value = value.substring(0, 20);
   return (
    <g transform={"translate( " + props.x + "," + props.y + " )" }>
-     {
-       arr.map((item, index) => (
-        <text x={-7 * item.length / 2} y={index * 16} dy={16}  fontFamily="Roboto"  fontSize="14px"  fill={props.color || "#44545e" } >
-          {item}
-        </text>
-       ))
-     }
+      <text x={0} y={0} dy={5}  fontFamily="Roboto"  fontSize="10px"  fill={props.color || "#44545e" } transform="rotate(90)">
+        {value}
+      </text>
     </g>  
   ); 
 }

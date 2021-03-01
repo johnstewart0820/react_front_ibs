@@ -47,9 +47,9 @@ const SimulationInfoEdit = (props) => {
   const [selectedProvince, setSelectedProvince] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
-  const [selectedYear, setSelectedYear] = useState(2020);
-  const [yearList, setYearList] = useState([2019, 2020, 2021]);
-  const [selectedToYear, setSelectedToYear] = useState(2021);
+  const [selectedYear, setSelectedYear] = useState(2011);
+  const [yearList, setYearList] = useState([]);
+  const [selectedToYear, setSelectedToYear] = useState(2050);
   const [chartData, setChartData] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [field_list, setFieldList] = useState([]);
