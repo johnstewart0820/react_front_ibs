@@ -3,7 +3,7 @@ import authHeader from './auth-header';
 import storage from '../utils/storage';
 class Analyze {
 
-    createAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_occupation_size, id_cluster) => {
+    createAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_occupation_size, id_cluster, id_education, id_age) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze`, {
             name: name,
@@ -16,7 +16,9 @@ class Analyze {
             id_chart_result: id_chart_result,
             id_scenario: id_scenario,
             id_occupation_size: id_occupation_size,
-            id_cluster: id_cluster
+            id_cluster: id_cluster,
+            id_education: id_education,
+            id_age: id_age
         }, {
             headers: authHeader(storage.getStorage('token'))
         })
@@ -29,7 +31,7 @@ class Analyze {
         })
     }
 
-    updateAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_analyze, id_occupation_size, id_cluster) => {
+    updateAnalyze = (name, id_chart_type, id_section, id_category, id_province, id_occupation, id_pkd, id_chart_result, id_scenario, id_analyze, id_occupation_size, id_cluster, id_education, id_age) => {
         return axios
         .put(`${process.env.REACT_APP_BACKEND_URL}/analyze`, {
             name: name,
@@ -43,7 +45,9 @@ class Analyze {
             id_scenario: id_scenario,
             id_analyze: id_analyze,
             id_occupation_size: id_occupation_size,
-            id_cluster: id_cluster
+            id_cluster: id_cluster,
+            id_education: id_education,
+            id_age: id_age
         }, {
             headers: authHeader(storage.getStorage('token'))
         })
@@ -113,7 +117,7 @@ class Analyze {
         })
     }
 
-    getChartData = (id_chart_type, id_section, id_category, id_scenario, year, toYear, id_occupation, id_pkd, id_province, id_cluster, id_show_chart_mode) => {
+    getChartData = (id_chart_type, id_section, id_category, id_scenario, year, toYear, id_occupation, id_pkd, id_province, id_cluster, id_education, id_age, id_show_chart_mode) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_chart_data`, {
             id_chart_type: id_chart_type,
@@ -124,6 +128,8 @@ class Analyze {
             id_pkd: id_pkd,
             id_province: id_province,
             id_cluster: id_cluster,
+            id_education: id_education,
+            id_age: id_age,
             year: year,
             toYear: toYear,
             id_show_chart_mode: id_show_chart_mode
@@ -139,7 +145,7 @@ class Analyze {
         })
     }
 
-    getTotalData = (id_chart_type, id_section, id_category, id_scenario, year, toYear, id_occupation, id_pkd, id_province, id_cluster, id_show_chart_mode) => {
+    getTotalData = (id_chart_type, id_section, id_category, id_scenario, year, toYear, id_occupation, id_pkd, id_province, id_cluster, id_education, id_age, id_show_chart_mode) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/analyze/get_total_data`, {
             id_chart_type: id_chart_type,
@@ -150,6 +156,8 @@ class Analyze {
             id_pkd: id_pkd,
             id_province: id_province,
             id_cluster: id_cluster,
+            id_education: id_education,
+            id_age: id_age,
             year: year,
             toYear: toYear,
             id_show_chart_mode: id_show_chart_mode

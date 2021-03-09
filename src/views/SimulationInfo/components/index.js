@@ -6,6 +6,7 @@ export { default as ProvinceAdditionalOption } from './ProvinceAdditionalOption'
 export { default as OccupationAdditionalOption } from './OccupationAdditionalOption';
 export { default as PkdOccupationAdditionalOption } from './PkdOccupationAdditionalOption';
 export { default as ClusterOccupationAdditionalOption } from './ClusterOccupationAdditionalOption';
+export { default as EducationAdditionalOption } from './EducationAdditionalOption';
 export { default as ProvinceOccupationAdditionalOption } from './ProvinceOccupationAdditionalOption';
 export { default as NameModal } from './NameModal';
 export { default as YearSelect } from './YearSelect';

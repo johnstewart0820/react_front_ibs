@@ -11,6 +11,7 @@ import {
   PkdOccupationAdditionalOption,
   ProvinceOccupationAdditionalOption,
   ClusterOccupationAdditionalOption,
+  EducationAdditionalOption,
   ControllerArea,
   ChartTableArea,
   MapProvinceArea,
@@ -48,6 +49,8 @@ const SimulationInfoEdit = (props) => {
   const [selectedOccupation, setSelectedOccupation] = useState([]);
   const [selectedOccupationSize, setSelectedOccupationSize] = useState(0);
   const [selectedYear, setSelectedYear] = useState(2011);
+  const [selectedEducation, setSelectedEducation] = useState([]);
+  const [selectedAge, setSelectedAge] = useState([]);
   const [yearList, setYearList] = useState([]);
   const [selectedToYear, setSelectedToYear] = useState(2050);
   const [chartData, setChartData] = useState([]);
@@ -65,6 +68,8 @@ const SimulationInfoEdit = (props) => {
   const [categoryList, setCategoryList] = useState([]);
   const [occupationSizeList, setOccupationSizeList] = useState([]);
   const [clusterList, setClusterList] = useState([]);
+  const [educationList, setEducationList] = useState([]);
+  const [ageList, setAgeList] = useState([]);
 
   const [idAnalyze, setIdAnalyze] = useState(0);
 
@@ -158,10 +163,15 @@ const SimulationInfoEdit = (props) => {
     if (selectedChartType == 2) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
       setChartResultList([_arr[1]]);
-      setSelectedShowChartsMode(2);
+      setSelectedShowChartsMode(1);
     }
   }, [selectedChartType]);
 
+  useEffect(() => {
+    if (parseInt(selectedSection) === 8)
+      setSelectedCategory([]);
+  }, [selectedSection])
+  
   const handleSave = () => {
     setOpenModal(true);
   }
@@ -173,14 +183,15 @@ const SimulationInfoEdit = (props) => {
   const checkRenderStatus = () => {
     return parseInt(selectedChartType) === 0
     || parseInt(selectedSection) === 0
-    || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
+    || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
     || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
     || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
     || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
     || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
     || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
     || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0));
+    || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+    || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
   }
 
   const handleSaveAnalyze = () => {
@@ -198,6 +209,8 @@ const SimulationInfoEdit = (props) => {
       idAnalyze,
       selectedOccupationSize,
       selectedCluster,
+      selectedEducation,
+      selectedAge,
     )
     .then(response => {
       setProgressStatus(false);
@@ -228,6 +241,8 @@ const SimulationInfoEdit = (props) => {
       selectedPkdSection,
       selectedProvince,
       selectedCluster,
+      selectedEducation,
+      selectedAge,
       selectedShowChartsMode
     ).then(response => {
       if (response.code === 401) {
@@ -252,6 +267,8 @@ const SimulationInfoEdit = (props) => {
       selectedPkdSection,
       selectedProvince,
       selectedCluster,
+      selectedEducation,
+      selectedAge,
       selectedShowChartsMode
     ).then(response => {
       if (response.code === 401) {
@@ -308,11 +325,15 @@ const SimulationInfoEdit = (props) => {
       }
     } else {
       let chart_title = '';
-      for(let i = 0; i < selectedCategory.length - 1; i ++) {
-        chart_title += categoryList[selectedCategory[i] - 1].name + '/';
+      if (selectedCategory.length > 0) {
+        for(let i = 0; i < selectedCategory.length - 1; i ++) {
+          chart_title += categoryList[selectedCategory[i] - 1].name + '/';
+        }
+        chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name + ' - przekrój ';
+        chart_title += sectionList[selectedSection - 1].name;
+      } else {
+        chart_title = sectionList[selectedSection - 1].name;
       }
-      chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name + ' - przekrój ';
-      chart_title += sectionList[selectedSection - 1].name;
       return <ChartTableArea 
         data={chart}
         chartData={chartData}
@@ -324,6 +345,7 @@ const SimulationInfoEdit = (props) => {
         field_list={field_list}
         setTableData={setTableData}
         chart_title={chart_title}
+        selectedSection={selectedSection}
       />
     }
   }
@@ -371,7 +393,7 @@ const SimulationInfoEdit = (props) => {
     )
   }
   const renderSwitchAddition = () => {
-    if (parseInt(selectedChartType) === 0 || parseInt(selectedSection) === 0 || (parseInt(selectedChartType) !== 3 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)) {
+    if (parseInt(selectedChartType) === 0 || parseInt(selectedSection) === 0 || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)) {
       return <></>;
     }
     switch (parseInt(selectedSection)) {
@@ -473,6 +495,20 @@ const SimulationInfoEdit = (props) => {
           ableRender={ableRender}
           handleRender={handleRender}
         />
+      case 8:
+        return <EducationAdditionalOption
+          educationValue={selectedEducation}
+          ageValue={selectedAge}
+          showChartModeValue={selectedShowChartsMode}
+          handleSelectedEducation={setSelectedEducation}
+          handleSelectedAge={setSelectedAge}
+          handleSelectedShowChartsMode={setSelectedShowChartsMode}
+          educationList={educationList}
+          ageList={ageList}
+          showChartsMode={chartResultList}
+          ableRender={ableRender}
+          handleRender={handleRender}
+        />
     }
   }
 
@@ -480,6 +516,14 @@ const SimulationInfoEdit = (props) => {
     let arr = str ? str.split(',') : [];
     for (let i = 0; i < arr.length; i ++) {
       arr[i] = parseInt(arr[i]);
+    }
+    return arr;
+  }
+
+  const getStringArray = (str) => {
+    let arr = str ? str.split(',') : [];
+    for (let i = 0; i < arr.length; i ++) {
+      arr[i] = arr[i];
     }
     return arr;
   }
@@ -520,6 +564,10 @@ const SimulationInfoEdit = (props) => {
           setSelectedShowChartsMode(response.data.analyze.id_chart_result);
           setSelectedOccupationSize(response.data.analyze.id_occupation_size);
           setCountyList(response.data.counties);
+          setEducationList(response.data.educations);
+          setAgeList(response.data.ages);
+          setSelectedEducation(getStringArray(response.data.analyze.id_education));
+          setSelectedAge(getStringArray(response.data.analyze.id_age));
           let sections = [];
           response.data.sections.map((item, index) => {
             if (index == 5 || index == 6) {
@@ -536,7 +584,7 @@ const SimulationInfoEdit = (props) => {
     setTotalTableData([]);
     setTotalFieldList([]);
     setChartData([]);
-  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster,  selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType]);
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory, selectedEducation, selectedAge]);
   const handleChangeChartType = (change) => {
     setChartData([]);
     setTableData([]);
@@ -594,18 +642,26 @@ const SimulationInfoEdit = (props) => {
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) != 3 ? sectionList : sectionMapList} />
           </Grid>
           <Grid item xs={4}>
-            <div className={classes.titleHeader}>
-              Wybierz kategorie
-            </div>
-            <div className={classes.subHeader}>
-              (można wybrać 1, 2 lub 3 kategorie)
-            </div>
-            {
-              selectedChartType == 3
-                ?
-                <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
-                :
-                <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
+          {
+              parseInt(selectedSection) === 8
+              ?
+              <></>
+              :
+              <>
+                <div className={classes.titleHeader}>
+                  Wybierz kategorie
+                </div>
+                <div className={classes.subHeader}>
+                  (można wybrać 1, 2 lub 3 kategorie)
+                </div>
+                {
+                selectedChartType == 3
+                  ?
+                  <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
+                  :
+                  <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
+                }
+              </>
             }
           </Grid>
         </Grid>

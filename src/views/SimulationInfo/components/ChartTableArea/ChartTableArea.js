@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
 const ChartTableArea = (props) => {
-  const { chartData, selectedChartType, selectedCategory, requestSort, field_list, sortOption, setTableData, tableData, data, chart_title } = props;
+  const { chartData, selectedChartType, selectedCategory, selectedSection, requestSort, field_list, sortOption, setTableData, tableData, data, chart_title } = props;
   const classes = useStyles();
 
   return (
@@ -24,6 +24,7 @@ const ChartTableArea = (props) => {
             chart_data={chartData}
             selectedChartType={selectedChartType}
             selectedCategory={selectedCategory}
+            selectedSection={selectedSection}
           />
         </Card>
       </Grid>

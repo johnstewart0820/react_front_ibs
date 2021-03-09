@@ -22,7 +22,7 @@ const NotAxisTickButLabel = props=> {
 }
 
 const ChartArea = (props) => {
-  const { chart_data, selectedChartType, selectedCategory } = props;
+  const { chart_data, selectedChartType, selectedCategory, selectedSection } = props;
   const classes = useStyles();
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
@@ -49,6 +49,7 @@ const ChartArea = (props) => {
                 <Tooltip />
                 <Legend />
                 {
+                parseInt(selectedSection) !== 8 ?
                   selectedCategory.map((item, index) => (
                     item == 1 ?
                       <Line type="monotone" dataKey="Popyt na pracę" stroke="#D6324B" />
@@ -61,6 +62,8 @@ const ChartArea = (props) => {
                           :
                           <Line yAxisId="right" type="monotone" dataKey="Luka" stroke="#022ba5" />
                   ))
+                :
+                  <Line type="monotone" dataKey="Wartość" stroke="#D6324B" />
                 }
               </LineChart>
             </ResponsiveContainer>
@@ -79,6 +82,8 @@ const ChartArea = (props) => {
             <Tooltip />
             <Legend />
             {
+              parseInt(selectedSection) !== 8 
+              ?
               selectedCategory.map((item, index) => (
                 item == 1 ?
                 <Bar dataKey="Popyt na pracę" fill="#D6324B" >
@@ -92,6 +97,8 @@ const ChartArea = (props) => {
                     :
                     <Bar yAxisId="right" dataKey="Luka" fill="#022ba5" />
               ))
+              :
+              <Bar dataKey="Wartość" fill="#D6324B" />
             }
           </BarChart>
         </ResponsiveContainer>
