@@ -1,11 +1,13 @@
 /* eslint-disable react/no-multi-comp */
 /* eslint-disable react/display-name */
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { List, ListItem, Button } from '@material-ui/core';
+import { List, ListItem, Button, Collapse, ListItemIcon } from '@material-ui/core';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -16,6 +18,23 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     padding: '20px 16px 20px 56px',
+    justifyContent: 'flex-start',
+    textTransform: 'none',
+    letterSpacing: 0,
+    width: '100%',
+    fontWeight: 400,
+    
+    color: theme.palette.sidebar_color,
+    lineHeight: '1em',
+    '&:hover': {
+      backgroundColor: theme.palette.sidebar_active_background,
+      color: theme.palette.sidebar_active_color,
+      fontWeight: 400,
+      borderRadius: '0px'
+    },
+  },
+  button_sub: {
+    padding: '20px 16px 20px 70px',
     justifyContent: 'flex-start',
     textTransform: 'none',
     letterSpacing: 0,
@@ -50,6 +69,15 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.sidebar_active_background,
     color: theme.palette.sidebar_active_color,
     borderRadius: '0px'
+  },
+  active_sub: {
+
+  },
+  title: {
+    width: '160px'
+  },
+  sub_list: {
+    padding: '0px'
   }
 }));
 
@@ -63,31 +91,78 @@ const CustomRouterLink = forwardRef((props, ref) => (
 ));
 
 const SidebarNav = props => {
-  const { pages, className, ...rest } = props;
-
+  const { pages, className, history, ...rest } = props;
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
-
+  const handleClick = (page) => {
+    if (page.sub) {
+      setOpen(!open)
+    } else {
+      history.push(page.href);
+    }
+  }
   return (
     <List
       {...rest}
       className={clsx(classes.root, className)}
     >
       {pages.map(page => (
+        <>
         <ListItem
           className={classes.item}
           disableGutters
           key={page.title}
+          onClick={() => handleClick(page)}
         >
           <Button
-            activeClassName={classes.active}
+            activeClassName={!page.sub ? classes.active : classes.active_sub}
             className={classes.button}
             component={CustomRouterLink}
             to={page.href}
           >
             <div className={classes.icon}>{page.icon}</div>
-            {page.title}
+            <div className={classes.title}>
+              {page.title}
+            </div>
+            {
+              page.sub ?
+                open ? <ExpandLess /> : <ExpandMore />
+              :
+                <></>
+            }
           </Button>
         </ListItem>
+        {
+          page.sub ? 
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List className={classes.sub_list}>
+              {
+                page.sub.map((item, index) => (
+                  <ListItem
+                    disableGutters
+                    className={classes.item}
+                  >
+                    <Button
+                        activeClassName={classes.active}
+                        className={classes.button_sub}
+                        component={CustomRouterLink}
+                        to={item.href}
+                      >
+                        <div className={classes.icon}>{item.icon}</div>
+                        <div className={classes.title}>
+                          {item.title}
+                        </div>
+                      </Button>
+                  </ListItem>
+                ))
+              }
+            </List>
+          </Collapse>
+          :
+          <></>
+        }
+        
+        </>
       ))}
     </List>
   );

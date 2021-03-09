@@ -129,7 +129,7 @@ const SignIn = props => {
               </div>
               <div className={classes.buttonContainer}>
                 <div className={classes.btnForgetContainer}>
-                  <Link to="/forgotpassword" component={RouterLink} className={classes.btnForgot}>Zapomniałem hasła</Link>
+                  <Link to="/forgotpassword" component={RouterLink} className={classes.btnForgot}>Przypomnij hasło</Link>
                 </div>
                 <div className={classes.btnLoginContainer}>
                   <Button variant="contained" color="secondary" className={classes.btnLogin} onClick={handleSignIn}>

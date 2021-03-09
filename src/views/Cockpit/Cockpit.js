@@ -42,13 +42,13 @@ const Cockpit = props => {
         <Grid item xs={12}>
           <Card className={classes.controlBlock}>
             <div className={classes.header}>Witaj w Systemie Prognozowania Polskiego Rynku Pracy!</div>
-            <div className={classes.subHeader}>Wybierz modul, ktory Cie interesuje:</div>
+            <div className={classes.subHeader}>Wybierz Moduł, ktory Cie interesuje:</div>
             <div className={classes.buttonBlock}>
             <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoForecastingModule}>
-              Modul Prognostyczny
+              Moduł Prognostyczny
             </Button>
             <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoJobOffer}>
-              Modul Internetowych Ofert Pracy
+              Moduł Internetowych Ofert Pracy
             </Button>
             </div>
           </Card>

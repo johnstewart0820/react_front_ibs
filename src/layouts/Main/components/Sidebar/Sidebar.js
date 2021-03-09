@@ -33,24 +33,9 @@ const Sidebar = props => {
       icon: <PeopleIcon />
     },
     {
-      title: 'Własna symulacje',
+      title: 'Własne symulacje',
       href: '/own_simulations',
       icon: <ShoppingBasketIcon />
-    },
-    {
-      title: 'Moduł Internetowych Ofert Pracy',
-      href: '/job_offer',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Twój Profil',
-      href: '/profile',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Zapisane analizy',
-      href: '/analyzes',
-      icon: <ImageIcon />
     },
     {
       title: 'Zapisane symulacje',
@@ -58,9 +43,29 @@ const Sidebar = props => {
       icon: <AccountBoxIcon />
     },
     {
+      title: 'Zapisane analizy',
+      href: '/analyzes',
+      icon: <ImageIcon />
+    },
+    {
+      title: 'Moduł Internetowych Ofert Pracy',
+      href: '/job_offer',
+      icon: <LockOpenIcon />
+    },
+    {
       title: 'Pomoc',
       href: '/help',
       icon: <HelpOutlineOutlinedIcon />
+    },
+    // {
+    //   title: 'Twój Profil',
+    //   href: '/profile',
+    //   icon: <TextFieldsIcon />
+    // },
+    {
+      title: 'Wyloguj',
+      href: '/login',
+      icon: <ExitToAppIcon />
     },
   ];
 
@@ -76,29 +81,9 @@ const Sidebar = props => {
       icon: <PeopleIcon />
     },
     {
-      title: 'Własna symulacje',
+      title: 'Własne symulacje',
       href: '/own_simulations',
       icon: <ShoppingBasketIcon />
-    },
-    {
-      title: 'Import Ofert Pracy',
-      href: '/import_job_offer',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Moduł Internetowych Ofert Pracy',
-      href: '/job_offer',
-      icon: <LockOpenIcon />
-    },
-    {
-      title: 'Twój Profil',
-      href: '/profile',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Zapisane analizy',
-      href: '/analyzes',
-      icon: <ImageIcon />
     },
     {
       title: 'Zapisane symulacje',
@@ -106,15 +91,45 @@ const Sidebar = props => {
       icon: <AccountBoxIcon />
     },
     {
+      title: 'Zapisane analizy',
+      href: '/analyzes',
+      icon: <ImageIcon />
+    },
+    {
+      title: 'Moduł Internetowych Ofert Pracy',
+      href: '/job_offer',
+      icon: <LockOpenIcon />
+    },
+    {
       title: 'Pomoc',
       href: '/help',
       icon: <HelpOutlineOutlinedIcon />
     },
+    // {
+    //   title: 'Twój Profil',
+    //   href: '/profile',
+    //   icon: <TextFieldsIcon />
+    // },
     {
-      title: 'Zarządzanie treścią',
-      href: '/content_management',
-      icon: <SettingsIcon />
-    }
+      title: 'Wyloguj',
+      href: '/login',
+      icon: <ExitToAppIcon />
+    },
+    {
+      title: 'Zarządzanie',
+      href: '#',
+      icon: <SettingsIcon />,
+      sub: [{
+        title: 'Zarządzanie treścią',
+        href: '/content_management',
+        icon: <SettingsIcon />
+      },
+      {
+        title: 'Import Ofert Pracy',
+        href: '/import_job_offer',
+        icon: <LockOpenIcon />
+      }]
+    },
   ];
   const logout = () => {
     storage.removeStorage('token');
@@ -146,12 +161,8 @@ const Sidebar = props => {
         <SidebarNav
           className={classes.nav}
           pages={pages}
+          history={history}
         />
-        <Button className={classes.logout} onClick={logout}>
-          <div className={classes.icon}>
-            <ExitToAppIcon/>
-          </div> Wyloguj
-        </Button>
       </div>
     </Drawer>
   );
