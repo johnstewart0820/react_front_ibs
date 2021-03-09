@@ -14,6 +14,13 @@ const useStyles = makeStyles(theme => ({
     tooltip: {
         padding: '5px'
     },
+    chart_title: {
+        fontFamily: 'roboto',
+        fontSize: '1.2em',
+        color: theme.palette.blue,
+        textAlign: 'center',
+        marginBottom: theme.spacing(2)
+    },
     btnSave: {
         '& .MuiButton-label': {
             textTransform: 'none',

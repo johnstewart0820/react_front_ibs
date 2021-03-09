@@ -8,7 +8,7 @@ import { ReactSVG } from 'react-svg'
 import useStyles from './style';
 
 const MapProvinceArea = (props) => {
-  const { provinceList, selectedProvince, chartData, data } = props;
+  const { provinceList, selectedProvince, chartData, data, chart_title } = props;
   const classes = useStyles();
   const color_list = ['#fd533c', '#c00000', '#a03000', '#9b210a', '#911700', '#870d00', '#7d0300', '#730000', '#690000', '#5f0000', '#550000', '#4b0000', '#410000', '#370000', '#230000', '#190000'];
   const [margin, setMargin] = useState(0);
@@ -49,6 +49,9 @@ const MapProvinceArea = (props) => {
     <>
       <Grid item xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock} ref={data}>
+          <div className={classes.chart_title}>
+            {chart_title}
+          </div>
           <Grid container>
             <Grid item xs={8}>
               <div id="tooltip" className={classes.tooltip} display="none" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />

@@ -16,27 +16,27 @@ import series from '../../apis/series-labels';
 const CreateOwnSimulations = props => {
   const seriesLabelId = [
     {
-      id_type: 19,
+      id_type_key: 'Scenariusz wzrostu PKB',
       title: 'Tempo wzrostu PKB',
       description: 'Wprowadzanie wartości dla tempa wzrostu PKB'
     },
     {
-      id_type: 20,
+      id_type_key: 'Scenariusz popytu zagranicznego',
       title: 'Popyt zagraniczny',
       description: 'Wprowadzanie wartości dla popyt zagraniczny'
     },
     {
-      id_type: 18,
+      id_type_key: 'Scenariusz konsumpcji publicznej',
       title: 'Wielkść konsumpcji publicznej',
       description: 'Wprowadzanie wartości dla wielkość konsumpcji publicznej'
     },
     {
-      id_type: 1,
+      id_type_key: 'Rozrodczość całkowita',
       title: 'Dzietność',
       description: 'Wprowadzanie wartości dla dzietność'
     },
     {
-      id_type: 3,
+      id_type_key: 'Migracje całkowite',
       title: 'Saldo Migracji',
       description: 'Wprowadzanie wartości dla saldo Migracji'
     }
@@ -56,7 +56,7 @@ const CreateOwnSimulations = props => {
   useEffect(() => {
     let array = [];
 
-    for (let i = 0; i < 31; i++) {
+    for (let i = 0; i < 30; i++) {
       array.push(String(''));
     }
     setSeriesValue(JSON.stringify(array));
@@ -69,7 +69,7 @@ const CreateOwnSimulations = props => {
   const handleCreateScenario = (e) => {
     setProgressStatus(true);
     series
-    .createSeries(seriesLabelId[selectedSeriesId].id_type, scenariosName, 'my_unique_variable', 1, JSON.parse(seriesValue))
+    .createSeries(seriesLabelId[selectedSeriesId].id_type_key, scenariosName, 'my_unique_variable', 1, JSON.parse(seriesValue))
     .then(response => {
       setProgressStatus(false);
       if (response.code === 401) {
@@ -93,7 +93,7 @@ const CreateOwnSimulations = props => {
       setSeriesValue(JSON.stringify(arr));
     }
 
-    for (let i = 0; i < 31; i ++) {
+    for (let i = 0; i < 30; i ++) {
       if (arr[i].length === 0) {
         setDisableStatus(true);
         return;
@@ -117,10 +117,10 @@ const CreateOwnSimulations = props => {
   }
 
   const handleSyncValue = () => {
-    let diff = (valueTo - valueFrom) / 30;
+    let diff = (valueTo - valueFrom) / 29;
     let array = JSON.parse(seriesValue);
     array[0] = valueFrom;
-    array[30] = valueTo;
+    array[29] = valueTo;
     for (let i = 0; i < 29; i ++) {
       let value = parseFloat(array[i]) + diff;
 
@@ -134,8 +134,8 @@ const CreateOwnSimulations = props => {
     setSelectedSeriesId(index);
     setValueFrom('0');
     setValueTo('0');
-    let array = new Array(31);
-    for (let i = 0; i <= 30; i ++) {
+    let array = new Array(30);
+    for (let i = 0; i <= 29; i ++) {
       array[i] = '';
     }
     setSeriesValue(JSON.stringify(array));
@@ -159,18 +159,18 @@ const CreateOwnSimulations = props => {
           let array = JSON.parse(seriesValue);
           let i = 0;
           for(i = 0; i < rows.length; i ++) {
-            if (i === 31)
+            if (i === 30)
               break;
             if (!isNaN(rows[i])) {
               array[i] = rows[i];
             }
           }
-          if (rows.length < 31)
-          for (let j = i - 1; j < 31; j ++) {
+          if (rows.length < 30)
+          for (let j = i - 1; j < 30; j ++) {
             array[j] = 0;
           }
           setSeriesValue(JSON.stringify(array));
-          for (let i = 0; i < 31; i ++) {
+          for (let i = 0; i < 30; i ++) {
             if (array[i].length === 0) {
               setDisableStatus(true);
               return;
@@ -279,7 +279,7 @@ const CreateOwnSimulations = props => {
                         <div className={classes.seriesTotalBlock}>
                           <div className={clsx({ [classes.firstBlock]: true })}>
                             <div className={classes.headerLabel}>
-                              2020
+                              2021
                               </div>
                             <div>
                               <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[0]} name="valueFrom"
@@ -290,10 +290,10 @@ const CreateOwnSimulations = props => {
                             <div className={classes.seriesBlock}>
                               {
                                 JSON.parse(seriesValue).map((item, index) => (
-                                  index < 29 ?
+                                  index < 28 ?
                                   <div className={clsx({ [classes.mediumBlock]: true, [classes.inputBlock]: index != 0 })}>
                                     <div className={classes.whiteHeaderLabel}>
-                                      {index + 2021}
+                                      {index + 2022}
                                     </div>
                                     <div>
                                       <input className={clsx({ [classes.input_box]: true, [classes.scroll_margin]: true })} type="text" value={JSON.parse(seriesValue)[index + 1]} name="valueFrom"
@@ -311,7 +311,7 @@ const CreateOwnSimulations = props => {
                               2050
                               </div>
                             <div>
-                              <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[30]} name="valueFrom"
+                              <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[29]} name="valueFrom"
                                 onChange={(e) => handleChangeSeriesValue(e, 30)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp}/>
                             </div>
                           </div>

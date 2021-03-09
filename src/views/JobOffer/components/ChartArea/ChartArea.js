@@ -32,7 +32,7 @@ const ChartArea = (props) => {
   const { chart_data, selectedChartType } = props;
   const classes = useStyles();
   const [chartData, setChartData] = useState([]);
-  const [monthList, setMonthList] = useState(['Styc', 'Luty', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sierp', 'Wrz', 'Paźdz', 'List', 'Grudz']);
+  const [monthList, setMonthList] = useState(['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII']);
   const [max, setMax] = useState(0);
   useEffect(() => {
     let m = 0;
@@ -40,7 +40,7 @@ const ChartArea = (props) => {
       if (parseInt(chart_data[i].value) > m) {
         m = parseInt(chart_data[i].value);
       }
-      chart_data[i]['name'] = monthList[chart_data[i].month - 1] + ' ' + chart_data[i].year;
+      chart_data[i]['name'] = monthList[chart_data[i].month - 1] + '/' + chart_data[i].year;
       chart_data[i]['value'] = parseInt(chart_data[i]['value']);
     }
     setMax(m);

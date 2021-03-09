@@ -46,10 +46,10 @@ class series_labels {
                 return error;
             })
     }
-    createSeries = (id_type, description, eid, exo, series_list) => {
+    createSeries = (id_type_key, description, eid, exo, series_list) => {
         return axios
             .post(`${process.env.REACT_APP_BACKEND_URL}/series_label`, {
-                id_type: id_type,
+                id_type_key: id_type_key,
                 description: description,
                 eid: eid,
                 exo: exo,

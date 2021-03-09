@@ -96,7 +96,7 @@ const SimulationInfo = (props) => {
   }
 
   const handleOpen = () => {
-
+    history.push('/analyzes');
   }
 
   const handleExport = (type) => {
@@ -236,6 +236,10 @@ const SimulationInfo = (props) => {
 
   const renderResultView = () => {
     if (parseInt(selectedChartType) === 3) {
+      let chart_title = '';
+      
+      chart_title += categoryList[selectedMapCategory - 1].name + ' - przekrój ';
+      chart_title += sectionList[selectedSection - 1].name;
       if (parseInt(selectedSection) === 6) {
         return <MapProvinceArea
           data={chart}
@@ -243,6 +247,7 @@ const SimulationInfo = (props) => {
           selectedProvince={selectedProvince}
           selectedShowChartsMode={selectedShowChartsMode}
           chartData={chartData}
+          chart_title={chart_title}
         />
       } else {
         return <MapCountyArea
@@ -252,9 +257,16 @@ const SimulationInfo = (props) => {
           selectedCluster={selectedCluster}
           selectedShowChartsMode={selectedShowChartsMode}
           chartData={chartData}
+          chart_title={chart_title}
         />
       }
     } else {
+      let chart_title = '';
+      for(let i = 0; i < selectedCategory.length - 1; i ++) {
+        chart_title += categoryList[selectedCategory[i] - 1].name + '/';
+      }
+      chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name + ' - przekrój ';
+      chart_title += sectionList[selectedSection - 1].name;
       return <ChartTableArea 
         data={chart}
         chartData={chartData}
@@ -265,6 +277,7 @@ const SimulationInfo = (props) => {
         sortOption={sortOption}
         field_list={field_list}
         setTableData={setTableData}
+        chart_title={chart_title}
       />
     }
   }

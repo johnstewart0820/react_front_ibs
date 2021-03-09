@@ -181,11 +181,14 @@ const JobOffer = (props) => {
   }
 
   const renderResultView = () => {
+    let chart_title = 'Ilość ofert pracy - przekrój ';
+    chart_title += sectionList[selectedSection - 1].name;
     if (parseInt(selectedChartType) === 1 || parseInt(selectedChartType) === 2 || parseInt(selectedChartType) === 3) {
       return <ChartTableArea 
         data={chart}
         chartData={chartData}
         selectedChartType={selectedChartType}
+        chart_title={chart_title}
         />
     } else if (parseInt(selectedChartType) === 4) {
       if (parseInt(selectedSection) === 2) {
@@ -194,6 +197,7 @@ const JobOffer = (props) => {
           provinceList={provinceList}
           selectedProvince={selectedProvince}
           chartData={chartData}
+          chart_title={chart_title}
         />
       } else {
         return <MapCountyArea
@@ -202,6 +206,7 @@ const JobOffer = (props) => {
           countyList={countyList}
           selectedCluster={selectedCluster}
           chartData={chartData}
+          chart_title={chart_title}
         />
       }
     }

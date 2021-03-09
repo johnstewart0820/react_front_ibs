@@ -31,6 +31,13 @@ const useStyles = makeStyles(theme => ({
         color: 'white',
         width: '100%'
     },
+    chart_title: {
+        fontFamily: 'roboto',
+        fontSize: '1.2em',
+        color: theme.palette.blue,
+        textAlign: 'center',
+        marginBottom: theme.spacing(2)
+    },
     btnExport: {
         '& .MuiButton-label': {
             textTransform: 'none',
