@@ -547,6 +547,9 @@ const SimulationInfoEdit = (props) => {
           setChartResultList(response.data.chart_result);
           setTotalChartResultList(response.data.chart_result);
           setOccupationSizeList(response.data.profession_sizes);
+          setCountyList(response.data.counties);
+          setEducationList(response.data.educations);
+          setAgeList(response.data.ages);
           setScenario(response.data.scenario);
           setName(response.data.analyze.name);
           setIdAnalyze(response.data.analyze.id_analyze);
@@ -563,9 +566,6 @@ const SimulationInfoEdit = (props) => {
           setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
           setSelectedShowChartsMode(response.data.analyze.id_chart_result);
           setSelectedOccupationSize(response.data.analyze.id_occupation_size);
-          setCountyList(response.data.counties);
-          setEducationList(response.data.educations);
-          setAgeList(response.data.ages);
           setSelectedEducation(getStringArray(response.data.analyze.id_education));
           setSelectedAge(getStringArray(response.data.analyze.id_age));
           let sections = [];
