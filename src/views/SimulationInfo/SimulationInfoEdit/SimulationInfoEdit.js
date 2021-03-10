@@ -163,13 +163,15 @@ const SimulationInfoEdit = (props) => {
     if (selectedChartType == 2) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
       setChartResultList([_arr[1]]);
-      setSelectedShowChartsMode(1);
+      setSelectedShowChartsMode(2);
     }
   }, [selectedChartType]);
 
   useEffect(() => {
-    if (parseInt(selectedSection) === 8)
+    if (parseInt(selectedSection) === 8) {
       setSelectedCategory([]);
+      setSelectedYear(2013);
+    }
   }, [selectedSection])
   
   const handleSave = () => {
@@ -290,6 +292,9 @@ const SimulationInfoEdit = (props) => {
             _year_arr.push(i);
           }
           setYearList(_year_arr);
+          if (parseInt(selectedYear) < parseInt(response.data.min) || parseInt(selectedYear) > parseInt(response.data.max) ) {
+            setSelectedYear(parseInt(response.data.min));
+          }
         } else {
         }
       }
