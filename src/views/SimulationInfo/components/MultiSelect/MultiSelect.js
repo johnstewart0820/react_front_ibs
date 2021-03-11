@@ -23,7 +23,7 @@ const MultiSelect = (props) => {
     PaperProps: {
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
+        width: 400,
       },
     },
   };
@@ -49,7 +49,7 @@ const MultiSelect = (props) => {
       MenuProps={MenuProps}
     >
       {list.map((item, index) => (
-        <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)}>
+        <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)} className={classes.list_item}>
           {item.name}
         </MenuItem>
       ))}

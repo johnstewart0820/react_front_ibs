@@ -19,29 +19,29 @@ const SimulationModal = (props) => {
   const classes = useStyles();
   const seriesLabelId = [
     {
-      id_type: 19, 
-      title: 'Tempo wzrostu PKB', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.'
+      id_type_key: 'Scenariusz wzrostu PKB',
+      title: 'Tempo wzrostu PKB',
+      description: 'Wprowadzanie wartości dla tempa wzrostu PKB'
     },
     {
-      id_type: 20, 
-      title: 'Popyt zagraniczny', 
-      description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta.'
+      id_type_key: 'Scenariusz popytu zagranicznego',
+      title: 'Popyt zagraniczny',
+      description: 'Wprowadzanie wartości dla popyt zagraniczny'
     },
     {
-      id_type: 18, 
-      title: 'Wielkść konsumpcji publicznej', 
-      description: 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam.'
+      id_type_key: 'Scenariusz konsumpcji publicznej',
+      title: 'Wielkść konsumpcji publicznej',
+      description: 'Wprowadzanie wartości dla wielkość konsumpcji publicznej'
     },
     {
-      id_type: 1, 
-      title: 'Dzietność', 
-      description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      id_type_key: 'Rozrodczość całkowita',
+      title: 'Dzietność',
+      description: 'Wprowadzanie wartości dla dzietność'
     },
     {
-      id_type: 3, 
-      title: 'Saldo Migracji', 
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.'
+      id_type_key: 'Migracje całkowite',
+      title: 'Saldo Migracji',
+      description: 'Wprowadzanie wartości dla saldo Migracji'
     }
   ];
   useEffect(() => {

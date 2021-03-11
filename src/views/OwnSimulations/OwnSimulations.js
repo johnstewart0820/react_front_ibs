@@ -73,7 +73,7 @@ const OwnSimulations = props => {
       })
     })
     scenarios
-      .createScenario(0, simulation, 2020, 2050, arr)
+      .createScenario(0, simulation, 2019, 2050, arr)
       .then(response => {
         setProgressStatus(false);
         if (response.code === 401) {

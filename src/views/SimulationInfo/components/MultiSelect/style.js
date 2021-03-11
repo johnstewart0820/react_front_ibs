@@ -18,6 +18,11 @@ const useStyles = makeStyles(theme => ({
             borderRadius: '4px',
         },
         marginTop: '-1px !important'
+    },
+    list_item: {
+        '&.MuiMenuItem-root': {
+            whiteSpace: 'break-spaces'
+        }
     }
 }));
 

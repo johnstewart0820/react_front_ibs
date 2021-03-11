@@ -46,7 +46,7 @@ const SimulationView = (props) => {
   useEffect(() => {
     setProgressStatus(true);
     series_labels
-      .getSeriesLabelById(seriesLabelInfo.id_type)
+      .getSeriesLabelById(seriesLabelInfo.id_type_key)
       .then(response => {
         setProgressStatus(false);
         if (response.code === 401) {

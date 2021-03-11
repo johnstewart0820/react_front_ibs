@@ -17,8 +17,11 @@ class series_labels {
     }
     getSeriesLabelById = (id) => {
         return axios
-            .get(`${process.env.REACT_APP_BACKEND_URL}/series_label/${id}`, {
-                headers: authHeader(storage.getStorage('token'))
+            .get(`${process.env.REACT_APP_BACKEND_URL}/series_label/getSeriesLabelById`, {
+                headers: authHeader(storage.getStorage('token')),
+                params: {
+                    id_type_key: id,
+                }
             })
             .then(response => {
                 if (response.data.code === 401)
