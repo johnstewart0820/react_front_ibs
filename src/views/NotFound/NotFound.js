@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,6 +16,9 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     maxWidth: '100%',
     width: 560
+  },
+  link: {
+    fontWeight: '500'
   }
 }));
 
@@ -35,11 +39,10 @@ const NotFound = () => {
         >
           <div className={classes.content}>
             <Typography variant="h1">
-              404: The page you are looking for isn’t here
+              404: Strona, której szukasz nie istnieje
             </Typography>
-            <Typography variant="subtitle2">
-              You either tried some shady route or you came here by mistake.
-              Whichever it is, try using the navigation
+            <Typography variant="h4">
+              <Link to="/" className={classes.link}>tutaj</Link> aby wrócić na stronę główną.
             </Typography>
             <img
               alt="Under development"
