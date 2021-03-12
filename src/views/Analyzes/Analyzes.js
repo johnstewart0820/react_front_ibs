@@ -202,7 +202,7 @@ const Analyzes = props => {
           </Grid>
           <Grid item xs={12}>
             <Pagination 
-              count={ total%selectedCount == 0 ? total / selectedCount : Math.round(total / selectedCount) + 1} 
+              count={ total%selectedCount == 0 ? total / selectedCount : Math.floor(total / selectedCount) + 1} 
               onChange={(e, page) => {setPage(page)}} 
               page={page} 
               showFirstButton 
