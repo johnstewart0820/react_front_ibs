@@ -72,9 +72,14 @@ const SortTable = (props) => {
               <TableCell>{item.description}</TableCell>
               <TableCell>{item.eval == '0' ? 'Nie' : 'Tak'}</TableCell>
               <TableCell align="right">
-                <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={() => handleGotoSimulation(indx)}>
-                  Przejdź do symulacji
-                </Button>
+              {
+                item.eval == '1' ? 
+                  <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={() => handleGotoSimulation(indx)}>
+                    Przejdź do symulacji
+                  </Button>
+                  :
+                  <></>
+              }
               </TableCell>
             </TableRow>
           );
