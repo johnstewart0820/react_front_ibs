@@ -66,11 +66,11 @@ const useStyles = makeStyles(theme => ({
         },
         padding: '4px',
         // border: '1px solid #44545e',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         color: 'white',
-        width: '100%'
+        width: '100%',
+        borderRadius: '0px'
     },
     checkboxblock: {
         overflow: 'auto',
@@ -114,13 +114,13 @@ const useStyles = makeStyles(theme => ({
         },
         padding: '13px',
         border: '1px solid #626262',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.white,
         color: theme.palette.gray,
         width: '100%',
-        height: '100%',
-        zIndex: '100'
+        height: '56px',
+        zIndex: '100',
+        borderRadius: '0px'
     },
 }));
 

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.gray,
         
         fontFamily: 'roboto',
-        marginBottom: '15px',
+        marginBottom: '40px',
         fontWeight: '400'
     },
 
@@ -40,6 +40,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '20px',
         fontWeight: '400',
         fontStyle: 'italic'
+    },
+
+    multiTitleHeader: {
+        color: theme.palette.gray,
+        
+        fontFamily: 'roboto',
+        marginBottom: '5px',
+        fontWeight: 400
     },
 
     titleInfo: {
@@ -63,12 +71,11 @@ const useStyles = makeStyles(theme => ({
         },
         padding: '4px',
         border: 'none',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.blue,
         color: 'white',
         width: '100%',
-        height: '50px'
+        height: '56px'
     },
     simulationBlock: {
         width: 'fit-content',
@@ -87,7 +94,6 @@ const useStyles = makeStyles(theme => ({
             color: 'white',
         },
         padding: '4px 20px',
-        borderRadius: '0px',
         fontWeight: '400',
         border: '1px solid #D6324B',
         backgroundColor: theme.palette.mainBackground,

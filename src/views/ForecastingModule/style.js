@@ -24,11 +24,11 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.blue
         },
         padding: '6px',
-        borderRadius: '0px',
         fontWeight: 300,
         backgroundColor: theme.palette.blue,
         color: 'white',
-        width: '100%'
+        width: '100%',
+        height: '100%'
     },
     simulationBlock: {
         width: 'fit-content',
@@ -44,7 +44,6 @@ const useStyles = makeStyles(theme => ({
             color: 'white',
         },
         padding: '4px 20px',
-        borderRadius: '0px',
         fontWeight: 400,
         border: '1px solid #D6324B',
         backgroundColor: theme.palette.background.default,
@@ -53,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     },
     name_select_box: {
         color: theme.palette.gray,
-        border: `1px solid ${theme.palette.gray}`,
+        border: theme.palette.contrastColor,
         '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input' : {
             padding: '3.5px 4px',
             color: theme.palette.gray,

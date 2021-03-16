@@ -330,20 +330,16 @@ const JobOffer = (props) => {
                 :
                 parseInt(selectedSection) === 2 ?
                 <>
-                  <div className={classes.titleHeader}>
+                  <div className={classes.titleHeader} style={{height: '68px'}}>
                     Wybierz województwo
-                  </div>
-                  <div className={classes.subSecondHeader}>
                   </div>
                   <MultiSelect value={selectedProvince} handleChange={setSelectedProvince} list={provinceList} />
                 </>
                 :
                 parseInt(selectedSection) === 3 ?
                 <>
-                  <div className={classes.titleHeader}>
+                  <div className={classes.titleHeader} style={{height: '68px'}}>
                     Wybierz klastry
-                  </div>
-                  <div className={classes.subSecondHeader}>
                   </div>
                   <MultiSelect value={selectedCluster} handleChange={setSelectedCluster} list={clusterList} />
                 </>
@@ -357,12 +353,6 @@ const JobOffer = (props) => {
             <></>
             :
             <Grid item xs={2}>
-              <div className={classes.titleHeader}>
-                &nbsp;
-              </div>
-              <div className={classes.secondTitleHeader}>
-                &nbsp;
-              </div>
               <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
                 Pokaż
               </Button>

@@ -90,7 +90,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.blue
     },
     padding: '4px',
-    borderRadius: '0px',
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
     color: 'white',

@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.blue
         },
         padding: '4px',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.blue,
         color: 'white',
@@ -43,7 +42,6 @@ const useStyles = makeStyles(theme => ({
             color: 'white'
         },
         padding: '4px',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.mainBackground,
         border: `1px solid ${theme.palette.blue}`,

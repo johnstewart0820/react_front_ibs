@@ -55,7 +55,6 @@ const useStyles = makeStyles(theme => ({
         },
         padding: '4px',
         border: '1px solid #a52b02',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.pink,
         color: 'white',

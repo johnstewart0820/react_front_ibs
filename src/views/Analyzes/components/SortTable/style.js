@@ -10,7 +10,6 @@ const useStyles = makeStyles(theme => ({
       '&:hover': {
           backgroundColor: theme.palette.pink
       },
-      borderRadius: '0px',
       fontWeight: '300',
       backgroundColor: theme.palette.pink,
       color: 'white',
@@ -29,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
         backgroundColor: theme.palette.gray
     },
-    borderRadius: '0px',
     fontWeight: '300',
     backgroundColor: theme.palette.gray,
     color: 'white',

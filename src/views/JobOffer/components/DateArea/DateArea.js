@@ -8,7 +8,7 @@ const DateArea = (props) => {
   const classes = useStyles();
   const { fromDate, toDate, setFromDate, setToDate, chartType } = props;
   const [yearList, setYearList] = useState([]);
-  const [monthList, setMonthList] = useState(['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień']);
+  const [monthList, setMonthList] = useState(['STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU']);
   useEffect(() => {
     let temp = [];
     for (let i = 0; i < 31; i++) {

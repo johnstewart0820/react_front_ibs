@@ -93,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
         backgroundColor: theme.palette.blue
     },
-    borderRadius: '0px',
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
     color: 'white',
@@ -117,7 +116,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.gray_disable,
       color: 'lightGray',
     },
-    borderRadius: '0px',
     fontWeight: '300',
     // border: '1px solid gray',
     backgroundColor: theme.palette.gray,

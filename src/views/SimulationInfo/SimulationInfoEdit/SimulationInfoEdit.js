@@ -288,13 +288,13 @@ const SimulationInfoEdit = (props) => {
           }
           setHeaders(_arr);
           let _year_arr = [];
-          for (let i = parseInt(response.data.min); i <= parseInt(response.data.max); i ++) {
+          for (let i = parseInt(2011); i <= parseInt(2050); i ++) {
             _year_arr.push(i);
           }
           setYearList(_year_arr);
-          if (parseInt(selectedYear) < parseInt(response.data.min) || parseInt(selectedYear) > parseInt(response.data.max) ) {
-            setSelectedYear(parseInt(response.data.min));
-          }
+          // if (parseInt(selectedYear) < parseInt(response.data.min) || parseInt(selectedYear) > parseInt(response.data.max) ) {
+          //   setSelectedYear(parseInt(response.data.min));
+          // }
         } else {
         }
       }
@@ -590,6 +590,17 @@ const SimulationInfoEdit = (props) => {
     setTotalFieldList([]);
     setChartData([]);
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory, selectedEducation, selectedAge]);
+
+  useEffect(() => {
+    let year = 2019;
+    for (let i = 0; i < selectedCategory.length; i ++) {
+      if (parseInt(selectedCategory[i]) === 3) {
+        year = 2011;
+      }
+    }
+    setSelectedYear(year);
+  }, [selectedCategory])
+
   const handleChangeChartType = (change) => {
     setChartData([]);
     setTableData([]);
@@ -653,12 +664,17 @@ const SimulationInfoEdit = (props) => {
               <></>
               :
               <>
-                <div className={classes.titleHeader}>
-                  Wybierz kategorie
+                <div className={classes.titleHeader} style={selectedChartType == 3 ? {marginBottom: '40px'} : {}}>
+                  Wybierz kategorię
                 </div>
-                <div className={classes.subHeader}>
-                  (można wybrać 1, 2 lub 3 kategorie)
-                </div>
+                {
+                  parseInt(selectedChartType) != 3 ?
+                  <div className={classes.subHeader}>
+                    (można wybrać 1, 2 lub 3 kategorie)
+                  </div>
+                  :
+                  <></>
+                }
                 {
                 selectedChartType == 3
                   ?

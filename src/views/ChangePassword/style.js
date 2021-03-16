@@ -73,7 +73,6 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.pink
     },
     padding: '4px',
-    borderRadius: '0px',
     fontWeight: '400',
     backgroundColor: theme.palette.pink,
     color: 'white',

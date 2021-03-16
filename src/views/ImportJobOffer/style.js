@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
         backgroundColor: theme.palette.pink
     },
-    borderRadius: '0px',
     fontWeight: '300',
     backgroundColor: theme.palette.pink,
     color: 'white',
@@ -102,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
           backgroundColor: theme.palette.pink,
           color: 'white',
       },
-      borderRadius: '0px',
       fontWeight: '300',
       border: '1px solid #D6324B',
       backgroundColor: theme.palette.mainBackground,
@@ -123,7 +121,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.gray,
         color: 'white',
     },
-    borderRadius: '0px',
     fontWeight: '300',
     border: '1px solid #44545e',
     backgroundColor: theme.palette.background.default,
@@ -146,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
   progressContainer: {
     position: 'absolute',
     top: '40%',
-    width: 'calc(100% - 300px)',
+    width: 'calc(100% - 350px)',
     display: 'flex',
     justifyContent: 'center',
     zIndex: '100'

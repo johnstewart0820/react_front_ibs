@@ -31,8 +31,11 @@ const PkdSectionAdditionalOption = (props) => {
             </div>
           </Grid>
           <Grid item xs={5}>
-            <div className={classes.secondTitleHeader}>
-              Wybierz sekcję PKD
+            <div className={classes.multiTitleHeader}>
+              Wybierz sekcje PKD
+            </div>
+            <div className={classes.subHeader}>
+              (można wybrać kilka sekcji)
             </div>
             <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
           </Grid>

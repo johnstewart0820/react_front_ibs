@@ -36,40 +36,46 @@ const ProvinceOccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={2}>
-            <div className={classes.secondTitleHeader}>
-              Wybierz Sektor
-            </div>
-            <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
-          </Grid>
-          <Grid item xs={6}>
-            <OccupationSelectionModal
-                node={occupationList}
-                occupationSize={occupationSizeValue}
-                handleSelectedOccupation={handleSelectedOccupation}
-                handleSelectedOccupationSize={handleSelectedOccupationSize}
-                occupationSizeList={occupationSizeList}
-                selectedOccupation={occupationValue}
-              // handleSave={handleSaveOccupation}
-              />
-          </Grid>
-          {showChartsMode.length > 1 ?
+          <Grid container spacing={2}>
             <Grid item xs={2}>
-              <div className={classes.secondTitleHeader}>
-                Wyniki
+              <div className={classes.multiTitleHeader}>
+                Wybierz sekcje PKD
               </div>
-              <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+              <div className={classes.subHeader}>
+                (można wybrać kilka sekcji)
+              </div>
+              <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
             </Grid>
-            :
-            <></>
-          }
-          <Grid item xs={2}>
-            <div className={classes.secondTitleHeader}>
-              &nbsp;
-            </div>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() =>handleRender()}>
-              Pokaż
-            </Button>
+            <Grid item xs={6}>
+              <OccupationSelectionModal
+                  node={occupationList}
+                  occupationSize={occupationSizeValue}
+                  handleSelectedOccupation={handleSelectedOccupation}
+                  handleSelectedOccupationSize={handleSelectedOccupationSize}
+                  occupationSizeList={occupationSizeList}
+                  selectedOccupation={occupationValue}
+                // handleSave={handleSaveOccupation}
+                />
+            </Grid>
+            {showChartsMode.length > 1 ?
+              <Grid item xs={2} style={{position: 'relative'}}>
+                <div className={classes.secondTitleHeader}>
+                  Wyniki
+                </div>
+                <div style={{position: 'absolute', bottom: '8px', width: '95%'}}>
+                  <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+                </div>
+              </Grid>
+              :
+              <></>
+            }
+            <Grid item xs={2} style={{position: 'relative'}}>
+              <div style={{position: 'absolute', bottom: '8px', width: '95%'}}>
+                <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() =>handleRender()}>
+                  Pokaż
+                </Button>
+              </div>
+            </Grid>
           </Grid>
         </Grid>
       </Card>

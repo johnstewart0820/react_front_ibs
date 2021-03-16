@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.gray,
         
         fontFamily: 'roboto',
-        marginBottom: '40px',
+        marginBottom: '55px',
         fontWeight: '400'
     },
     input_box: {
@@ -66,7 +66,6 @@ const useStyles = makeStyles(theme => ({
         },
         padding: '4px',
         // border: '1px solid #44545e',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         color: 'white',
@@ -112,9 +111,8 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.gray_disable,
             color: 'darkgray'
         },
-        padding: '13px',
+        padding: '15px',
         border: '1px solid #626262',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.white,
         color: theme.palette.gray,

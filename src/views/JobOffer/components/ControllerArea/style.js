@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.gray
         },
         padding: '4px',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
@@ -43,7 +42,6 @@ const useStyles = makeStyles(theme => ({
             color: 'white'
         },
         padding: '4px',
-        borderRadius: '0px',
         fontWeight: '400',
         backgroundColor: theme.palette.mainBackground,
         border: `1px solid ${theme.palette.blue}`,

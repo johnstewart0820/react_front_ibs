@@ -79,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
     },
     padding: '4px',
     border: '1px solid #D6324B',
-    borderRadius: '0px',
     fontWeight: '300',
     backgroundColor: theme.palette.pink,
     color: 'white',

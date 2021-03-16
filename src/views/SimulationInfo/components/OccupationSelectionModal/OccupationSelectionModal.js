@@ -97,15 +97,17 @@ const OccupationSelectionModal = (props) => {
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={5}>
+    <Grid container style={{height: '100%'}}>
+      <Grid item xs={5} style={{position: 'relative'}}>
         <div className={classes.secondTitleHeader}>
           Wybierz rodzaj grupy KZiS
         </div>
-        <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
+        <div style={{position: 'absolute', bottom: '0px', width: '95%'}}>
+          <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
+        </div>
       </Grid>
-      <Grid item xs={7}>
-        <div className={classes.secondTitleHeader}>
+      <Grid item xs={7} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
+        <div className={classes.secondTitleHeader} style={{height: '100%'}}>
           Zawód
         </div>
         <Grid item xs={12}>

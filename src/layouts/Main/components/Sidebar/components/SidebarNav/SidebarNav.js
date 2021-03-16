@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 
   },
   title: {
-    width: '160px'
+    width: '150px'
   },
   sub_list: {
     padding: '0px'
