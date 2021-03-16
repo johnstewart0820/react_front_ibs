@@ -287,11 +287,7 @@ const SimulationInfoEdit = (props) => {
             _arr.push(_item);
           }
           setHeaders(_arr);
-          let _year_arr = [];
-          for (let i = parseInt(2011); i <= parseInt(2050); i ++) {
-            _year_arr.push(i);
-          }
-          setYearList(_year_arr);
+          
           // if (parseInt(selectedYear) < parseInt(response.data.min) || parseInt(selectedYear) > parseInt(response.data.max) ) {
           //   setSelectedYear(parseInt(response.data.min));
           // }
@@ -307,7 +303,7 @@ const SimulationInfoEdit = (props) => {
       let chart_title = '';
       
       chart_title += categoryList[selectedMapCategory - 1].name + ' - przekrój ';
-      chart_title += sectionList[selectedSection - 1].name;
+      chart_title += sectionList[selectedSection - 1].name.toLowerCase();
       if (parseInt(selectedSection) === 6) {
         return <MapProvinceArea
           data={chart}
@@ -335,9 +331,9 @@ const SimulationInfoEdit = (props) => {
           chart_title += categoryList[selectedCategory[i] - 1].name + '/';
         }
         chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name + ' - przekrój ';
-        chart_title += sectionList[selectedSection - 1].name;
+        chart_title += sectionList[selectedSection - 1].name.toLowerCase();
       } else {
-        chart_title = sectionList[selectedSection - 1].name;
+        chart_title = sectionList[selectedSection - 1].name.toLowerCase();
       }
       return <ChartTableArea 
         data={chart}
@@ -592,13 +588,34 @@ const SimulationInfoEdit = (props) => {
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory, selectedEducation, selectedAge]);
 
   useEffect(() => {
-    let year = 2019;
+    let containsOld = false;
+    let containsNew = false;
+    let year;
+    let toYear;
     for (let i = 0; i < selectedCategory.length; i ++) {
-      if (parseInt(selectedCategory[i]) === 3) {
-        year = 2011;
+      if (parseInt(selectedCategory[i]) !== 3) {
+        containsNew = true;
+      } else {
+        containsOld = true;
       }
     }
+    if (containsNew && containsOld) {
+      year = 2011;
+      toYear = 2050;
+    } else if (containsNew){
+      year = 2019;
+      toYear = 2050;
+    } else if (containsOld) {
+      year = 2011;
+      toYear = 2020;
+    }
     setSelectedYear(year);
+    setSelectedToYear(toYear);
+    let _arr = [];
+    for (let i = year; i <= toYear; i ++) {
+      _arr.push(i);
+    }
+    setYearList(_arr);
   }, [selectedCategory])
 
   const handleChangeChartType = (change) => {
