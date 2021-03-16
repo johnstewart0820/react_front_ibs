@@ -23,7 +23,7 @@ const MultiSelect = (props) => {
     PaperProps: {
       style: {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
+        width: 400,
       },
     },
   };
@@ -31,6 +31,44 @@ const MultiSelect = (props) => {
   useEffect(() => {
   }, []);
 
+  const checkedAll = () => {
+    if (value.length === list.length) {
+      return false;
+    }
+    if (value.length === 0) {
+      return true;
+    }
+    return true;
+  }
+  const selectAll = () => {
+    if (checkedAll()) {
+      let _arr = [];
+      for (let i = 0; i < list.length; i++) {
+        _arr.push(list[i].id);
+      }
+      handleChange(_arr);
+    } else {
+      let _arr = [];
+      handleChange(_arr);
+    }
+
+  }
+
+  const handleClickItem = (id) => {
+    let _arr = JSON.parse(JSON.stringify(value));
+    let index = -1;
+    for (let i = 0; i < _arr.length; i ++) {
+      if (_arr[i] === id) {
+        index = i;
+      }
+    }
+    if (index < 0) {
+      _arr.push(id);
+    } else {
+      _arr.splice(index, 1);
+    }
+    handleChange(_arr);
+  }
   return (
     <FormControl className={classes.formControl}>
       <InputLabel htmlFor="outlined-age-native-simple" className={classes.name_select_box} shrink={false}>
@@ -44,12 +82,18 @@ const MultiSelect = (props) => {
       multiple
       variant="outlined" 
       value={value}
-      onChange={(event) => handleChange(event.target.value ? event.target.value : '')}
       input={<Input />}
       MenuProps={MenuProps}
     >
+       <MenuItem
+          checked={true}
+          value="Select all"
+          onClick={selectAll}
+        >
+          {"Zaznacz wszystkie / Odznacz wszystkie"}
+        </MenuItem> 
       {list.map((item, index) => (
-        <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)}>
+        <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)} className={classes.list_item} onClick={() => handleClickItem(item.id)}>
           {item.name}
         </MenuItem>
       ))}
