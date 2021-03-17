@@ -38,12 +38,6 @@ const OccupationSelectionModal = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setWidth(document.getElementById('btn_open').offsetWidth)
-  //   }
-  //   window.addEventListener('resize', handleResize)
-  // }, []);
   useEffect(() => {
     setWidth(document.getElementById('btn_open').offsetWidth);
   }, [open]);
@@ -51,11 +45,8 @@ const OccupationSelectionModal = (props) => {
     let result = [];
     let index_1 = 0;
     let index_2 = 0;
-
-    if (isInitialRender >= 2) {
-      handleSelectedOccupation([]);
-      setExpanded([]);
-    }
+    handleSelectedOccupation([]);
+    setExpanded([]);
 
     isInitialRender++;
     for (let i = 0; i < node.length; i++) {
@@ -76,7 +67,6 @@ const OccupationSelectionModal = (props) => {
         result[index_1 - 1].children[index_2 - 1].children.push({ "value": node[i].id, "label": node[i].name })
       }
     }
-    console.log(result);
     setNodes(result);
   }, [occupationSize]);
 

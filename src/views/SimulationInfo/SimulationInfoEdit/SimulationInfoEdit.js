@@ -81,7 +81,6 @@ const SimulationInfoEdit = (props) => {
   const [totalTableData, setTotalTableData] = useState([]);
   const [totalFieldList, setTotalFieldList] = useState([]);
   const [headers, setHeaders] = useState([]);
-  const [ableRender, setAbleRender] = useState(false);
   const [renderStatus, setRenderStatus] = useState(false);
 
   const handleChange = (props) => {
@@ -288,16 +287,12 @@ const SimulationInfoEdit = (props) => {
             _arr.push(_item);
           }
           setHeaders(_arr);
-          
-          // if (parseInt(selectedYear) < parseInt(response.data.min) || parseInt(selectedYear) > parseInt(response.data.max) ) {
-          //   setSelectedYear(parseInt(response.data.min));
-          // }
         } else {
         }
       }
       setProgressStatus(false);
+      setRenderStatus(true);
     })
-    setRenderStatus(true);
   }
 
   const renderResultView = () => {
@@ -370,7 +365,7 @@ const SimulationInfoEdit = (props) => {
   )
 
   const renderControlView = () => {
-    if (checkRenderStatus() || !renderStatus) {
+    if (checkRenderStatus()) {
       return <></>
     }
     return (
@@ -389,10 +384,22 @@ const SimulationInfoEdit = (props) => {
           name={name}
           yearList={yearList}
           selectedChartType={selectedChartType}
+          handleRender={handleRender}
         />
         <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
-        {renderResultView()}
-        {renderTotalView()}
+        {
+          renderStatus ? 
+            <> 
+              <>
+                {renderResultView()}
+              </>
+              <>
+                {renderTotalView()}
+              </>
+            </>
+            :
+            <></>
+        }
       </Grid>
     )
   }
@@ -409,8 +416,6 @@ const SimulationInfoEdit = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           pkdSectionList={pkdSectionList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 2:
         return <ProvinceAdditionalOption
@@ -420,8 +425,6 @@ const SimulationInfoEdit = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           provinceList={provinceList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 3:
         return <ClusterAdditionalOption
@@ -431,8 +434,6 @@ const SimulationInfoEdit = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           clusterList={clusterList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 4:
         return <OccupationAdditionalOption
@@ -445,8 +446,6 @@ const SimulationInfoEdit = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 5:
         return <PkdOccupationAdditionalOption
@@ -462,8 +461,6 @@ const SimulationInfoEdit = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 6:
         return <ProvinceOccupationAdditionalOption
@@ -479,8 +476,6 @@ const SimulationInfoEdit = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 7:
         return <ClusterOccupationAdditionalOption
@@ -496,8 +491,6 @@ const SimulationInfoEdit = (props) => {
           occupationList={occupationList}
           occupationSizeList={occupationSizeList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 8:
         return <EducationAdditionalOption
@@ -510,8 +503,6 @@ const SimulationInfoEdit = (props) => {
           educationList={educationList}
           ageList={ageList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
     }
   }
@@ -541,6 +532,7 @@ const SimulationInfoEdit = (props) => {
         if (response.code === 401) {
           history.push('/login');
         } else {
+          setSelectedOccupationSize(response.data.analyze.id_occupation_size);
           setClusterList(response.data.clusters);
           setPkdSelectionList(response.data.pkdSections);
           setProvinceList(response.data.provinces);
@@ -569,7 +561,6 @@ const SimulationInfoEdit = (props) => {
           setSelectedProvince(getNumArray(response.data.analyze.id_province));
           setSelectedOccupation(getNumArray(response.data.analyze.id_occupation));
           setSelectedShowChartsMode(response.data.analyze.id_chart_result);
-          setSelectedOccupationSize(response.data.analyze.id_occupation_size);
           setSelectedEducation(getStringArray(response.data.analyze.id_education));
           setSelectedAge(getStringArray(response.data.analyze.id_age));
           let sections = [];
@@ -584,10 +575,10 @@ const SimulationInfoEdit = (props) => {
   }, []);
 
   useEffect(() => {
-    setAbleRender(!checkRenderStatus());
     setTotalTableData([]);
     setTotalFieldList([]);
     setChartData([]);
+    setRenderStatus(false);
   }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedYear, selectedToYear, selectedChartType, selectedMapCategory, selectedEducation, selectedAge]);
 
   useEffect(() => {
@@ -611,7 +602,10 @@ const SimulationInfoEdit = (props) => {
     } else if (containsOld) {
       year = 2011;
       toYear = 2020;
-    }
+    } else {
+      year = 2013;
+      toYear = 2050;
+    } 
     setSelectedYear(year);
     setSelectedToYear(toYear);
     let _arr = [];

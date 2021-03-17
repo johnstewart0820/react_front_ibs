@@ -78,7 +78,6 @@ const SimulationInfo = (props) => {
   const [headers, setHeaders] = useState([]);
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
-  const [ableRender, setAbleRender] = useState(false);
   const [renderStatus, setRenderStatus] = useState(false);
   const requestSort = (pSortBy) => {
     var sortOrder = "asc";
@@ -206,11 +205,11 @@ const SimulationInfo = (props) => {
     || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
   }
   useEffect(() => {
-    setAbleRender(!checkRenderStatus());
     setTotalTableData([]);
     setTotalFieldList([]);
     setChartData([]);
-  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedChartType, selectedMapCategory, selectedEducation, selectedAge]);
+    setRenderStatus(false);
+  }, [selectedSection, selectedCategory, selectedOccupation, selectedPkdSection, selectedProvince, selectedCluster, selectedShowChartsMode, selectedChartType, selectedMapCategory, selectedEducation, selectedAge, selectedYear, selectedToYear]);
 
   useEffect(() => {
     let containsOld = false;
@@ -233,6 +232,9 @@ const SimulationInfo = (props) => {
     } else if (containsOld) {
       year = 2011;
       toYear = 2020;
+    } else {
+      year = 2013;
+      toYear = 2050;
     }
     
     setSelectedYear(year);
@@ -407,21 +409,15 @@ const SimulationInfo = (props) => {
             _arr.push(_item);
           }
           setHeaders(_arr);
-          // setSelectedYear(parseInt(response.data.min));
-          // setSelectedToYear(parseInt(response.data.max));
-          
-          // if (parseInt(selectedYear) < parseInt(response.data.min) || parseInt(selectedYear) > parseInt(response.data.max) ) {
-          //   setSelectedYear(parseInt(response.data.min));
-          // }
         } else {
         }
       }
       setProgressStatus(false);
+      setRenderStatus(true);
     })
-    setRenderStatus(true);
   }
   const renderControlView = () => {
-    if (checkRenderStatus() || !renderStatus) {
+    if (checkRenderStatus()) {
       return <></>
     }
     return (
@@ -440,10 +436,22 @@ const SimulationInfo = (props) => {
           name={name}
           yearList={yearList}
           selectedChartType={selectedChartType}
+          handleRender={handleRender}
         />
         <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
-        {renderResultView()}
-        {renderTotalView()}
+        {
+          renderStatus ? 
+            <> 
+              <>
+                {renderResultView()}
+              </>
+              <>
+                {renderTotalView()}
+              </>
+            </>
+            :
+            <></>
+        }
       </Grid>
     )
   }
@@ -460,8 +468,6 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           pkdSectionList={pkdSectionList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 2:
         return <ProvinceAdditionalOption
@@ -471,8 +477,6 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           provinceList={provinceList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 3:
         return <ClusterAdditionalOption
@@ -482,8 +486,6 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           clusterList={clusterList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 4:
         return <OccupationAdditionalOption
@@ -496,8 +498,6 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 5:
         return <PkdOccupationAdditionalOption
@@ -513,8 +513,6 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 6:
         return <ProvinceOccupationAdditionalOption
@@ -530,8 +528,6 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 7:
         return <ClusterOccupationAdditionalOption
@@ -547,8 +543,6 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           occupationSizeList={occupationSizeList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
       case 8:
         return <EducationAdditionalOption
@@ -561,8 +555,6 @@ const SimulationInfo = (props) => {
           educationList={educationList}
           ageList={ageList}
           showChartsMode={chartResultList}
-          ableRender={ableRender}
-          handleRender={handleRender}
         />
     }
   }
