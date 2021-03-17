@@ -47,7 +47,7 @@ const OccupationAdditionalOption = (props) => {
             />
           </Grid>
           {showChartsMode.length > 1 ?
-            <Grid item xs={2}>
+            <Grid item xs={4}>
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>
@@ -56,14 +56,6 @@ const OccupationAdditionalOption = (props) => {
             :
             <></>
           }
-          <Grid item xs={2}>
-            <div className={classes.secondTitleHeader}>
-              &nbsp;
-            </div>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
-              Pokaż
-            </Button>
-          </Grid>
         </Grid>
       </Card>
     </>

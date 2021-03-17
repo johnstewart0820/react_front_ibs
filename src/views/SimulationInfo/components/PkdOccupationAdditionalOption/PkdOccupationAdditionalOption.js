@@ -37,7 +37,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
             </div>
           </Grid>
           <Grid container spacing={2}>
-            <Grid item xs={2}>
+            <Grid item xs={4}>
               <div className={classes.multiTitleHeader}>
                 Wybierz sekcje PKD
               </div>
@@ -69,13 +69,6 @@ const ProvinceOccupationAdditionalOption = (props) => {
               :
               <></>
             }
-            <Grid item xs={2} style={{position: 'relative'}}>
-              <div style={{position: 'absolute', bottom: '8px', width: '95%'}}>
-                <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() =>handleRender()}>
-                  Pokaż
-                </Button>
-              </div>
-            </Grid>
           </Grid>
         </Grid>
       </Card>

@@ -30,7 +30,7 @@ const ProvinceAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={8}>
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
@@ -46,14 +46,6 @@ const ProvinceAdditionalOption = (props) => {
             :
             <></>
           }
-          <Grid item xs={3}>
-            <div className={classes.secondTitleHeader}>
-              &nbsp;
-            </div>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
-              Pokaż
-            </Button>
-          </Grid>
         </Grid>
       </Card>
     </>

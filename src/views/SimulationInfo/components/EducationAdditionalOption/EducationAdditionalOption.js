@@ -32,20 +32,20 @@ const EducationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <div className={classes.secondTitleHeader}>
               Wybierz Edukacja
             </div>
             <MultiSelect value={educationValue} handleChange={handleSelectedEducation} list={educationList}/>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <div className={classes.secondTitleHeader}>
               Wybierz Wiek
             </div>
             <MultiSelect value={ageValue} handleChange={handleSelectedAge} list={ageList}/>
           </Grid>
           {showChartsMode.length > 1 ?
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>
@@ -54,14 +54,6 @@ const EducationAdditionalOption = (props) => {
             :
             <></>
           }
-          <Grid item xs={3}>
-            <div className={classes.secondTitleHeader}>
-              &nbsp;
-            </div>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
-              Pokaż
-            </Button>
-          </Grid>
         </Grid>
       </Card>
     </>

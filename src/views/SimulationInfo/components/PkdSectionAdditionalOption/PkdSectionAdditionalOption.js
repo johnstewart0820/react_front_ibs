@@ -17,8 +17,6 @@ const PkdSectionAdditionalOption = (props) => {
     handleSelectedShowChartsMode,
     pkdSectionList,
     showChartsMode,
-    ableRender,
-    handleRender,
   } = props;
 
   return (
@@ -30,7 +28,7 @@ const PkdSectionAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={8}>
             <div className={classes.multiTitleHeader}>
               Wybierz sekcje PKD
             </div>
@@ -49,14 +47,6 @@ const PkdSectionAdditionalOption = (props) => {
             :
             <></>
           }
-          <Grid item xs={3}>
-            <div className={classes.secondTitleHeader}>
-              &nbsp;
-            </div>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} disabled={!ableRender} onClick={() => handleRender()}>
-              Pokaż
-            </Button>
-          </Grid>
         </Grid>
       </Card>
     </>

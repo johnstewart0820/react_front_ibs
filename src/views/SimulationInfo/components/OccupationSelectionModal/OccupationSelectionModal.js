@@ -152,13 +152,6 @@ const OccupationSelectionModal = (props) => {
                   />
                 </div>
               </Grid>
-              <Grid item xs={12}>
-                <Grid container spacing={0} justify="flex-end">
-                  <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleClose}>
-                    Zapisz wybór
-                  </Button>
-                </Grid>
-              </Grid>
             </Grid>
             {open ? <div className={classes.overBox} onClick={handleClose}/> : <></>}
             </>

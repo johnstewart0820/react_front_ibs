@@ -28,19 +28,6 @@ const ChartTableArea = (props) => {
           />
         </Card>
       </Grid>
-      {/* <Grid item xs={5} className={classes.controlContainer}>
-        <Card className={classes.tableBlock}>
-          <SortTable
-            selectedChartType={selectedChartType}
-            rows={tableData}
-            requestSort={requestSort}
-            sortOrder={sortOption.sortOrder}
-            sortBy={sortOption.sortBy}
-            field_list={field_list}
-            handleChangeTableData={setTableData}
-          />
-        </Card>
-      </Grid> */}
     </>
   );
 };
