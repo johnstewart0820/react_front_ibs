@@ -124,7 +124,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '60px'
   },
   unionLogo: {
-    backgroundImage: 'url(/images/logos/footer_logo.jpg)',
+    backgroundImage: 'url(/images/logos/footer_logo.png)',
     width: '550px',
   },
   textField: {

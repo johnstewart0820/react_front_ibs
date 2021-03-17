@@ -142,7 +142,7 @@ const SignIn = props => {
         </div>
       </div>
       <div className={classes.footerContainer}>
-        <img src="/images/logos/footer_logo.jpg" className={classes.unionLogo} />
+        <img src="/images/logos/footer_logo.png" className={classes.unionLogo} />
       </div>
       {
         progressStatus ?

@@ -14,8 +14,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(3),
     paddingTop: theme.spacing(5),
     paddingRight: theme.spacing(5),
-    paddingBottom: theme.spacing(8),
-    
+    paddingBottom: theme.spacing(5),
     fontFamily: 'roboto',
     marginBottom: '5px',
     marginLeft: '10px',
