@@ -182,7 +182,7 @@ const JobOffer = (props) => {
 
   const renderResultView = () => {
     let chart_title = 'Ilość ofert pracy - przekrój ';
-    chart_title += sectionList[selectedSection - 1].name;
+    chart_title += sectionList[selectedSection - 1].name.toLowerCase();
     if (parseInt(selectedChartType) === 1 || parseInt(selectedChartType) === 2 || parseInt(selectedChartType) === 3) {
       return <ChartTableArea 
         data={chart}

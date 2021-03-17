@@ -232,6 +232,7 @@ const SimulationInfoEdit = (props) => {
 
   const handleRender = () => {
     setTableData([]);
+    setProgressStatus(true);
     analyzes.getChartData(
       selectedChartType,
       selectedSection,
@@ -294,6 +295,7 @@ const SimulationInfoEdit = (props) => {
         } else {
         }
       }
+      setProgressStatus(false);
     })
     setRenderStatus(true);
   }
@@ -302,7 +304,7 @@ const SimulationInfoEdit = (props) => {
     if (parseInt(selectedChartType) === 3) {
       let chart_title = '';
       
-      chart_title += categoryList[selectedMapCategory - 1].name + ' - przekrój ';
+      chart_title += categoryList[selectedMapCategory - 1].name.charAt(0).toUpperCase() + categoryList[selectedMapCategory - 1].name.slice(1) + ' - przekrój ';
       chart_title += sectionList[selectedSection - 1].name.toLowerCase();
       if (parseInt(selectedSection) === 6) {
         return <MapProvinceArea
@@ -328,13 +330,14 @@ const SimulationInfoEdit = (props) => {
       let chart_title = '';
       if (selectedCategory.length > 0) {
         for(let i = 0; i < selectedCategory.length - 1; i ++) {
-          chart_title += categoryList[selectedCategory[i] - 1].name + '/';
+          chart_title += categoryList[selectedCategory[i] - 1].name.toLowerCase() + '/';
         }
-        chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name + ' - przekrój ';
+        chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name.toLowerCase() + ' - przekrój ';
         chart_title += sectionList[selectedSection - 1].name.toLowerCase();
       } else {
         chart_title = sectionList[selectedSection - 1].name.toLowerCase();
       }
+      chart_title = chart_title.charAt(0).toUpperCase() + chart_title.slice(1);
       return <ChartTableArea 
         data={chart}
         chartData={chartData}
