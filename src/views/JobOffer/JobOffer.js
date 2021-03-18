@@ -355,6 +355,9 @@ const JobOffer = (props) => {
                           <div className={classes.titleHeader}>
                             Wybierz klastry
                           </div>
+                          <div className={classes.subHeader}>
+                            (można wybrać max.8 klastrów jednocześnie)
+                          </div>
                           <div className={classes.bottom_block}>
                             <MultiSelect value={selectedCluster} handleChange={setSelectedCluster} list={clusterList} />
                           </div>

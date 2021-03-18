@@ -28,7 +28,22 @@ const ChartArea = (props) => {
   useEffect(() => {
     setChartData(chart_data);
   }, [chart_data]);
-
+  const convertData = (data) => {
+    let _arr = [];
+    _arr = data.map((item, index) => {
+      let luka = null, podaz = null, popyt = null, zat = null, Rok;
+      if (parseInt(item['Luka']) !== 0)
+        luka = item['Luka'];
+      if (parseInt(item['Podaż pracy']) !== 0)
+        podaz = item['Podaż pracy'];
+      if (parseInt(item['Popyt na pracę']) !== 0)
+        popyt = item['Luka'];
+      if (parseInt(item['Zatrudnienie']) !== 0)
+        zat = item['Zatrudnienie'];
+      return {'Luka': luka, 'Podaż pracy' : podaz, 'Popyt na pracę' : popyt, 'Zatrudnienie' : zat, 'Rok': item['Rok']};
+    })
+    return _arr;
+  }
   return (
     <>
       <Grid container spacing={0} className={classes.simulationView}>
@@ -40,7 +55,7 @@ const ChartArea = (props) => {
             </div>
             <ResponsiveContainer>
               <LineChart
-                data={item.data}
+                data={convertData(item.data)}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="Rok" />
