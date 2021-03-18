@@ -38,12 +38,6 @@ const OccupationSelectionModal = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setWidth(document.getElementById('btn_open').offsetWidth)
-  //   }
-  //   window.addEventListener('resize', handleResize)
-  // }, []);
   useEffect(() => {
     setWidth(document.getElementById('btn_open').offsetWidth);
   }, [open]);
@@ -51,11 +45,8 @@ const OccupationSelectionModal = (props) => {
     let result = [];
     let index_1 = 0;
     let index_2 = 0;
-
-    if (isInitialRender >= 2) {
-      handleSelectedOccupation([]);
-      setExpanded([]);
-    }
+    handleSelectedOccupation([]);
+    setExpanded([]);
 
     isInitialRender++;
     for (let i = 0; i < node.length; i++) {
@@ -96,15 +87,17 @@ const OccupationSelectionModal = (props) => {
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
+    <Grid container style={{height: '100%'}}>
+      <Grid item xs={5} style={{position: 'relative'}}>
         <div className={classes.secondTitleHeader}>
           Wybierz rodzaj grupy KZiS
         </div>
-        <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
+        <div style={{position: 'absolute', bottom: '0px', width: '95%'}}>
+          <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
+        </div>
       </Grid>
-      <Grid item xs={6}>
-        <div className={classes.secondTitleHeader}>
+      <Grid item xs={7} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
+        <div className={classes.secondTitleHeader} style={{height: '100%'}}>
           Zawód
         </div>
         <Grid item xs={12}>
@@ -148,13 +141,6 @@ const OccupationSelectionModal = (props) => {
                     checkModel="leaf"
                   />
                 </div>
-              </Grid>
-              <Grid item xs={12}>
-                <Grid container spacing={0} justify="flex-end">
-                  <Button variant="contained" color="secondary" className={classes.btnSave} onClick={handleClose}>
-                    Zapisz wybór
-                  </Button>
-                </Grid>
               </Grid>
             </Grid>
             {open ? <div className={classes.overBox} onClick={handleClose}/> : <></>}

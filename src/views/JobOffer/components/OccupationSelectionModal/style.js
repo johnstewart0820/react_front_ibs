@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.gray,
         
         fontFamily: 'roboto',
-        marginBottom: '55px',
+        marginBottom: '15px',
         fontWeight: '400'
     },
     input_box: {
@@ -69,7 +69,8 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         color: 'white',
-        width: '100%'
+        width: '100%',
+        borderRadius: '0px'
     },
     checkboxblock: {
         overflow: 'auto',
@@ -111,14 +112,15 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.gray_disable,
             color: 'darkgray'
         },
-        padding: '15px',
+        padding: '13px',
         border: '1px solid #626262',
         fontWeight: '400',
         backgroundColor: theme.palette.white,
         color: theme.palette.gray,
         width: '100%',
-        height: '100%',
-        zIndex: '100'
+        height: '56px',
+        zIndex: '100',
+        borderRadius: '0px'
     },
 }));
 

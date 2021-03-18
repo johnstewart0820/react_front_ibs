@@ -156,6 +156,15 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.gray,
         width: '100%'
     },
+    additional_block: {
+        position: 'relative',
+        height: '100%',
+    },
+    bottom_block: {
+        position: 'absolute',
+        bottom: '0px',
+        width: '100%',
+    },
     controlContainer: {
         height: '100%'
     },
