@@ -13,19 +13,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFont, faLink, faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Topbar = props => {
-  const { className, title, onSidebarOpen, onSidebarClose, ...rest } = props;
-  const [open, setOpen] = useState(true);
+  const { className, title, onSidebarOpen, onSidebarClose, openSidebar, ...rest } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const [avatarOpen, setAvatarOpen] = useState(Boolean(anchorEl));
   const classes = useStyles();
   let history = useHistory();
-
   const onMaxTopbar = () => {
-    if (open === true)
+    if (openSidebar === false)
       onSidebarOpen();
     else
       onSidebarClose();
-    setOpen(!open);
   }
 
   const handleClose = () => {
@@ -94,7 +91,7 @@ const Topbar = props => {
       <div className={classes.toolbar}>
         <div className={classes.titlebar}>
           <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
-            {open ? <KeyboardBackspaceIcon /> : <MenuIcon />}
+            {openSidebar ? <KeyboardBackspaceIcon /> : <MenuIcon />}
           </Button>
           <div className={classes.title}>
             {title}

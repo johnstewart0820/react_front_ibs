@@ -41,18 +41,18 @@ const Main = props => {
 
   const classes = useStyles();
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true
   });
 
   const [openSidebar, setOpenSidebar] = useState(true);
 
   const handleSidebarOpen = () => {
-    setOpenSidebar(false);
+    setOpenSidebar(true);
   };
 
   const handleSidebarClose = () => {
-    setOpenSidebar(true);
+    setOpenSidebar(false);
   };
 
   const shouldOpenSidebar = openSidebar;
@@ -61,10 +61,10 @@ const Main = props => {
     <div
       className={clsx({
         [classes.root]: true,
-        [classes.shiftContent]: openSidebar
+        [classes.shiftContent]: openSidebar && isDesktop
       })}
     >
-      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} className={!openSidebar ? classes.topbar_max : classes.topbar_min } title={props.title}/>
+      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar} className={!openSidebar || !isDesktop ? classes.topbar_max : classes.topbar_min } title={props.title}/>
       <Sidebar
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
