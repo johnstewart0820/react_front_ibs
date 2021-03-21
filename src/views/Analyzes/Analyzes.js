@@ -186,7 +186,7 @@ const Analyzes = props => {
             </Card>
           </Grid>
           <Grid item xs={12}>
-            <Card>
+            <Card className={classes.card}>
               <SortTable
                 rows={data}
                 requestSort={requestSort}

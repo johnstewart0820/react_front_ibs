@@ -51,7 +51,15 @@ const useStyles = makeStyles((theme) => ({
   headerBlock: {
     padding: '20px 20px 40px 20px',
     height: '100%',
-    border: theme.palette.contrastColor
+    border: theme.palette.contrastColor,
+    '& input': {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.black_white,
+      border: `1px solid ${theme.palette.text.primary}`,
+      '&::placeholder': {
+        color: theme.palette.text.primary,
+      }
+    }
   },
   buttonBlock: {
     display: 'flex',
@@ -79,14 +87,14 @@ const useStyles = makeStyles((theme) => ({
     },
     fontWeight: '300',
     backgroundColor: theme.palette.pink,
-    color: 'white',
+    color: theme.palette.black_white,
     width: '100%',
     height: '100%',
     padding: '10px',
     lineHeight: '1',
     '&:disabled': {
       backgroundColor: theme.palette.pink_disable,
-      color: 'darkgray'
+      color: theme.palette.black_white
     }
   },
   btnSee: {
@@ -99,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
       },
       '&:hover': {
           backgroundColor: theme.palette.pink,
-          color: 'white',
+          color: theme.palette.black_white,
       },
       fontWeight: '300',
       border: '1px solid #D6324B',
@@ -119,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover': {
         backgroundColor: theme.palette.gray,
-        color: 'white',
+        color: theme.palette.black_white,
     },
     fontWeight: '300',
     border: '1px solid #44545e',
@@ -130,12 +138,15 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1'
 },
   input_box: {
+'& svg': {
+            fill: theme.palette.text.primary
+        },
     padding: '12px 30px',
     fontSize: '0.8750em',
     width: '100%',
     fontFamily: 'roboto',
     '&::placeholder': {
-      color: 'gray',
+      color: theme.palette.black_white,
       fontWeight: '300',
       fontStyle: 'italic'
     }

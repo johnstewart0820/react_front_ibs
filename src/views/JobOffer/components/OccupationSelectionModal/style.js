@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         height: '600px'
     },
     closeIcon: {
-        color: 'white',
+        color: theme.palette.black_white,
         backgroundColor: theme.palette.pink
     },
     closeIconBlock: {
@@ -34,6 +34,9 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400'
     },
     input_box: {
+        '& svg': {
+            fill: theme.palette.text.primary
+        },
         padding: '17px 30px',
         fontSize: '0.8750em',
         width: '100%',
@@ -44,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '4px',
         marginTop: '1px',
         '&::placeholder': {
-          color: 'gray',
+          color: theme.palette.black_white,
           fontWeight: '400',
           fontStyle: 'italic'
         }
@@ -68,13 +71,14 @@ const useStyles = makeStyles(theme => ({
         // border: '1px solid #44545e',
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%',
         borderRadius: '0px'
     },
     checkboxblock: {
+        backgroundColor: theme.palette.black_white,
         overflow: 'auto',
-        height: '400px',
+        height: '300px',
         fontFamily: 'roboto',
         color: theme.palette.gray,
         padding: '20px 20px 20px 10px',
@@ -106,7 +110,7 @@ const useStyles = makeStyles(theme => ({
 
         },
         '&:hover': {
-            backgroundColor: theme.palette.white
+            backgroundColor: theme.palette.black_white
         },
         '&:disabled': {
             backgroundColor: theme.palette.gray_disable,
@@ -115,8 +119,8 @@ const useStyles = makeStyles(theme => ({
         padding: '13px',
         border: '1px solid #626262',
         fontWeight: '400',
-        backgroundColor: theme.palette.white,
-        color: theme.palette.gray,
+        backgroundColor: theme.palette.black_white,
+        color: theme.palette.text.primary,
         width: '100%',
         height: '56px',
         zIndex: '100',

@@ -21,6 +21,8 @@ const mainBackground = white;
 const contrastColor = 'none';
 const table_head = '#fafafa';
 const input_back = white;
+const black_white = white;
+const white_yellow = white;
 export default {
   black,
   white,
@@ -43,6 +45,8 @@ export default {
   contrastColor,
   table_head,
   input_back,
+  black_white,
+  white_yellow,
   primary: {
     contrastText: white,
     dark: colors.indigo[900],

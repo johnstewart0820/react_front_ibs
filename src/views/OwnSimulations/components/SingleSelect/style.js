@@ -9,11 +9,16 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.select_title,
         fontWeight: '400',
         '& .MuiInputLabel-outlined .MuiInputLabel-shrink': {
-            transform: 'translate(14px -100px) scale(0.5)'
-        }
+            transform: 'translate(14px -100px) scale(0.5)',
+        },
     },
-    select: {
-        border: theme.palette.contrastColor,
+    input_box: {
+'& svg': {
+            fill: theme.palette.text.primary
+        },
+        '& select': {
+            border: `1px solid ${theme.palette.gray}`,
+        },
     }
 }));
 

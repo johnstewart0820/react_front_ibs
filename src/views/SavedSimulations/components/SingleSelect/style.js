@@ -6,6 +6,12 @@ const useStyles = makeStyles(theme => ({
         marginRight: '10px'
     },
     name_select_box: {
+        '& svg': {
+            fill: theme.palette.text.primary
+        },
+        '& select': {
+            border: `1px solid ${theme.palette.gray}`,
+        },
         // fontStyle: 'italic',
         fontWeight: '400',
         // padding: '5px 14px',

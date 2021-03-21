@@ -12,7 +12,13 @@ const useStyles = makeStyles(theme => ({
         height: '100%'
     },
     tooltip: {
-        padding: '5px'
+        padding: '5px',
+        position: 'absolute', 
+        display: 'none', 
+        zIndex: 100, 
+        backgroundColor: theme.palette.black, 
+        color: theme.palette.white_yellow, 
+        fontFamily: 'roboto' 
     },
     chart_title: {
         fontFamily: 'roboto',
@@ -36,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     btnExport: {
@@ -49,7 +55,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.gray,
-            color: 'white'
+            color: theme.palette.black_white
         },
         padding: '4px',
         fontWeight: '400',

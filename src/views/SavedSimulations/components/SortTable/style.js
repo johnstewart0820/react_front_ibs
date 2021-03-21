@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         },
         fontWeight: '300',
         backgroundColor: theme.palette.pink,
-        color: 'white',
+        color: theme.palette.black_white,
         height: '100%',
         width: '100%',
         lineHeight: '1',

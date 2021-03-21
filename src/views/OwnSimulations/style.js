@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
     },
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
-    color: 'white',
+    color: theme.palette.black_white,
     width: '100%',
     height: '100%',
     lineHeight: '1',
@@ -103,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
       },
       '&:hover': {
           backgroundColor: theme.palette.blue,
-          color: 'white',
+          color: theme.palette.black_white,
       },
       fontWeight: '300',
       border: `1px solid ${theme.palette.blue}`,
@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover': {
         backgroundColor: theme.palette.pink,
-        color: 'white',
+        color: theme.palette.black_white,
     },
     fontWeight: '300',
     border: `1px solid ${theme.palette.pink}`,
@@ -134,13 +134,19 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '1'
 },
   input_box: {
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.black_white,
+    border: `1px solid ${theme.palette.text.primary}`,
+'& svg': {
+            fill: theme.palette.text.primary
+        },
     padding: '12px 30px',
     fontSize: '0.8750em',
     marginTop: '20px',
     width: '100%',
     fontFamily: 'roboto',
     '&::placeholder': {
-      color: 'gray',
+      color: theme.palette.text.primary,
       fontWeight: '300',
       fontStyle: 'italic'
     },

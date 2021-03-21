@@ -20,8 +20,8 @@ import { useToasts } from 'react-toast-notifications'
 import contents from '../../apis/contents';
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
+    backgroundColor: theme.palette.black_white,
+    color: theme.palette.text.primary,
     borderBottom: '1px solid gray'
   },
   body: {

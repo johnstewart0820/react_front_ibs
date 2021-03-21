@@ -48,7 +48,7 @@ const ForecastingModule = (props) => {
           <Grid item xs={12}>
             <div className={classes.title}>
               Wybierz symulację do analizy wyników
-          </div>
+            </div>
           </Grid>
           <Grid item xs={5}>
             <Autocomplete

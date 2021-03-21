@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         padding: '6px',
         fontWeight: 300,
         backgroundColor: theme.palette.blue,
-        color: 'white',
+        // color: theme.palette.black_white,
         width: '100%',
         height: '100%'
     },
@@ -41,31 +41,40 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.pink,
-            color: 'white',
+            color: theme.palette.black_white,
         },
         padding: '4px 20px',
         fontWeight: 400,
-        border: '1px solid #D6324B',
+        border: `1px solid ${theme.palette.pink}`,
         backgroundColor: theme.palette.background.default,
         color: theme.palette.pink,
         width: '100%'
     },
     name_select_box: {
-        color: theme.palette.gray,
-        border: theme.palette.contrastColor,
-        '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] .MuiAutocomplete-input' : {
-            padding: '3.5px 4px',
-            color: theme.palette.gray,
-            fontWeight: 400,
+        '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]': {
+          padding: '2px 10px',
+          borderRadius: '0px',
+          border: '0px'
         },
-        '& ::placeholder': {
-            fontStyle: 'italic',
-            marginTop: '-5px',
-            color: theme.palette.gray,
-            fontWeight: 400
+        '& fieldset': {
+          border: `1px solid ${theme.palette.gray}`,
         },
-
-    },
+        '& .MuiChip-root': {
+          borderRadius: '2px',
+          backgroundColor: theme.palette.gray,
+          color: theme.palette.black_white,
+          padding: '0px 10px',
+          height: '26px'
+        }, 
+        '& .MuiAutocomplete-popper': {
+            color: 'red',
+            backgroundcolor: theme.palette.black_white
+        },
+        '& svg': {
+            color: theme.palette.text.primary
+        }
+      },
+      
     progressContainer: {
         position: 'absolute',
         top: '50%',

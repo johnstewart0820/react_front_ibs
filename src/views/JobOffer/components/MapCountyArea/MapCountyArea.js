@@ -57,7 +57,7 @@ const MapCountyArea = (props) => {
           </div>
           <Grid container>
             <Grid item xs={9}>
-              <div id="tooltip" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />
+              <div id="tooltip" className={classes.tooltip}/>
               <ReactSVG
                 afterInjection={(error, svg) => {
                   for (let i = 0; i < svg.children.length; i++) {

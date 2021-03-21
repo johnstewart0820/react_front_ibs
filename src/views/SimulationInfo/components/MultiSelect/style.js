@@ -17,7 +17,10 @@ const useStyles = makeStyles(theme => ({
             border: `1px solid ${theme.palette.gray}`,
             borderRadius: '4px',
         },
-        marginTop: '-1px !important'
+        marginTop: '-1px !important',
+        '& svg': {
+            color: theme.palette.text.primary
+        }
     },
     list_item: {
         '&.MuiMenuItem-root': {

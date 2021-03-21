@@ -2,11 +2,12 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     card: {
-        backgroundColor: theme.palette.topbar_background
+        backgroundColor: theme.palette.topbar_background,
+        border: theme.palette.contrastColor
     },
     mainContainer: {
         padding: '30px 40px 30px 20px',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleBlock: {
         display: 'flex',
@@ -60,10 +61,8 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.blue
         },
         padding: '4px',
-        border: '1px solid #D6324B',
         fontWeight: 300,
         backgroundColor: theme.palette.blue,
-        color: 'white',
         width: '100%'
     },
     simulationBlock: {
@@ -77,7 +76,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.blue,
-            color: 'white',
+            color: theme.palette.black_white,
         },
         padding: '4px 20px',
         fontWeight: '400',
@@ -97,7 +96,8 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.pink
     },
     secondContainer: {
-        marginTop: '20px'
+border: theme.palette.contrastColor,
+        marginTop: '20px',
     },
     thirdContainer: {
         marginTop: '10px',
@@ -105,6 +105,8 @@ const useStyles = makeStyles(theme => ({
     controlBlock: {
         padding: '30px 40px 30px 20px',
         height: '100%'
+    },
+    tableBlock: {
     },
     btnSave: {
         '& .MuiButton-label': {
@@ -121,7 +123,6 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
-        color: 'white',
         width: '100%'
     },
     btnExport: {
@@ -134,7 +135,6 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.gray,
-            color: 'white'
         },
         padding: '4px',
         fontWeight: '400',
@@ -145,6 +145,14 @@ const useStyles = makeStyles(theme => ({
     },
     controlContainer: {
         height: '100%'
+    },
+    controlGrid: {
+        padding: '10px'
+    },
+    totalView: {
+        width: '100%',
+        overflow: 'auto',
+        border: theme.palette.contrastColor
     }
 }));
 

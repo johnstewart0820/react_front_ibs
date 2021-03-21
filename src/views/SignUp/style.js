@@ -64,6 +64,9 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '10px'
   },
   input_box: {
+'& svg': {
+            fill: theme.palette.text.primary
+        },
     padding: '12px 30px',
     
     marginTop: '20px',
@@ -92,7 +95,7 @@ const useStyles = makeStyles(theme => ({
     padding: '4px',
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
-    color: 'white',
+    color: theme.palette.black_white,
     width: '100%',
     marginBottom: '20px'
   },

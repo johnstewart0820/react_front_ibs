@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
     titleBlock: {
         display: 'flex',
     },
+    table: {
+        border: theme.palette.contrastColor
+    },
     mainHeader: {
         color: theme.palette.gray,
         fontSize: '1.125em',
@@ -64,10 +67,10 @@ const useStyles = makeStyles(theme => ({
         },
         zIndex: 0,
         padding: '4px',
-        border: '1px solid #D6324B',
+        border: 'none',
         fontWeight: '400',
         backgroundColor: theme.palette.pink,
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     simulationBlock: {
@@ -84,7 +87,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.pink,
-            color: 'white',
+            color: theme.palette.black_white,
         },
         padding: '4px 20px',
         fontWeight: '400',
@@ -104,6 +107,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.pink
     },
     secondContainer: {
+border: theme.palette.contrastColor,
         marginTop: '20px'
     },
 }));

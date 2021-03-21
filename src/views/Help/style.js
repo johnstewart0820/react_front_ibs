@@ -38,10 +38,12 @@ const useStyles = makeStyles((theme) => ({
     padding: '30px 30px 30px 30px',
     '& img': {
       width: '100%'
-    }
+    },
+    border: theme.palette.contrastColor
   },
   downloadBlock: {
     padding: '30px 30px 30px 30px',
+    border: theme.palette.contrastColor
   },
   controlBlock: {
     padding: '30px 30px 70px 30px',
@@ -81,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #D6324B',
     fontWeight: '300',
     backgroundColor: theme.palette.pink,
-    color: 'white',
+    color: theme.palette.black_white,
     marginLeft: '20px',
     marginRight: '20px',
     paddingLeft: '40px',

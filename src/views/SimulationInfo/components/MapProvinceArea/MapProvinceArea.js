@@ -54,7 +54,7 @@ const MapProvinceArea = (props) => {
           </div>
           <Grid container>
             <Grid item xs={8}>
-              <div id="tooltip" className={classes.tooltip} display="none" style={{ position: 'absolute', display: 'none', zIndex: 100, backgroundColor: 'black', color: 'white', fontFamily: 'roboto' }} />
+              <div id="tooltip" className={classes.tooltip} display="none" />
               <ReactSVG
                     afterInjection={(error, svg) => {
                       let list = [];

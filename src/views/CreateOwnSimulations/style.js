@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     },
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
-    color: 'white',
+    color: theme.palette.black_white,
     width: '100%',
     height: '44px',
     lineHeight: '1'
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '&:hover': {
         backgroundColor: theme.palette.gray,
-        color: 'white',
+        color: theme.palette.black_white,
     },
     '&:disabled': {
       backgroundColor: theme.palette.gray_disable,
@@ -119,13 +119,16 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '300',
     // border: '1px solid gray',
     backgroundColor: theme.palette.gray,
-    color: 'white',
+    color: theme.palette.black_white,
     lineHeight: '1'
 },
 btn: {
   padding: '15px 40px'
 },
   input_box: {
+'& svg': {
+            fill: theme.palette.text.primary
+        },
     padding: '12px 30px',
     fontSize: '0.8750em',
     width: '100%',
@@ -158,24 +161,24 @@ btn: {
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    border: '1px solid #D6324B',
+    border: `1px solid ${theme.palette.pink}`,
     color: theme.palette.pink,
     marginRight: '-1px',
     cursor: 'pointer',
     '&:hover': {
         backgroundColor: theme.palette.pink,
-        color: 'white',            
+        color: theme.palette.black_white,            
     }
   },
   seriesLabelItemActive: {
       backgroundColor: theme.palette.pink,
-      color: 'white',
+      color: theme.palette.black_white,
   },
   scenariosDescription: {
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: theme.palette.gray,
-    color: 'white',
+    color: theme.palette.black_white,
     padding: '10px',
     marginTop: '30px',
     fontWeight: '300'
@@ -187,7 +190,7 @@ btn: {
     paddingTop: '10px',
     marginBottom: '10px',
     border: '1px solid #44545e',
-    color: 'white'
+    color: theme.palette.black_white
   },
   whiteHeaderLabel: {
     textAlign: 'center',
@@ -216,15 +219,24 @@ btn: {
     display: 'inline-flex'
   },
   input_box: {
+'& svg': {
+            fill: theme.palette.text.primary
+        },
     padding: '12px 10px',
     fontSize: '0.8750em',
     width: '100%',
-    border: '1px solid gray',
+    border: `1px solid ${theme.palette.text.primary}`,
+    backgroundColor: theme.palette.black_white,
+    color: theme.palette.text.primary,
+    '&::placeholder': {
+      color: theme.palette.text.primary,
+      fontStyle: 'italic' 
+    }
   },
   input_box_black: {
     backgroundColor: theme.palette.gray,
     border: '1px solid gray',
-    color: 'white'
+    color: theme.palette.black_white
   },
   overflowBlock: {
     overflow: 'auto',

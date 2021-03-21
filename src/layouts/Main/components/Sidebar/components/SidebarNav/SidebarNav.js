@@ -120,7 +120,7 @@ const SidebarNav = props => {
             component={CustomRouterLink}
             to={page.href}
           >
-            <div className={classes.icon}>{page.icon}</div>
+            <img className={classes.icon} src={page.icon} />
             <div className={classes.title}>
               {page.title}
             </div>
@@ -148,7 +148,8 @@ const SidebarNav = props => {
                         component={CustomRouterLink}
                         to={item.href}
                       >
-                        <div className={classes.icon}>{item.icon}</div>
+                        <img className={classes.icon} src={item.icon} />
+                        {/* <div className={classes.icon}>{item.icon}</div> */}
                         <div className={classes.title}>
                           {item.title}
                         </div>

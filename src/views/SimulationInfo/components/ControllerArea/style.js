@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         padding: '4px',
         fontWeight: '400',
         backgroundColor: theme.palette.blue,
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     btnExport: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.blue,
-            color: 'white'
+            color: theme.palette.black_white
         },
         padding: '4px',
         fontWeight: '400',

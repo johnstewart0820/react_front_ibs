@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   normalBlock: {
     padding: '20px 20px 20px 20px',
+    border: theme.palette.contrastColor
   },
   flexBlock: {
     display: 'flex',
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     },
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
-    color: 'white',
+    color: theme.palette.black_white,
     width: '100%',
     height: '100%',
     lineHeight: '1',
@@ -80,11 +81,17 @@ const useStyles = makeStyles((theme) => ({
     width: '200px',
     fontSize: '0.8750em',
     fontFamily: 'roboto',
+    backgroundColor: theme.palette.black_white,
+    color: theme.palette.text.primary,
+    border: `1px solid ${theme.palette.text.primary}`,
     '&::placeholder': {
       color: theme.palette.gray,
       fontWeight: '400',
       fontStyle: 'italic'
     }
+  },
+  card: {
+    border: theme.palette.contrastColor
   },
   progressContainer: {
     position: 'absolute',

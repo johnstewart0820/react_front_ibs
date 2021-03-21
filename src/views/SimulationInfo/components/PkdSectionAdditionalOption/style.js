@@ -73,7 +73,7 @@ const useStyles = makeStyles(theme => ({
         border: 'none',
         fontWeight: '400',
         backgroundColor: theme.palette.blue,
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%',
         height: '50px'
     },
@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.pink,
-            color: 'white',
+            color: theme.palette.black_white,
         },
         padding: '4px 20px',
         fontWeight: '400',
@@ -111,6 +111,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.pink
     },
     secondContainer: {
+border: theme.palette.contrastColor,
         marginTop: '20px',
         border: theme.palette.contrastColor
     },

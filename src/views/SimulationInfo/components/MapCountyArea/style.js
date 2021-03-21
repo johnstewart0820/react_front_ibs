@@ -18,6 +18,14 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
         marginBottom: theme.spacing(2)
     },
+    tooltip: {
+        position: 'absolute', 
+        display: 'none', 
+        zIndex: 100, 
+        backgroundColor: theme.palette.black, 
+        color: theme.palette.white_yellow, 
+        fontFamily: 'roboto'
+    },
     btnSave: {
         '& .MuiButton-label': {
             textTransform: 'none',
@@ -33,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     btnExport: {
@@ -46,7 +54,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.gray,
-            color: 'white'
+            color: theme.palette.black_white
         },
         padding: '4px',
         fontWeight: '400',

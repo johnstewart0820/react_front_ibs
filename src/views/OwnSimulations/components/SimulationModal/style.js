@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         height: '600px'
     },
     closeIcon: {
-        color: 'white',
+        color: theme.palette.black_white,
         backgroundColor: theme.palette.pink
     },
     closeIconBlock: {

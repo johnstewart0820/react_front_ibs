@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         width: '400px',
     },
     closeIcon: {
-        color: 'white',
+        color: theme.palette.black_white,
         backgroundColor: theme.palette.pink
     },
     closeIconBlock: {
@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'flex-end'
     },
     input_box: {
+'& svg': {
+            fill: theme.palette.text.primary
+        },
         padding: '12px 30px',
         
         width: '100%',
@@ -52,7 +55,7 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid #D6324B',
         fontWeight: '400',
         backgroundColor: theme.palette.pink,
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
 }));

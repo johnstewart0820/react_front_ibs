@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     chart_title: {
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.gray,
-            color: 'white'
+            color: theme.palette.black_white
         },
         padding: '4px',
         fontWeight: '400',

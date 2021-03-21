@@ -15,7 +15,13 @@ const useStyles = makeStyles(theme => ({
         },
         '& .MuiSelect-outlined.MuiSelect-outlined': {
             padding: '10px 30px 10px 20px !important'
-        }
+        },
+        '& svg': {
+            fill: theme.palette.text.primary
+        },
+        '& select': {
+            border: `1px solid ${theme.palette.gray}`,
+        },
     },
 }));
 

@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Drawer, Button } from '@material-ui/core';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleIcon from '@material-ui/icons/People';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import ImageIcon from '@material-ui/icons/Image';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import {
+	KokpitIcon,
+	JobIcon,
+	ModuleIcon,
+	HelpIcon,
+	ProfileIcon,
+	LogoutIcon,
+	SavedAnalyzeIcon,
+	SimulationIcon,
+	SavedSimulationIcon
+} from './svgs/icons';
 import storage from '../../../../utils/storage';
 import { SidebarNav } from './components';
 import { withRouter, Link } from 'react-router-dom';
@@ -25,37 +26,37 @@ const Sidebar = props => {
     {
       title: 'Kokpit',
       href: '/cockpit',
-      icon: <DashboardIcon />
+      icon: KokpitIcon
     },
     {
       title: 'Moduł prognostyczny',
       href: '/forecasting_module',
-      icon: <PeopleIcon />
+      icon: ModuleIcon
     },
     {
       title: 'Własne symulacje',
       href: '/own_simulations',
-      icon: <ShoppingBasketIcon />
+      icon: SimulationIcon
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
-      icon: <AccountBoxIcon />
+      icon: SavedSimulationIcon
     },
     {
       title: 'Zapisane analizy',
       href: '/analyzes',
-      icon: <ImageIcon />
+      icon: SavedAnalyzeIcon
     },
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
-      icon: <LockOpenIcon />
+      icon: JobIcon
     },
     {
       title: 'Pomoc',
       href: '/help',
-      icon: <HelpOutlineOutlinedIcon />
+      icon: HelpIcon
     },
     // {
     //   title: 'Twój Profil',
@@ -65,7 +66,7 @@ const Sidebar = props => {
     {
       title: 'Wyloguj',
       href: '/login',
-      icon: <ExitToAppIcon />
+      icon: LogoutIcon
     },
   ];
 
@@ -73,37 +74,37 @@ const Sidebar = props => {
     {
       title: 'Kokpit',
       href: '/cockpit',
-      icon: <DashboardIcon />
+      icon: KokpitIcon
     },
     {
       title: 'Moduł prognostyczny',
       href: '/forecasting_module',
-      icon: <PeopleIcon />
+      icon: ModuleIcon
     },
     {
       title: 'Własne symulacje',
       href: '/own_simulations',
-      icon: <ShoppingBasketIcon />
+      icon: SimulationIcon
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
-      icon: <AccountBoxIcon />
+      icon: SavedSimulationIcon
     },
     {
       title: 'Zapisane analizy',
       href: '/analyzes',
-      icon: <ImageIcon />
+      icon: SavedAnalyzeIcon
     },
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
-      icon: <LockOpenIcon />
+      icon: JobIcon
     },
     {
       title: 'Pomoc',
       href: '/help',
-      icon: <HelpOutlineOutlinedIcon />
+      icon: HelpIcon
     },
     // {
     //   title: 'Twój Profil',
@@ -113,21 +114,21 @@ const Sidebar = props => {
     {
       title: 'Wyloguj',
       href: '/login',
-      icon: <ExitToAppIcon />
+      icon: LogoutIcon
     },
     {
       title: 'Zarządzanie',
       href: '#',
-      icon: <SettingsIcon />,
+      icon: ProfileIcon,
       sub: [{
         title: 'Zarządzanie treścią',
         href: '/content_management',
-        icon: <SettingsIcon />
+        icon: HelpIcon
       },
       {
         title: 'Import Ofert Pracy',
         href: '/import_job_offer',
-        icon: <LockOpenIcon />
+        icon: JobIcon
       }]
     },
   ];

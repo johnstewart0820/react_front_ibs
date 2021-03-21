@@ -50,12 +50,12 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer',
         '&:hover': {
             backgroundColor: theme.palette.blue,
-            color: 'white',            
+            color: theme.palette.black_white,            
         }
     },
     seriesLabelItemActive: {
         backgroundColor: theme.palette.blue,
-        color: 'white',
+        color: theme.palette.black_white,
     },
     progressContainer: {
         position: 'absolute',

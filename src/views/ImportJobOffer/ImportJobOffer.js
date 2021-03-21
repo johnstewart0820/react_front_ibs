@@ -179,6 +179,7 @@ const ImportJobOffer = props => {
                   Od :
                 </div>
                 <MonthPickerInput
+                  className={classes.month_date_picker}
                   value={new Date()}
                   onChangeYearUpdate={false}
                   onChange={function (label,selectedYear,selectedMonth) {

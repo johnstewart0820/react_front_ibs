@@ -51,7 +51,8 @@ const useStyles = makeStyles(theme => ({
       display: 'flex'
     },
     avataricon: {
-      fontSize: '2.5em'
+      fontSize: '2.5em',
+      color: theme.palette.text.primary,
     },
     helper: {
       color: theme.palette.blue,

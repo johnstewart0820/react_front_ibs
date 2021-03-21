@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
     },
     controlBlock: {
         padding: '30px 40px 30px 20px',
-        height: '100%'
+        height: '100%',
+        border: theme.palette.contrastColor
     },
     chart_title: {
         fontFamily: 'roboto',
@@ -33,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     btnExport: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.gray,
-            color: 'white'
+            color: theme.palette.black_white
         },
         padding: '4px',
         fontWeight: '400',

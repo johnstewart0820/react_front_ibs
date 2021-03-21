@@ -100,30 +100,37 @@ const Topbar = props => {
         <div className={classes.rightControllerArea}>
           <div className={classes.controllerArea}>
             <div className={classes.vertical_separator}/>
-            <a href="#" className={classes.helper} name="plus"
-              onClick={(e) => changeFontSize(e)}>
-              <FontAwesomeIcon icon={faFont} size="2x" />
-              <FontAwesomeIcon icon={faPlus} size="1x" />
-            </a>
+            <Button onClick={(e) => changeFontSize(e)}>
+              <div className={classes.helper} name="plus">
+                <FontAwesomeIcon icon={faFont} size="2x" />
+                <FontAwesomeIcon icon={faPlus} size="1x" />
+              </div>
+            </Button>
             <div className={classes.vertical_separator}/>
-            <a href="#" className={classes.helper} name="normal"
-                onClick={(e) => changeFontSize(e)}>
-                <FontAwesomeIcon icon={faFont} size="2x"/>
-            </a>
+            <Button onClick={(e) => changeFontSize(e)}>
+              <div href="#" className={classes.helper} name="normal">
+                  <FontAwesomeIcon icon={faFont} size="2x"/>
+              </div>
+            </Button>
             <div className={classes.vertical_separator}/>
-            <a href="#" className={classes.helper} name="minus"
-                onClick={(e) => changeFontSize(e)}>
-                <FontAwesomeIcon icon={faFont} size="2x"/>
-                <FontAwesomeIcon icon={faMinus} size="1x"/>
-            </a>
+            <Button onClick={(e) => changeFontSize(e)}>
+              <div href="#" className={classes.helper} name="minus">
+                  <FontAwesomeIcon icon={faFont} size="2x"/>
+                  <FontAwesomeIcon icon={faMinus} size="1x"/>
+              </div>
+            </Button>
             <div className={classes.vertical_separator}/>
-            <a href="#" className={classes.helper} onClick={(e) => {e.preventDefault(); props.toggleContrast();}}>
-                <FontAwesomeIcon icon={faEye} size="2x"/>
-            </a>
+            <Button onClick={(e) => {e.preventDefault(); props.toggleContrast();}}>
+              <div href="#" className={classes.helper} >
+                  <FontAwesomeIcon icon={faEye} size="2x"/>
+              </div>
+            </Button>
             <div className={classes.vertical_separator}/>
-            <a href="#" className={classes.helper} onClick={(e) => toggleUnderlineLinks(e)}>
-                <FontAwesomeIcon icon={faLink} size="2x"/>
-            </a>
+            <Button onClick={(e) => toggleUnderlineLinks(e)}>
+              <div href="#" className={classes.helper}>
+                  <FontAwesomeIcon icon={faLink} size="2x"/>
+              </div>
+            </Button>
             <div className={classes.vertical_separator}/>
           </div>
           <div className={classes.avatar}>

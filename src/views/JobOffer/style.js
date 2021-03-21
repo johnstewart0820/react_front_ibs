@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
         border: 'none',
         fontWeight: 300,
         backgroundColor: theme.palette.blue,
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%',
         height: '54px',
         marginTop: '72px'
@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.pink,
-            color: 'white',
+            color: theme.palette.black_white,
         },
         padding: '4px 20px',
         fontWeight: '400',
@@ -108,6 +108,7 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.pink
     },
     secondContainer: {
+    border: theme.palette.contrastColor,
         marginTop: '20px'
     },
     thirdContainer: {
@@ -134,7 +135,7 @@ const useStyles = makeStyles(theme => ({
         fontWeight: '400',
         backgroundColor: theme.palette.gray,
         border: '1px solid #44545e',
-        color: 'white',
+        color: theme.palette.black_white,
         width: '100%'
     },
     btnExport: {
@@ -147,7 +148,7 @@ const useStyles = makeStyles(theme => ({
         },
         '&:hover': {
             backgroundColor: theme.palette.gray,
-            color: 'white'
+            color: theme.palette.black_white
         },
         padding: '4px',
         fontWeight: '400',
@@ -173,7 +174,8 @@ const useStyles = makeStyles(theme => ({
     },
     totalView: {
         width: '100%',
-        overflow: 'auto'
+        overflow: 'auto',
+        border: theme.palette.contrastColor
     }
 }));
 

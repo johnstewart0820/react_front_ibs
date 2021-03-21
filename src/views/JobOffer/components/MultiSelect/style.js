@@ -14,10 +14,13 @@ const useStyles = makeStyles(theme => ({
     multiple_select: {
         '& .MuiSelect-outlined.MuiSelect-outlined': {
             padding: '18.5px 14px',
-            border: '1px solid gray',
+            border: `1px solid ${theme.palette.gray}`,
             borderRadius: '4px',
         },
-        marginTop: '-1px !important'
+        marginTop: '-1px !important',
+        '& svg': {
+            color: theme.palette.text.primary
+        }
     }
 }));
 
