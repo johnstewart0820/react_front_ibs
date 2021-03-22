@@ -11,6 +11,12 @@ const useStyles = makeStyles(theme => ({
     padding: '30px 20px 80px 30px',
     backgroundColor: theme.palette.topbar_background
   },
+  notify: {
+    marginTop: theme.spacing(2),
+    fontFamily: 'roboto',
+    fontSize: '14px',
+    color: 'red'
+  },
   input_box: {
 '& svg': {
             fill: theme.palette.text.primary

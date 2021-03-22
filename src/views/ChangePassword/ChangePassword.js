@@ -54,7 +54,8 @@ const ChangePassword = (props) => {
     } else {
       arr["old_password"] = "";
     }
-    if (input["new_password"] && input["new_password"].length <= 5) {
+    var pass_pattern = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
+    if (!pass_pattern.test(input["new_password"])) {
       arr["new_password"] = constants.ENTER_PASSWORD;
     } else {
       arr["new_password"] = "";
@@ -81,6 +82,7 @@ const ChangePassword = (props) => {
               </div>
               <input className={classes.input_box} type="password" name="old_password" value={input.old_password} onChange={handleChange} onKeyPress={handleKeyPress}/>
               <div className={classes.error_log}>{error["old_password"] && error["old_password"].length > 0 && error.old_password}</div>
+              <div className={classes.notify}>Hasło musi zawierać minimum 8 znaków, małe i wielkie litery oraz cyfry, a dodatkowo posiadać minimum jeden znak specjalny: !,@,#,?</div>
               <div className={classes.title}>
                 Nowe hasło
               </div>
