@@ -26,11 +26,21 @@ const useStyles = makeStyles(theme => ({
     
     color: theme.palette.sidebar_color,
     lineHeight: '1em',
+    '& path': {
+			fill: theme.palette.sidebar_title_color,
+		},
     '&:hover': {
       backgroundColor: theme.palette.sidebar_active_background,
       color: theme.palette.sidebar_active_color,
       fontWeight: 400,
-      borderRadius: '0px'
+      borderRadius: '0px',
+      
+      '& $icon': {
+        color: theme.palette.sidebar_hover_color,
+				'& path': {
+					fill: theme.palette.sidebar_active_color,
+				}
+      },
     },
   },
   button_sub: {
@@ -43,26 +53,42 @@ const useStyles = makeStyles(theme => ({
     
     color: theme.palette.sidebar_color,
     lineHeight: '1em',
+    '& path': {
+			fill: theme.palette.sidebar_title_color,
+		},
     '&:hover': {
       backgroundColor: theme.palette.sidebar_active_background,
-      color: theme.palette.sidebar_active_color,
+      color: theme.palette.sidebar_hover_color,
       fontWeight: 400,
-      borderRadius: '0px'
+      borderRadius: '0px',
+      	
+      '& $icon': {
+        color: theme.palette.sidebar_hover_color,
+				'& path': {
+					fill: theme.palette.sidebar_active_color,
+				}
+      },
     },
   },
   icon: {
-    color: theme.palette.sidebar_color,
+    // color: theme.palette.sidebar_color,
     width: 20,
     height: 20,
     display: 'flex',
     alignItems: 'center',
     marginRight: theme.spacing(3),
-    '&:hover': {
-      color: theme.palette.sidebar_active_color
-    },
+    // '&:hover': {
+    //   color: theme.palette.sidebar_active_color,
+    //   '& path': {
+		// 		fill: theme.palette.sidebar_active_color,
+		// 	}
+    // },
   },
   active: {
     fontWeight: 400,
+    '& path': {
+			fill: theme.palette.sidebar_hover_color,
+		},
     '& $icon': {
       color: theme.palette.sidebar_active_color
     },
@@ -120,7 +146,7 @@ const SidebarNav = props => {
             component={CustomRouterLink}
             to={page.href}
           >
-            <img className={classes.icon} src={page.icon} />
+            <div className={classes.icon}>{page.icon}</div>
             <div className={classes.title}>
               {page.title}
             </div>
@@ -148,7 +174,7 @@ const SidebarNav = props => {
                         component={CustomRouterLink}
                         to={item.href}
                       >
-                        <img className={classes.icon} src={item.icon} />
+                        <div className={classes.icon}>{item.icon}</div>
                         {/* <div className={classes.icon}>{item.icon}</div> */}
                         <div className={classes.title}>
                           {item.title}

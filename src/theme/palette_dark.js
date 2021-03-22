@@ -25,6 +25,8 @@ const table_head = black;
 const input_back = black;
 const black_white = black;
 const white_yellow = yellow;
+const sidebar_title_color = yellow;
+const sidebar_hover_color = black;
 export default {
   black,
   input_back,
@@ -49,6 +51,8 @@ export default {
   table_head,
   black_white,
   white_yellow,
+  sidebar_title_color,
+  sidebar_hover_color,
   primary: {
     contrastText: black,
     dark: colors.indigo[900],

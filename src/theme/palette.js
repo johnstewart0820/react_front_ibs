@@ -23,6 +23,8 @@ const table_head = '#fafafa';
 const input_back = white;
 const black_white = white;
 const white_yellow = white;
+const sidebar_title_color = 'gray';
+const sidebar_hover_color = 'white';
 export default {
   black,
   white,
@@ -47,6 +49,8 @@ export default {
   input_back,
   black_white,
   white_yellow,
+  sidebar_title_color,
+  sidebar_hover_color,
   primary: {
     contrastText: white,
     dark: colors.indigo[900],

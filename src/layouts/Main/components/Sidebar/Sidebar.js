@@ -26,37 +26,37 @@ const Sidebar = props => {
     {
       title: 'Kokpit',
       href: '/cockpit',
-      icon: KokpitIcon
+      icon: <KokpitIcon/>
     },
     {
       title: 'Moduł prognostyczny',
       href: '/forecasting_module',
-      icon: ModuleIcon
+      icon: <ModuleIcon/>
     },
     {
       title: 'Własne symulacje',
       href: '/own_simulations',
-      icon: SimulationIcon
+      icon: <SimulationIcon/>
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
-      icon: SavedSimulationIcon
+      icon: <SavedSimulationIcon/>
     },
     {
       title: 'Zapisane analizy',
       href: '/analyzes',
-      icon: SavedAnalyzeIcon
+      icon: <SavedAnalyzeIcon/>
     },
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
-      icon: JobIcon
+      icon: <JobIcon/>
     },
     {
       title: 'Pomoc',
       href: '/help',
-      icon: HelpIcon
+      icon: <HelpIcon/>
     },
     // {
     //   title: 'Twój Profil',
@@ -66,7 +66,7 @@ const Sidebar = props => {
     {
       title: 'Wyloguj',
       href: '/login',
-      icon: LogoutIcon
+      icon: <LogoutIcon/>
     },
   ];
 
@@ -74,37 +74,37 @@ const Sidebar = props => {
     {
       title: 'Kokpit',
       href: '/cockpit',
-      icon: KokpitIcon
+      icon: <KokpitIcon/>
     },
     {
       title: 'Moduł prognostyczny',
       href: '/forecasting_module',
-      icon: ModuleIcon
+      icon: <ModuleIcon/>
     },
     {
       title: 'Własne symulacje',
       href: '/own_simulations',
-      icon: SimulationIcon
+      icon: <SimulationIcon/>
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
-      icon: SavedSimulationIcon
+      icon: <SavedSimulationIcon/>
     },
     {
       title: 'Zapisane analizy',
       href: '/analyzes',
-      icon: SavedAnalyzeIcon
+      icon: <SavedAnalyzeIcon/>
     },
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
-      icon: JobIcon
+      icon: <JobIcon/>
     },
     {
       title: 'Pomoc',
       href: '/help',
-      icon: HelpIcon
+      icon: <HelpIcon/>
     },
     // {
     //   title: 'Twój Profil',
@@ -114,21 +114,21 @@ const Sidebar = props => {
     {
       title: 'Wyloguj',
       href: '/login',
-      icon: LogoutIcon
+      icon: <LogoutIcon/>
     },
     {
       title: 'Zarządzanie',
       href: '#',
-      icon: ProfileIcon,
+      icon: <ProfileIcon/>,
       sub: [{
         title: 'Zarządzanie treścią',
         href: '/content_management',
-        icon: HelpIcon
+        icon: <HelpIcon/>
       },
       {
         title: 'Import Ofert Pracy',
         href: '/import_job_offer',
-        icon: JobIcon
+        icon: <JobIcon/>
       }]
     },
   ];
