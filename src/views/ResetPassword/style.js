@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: '100px',
-    marginBottom: '30px'
+    marginBottom: '0px'
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',

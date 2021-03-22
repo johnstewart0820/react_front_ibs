@@ -123,8 +123,8 @@ const useStyles = makeStyles(theme => ({
   footerContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '165px',
-    marginBottom: '60px'
+    marginTop: '150px',
+    marginBottom: '0px'
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
