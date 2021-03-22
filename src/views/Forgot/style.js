@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.mainBackground,
-    padding: '70px 80px 30px 120px',
+    padding: '40px 80px 30px 120px',
   },
   mainContainer: {
   },
@@ -19,12 +19,12 @@ const useStyles = makeStyles(theme => ({
   loginForm: {
   },
   switchContainer: {
-    marginTop: '150px',
+    marginTop: '100px',
     display: 'flex',
     justifyContent: 'flex-end'
   },
   switchTab: {
-    marginBottom: '120px',
+    marginBottom: '90px',
     paddingRight: '30px'
   },
   tabLogin: {
@@ -109,7 +109,7 @@ const useStyles = makeStyles(theme => ({
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
-    width: '550px',
+    width: '500px',
   },
   textField: {
     marginTop: theme.spacing(2)
@@ -120,7 +120,7 @@ const useStyles = makeStyles(theme => ({
   progressContainer: {
     position: 'absolute',
     top: '50%',
-    width: '600px',
+    width: '576px',
     display: 'flex',
     justifyContent: 'center',
   },

@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     backgroundColor: theme.palette.mainBackground,
-    width: '600px',
+    width: '576px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
   },

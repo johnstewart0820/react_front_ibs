@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
     progressContainer: {
         position: 'absolute',
         top: '50%',
-        width: 'calc(100% - 600px)',
+        width: 'calc(100% - 576px)',
         display: 'flex',
         justifyContent: 'center',
     },

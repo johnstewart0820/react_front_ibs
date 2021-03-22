@@ -342,8 +342,11 @@ const JobOffer = (props) => {
                     :
                     parseInt(selectedSection) === 2 ?
                       <div className={classes.additional_block}>
-                        <div className={classes.titleHeader} style={{ height: '68px' }}>
+                        <div className={classes.titleHeader}>
                           Wybierz województwo
+                        </div>
+                        <div className={classes.subHeader}>
+                          (można wybrać więcej niż 1 województwo jednocześnie)
                         </div>
                         <div className={classes.bottom_block}>
                           <MultiSelect value={selectedProvince} handleChange={setSelectedProvince} list={provinceList} />

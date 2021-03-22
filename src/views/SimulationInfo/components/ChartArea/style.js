@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     progressContainer: {
         position: 'absolute',
         top: '50%',
-        width: 'calc(100% - 600px)',
+        width: 'calc(100% - 576px)',
         display: 'flex',
         justifyContent: 'center',
     },
@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
     },
     container: {
         width: '100%',
-        height: '600px',
+        height: '576px',
         display: 'flex',
         fontFamily: 'roboto',
         marginBottom: '10px',

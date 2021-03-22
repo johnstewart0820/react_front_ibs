@@ -15,7 +15,7 @@ const ForecastingModule = (props) => {
   const [selectedItem, setSelectedItem] = useState({});
   const handleShowResult = () => {
     if (Object.keys(selectedItem).length === 0 && selectedItem.constructor === Object) {
-      addToast('Please select one scenario.', { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true })
+      addToast('Proszę wybrać scenariusz.', { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true })
     } else {
       history.push({
         pathname: '/forecasting_module/simulation_info',

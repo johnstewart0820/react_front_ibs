@@ -69,7 +69,8 @@ const SignUp = props => {
     } else {
       arr["email"] = "";
     }
-    if (input["password"] && input["password"].length <= 5) {
+    var pass_pattern = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
+    if (!pass_pattern.test(input["password"])) {
       arr["password"] = constants.ENTER_PASSWORD;
     } else {
       arr["password"] = "";
@@ -104,6 +105,7 @@ const SignUp = props => {
               <div className={classes.inputForm}>
                 <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress}/>
                 <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
+                <div className={classes.notify}>Hasło musi zawierać minimum 8 znaków, małe i wielkie litery oraz cyfry, a dodatkowo posiadać minimum jeden znak specjalny: !,@,#,?</div>
                 <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
                 <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
                 <input className={classes.input_box} type="password" value={input.reset_password} name="reset_password" placeholder="Powtórz hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>

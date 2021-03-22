@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     backgroundColor: theme.palette.mainBackground,
-    width: '600px',
+    width: '576px',
     height: '100%',
     boxShadow: '0px 0px 20px grey',
   },
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   progressContainer: {
     position: 'absolute',
     top: '50%',
-    width: 'calc(100% - 600px)',
+    width: 'calc(100% - 576px)',
     display: 'flex',
     justifyContent: 'center',
   },

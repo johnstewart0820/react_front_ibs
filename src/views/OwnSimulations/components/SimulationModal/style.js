@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'roboto',
         fontWeight: 400,
         width: '1000px',
-        height: '600px'
+        height: '576px'
     },
     closeIcon: {
         color: theme.palette.black_white,

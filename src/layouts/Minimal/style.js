@@ -5,17 +5,18 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     backgroundColor: theme.palette.mainBackground,
-    width: '600px',
+    width: '576px',
     boxShadow: '0px 0px 20px grey',
   },
   public: {
     width: '100%',
+    height: '100vh',
+    overflow: 'auto',
     paddingLeft: theme.spacing(3),
     paddingTop: theme.spacing(5),
     paddingRight: theme.spacing(5),
     paddingBottom: theme.spacing(5),
     fontFamily: 'roboto',
-    marginBottom: '5px',
     marginLeft: '10px',
     '& .ql-align-right': {
       textAlign: 'right'

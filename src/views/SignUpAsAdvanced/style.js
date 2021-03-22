@@ -124,7 +124,7 @@ const useStyles = makeStyles(theme => ({
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
-    width: '550px',
+    width: '500px',
   },
   textField: {
     marginTop: theme.spacing(2)
@@ -135,7 +135,7 @@ const useStyles = makeStyles(theme => ({
   progressContainer: {
     position: 'absolute',
     top: '50%',
-    width: '600px',
+    width: '576px',
     display: 'flex',
     justifyContent: 'center',
   },
