@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     btnOpen: {
         '& .MuiButton-label': {
             textTransform: 'none',
-            fontSize: '0.75em',
+            fontSize: '0.9375em',
         },
         '& .MuiButton-containedSecondary:hover': {
 

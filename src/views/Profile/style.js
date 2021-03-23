@@ -10,36 +10,37 @@ const useStyles = makeStyles(theme => ({
   },
   profileContainer: {
     padding: '30px 20px 80px 30px',
-    backgroundColor: theme.palette.topbar_background
+    backgroundColor: theme.palette.topbar_background,
+    border: theme.palette.contrastColor
   },
   input_box: {
-'& svg': {
-            fill: theme.palette.text.primary
-        },
+  '& svg': {
+        fill: theme.palette.text.primary
+    },
     padding: '12px 30px',
-    
     marginBottom: '20px',
     width: '100%',
     color: theme.palette.gray,
-    fontWeight: '500',
+    fontWeight: '400',
     fontFamily: 'roboto',
+    backgroundColor: theme.palette.mainBackground,
+    border: `1px solid ${theme.palette.text.primary}`,
     '&::placeholder': {
       color: theme.palette.gray,
-      fontWeight: '600'
+      fontWeight: '400'
     }
   },
   title: {
     color: theme.palette.gray,
-    fontSize: '1.125em',
+    fontSize: '1em',
     fontFamily: 'roboto',
     marginBottom: '5px',
-    fontWeight: '500'
+    fontWeight: '400'
   },
   resetbtn: {
-    
     cursor: 'pointer',
     fontFamily: 'roboto',
-    color: theme.palette.pink
+    color: theme.palette.pink,
   },
   userImageBlock: {
     width: 'fit-content',

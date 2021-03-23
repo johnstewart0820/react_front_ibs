@@ -51,7 +51,7 @@ const Profile = (props) => {
               </div>
               <input className={classes.input_box} type="text" value={profile.first_name} name="first_name"/>
               <div className={classes.title}>
-              Nazwisko
+                Nazwisko
               </div>
               <input className={classes.input_box} type="text" value={profile.last_name} name="last_name"/>
             </Grid>

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
-  
+
   mainContainer: {
   },
   userImage: {
@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
   },
   profileContainer: {
     padding: '30px 20px 80px 30px',
-    backgroundColor: theme.palette.topbar_background
+    backgroundColor: theme.palette.topbar_background,
+    border: theme.palette.contrastColor
   },
   notify: {
     marginTop: theme.spacing(2),
@@ -18,11 +19,13 @@ const useStyles = makeStyles(theme => ({
     color: 'red'
   },
   input_box: {
-'& svg': {
-            fill: theme.palette.text.primary
-        },
+    '& svg': {
+      fill: theme.palette.text.primary
+    },
+    backgroundColor: theme.palette.mainBackground,
+    border: `1px solid ${theme.palette.text.primary}`,
     padding: '12px 30px',
-    
+
     width: '100%',
     color: theme.palette.gray,
     fontWeight: '500',
@@ -34,13 +37,13 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     color: theme.palette.gray,
-    fontSize: '1.125em',
+    fontSize: '1em',
     fontFamily: 'roboto',
     marginBottom: '5px',
-    fontWeight: '500'
+    fontWeight: '400'
   },
   resetbtn: {
-    
+
     cursor: 'pointer',
     fontFamily: 'roboto',
     color: theme.palette.pink

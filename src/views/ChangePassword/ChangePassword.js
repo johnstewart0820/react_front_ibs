@@ -39,6 +39,7 @@ const ChangePassword = (props) => {
     let arr = JSON.parse(JSON.stringify(input));
     arr[event.target.name] = event.target.value;
     setInput(arr);
+    handleError(arr);
   };
 
   const handleKeyPress = (event) => {
@@ -47,7 +48,7 @@ const ChangePassword = (props) => {
     }
   }
 
-  useEffect(() => {
+  const handleError = (input) => {
     let arr = JSON.parse(JSON.stringify(error));
     if (input["old_password"] && input["old_password"].length <= 5) {
       arr["old_password"] = constants.ENTER_PASSWORD;
@@ -68,7 +69,7 @@ const ChangePassword = (props) => {
       arr["repeat_new_password"] = "";
     }
     setError(arr);
-  }, [input]);
+  };
 
   return (
     <>

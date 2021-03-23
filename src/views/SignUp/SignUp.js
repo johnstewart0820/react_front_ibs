@@ -19,22 +19,48 @@ const SignUp = props => {
   const [checkStatus, setCheckStatus] = useState(false);
   const [input, setInput] = useState({});
   const [error, setError] = useState({});
+  const [registered, setRegistered] = useState(false);
   const { addToast } = useToasts()
   const [progressStatus, setProgressStatus] = useState(false);
-  useEffect(() => {
 
-  }, []);
+  const handleError = (input) => {
+    let arr = JSON.parse(JSON.stringify(error));
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    if (input["email"] && !pattern.test(input["email"])) {
+      arr["email"] = constants.ENTER_VALID_EMAIL;
+    } else {
+      arr["email"] = "";
+    }
+    var pass_pattern = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
+    if (!pass_pattern.test(input["password"])) {
+      arr["password"] = constants.ENTER_PASSWORD;
+    } else {
+      arr["password"] = "";
+    }
+    let reset_password = input["reset_password"];
+    let password = input["password"];
+    if (input["reset_password"] && reset_password !== password) {
+      arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
+    } else {
+      arr["reset_password"] = "";
+    }
+
+    setError(arr);
+  }
 
   const handleChange = event => {
     let arr = JSON.parse(JSON.stringify(input));
     arr[event.target.name] = event.target.value;
     setInput(arr);
+    handleError(arr);
   };
 
   const handleRememberMe = event => {
     setCheckStatus(!checkStatus);
   };
+
   const handleSignUp = event => {
+    setRegistered(true);
     if ((error && ((error.email && error.email.length > 0 ) || (error.password && error.password.length > 0) || (error.reset_password && error.reset_password.length > 0 ))) 
       || !input.email || !input.password || !input.reset_password) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
@@ -61,30 +87,6 @@ const SignUp = props => {
       handleSignUp();
     }
   }
-  useEffect(() => {
-    let arr = JSON.parse(JSON.stringify(error));
-    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    if (input["email"] && !pattern.test(input["email"])) {
-      arr["email"] = constants.ENTER_VALID_EMAIL;
-    } else {
-      arr["email"] = "";
-    }
-    var pass_pattern = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
-    if (!pass_pattern.test(input["password"])) {
-      arr["password"] = constants.ENTER_PASSWORD;
-    } else {
-      arr["password"] = "";
-    }
-    let reset_password = input["reset_password"];
-    let password = input["password"];
-    if (input["reset_password"] && reset_password !== password) {
-      arr["reset_password"] = constants.ENTER_SAME_PASSWORD;
-    } else {
-      arr["reset_password"] = "";
-    }
-
-    setError(arr);
-  }, [input]);
 
   return (
     <>
@@ -104,12 +106,12 @@ const SignUp = props => {
             <div className={classes.loginMainForm}>
               <div className={classes.inputForm}>
                 <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress}/>
-                <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
+                <div className={classes.error_log}>{registered && error["email"] && error["email"].length > 0 && error.email}</div>
                 <div className={classes.notify}>Hasło musi zawierać minimum 8 znaków, małe i wielkie litery oraz cyfry, a dodatkowo posiadać minimum jeden znak specjalny: !,@,#,?</div>
                 <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
-                <div className={classes.error_log}>{error["password"] && error["password"].length > 0 && error.password}</div>
+                <div className={classes.error_log}>{registered && error["password"] && error["password"].length > 0 && error.password}</div>
                 <input className={classes.input_box} type="password" value={input.reset_password} name="reset_password" placeholder="Powtórz hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
-                <div className={classes.error_log}>{error["reset_password"] && error["reset_password"].length > 0 && error.reset_password}</div>
+                <div className={classes.error_log}>{registered && error["reset_password"] && error["reset_password"].length > 0 && error.reset_password}</div>
                 <FormControlLabel
                   className={classes.rememberMe}
                   control={
