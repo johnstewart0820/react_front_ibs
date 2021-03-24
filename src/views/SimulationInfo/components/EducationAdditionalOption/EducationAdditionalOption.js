@@ -34,7 +34,7 @@ const EducationAdditionalOption = (props) => {
           </Grid>
           <Grid item xs={4}>
             <div className={classes.secondTitleHeader}>
-              Wybierz Edukacja
+              Wybierz wykształcenie
             </div>
             <MultiSelect value={educationValue} handleChange={handleSelectedEducation} list={educationList}/>
           </Grid>

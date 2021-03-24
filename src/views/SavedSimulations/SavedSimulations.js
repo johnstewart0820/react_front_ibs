@@ -90,7 +90,7 @@ const SavedSimulations = props => {
               <Grid container spacing={3}>
                 <Grid item xs={5}>
                   <div className={classes.rowsBlock}>
-                    <div>Pokaz:</div>
+                    <div>Pokaż:</div>
                     <SingleSelect value={selectedCount} handleChange={setSelectedCount} list={countList} />
                     <div>pozycji</div>
                   </div>

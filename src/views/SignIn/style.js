@@ -172,13 +172,12 @@ const useStyles = makeStyles(theme => ({
   footerContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: theme.spacing(16),
-    marginBottom: theme.spacing(2),
-    bottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(6),
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
-    width: '80%',
+    width: '100%',
   },
   textField: {
     marginTop: theme.spacing(2)

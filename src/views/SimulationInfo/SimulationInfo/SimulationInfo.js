@@ -630,7 +630,7 @@ const SimulationInfo = (props) => {
               Wybierz typ wykresu
             </div>
             <div className={classes.subHeader}>
-              (moźna wybrać tylko 1 z typów jednocześnie)
+              (można wybrać tylko 1 z typów jednocześnie)
             </div>
             <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
           </Grid>
@@ -639,7 +639,7 @@ const SimulationInfo = (props) => {
               Wybierz przekrój
             </div>
             <div className={classes.subHeader}>
-              (moźna wybrać tylko 1 z typów jednocześnie)
+              (można wybrać tylko 1 z typów jednocześnie)
             </div>
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={selectedChartType != 3 ? sectionList : sectionMapList} />
           </Grid>

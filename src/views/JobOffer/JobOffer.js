@@ -315,7 +315,7 @@ const JobOffer = (props) => {
                   Wybierz typ wykresu
                 </div>
                 <div className={classes.subHeader}>
-                  (moźna wybrać tylko 1 z typów jednocześnie)
+                  (można wybrać tylko 1 z typów jednocześnie)
                 </div>
                 <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
               </Grid>
@@ -324,7 +324,7 @@ const JobOffer = (props) => {
                   Wybierz przekrój
                 </div>
                 <div className={classes.subHeader}>
-                  (moźna wybrać tylko 1 z typów jednocześnie)
+                  (można wybrać tylko 1 z typów jednocześnie)
                 </div>
                 <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) !== 4 ? sectionList : sectionMapList} />
               </Grid>

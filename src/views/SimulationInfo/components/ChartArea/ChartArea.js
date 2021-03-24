@@ -37,7 +37,7 @@ const ChartArea = (props) => {
       if (parseInt(item['Podaż pracy']) !== 0)
         podaz = item['Podaż pracy'];
       if (parseInt(item['Popyt na pracę']) !== 0)
-        popyt = item['Luka'];
+        popyt = item['Popyt na pracę'];
       if (parseInt(item['Zatrudnienie']) !== 0)
         zat = item['Zatrudnienie'];
       return {'Luka': luka, 'Podaż pracy' : podaz, 'Popyt na pracę' : popyt, 'Zatrudnienie' : zat, 'Rok': item['Rok']};

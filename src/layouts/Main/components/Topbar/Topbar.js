@@ -48,22 +48,22 @@ const Topbar = props => {
 
   const changeFontSize = e => {
     e.preventDefault();
-
     let
       target = e.target,
       body = document.body,
       fontSize = parseInt(window.getComputedStyle(body).fontSize.replace("px", "")),
       fontAction;
     if (target.tagName === 'svg')
-      target = target.parentElement;
+      target = target.parentElement.parentElement.parentElement;
     if (target.tagName === 'path')
-      target = target.parentElement.parentElement;
+      target = target.parentElement.parentElement.parentElement.parentElement;
     if (target.name === 'plus')
       fontAction = 'more';
     else if (target.name === 'minus')
       fontAction = 'less';
     else if (target.name === 'normal')
       fontAction = 'normal';
+      
     if (fontAction === 'less' && fontSize > 10) fontSize -= 1;
     if (fontAction === 'more' && fontSize < 22) fontSize += 1;
     if (fontAction === 'normal') fontSize = 16;
@@ -100,21 +100,21 @@ const Topbar = props => {
         <div className={classes.rightControllerArea}>
           <div className={classes.controllerArea}>
             <div className={classes.vertical_separator}/>
-            <Button onClick={(e) => changeFontSize(e)}>
-              <div className={classes.helper} name="plus">
+            <Button onClick={(e) => changeFontSize(e)} name="plus">
+              <div className={classes.helper} >
                 <FontAwesomeIcon icon={faFont} size="2x" />
                 <FontAwesomeIcon icon={faPlus} size="1x" />
               </div>
             </Button>
             <div className={classes.vertical_separator}/>
-            <Button onClick={(e) => changeFontSize(e)}>
-              <div href="#" className={classes.helper} name="normal">
+            <Button onClick={(e) => changeFontSize(e)} name="normal">
+              <div href="#" className={classes.helper} >
                   <FontAwesomeIcon icon={faFont} size="2x"/>
               </div>
             </Button>
             <div className={classes.vertical_separator}/>
-            <Button onClick={(e) => changeFontSize(e)}>
-              <div href="#" className={classes.helper} name="minus">
+            <Button onClick={(e) => changeFontSize(e)} name="minus">
+              <div href="#" className={classes.helper} >
                   <FontAwesomeIcon icon={faFont} size="2x"/>
                   <FontAwesomeIcon icon={faMinus} size="1x"/>
               </div>

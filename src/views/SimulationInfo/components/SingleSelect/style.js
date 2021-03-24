@@ -13,15 +13,21 @@ const useStyles = makeStyles(theme => ({
         },
     },
     input_box: {
-'& svg': {
+        '& .MuiSelect-outlined.MuiSelect-outlined': {
+            padding: '18.5px 14px',
+            border: `1px solid ${theme.palette.gray}`,
+            borderRadius: '4px',
+        },
+        '& svg': {
             fill: theme.palette.text.primary
         },
         '& select': {
             border: `1px solid ${theme.palette.gray}`,
         },
         '& li': {
-            lineHeight: '8px',
-            fontSize: '14px'
+            lineHeight: '7px',
+            fontSize: '14px',
+            paddingLeft: theme.spacing(0)
         }
     }
 }));

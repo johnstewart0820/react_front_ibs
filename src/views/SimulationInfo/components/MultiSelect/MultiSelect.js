@@ -104,6 +104,18 @@ const MultiSelect = (props) => {
     }
     handleChange(_arr);
   }
+
+  const getLabel = () => {
+    let _arr = [];
+    for (let i = 0; i < list.length; i ++)
+      for (let j = 0; j < value.length; j ++) {
+        if (parseInt(value[j]) === parseInt(list[i].id)) {
+          _arr.push(list[i].name);
+        }
+      }
+    return _arr.join(', ');
+  }
+
   return (
     <FormControl className={classes.formControl}>
       <InputLabel htmlFor="outlined-age-native-simple" className={classes.name_select_box} shrink={false}>
@@ -119,6 +131,9 @@ const MultiSelect = (props) => {
       value={value}
       input={<Input />}
       MenuProps={MenuProps}
+      renderValue={
+          () => getLabel()
+      }
     >
        <MenuItem
           checked={true}
@@ -129,8 +144,8 @@ const MultiSelect = (props) => {
         </MenuItem> 
       {list.map((item, index) => (
         getTooltip(item.name) ?
-        <Tooltip arrow title={getTooltip(item.name)} placement="right-start">
-          <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)} className={classes.list_item} onClick={() => handleClickItem(item.id)}>
+        <Tooltip arrow title={getTooltip(item.name)} placement="right-start" value={item.id}>
+          <MenuItem key={index} className={classes.list_item} onClick={() => handleClickItem(item.id)}>
             {item.name}
           </MenuItem>
         </Tooltip>

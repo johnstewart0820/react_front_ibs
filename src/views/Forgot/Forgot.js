@@ -71,6 +71,9 @@ const Forgot = props => {
       <>
     <div className={classes.root}>
       <div className={classes.mainContainer}>
+        <div className={classes.footerContainer}>
+            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt=""/>
+        </div>
         <div className={classes.logoContainer}>
           <div className={classes.logo} />
         </div>
@@ -99,9 +102,6 @@ const Forgot = props => {
         </div>
         
       </div>
-    </div>
-    <div className={classes.footerContainer}>
-        <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt=""/>
     </div>
     {
         progressStatus ?

@@ -149,7 +149,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.blue,
     color: theme.palette.black_white,
     width: '100%',
-    marginBottom: '20px'
+    // marginBottom: '20px'
   },
   registerAsAdvanced: {
     '&:hover': {
@@ -170,12 +170,12 @@ const useStyles = makeStyles(theme => ({
   footerContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '35px',
-    marginBottom: '0px'
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(6),
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
-    width: '80%',
+    width: '100%',
   },
   textField: {
     marginTop: theme.spacing(2)

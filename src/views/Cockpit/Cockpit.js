@@ -6,7 +6,8 @@ import {
   CircularProgress,
   Grid,
   Card,
-  Button
+  Button,
+  Tooltip
 } from '@material-ui/core';
 import contents from '../../apis/contents';
 const Cockpit = props => {
@@ -42,20 +43,24 @@ const Cockpit = props => {
         <Grid item xs={12}>
           <Card className={classes.controlBlock}>
             <div className={classes.header}>Witaj w Systemie Prognozowania Polskiego Rynku Pracy!</div>
-            <div className={classes.subHeader}>Wybierz Moduł, ktory Cie interesuje:</div>
+            <div className={classes.subHeader}>Wybierz Moduł, który Cię interesuje:</div>
             <div className={classes.buttonBlock}>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoForecastingModule}>
-              Moduł Prognostyczny
-            </Button>
-            <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoJobOffer}>
-              Moduł Internetowych Ofert Pracy
-            </Button>
+            <Tooltip arrow title="Moduł pozwala przeglądać szczegółowe prognozy popytu na pracę, podaży pracy i luki popytowo-podażowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostępne są w 8 przekrojach." placement="bottom-start">
+              <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoForecastingModule}>
+                Moduł Prognostyczny
+              </Button>
+            </Tooltip>
+            <Tooltip arrow title="Moduł gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupełniając informacje o niezrealizowanym popycie na pracę oraz wskazując jego bieżące trendy." placement="bottom-start">
+              <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoJobOffer}>
+                Moduł Internetowych Ofert Pracy
+              </Button>
+            </Tooltip>
             </div>
           </Card>
         </Grid>
         { !progressStatus ?
         <>
-          <Grid item xs={12}>Przegladaj najciekawsze dane:</Grid>
+          <Grid item xs={12}>Przeglądaj najciekawsze dane:</Grid>
           <Grid item xs={6}>
             <Card className={classes.normalBlock}>
               <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[3].content : ''}}/>
