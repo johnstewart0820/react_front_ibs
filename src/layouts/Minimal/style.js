@@ -1,11 +1,11 @@
 import { makeStyles, useTheme } from '@material-ui/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    // display: 'flex',
   },
   content: {
     backgroundColor: theme.palette.mainBackground,
-    width: '576px',
+    // width: '576px',
     boxShadow: '0px 0px 20px grey',
   },
   public: {
@@ -17,9 +17,11 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(5),
     paddingBottom: theme.spacing(5),
     fontFamily: 'roboto',
-    marginLeft: '10px',
     '& .ql-align-right': {
-      textAlign: 'right'
+      textAlign: 'right',
+      '& img': {
+        width: '60%'
+      }
     },
     '& .ql-align-left': {
       textAlign: 'left'

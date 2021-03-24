@@ -5,7 +5,7 @@ import { NavLink as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { List, ListItem, Button, Collapse, ListItemIcon } from '@material-ui/core';
+import { List, ListItem, Button, Collapse, ListItemIcon, Tooltip } from '@material-ui/core';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -140,23 +140,46 @@ const SidebarNav = props => {
           key={page.title}
           onClick={() => handleClick(page)}
         >
-          <Button
-            activeClassName={!page.sub ? classes.active : classes.active_sub}
-            className={classes.button}
-            component={CustomRouterLink}
-            to={page.href}
-          >
-            <div className={classes.icon}>{page.icon}</div>
-            <div className={classes.title}>
-              {page.title}
-            </div>
-            {
-              page.sub ?
-                open ? <ExpandLess /> : <ExpandMore />
-              :
-                <></>
-            }
-          </Button>
+          {
+            page.tooltip ? 
+              <Tooltip arrow title={page.tooltip} placement="right-start">
+                <Button
+                  activeClassName={!page.sub ? classes.active : classes.active_sub}
+                  className={classes.button}
+                  component={CustomRouterLink}
+                  to={page.href}
+                >
+                  <div className={classes.icon}>{page.icon}</div>
+                  <div className={classes.title}>
+                    {page.title}
+                  </div>
+                  {
+                    page.sub ?
+                      open ? <ExpandLess /> : <ExpandMore />
+                    :
+                      <></>
+                  }
+                </Button>
+              </Tooltip>
+            :
+              <Button
+                activeClassName={!page.sub ? classes.active : classes.active_sub}
+                className={classes.button}
+                component={CustomRouterLink}
+                to={page.href}
+              >
+                <div className={classes.icon}>{page.icon}</div>
+                <div className={classes.title}>
+                  {page.title}
+                </div>
+                {
+                  page.sub ?
+                    open ? <ExpandLess /> : <ExpandMore />
+                  :
+                    <></>
+                }
+              </Button>
+          }
         </ListItem>
         {
           page.sub ? 

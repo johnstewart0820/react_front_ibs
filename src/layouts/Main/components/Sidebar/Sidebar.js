@@ -31,6 +31,7 @@ const Sidebar = props => {
     {
       title: 'Moduł prognostyczny',
       href: '/forecasting_module',
+      tooltip: 'Moduł pozwala przeglądać szczegółowe prognozy popytu na pracę, podaży pracy i luki popytowo-podażowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostępne są w 8 przekrojach ',
       icon: <ModuleIcon/>
     },
     {
@@ -51,6 +52,7 @@ const Sidebar = props => {
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
+      tooltip: 'Moduł gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupełniając informacje o niezrealizowanym popycie na pracę oraz wskazując jego bieżące trendy.',
       icon: <JobIcon/>
     },
     {
@@ -79,6 +81,7 @@ const Sidebar = props => {
     {
       title: 'Moduł prognostyczny',
       href: '/forecasting_module',
+      tooltip: 'Moduł pozwala przeglądać szczegółowe prognozy popytu na pracę, podaży pracy i luki popytowo-podażowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostępne są w 8 przekrojach ',
       icon: <ModuleIcon/>
     },
     {
@@ -99,6 +102,7 @@ const Sidebar = props => {
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
+      tooltip: 'Moduł gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupełniając informacje o niezrealizowanym popycie na pracę oraz wskazując jego bieżące trendy.',
       icon: <JobIcon/>
     },
     {

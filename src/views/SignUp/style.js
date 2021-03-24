@@ -60,8 +60,14 @@ const useStyles = makeStyles(theme => ({
   rememberMe: {
     marginTop: '40px',
     '& .MuiTypography-body1': {
-      
+      fontWeight: '500',
       color: theme.palette.gray,
+    },
+  },
+  personalPrivacy: {
+    '& .MuiTypography-body1': {
+      color: theme.palette.gray,
+      fontWeight: '500'
     },
   },
   buttonContainer: {

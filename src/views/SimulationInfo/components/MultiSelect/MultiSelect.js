@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FormControl, InputLabel, Select, Input, MenuItem } from '@material-ui/core';
+import { FormControl, InputLabel, Select, Input, MenuItem, Tooltip } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './style';
@@ -27,6 +27,41 @@ const MultiSelect = (props) => {
       },
     },
   };
+
+  const tooltip_list = [{
+    name: 'Sektorowy', tooltip: 'umożliwia przeglądanie prognoz w podziale na sekcje gospodarki według Polskiej Klasyfikacji Działalności.',
+  }, {
+    name: 'Wojewódzki', tooltip: 'umożliwia przeglądanie zagregowanych prognoz w podziale na województwa.',
+  }, {
+    name: 'Powiatowy', tooltip: 'umożliwia przeglądanie zagregowanych prognoz w podziale na osiem grup powiatów, o wspólnych cechach gospodarczych.',
+  }, {
+    name: 'Zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów, według Klasyfikacji Zawodów i Specjalności.',
+  }, {
+    name: 'Sektorowo-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów, w ramach wybranych sekcji gospodarki. ',
+  }, {
+    name: 'Wojewódzko-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów w wybranych województwach. ',
+  }, {
+    name: 'Powiatowo-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów w wybranych klastrach powiatów. ',
+  }, {
+    name: 'Edukacja', tooltip: 'pokazuje liczbę absolwentów według dziedziny i poziomu wykształcenia oraz w podziale na grupy wieku. Prognoza zaczyna się od roku 2019.' 
+  }, {
+    name: 'Popyt na pracę', tooltip: 'Prognoza popytu na pracę zgłaszanego przez pracodawców',
+  }, {
+    name: 'Podaż pracy', tooltip: 'Prognoza sumy liczby osób pracujących i bezrobotnych'
+  }, {
+    name: 'Zatrudnienie', tooltip: 'Dane historyczne o zatrudnieniu'
+  }, {
+    name: 'Luka', tooltip: 'Prognoza różnicy między popytem na pracę a podażą pracy',
+  }];
+
+  const getTooltip = (name) => {
+    for( let i = 0; i < tooltip_list.length; i ++) {
+      if (name === tooltip_list[i].name) {
+        return tooltip_list[i].tooltip;
+      }
+    }
+    return null;
+  }
 
   useEffect(() => {
   }, []);
@@ -93,9 +128,17 @@ const MultiSelect = (props) => {
           {"Zaznacz wszystkie / Odznacz wszystkie"}
         </MenuItem> 
       {list.map((item, index) => (
+        getTooltip(item.name) ?
+        <Tooltip arrow title={getTooltip(item.name)} placement="right-start">
+          <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)} className={classes.list_item} onClick={() => handleClickItem(item.id)}>
+            {item.name}
+          </MenuItem>
+        </Tooltip>
+        :
         <MenuItem key={index} value={item.id} style={getStyles(item.id , value, theme)} className={classes.list_item} onClick={() => handleClickItem(item.id)}>
           {item.name}
         </MenuItem>
+        
       ))}
     </Select>
   </FormControl>

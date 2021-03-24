@@ -29,19 +29,19 @@ const Minimal = props => {
 
   return (
     <>
-    <div className={classes.root}>
-      <main className={classes.content}>{children}</main>
+    <Grid container className={classes.root}>
+      <Grid item lg={4} md={6} sm={12} className={classes.content}>{children}</Grid>
       {
       !progressStatus 
       ? 
-      <main className={classes.public}>
+      <Grid item lg={8} md={6} sm={12} className={classes.public}>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item lg={6} md={12} >
             <Card className={classes.normalBlock}>
               <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[0].content : ''}}/>
             </Card>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item lg={6} md={12} >
             <Card className={classes.normalBlock}>
               <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[1].content : ''}}/>
             </Card>
@@ -52,11 +52,11 @@ const Minimal = props => {
             </Card>
           </Grid>
         </Grid>
-      </main>
+      </Grid>
       :
       <></>
       }
-    </div>
+    </Grid>
     {
       progressStatus ?
         <>
