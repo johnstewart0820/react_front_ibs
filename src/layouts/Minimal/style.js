@@ -30,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
     '& .ql-align-center': {
       textAlign: 'center'
     },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+    },
   },
   normalBlock: {
     padding: '30px 30px 70px 30px',
