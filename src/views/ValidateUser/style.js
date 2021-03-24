@@ -123,7 +123,7 @@ const useStyles = makeStyles(theme => ({
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
-    width: '500px',
+    width: '80%',
   },
   textField: {
     marginTop: theme.spacing(2)

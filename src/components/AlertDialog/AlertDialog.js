@@ -32,7 +32,7 @@ const AlertDialog = props => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Zamknąć
+            Zamknij
           </Button>
         </DialogActions>
       </Dialog>

@@ -19,6 +19,10 @@ const useStyles = makeStyles(theme => ({
         '& select': {
             border: `1px solid ${theme.palette.gray}`,
         },
+        '& li': {
+            lineHeight: '8px',
+            fontSize: '14px'
+        }
     }
 }));
 

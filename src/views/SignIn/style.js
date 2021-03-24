@@ -3,7 +3,16 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.mainBackground,
-    padding: '40px 80px 30px 120px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '40px 40px 30px 40px'
+    },
+    [theme.breakpoints.up('ms')]: {
+      padding: '40px 150px 30px 150px'
+    },
+    [theme.breakpoints.up('md')]: {
+      padding: '40px 60px 30px 60px'
+    },
+    
   },
   mainContainer: {
   },
@@ -21,20 +30,37 @@ const useStyles = makeStyles(theme => ({
   switchContainer: {
     marginTop: '100px',
     display: 'flex',
-    justifyContent: 'flex-end'
+    // justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'center'
+    },
+    [theme.breakpoints.up('ms')]: {
+      justifyContent: 'flex-end',
+    },
   },
   switchTab: {
     marginBottom: '90px',
-    paddingRight: '30px'
+    [theme.breakpoints.down('sm')]: {
+      paddingRight: '0px'
+    },
+    [theme.breakpoints.up('ms')]: {
+      paddingRight: '30px'
+    },
   },
   tabLogin: {
     '&:hover': {
       textDecoration: 'none'
     },
     color: theme.palette.pink,
-    marginRight: '20px',
     fontWeight: 500,
     fontFamily: 'roboto',
+    [theme.breakpoints.down('sm')]: {
+      marginRight: '50px',
+    },
+    [theme.breakpoints.up('ms')]: {
+      marginRight: '20px',
+    },
+
   },
   tabRegister: {
     '&:hover': {
@@ -45,44 +71,62 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.gray,
   },
   loginMainForm: {
-    paddingLeft: '10px',
-    paddingRight: '40px',
+
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '0px',
+      paddingRight: '0px',
+    },
+    [theme.breakpoints.up('ms')]: {
+      paddingLeft: '10px',
+      paddingRight: '40px',
+    },
   },
   inputForm: {
-    paddingRight: '20px',
+    [theme.breakpoints.down('sm')]: {
+      paddingRight: '0px',
+    },
+    [theme.breakpoints.up('ms')]: {
+      paddingRight: '20px',
+    },
+
   },
   rememberMe: {
     marginTop: '30px',
     '& .MuiTypography-body1': {
       color: theme.palette.gray,
-      
+
     },
-    '& .MuiCheckbox-colorSecondary.Mui-checked' : {
+    '& .MuiCheckbox-colorSecondary.Mui-checked': {
       color: theme.palette.checked_color,
     },
   },
   buttonContainer: {
     marginTop: '90px',
-    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+    [theme.breakpoints.up('ms')]: {
+      display: 'flex',
+    },
   },
   btnLoginContainer: {
-    width: '50%',
+    width: '100%',
     display: 'flex',
     justifyContent: 'flex-end'
   },
   btnForgetContainer: {
-    width: '50%',
+    width: '100%',
     display: 'flex',
     justifyContent: 'flex-start'
   },
   input_box: {
-'& svg': {
-            fill: theme.palette.text.primary
-        },
+    '& svg': {
+      fill: theme.palette.text.primary
+    },
     padding: '12px 30px',
-    
+
     marginTop: '20px',
-    width: '330px',
+    width: '100%',
     fontFamily: 'roboto',
     '&::placeholder': {
       color: theme.palette.gray,
@@ -111,24 +155,30 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       textDecoration: 'none'
     },
-    alignItems: 'center',
-    display: 'flex',
+    textAlign: 'center',
     width: '100%',
     color: theme.palette.blue,
     fontSize: '1.0625em',
     fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: '1.75',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(2),
+    },
+    [theme.breakpoints.up('ms')]: {
+      marginBottom: theme.spacing(0)
+    },
   },
   footerContainer: {
     display: 'flex',
     justifyContent: 'center',
-    marginTop: '150px',
-    marginBottom: '0px'
+    marginTop: theme.spacing(16),
+    marginBottom: theme.spacing(2),
+    bottom: theme.spacing(2),
   },
   unionLogo: {
     backgroundImage: 'url(/images/logos/footer_logo.png)',
-    width: '500px',
+    width: '80%',
   },
   textField: {
     marginTop: theme.spacing(2)

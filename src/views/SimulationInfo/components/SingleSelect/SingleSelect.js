@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FormControl, InputLabel, Select, Tooltip } from '@material-ui/core';
+import { FormControl, InputLabel, Select, Tooltip, MenuItem } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
@@ -51,7 +51,7 @@ const SingleSelect = (props) => {
         }
       </InputLabel>
       <Select
-        native
+        // native
         value={value}
         onChange={(event) =>handleChange(event.target.value ? event.target.value : {})}
         inputProps={{
@@ -60,17 +60,19 @@ const SingleSelect = (props) => {
         }}
         className={classes.input_box}
       >
-        <option aria-label="None" value={0} />
+        <MenuItem value={0}>
+          <em></em>
+        </MenuItem>
 
         {
           list.map((item, index) => 
             (
               getTooltip(item.name) ?
-              <Tooltip arrow title={getTooltip(item.name)} placement="right-start">
-                <option key={index} value={item.id}>{item.name}</option>
+              <Tooltip arrow title={getTooltip(item.name)} placement="right-start" value={item.id}>
+                <MenuItem  key={index}>{item.name}</MenuItem >
               </Tooltip>
               :
-              <option key={index} value={item.id}>{item.name}</option>
+              <MenuItem  key={index} value={item.id}>{item.name}</MenuItem >
             )
 
           )
