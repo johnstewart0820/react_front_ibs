@@ -50,7 +50,7 @@ const ForecastingModule = (props) => {
               Wybierz symulację do analizy wyników
             </div>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item md={5} sm={8} xs={12}>
             <Autocomplete
               className={classes.name_select_box}
               onChange={(event, value) => setSelectedItem(value ? value : {})}
@@ -59,18 +59,23 @@ const ForecastingModule = (props) => {
               renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}/>}
             />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item md={3} sm={8} xs={12}>
             <Button variant="contained" color="secondary" className={classes.btnShowResult} onClick={handleShowResult}>
               Przeglądaj wyniki
           </Button>
           </Grid>
         </Grid>
       </Card>
-      <div className={classes.simulationBlock}>
-        <Button variant="contained" color="secondary" className={classes.btnCreateSimulation} onClick={handleCreateSimulation}>
-          Stwórz własna symulację
-        </Button>
-      </div>
+        <div className={classes.simulationBlock}>
+          <Grid container spacing={2}>
+            <Grid item md={5} sm={6} xs={12}>
+            <Button variant="contained" color="secondary" className={classes.btnCreateSimulation} onClick={handleCreateSimulation}>
+              Stwórz własna symulację
+            </Button>
+            </Grid>
+          </Grid>
+        </div>
+
 
       {
         progressStatus ?

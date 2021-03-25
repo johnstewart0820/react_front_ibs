@@ -44,15 +44,26 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'flex-end'
   },
   flexBlock: {
-    display: 'flex',
     alignItems: 'center',
     marginBottom: '20px',
-    marginTop: '20px'
+    marginTop: '20px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
   },
   itemBlock: {
-    width: '20%',
     paddingLeft: '10px',
-    paddingRight: '10px'
+    paddingRight: '10px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      marginBottom: theme.spacing(2),
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '20%',
+    },
   },
   headerBlock: {
     padding: '20px 20px 40px 20px',
@@ -75,23 +86,25 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
   },
   controlBlock: {
-    // position: 'absolute',
-    // bottom: '25px',
-    // width: 'calc(100% - 360px)',
-    marginTop: '100px',
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(3),
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: '100px',
+    },
   },
   btnSimulate: {
     '& .MuiButton-label': {
-        textTransform: 'none',
-        fontSize: '0.9375em',
+      textTransform: 'none',
+      fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
     },
     '&:hover': {
-        backgroundColor: theme.palette.blue
+      backgroundColor: theme.palette.blue
     },
     fontWeight: '300',
     backgroundColor: theme.palette.blue,
@@ -102,15 +115,15 @@ const useStyles = makeStyles((theme) => ({
   },
   btnCreate: {
     '& .MuiButton-label': {
-        textTransform: 'none',
-        fontSize: '0.9375em',
+      textTransform: 'none',
+      fontSize: '0.9375em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
     },
     '&:hover': {
-        backgroundColor: theme.palette.gray,
-        color: theme.palette.black_white,
+      backgroundColor: theme.palette.gray,
+      color: theme.palette.black_white,
     },
     '&:disabled': {
       backgroundColor: theme.palette.gray_disable,
@@ -120,25 +133,17 @@ const useStyles = makeStyles((theme) => ({
     // border: '1px solid gray',
     backgroundColor: theme.palette.gray,
     color: theme.palette.black_white,
-    lineHeight: '1'
-},
-btn: {
-  padding: '15px 40px'
-},
-  input_box: {
-'& svg': {
-            fill: theme.palette.text.primary
-        },
-    padding: '12px 30px',
-    fontSize: '0.8750em',
-    width: '100%',
-    fontFamily: 'roboto',
-    '&::placeholder': {
-      color: theme.palette.gray,
-      fontWeight: '400',
-      fontStyle: 'italic'
-    }
+    lineHeight: '1',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.up('md')]: {
+    },
   },
+  btn: {
+    padding: '15px 40px'
+  },
+
   headerMargin: {
     marginTop: '20px'
   },
@@ -150,7 +155,7 @@ btn: {
     justifyContent: 'center',
   },
   progress: {
-      color: theme.palette.pink
+    color: theme.palette.pink
   },
   seriesLabelItem: {
     width: 'auto',
@@ -166,13 +171,13 @@ btn: {
     marginRight: '-1px',
     cursor: 'pointer',
     '&:hover': {
-        backgroundColor: theme.palette.pink,
-        color: theme.palette.black_white,            
+      backgroundColor: theme.palette.pink,
+      color: theme.palette.black_white,
     }
   },
   seriesLabelItemActive: {
-      backgroundColor: theme.palette.pink,
-      color: theme.palette.black_white,
+    backgroundColor: theme.palette.pink,
+    color: theme.palette.black_white,
   },
   scenariosDescription: {
     display: 'flex',
@@ -219,18 +224,19 @@ btn: {
     display: 'inline-flex'
   },
   input_box: {
-'& svg': {
-            fill: theme.palette.text.primary
-        },
+    '& svg': {
+      fill: theme.palette.text.primary
+    },
     padding: '12px 10px',
     fontSize: '0.8750em',
     width: '100%',
     border: `1px solid ${theme.palette.text.primary}`,
     backgroundColor: theme.palette.black_white,
     color: theme.palette.text.primary,
+    marginTop: theme.spacing(1),
     '&::placeholder': {
       color: theme.palette.text.primary,
-      fontStyle: 'italic' 
+      fontStyle: 'italic'
     }
   },
   input_box_black: {
@@ -246,7 +252,7 @@ btn: {
       height: '5px',              /* height of horizontal scrollbar ← You're missing this */
       border: '1px solid #d5d5d5'
     },
-    '&::-webkit-scrollbar-thumb:horizontal' :{
+    '&::-webkit-scrollbar-thumb:horizontal': {
       background: theme.palette.gray,
       borderRadius: '5px'
     }

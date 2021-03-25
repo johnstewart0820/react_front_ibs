@@ -596,7 +596,7 @@ const SimulationInfo = (props) => {
     <>
       <Card className={classes.card}>
         <Grid container spacing={2} className={classes.mainContainer}>
-          <Grid item lg={5} sm={5}>
+          <Grid item md={5} sm={12} xs={12}>
             <div className={classes.titleBlock}>
               <div className={classes.titleHeader}>
                 Wybrana symulacja:
@@ -606,12 +606,12 @@ const SimulationInfo = (props) => {
               </div>
             </div>
           </Grid>
-          <Grid item lg={2} sm={2}>
+          <Grid item md={2} sm={6} xs={12}>
             <Button variant="contained" color="secondary" className={classes.btnChange} onClick={handleChange}>
               Zmień
             </Button>
           </Grid>
-          <Grid item lg={3} sm={4}>
+          <Grid item md={3} sm={6} xs={12}>
             <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleOpen}>
               Otwórz zapisaną analizę
             </Button>
@@ -625,7 +625,7 @@ const SimulationInfo = (props) => {
               Przeglądaj wyniki
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <div className={classes.titleHeader}>
               Wybierz typ wykresu
             </div>
@@ -634,7 +634,7 @@ const SimulationInfo = (props) => {
             </div>
             <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <div className={classes.titleHeader}>
               Wybierz przekrój
             </div>
@@ -643,7 +643,7 @@ const SimulationInfo = (props) => {
             </div>
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={selectedChartType != 3 ? sectionList : sectionMapList} />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
           {
               parseInt(selectedSection) === 8
               ?

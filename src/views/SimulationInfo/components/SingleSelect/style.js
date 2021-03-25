@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         '& li': {
             lineHeight: '7px',
             fontSize: '14px',
-            paddingLeft: theme.spacing(0)
+            paddingLeft: theme.spacing(0),
         }
     }
 }));

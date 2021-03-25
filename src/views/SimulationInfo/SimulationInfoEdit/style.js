@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
         border: theme.palette.contrastColor
     },
     mainContainer: {
-        padding: '30px 40px 30px 20px',
+        padding: '30px 20px 30px 20px',
         alignItems: 'center',
     },
     titleBlock: {
@@ -103,7 +103,7 @@ border: theme.palette.contrastColor,
         marginTop: '10px',
     },
     controlBlock: {
-        padding: '30px 40px 30px 20px',
+        padding: '30px 20px 30px 20px',
         height: '100%'
     },
     tableBlock: {

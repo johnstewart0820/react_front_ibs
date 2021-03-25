@@ -36,39 +36,41 @@ const ProvinceOccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid container spacing={2}>
-            <Grid item xs={4}>
-              <div className={classes.multiTitleHeader}>
-                Wybierz sekcje PKD
-              </div>
-              <div className={classes.subHeader}>
-                (można wybrać kilka sekcji)
-              </div>
-              <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
-            </Grid>
-            <Grid item xs={6}>
-              <OccupationSelectionModal
-                  node={occupationList}
-                  occupationSize={occupationSizeValue}
-                  handleSelectedOccupation={handleSelectedOccupation}
-                  handleSelectedOccupationSize={handleSelectedOccupationSize}
-                  occupationSizeList={occupationSizeList}
-                  selectedOccupation={occupationValue}
-                // handleSave={handleSaveOccupation}
-                />
-            </Grid>
-            {showChartsMode.length > 1 ?
-              <Grid item xs={2} style={{position: 'relative'}}>
-                <div className={classes.secondTitleHeader}>
-                  Wyniki
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item md={4} xs={12}>
+                <div className={classes.multiTitleHeader}>
+                  Wybierz sekcje PKD
                 </div>
-                <div style={{position: 'absolute', bottom: '8px', width: '95%'}}>
-                  <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+                <div className={classes.subHeader}>
+                  (można wybrać kilka sekcji)
                 </div>
+                <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
               </Grid>
-              :
-              <></>
-            }
+              <Grid item md={6} xs={12}>
+                <OccupationSelectionModal
+                    node={occupationList}
+                    occupationSize={occupationSizeValue}
+                    handleSelectedOccupation={handleSelectedOccupation}
+                    handleSelectedOccupationSize={handleSelectedOccupationSize}
+                    occupationSizeList={occupationSizeList}
+                    selectedOccupation={occupationValue}
+                  // handleSave={handleSaveOccupation}
+                  />
+              </Grid>
+              {showChartsMode.length > 1 ?
+                <Grid item md={2} xs={12}>
+                  <div className={classes.secondTitleHeader}>
+                    Wyniki
+                  </div>
+                  <div>
+                    <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+                  </div>
+                </Grid>
+                :
+                <></>
+              }
+            </Grid>
           </Grid>
         </Grid>
       </Card>

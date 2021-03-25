@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.topbar_background
     },
     mainContainer: {
-        padding: '30px 40px 30px 20px',
+        padding: '30px 20px 30px 20px',
         alignItems: 'center'
     },
     titleBlock: {
@@ -115,7 +115,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: '10px',
     },
     controlBlock: {
-        padding: '30px 40px 30px 20px',
+        padding: '30px 20px 30px 20px',
         height: '100%'
     },
     tableBlock: {

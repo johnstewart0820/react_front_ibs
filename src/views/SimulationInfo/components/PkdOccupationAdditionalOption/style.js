@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.topbar_background
     },
     mainContainer: {
-        padding: '30px 40px 30px 20px',
+        padding: '30px 20px 30px 20px',
     },
     titleBlock: {
         display: 'flex',
@@ -27,10 +27,15 @@ const useStyles = makeStyles(theme => ({
 
     secondTitleHeader: {
         color: theme.palette.gray,
-        
         fontFamily: 'roboto',
-        marginBottom: '40px',
-        fontWeight: '400'
+        fontWeight: '400',
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '15px',
+        },
+        [theme.breakpoints.up('md')]: {
+            marginBottom: '40px',
+        },
+        
     },
 
     subHeader: {

@@ -61,12 +61,12 @@ const Cockpit = props => {
         { !progressStatus ?
         <>
           <Grid item xs={12}>Przeglądaj najciekawsze dane:</Grid>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <Card className={classes.normalBlock}>
               <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[3].content : ''}}/>
             </Card>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <Card className={classes.normalBlock}>
               <div dangerouslySetInnerHTML={{__html: blocks.length > 0 ? blocks[4].content : ''}}/>
             </Card>

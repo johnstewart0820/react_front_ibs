@@ -39,8 +39,13 @@ const useStyles = makeStyles((theme) => ({
     border: theme.palette.contrastColor
   },
   buttonBlock: {
-    display: 'flex',
-    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+    [theme.breakpoints.up('ms')]: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
   header: {
     color: theme.palette.gray,
@@ -59,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   btnOpen: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '0.9375em',
+        fontSize: '1.1em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
@@ -74,9 +79,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.black_white,
     marginLeft: '20px',
     marginRight: '20px',
+    marginBottom: '20px',
     paddingLeft: '40px',
     paddingRight: '40px',
-    width: '25%'
+    width: '400px',
+    
   },
   progressContainer: {
     position: 'absolute',

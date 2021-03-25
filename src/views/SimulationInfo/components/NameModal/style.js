@@ -33,6 +33,8 @@ const useStyles = makeStyles(theme => ({
         
         width: '100%',
         color: theme.palette.gray,
+        backgroundColor: theme.palette.black_white,
+        border: `1px solid ${theme.palette.text.primary}`,
         fontWeight: '400',
         fontFamily: 'roboto',
         '&::placeholder': {

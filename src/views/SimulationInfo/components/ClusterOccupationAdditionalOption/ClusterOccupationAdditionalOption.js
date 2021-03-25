@@ -36,13 +36,13 @@ const ClusterOccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <div className={classes.secondTitleHeader}>
               Wybierz klaster powiatów
             </div>
             <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList}/>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <OccupationSelectionModal
                 node={occupationList}
                 occupationSize={occupationSizeValue}
@@ -54,7 +54,7 @@ const ClusterOccupationAdditionalOption = (props) => {
               />
           </Grid>
           {showChartsMode.length > 1 ?
-            <Grid item xs={2}>
+            <Grid item md={2} xs={12}>
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>

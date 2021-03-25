@@ -109,7 +109,7 @@ const MultiSelect = (props) => {
     let _arr = [];
     for (let i = 0; i < list.length; i ++)
       for (let j = 0; j < value.length; j ++) {
-        if (parseInt(value[j]) === parseInt(list[i].id)) {
+        if (value[j] == list[i].id) {
           _arr.push(list[i].name);
         }
       }

@@ -289,16 +289,42 @@ const JobOffer = (props) => {
     <>
       <Card className={classes.secondContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>
-          <Grid item xs={12}>
+          <Grid item md={6} xs={12}>
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <div className={classes.mainHeader}>
                   Przeglądaj wyniki
                 </div>
               </Grid>
-              {
+              <Grid item md={6} xs={12} style={{height: '130px', position: 'relative'}}>
+                <div className={classes.titleHeader}>
+                  Wybierz typ wykresu
+                </div>
+                <div className={classes.subHeader}>
+                  (można wybrać tylko 1 z typów jednocześnie)
+                </div>
+                <div style={{position: 'absolute', bottom: '8px', width: 'calc(100% - 16px)'}}>
+                  <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
+                </div>
+              </Grid>
+              <Grid item md={6} xs={12} style={{height: '130px', position: 'relative'}}>
+                <div className={classes.titleHeader}>
+                  Wybierz przekrój
+                </div>
+                <div className={classes.subHeader}>
+                  (można wybrać tylko 1 z typów jednocześnie)
+                </div>
+                <div style={{position: 'absolute', bottom: '8px', width: 'calc(100% - 16px)'}}>
+                  <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) !== 4 ? sectionList : sectionMapList} />
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <Grid container spacing={2}>
+            {
                 parseInt(selectedSection) !== 0 ?
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <div className={classes.mainHeader}>
                       Dodatkowe opcje
                     </div>
@@ -306,29 +332,8 @@ const JobOffer = (props) => {
                   :
                   <></>
               }
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={2}>
-              <Grid item xs={3}>
-                <div className={classes.titleHeader}>
-                  Wybierz typ wykresu
-                </div>
-                <div className={classes.subHeader}>
-                  (można wybrać tylko 1 z typów jednocześnie)
-                </div>
-                <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
-              </Grid>
-              <Grid item xs={3}>
-                <div className={classes.titleHeader}>
-                  Wybierz przekrój
-                </div>
-                <div className={classes.subHeader}>
-                  (można wybrać tylko 1 z typów jednocześnie)
-                </div>
-                <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) !== 4 ? sectionList : sectionMapList} />
-              </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} className={classes.additional_div}>
+                <div style={{height: '112px'}}>
                 {
                   parseInt(selectedSection) === 1 ?
                     <OccupationSelectionModal
@@ -368,7 +373,7 @@ const JobOffer = (props) => {
                         :
                         <></>
                 }
-
+                </div>
               </Grid>
             </Grid>
           </Grid>

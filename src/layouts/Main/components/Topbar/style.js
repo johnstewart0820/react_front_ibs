@@ -29,8 +29,8 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'center',
       '& .MuiSvgIcon-root': {
-        fontSize: '1.875em'
-      }
+        fontSize: '1.875em',
+      },
     },
     title: {
       color: theme.palette.gray,
@@ -62,7 +62,12 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'center'
     },
     controllerArea: {
-      display: 'flex',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.up('ms')]: {
+        display: 'flex',
+      },
     },
     vertical_separator: {
       height: '60%',

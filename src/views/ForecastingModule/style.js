@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         height: '100%'
     },
     simulationBlock: {
-        width: 'fit-content',
+        // width: 'fit-content',
         marginTop: '20px'
     },
     btnCreateSimulation: {

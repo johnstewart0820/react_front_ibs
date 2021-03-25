@@ -123,59 +123,57 @@ const OwnSimulations = props => {
               <Grid item xs={12}>
                 <div className={classes.subHeader}>
                   Wybierz wartość dla każdej ze scenariuszowych zmiennych egzogenicznych
-              </div>
+                </div>
               </Grid>
               <div className={classes.flexBlock}>
-                <Grid item className={classes.itemBlock}>
+                <div item className={classes.itemBlock}>
                   <div className={classes.selectTitle}>Tempo wzrostu PKB </div>
-                </Grid>
-                <Grid item className={classes.itemBlock}>
+                  <div className={classes.singleSelect}>
+                    <SingleSelect value={gdpRate} handleChange={setGdpRate} list={gdpList} />
+                  </div>
+                </div>
+                <div item className={classes.itemBlock}>
                   <div className={classes.selectTitle}>Popyt zagraniczny</div>
-                </Grid>
-                <Grid item className={classes.itemBlock}>
+                  <div className={classes.singleSelect}>
+                    <SingleSelect value={foreignDemand} handleChange={setForeignDemand} list={foreignDemandList} />
+                  </div>
+                </div>
+                <div item className={classes.itemBlock}>
                   <div className={classes.selectTitle}>Wielkość konsumpcji publicznej</div>
-                </Grid>
-                <Grid item className={classes.itemBlock}>
+                  <div className={classes.singleSelect}>
+                    <SingleSelect value={publicConsumption} handleChange={setPublicConsumption} list={publicConsumptionList} />
+                  </div>
+                </div>
+                <div item className={classes.itemBlock}>
                   <div className={classes.selectTitle}>Dzietność</div>
-                </Grid>
-                <Grid item className={classes.itemBlock}>
+                  <div className={classes.singleSelect}>
+                    <SingleSelect value={fertility} handleChange={setFertility} list={fertilityList} />
+                  </div>
+                </div>
+                <div item className={classes.itemBlock}>
                   <div className={classes.selectTitle}>Saldo migracji</div>
-                </Grid>
-              </div>
-              <div className={classes.flexBlock}>
-                <Grid item className={classes.itemBlock}>
-                  <SingleSelect value={gdpRate} handleChange={setGdpRate} list={gdpList} />
-                </Grid>
-                <Grid item className={classes.itemBlock}>
-                  <SingleSelect value={foreignDemand} handleChange={setForeignDemand} list={foreignDemandList} />
-                </Grid>
-                <Grid item className={classes.itemBlock}>
-                  <SingleSelect value={publicConsumption} handleChange={setPublicConsumption} list={publicConsumptionList} />
-                </Grid>
-                <Grid item className={classes.itemBlock}>
-                  <SingleSelect value={fertility} handleChange={setFertility} list={fertilityList} />
-                </Grid>
-                <Grid item className={classes.itemBlock}>
-                  <SingleSelect value={migrateBalance} handleChange={setMigrateBalance} list={migrateBalanceList} />
-                </Grid>
+                  <div className={classes.singleSelect}>
+                    <SingleSelect value={migrateBalance} handleChange={setMigrateBalance} list={migrateBalanceList} />
+                  </div>
+                </div>
               </div>
             </Card>
           </Grid>
         </Grid>
         <div className={classes.controlBlock}>
           <Grid container spacing={4}>
-            <Grid item lg={3} md={3} sm={12}>
+            <Grid item md={4} xs={12}>
               <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleCreate}>
                 Stwórz własny scenariusz dla zmiennej egzogenicznej
               </Button>
             </Grid>
-            <Grid item lg={3} md={3} sm={0}></Grid>
-            <Grid item lg={3} md={3} sm={12}>
+            <Grid item md={1} xs={0}></Grid>
+            <Grid item md={4} xs={12}>
               <Button variant="contained" color="secondary" className={classes.btnSee} onClick={handleOpenModal}>
                 Zobacz wartości liczbowe dla wariantów
               </Button>
             </Grid>
-            <Grid item lg={3} md={3} sm={12}>
+            <Grid item md={3} xs={12}>
               <Button 
                 variant="contained" 
                 color="secondary" 

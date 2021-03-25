@@ -92,7 +92,7 @@ const OccupationSelectionModal = (props) => {
         <div className={classes.secondTitleHeader}>
           Wybierz rodzaj grupy KZiS
         </div>
-        <div style={{position: 'absolute', bottom: '0px', width: '95%'}}>
+        <div style={{position: 'absolute', bottom: '0px', width: 'calc(100% - 16px)'}}>
           <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
         </div>
       </Grid>

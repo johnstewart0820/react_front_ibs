@@ -34,13 +34,13 @@ const ProvinceOccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
             <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList}/>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <OccupationSelectionModal
                 node={occupationList}
                 occupationSize={occupationSizeValue}
@@ -52,7 +52,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
               />
           </Grid>
           {showChartsMode.length > 1 ?
-            <Grid item xs={2}>
+            <Grid item md={2} xs={12}>
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>

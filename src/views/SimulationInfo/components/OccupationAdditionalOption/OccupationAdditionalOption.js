@@ -35,7 +35,7 @@ const OccupationAdditionalOption = (props) => {
               Dotatkowe opcje
             </div>
           </Grid>
-          <Grid item xs={8}>          
+          <Grid item md={8} xs={12}>          
             <OccupationSelectionModal
               node={occupationList}
               occupationSize={occupationSizeValue}
@@ -47,7 +47,7 @@ const OccupationAdditionalOption = (props) => {
             />
           </Grid>
           {showChartsMode.length > 1 ?
-            <Grid item xs={4}>
+            <Grid item md={4} xs={12}>
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>

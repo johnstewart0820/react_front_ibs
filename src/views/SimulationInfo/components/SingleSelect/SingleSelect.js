@@ -43,6 +43,13 @@ const SingleSelect = (props) => {
   useEffect(() => {
   }, []);
 
+  const getLabel = () => {
+    for (let i = 0; i < list.length; i ++) {
+      if (parseInt(list[i].id) === parseInt(value))
+        return list[i].name;
+    }
+    return '';
+  }
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel htmlFor="outlined-age-native-simple" className={classes.name_select_box} shrink={false}>
@@ -59,6 +66,9 @@ const SingleSelect = (props) => {
           id: 'outlined-age-native-simple',
         }}
         className={classes.input_box}
+        renderValue={
+          () => getLabel()
+        }
       >
         <MenuItem value={0}>
           <em></em>

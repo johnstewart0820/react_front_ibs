@@ -214,12 +214,12 @@ const CreateOwnSimulations = props => {
               <Grid item xs={12}>
                 <div className={classes.subHeader}>
                   Wybierz wartość dla każdej ze scenariuszowych zmiennych egzogenicznych
-              </div>
+                </div>
               </Grid>
 
               <div className={classes.flexBlock}>
                 {seriesLabelId.map((item, index) => (
-                  <Grid item className={classes.itemBlock}>
+                  <div item className={classes.itemBlock}>
                     <div
                       key={index}
                       className={clsx({
@@ -231,7 +231,7 @@ const CreateOwnSimulations = props => {
                     >
                       {item.title}
                     </div>
-                  </Grid>
+                  </div>
                 ))}
               </div>
             </Card>
@@ -242,23 +242,17 @@ const CreateOwnSimulations = props => {
               <Grid item xs={12}>
                 <Card className={classes.normalBlock}>
                   <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item md={4} xs={12}>
                       Wprowadź wartość roku 2020:
-                </Grid>
-                    <Grid item xs={4}>
-                      Wprowadź wartość roku 2050:
-                </Grid>
-                  </Grid>
-                  <Grid container spacing={3}>
-                    <Grid item xs={4}>
                       <input className={classes.input_box} type="text" value={valueFrom} name="valueFrom" placeholder="Wpisz wartość"
                         onChange={handleChangeValueFrom} autocomplete='off' />
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item md={4} xs={12}>
+                      Wprowadź wartość roku 2050:
                       <input className={classes.input_box} type="text" value={valueTo} name="valueTo" placeholder="Wpisz wartość"
                         onChange={handleChangeValueTo} autocomplete='off' />
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item md={3} xs={12}>
                       <div className={classes.approveBlock}>
                         <Button variant="contained" color="secondary" className={classes.btnSimulate} onClick={handleSyncValue}>
                           Zatwierdź
@@ -312,7 +306,7 @@ const CreateOwnSimulations = props => {
                               </div>
                             <div>
                               <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[29]} name="valueFrom"
-                                onChange={(e) => handleChangeSeriesValue(e, 30)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp}/>
+                                onChange={(e) => handleChangeSeriesValue(e, 29)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp}/>
                             </div>
                           </div>
                           </div>

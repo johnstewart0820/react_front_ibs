@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.gray,
         
         fontFamily: 'roboto',
-        marginBottom: '15px',
         fontWeight: '400'
     },
     input_box: {

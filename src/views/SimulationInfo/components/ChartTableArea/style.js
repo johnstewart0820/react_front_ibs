@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
     },
     controlBlock: {
-        padding: '30px 40px 30px 20px',
+        padding: '30px 20px 30px 20px',
         height: '100%',
         border: theme.palette.contrastColor
     },

@@ -27,7 +27,7 @@ const ControllerArea = (props) => {
 
   return (
     <Grid container spacing={2} className={classes.controlGrid}>
-      <Grid item xs={7} className={classes.controlContainer}>
+      <Grid item sm={7} xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
           <Grid container spacing={3}>
             <Grid item xs={6}>
@@ -53,7 +53,7 @@ const ControllerArea = (props) => {
           </Grid>
         </Card>
       </Grid>
-      <Grid item xs={5} className={classes.controlContainer}>
+      <Grid item sm={5} xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
           <Grid container spacing={2}>
             <Grid item xs={6}>

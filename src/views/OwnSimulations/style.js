@@ -39,15 +39,31 @@ const useStyles = makeStyles((theme) => ({
     border: theme.palette.contrastColor
   },
   flexBlock: {
-    display: 'flex',
+
     alignItems: 'center',
     marginBottom: '20px',
-    marginTop: '20px'
+    marginTop: '20px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
   },
   itemBlock: {
-    width: '20%',
     paddingLeft: '10px',
-    paddingRight: '10px'
+    paddingRight: '10px',
+    marginBottom: theme.spacing(2),
+    position: 'relative',
+    
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      height: '90px',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: '20%',
+      height: '100px',
+    },
   },
   headerBlock: {
     padding: '20px 20px 40px 20px',
@@ -61,7 +77,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.gray,
     fontSize: '0.8750em',
     fontFamily: 'roboto',
-    fontWeight: 400
+    fontWeight: 400,
+    marginBottom: theme.spacing(1)
   },
   subHeader: {
     color: theme.palette.gray,
@@ -70,14 +87,25 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
   },
   controlBlock: {
+
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(3),
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing(30),
+      width: '100%',
+    },
+  },
+  singleSelect: {
     position: 'absolute',
-    bottom: '50px',
-    width: 'calc(100% - 360px)'
+    bottom: '0px',
+    width: 'calc(100% - 16px)'
   },
   btnSimulate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '0.9375em',
+        fontSize: '1.2em',
     },
     '&:hover': {
         backgroundColor: theme.palette.blue
@@ -96,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
   btnSee: {
       '& .MuiButton-label': {
           textTransform: 'none',
-          fontSize: '0.9375em',
+          fontSize: '1.2em',
       },
       '& .MuiButton-containedSecondary:hover': {
 
@@ -116,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
   btnCreate: {
     '& .MuiButton-label': {
         textTransform: 'none',
-        fontSize: '0.9375em',
+        fontSize: '1.2em',
     },
     '& .MuiButton-containedSecondary:hover': {
 
