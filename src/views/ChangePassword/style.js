@@ -48,14 +48,6 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'roboto',
     color: theme.palette.pink
   },
-  userImageBlock: {
-    maxWidth: '20%',
-    flexBasis: '20%'
-  },
-  profileBlock: {
-    maxWidth: '80%',
-    flexBasis: '80%'
-  },
   profileLogo: {
     height: '100%',
     width: '100%'

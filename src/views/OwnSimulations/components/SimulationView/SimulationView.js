@@ -88,7 +88,7 @@ const SimulationView = (props) => {
   return (
     <>
       <Grid container spacing={0} className={classes.simulationView}>
-        <Grid item xs={7} className={classes.gridView}>
+        <Grid item md={7} xs={12} className={classes.gridView}>
           <Card className={classes.chartView}>
             <div className={classes.scrollBlock}>
               <div className={classes.seriesLabelBlock}>
@@ -127,7 +127,7 @@ const SimulationView = (props) => {
             </div>
           </Card>
         </Grid>
-        <Grid item xs={5} className={classes.gridView}>
+        <Grid item md={5} xs={12} className={classes.gridView}>
           <Card className={classes.titleView}>
             <h3>
               {seriesLabelInfo.title}

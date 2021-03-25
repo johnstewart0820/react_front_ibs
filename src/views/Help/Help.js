@@ -39,12 +39,12 @@ const Help = props => {
                 <div dangerouslySetInnerHTML={{ __html: blocks.length > 0 ? blocks[5].content : '' }} />
               </Card>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Card className={classes.normalBlock}>
                 <div dangerouslySetInnerHTML={{ __html: blocks.length > 0 ? blocks[6].content : '' }} />
               </Card>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Card className={classes.downloadBlock}>
                 <div dangerouslySetInnerHTML={{ __html: blocks.length > 0 ? blocks[7].content : '' }} />
               </Card>

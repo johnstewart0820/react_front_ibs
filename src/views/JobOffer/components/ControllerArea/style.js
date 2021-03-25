@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
         padding: '10px'
     },
     controlContainer: {
-        height: '100%'
+        // height: '100%'
     },
     controlBlock: {
         padding: '30px 20px 30px 20px',

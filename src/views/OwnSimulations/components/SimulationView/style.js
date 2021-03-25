@@ -2,24 +2,46 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     simulationView: {
-        height: '100%'
+        height: '100%',
+        [theme.breakpoints.down('sm')]: {
+            overflow: 'auto',
+        },
+        [theme.breakpoints.up('md')]: {
+            overflow: 'inherit',
+        },
     },
     chartView: {
         padding: '30px',
         height: '100%',
-        marginRight: '5px',
-        borderRadius: '0px'
+        borderRadius: '0px',
+        [theme.breakpoints.down('sm')]: {
+            marginRight: '0px',
+        },
+        [theme.breakpoints.up('md')]: {
+            marginRight: '5px'
+        },
     },
     titleView: {
         padding: '30px',
         borderRadius: '0px',
         marginBottom: '5px',
-        height: '30%'
+        height: '30%',
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '5px',
+        },
+        [theme.breakpoints.up('md')]: {
+            marginTop: '0px',
+        },
     },
     cardView: {
         height: 'calc(70% - 5px)',
         borderRadius: '0px',
-        overflow: 'auto'
+        [theme.breakpoints.down('sm')]: {
+            overflow: 'inherit',
+        },
+        [theme.breakpoints.up('md')]: {
+            overflow: 'auto',
+        },
     },
     description: {
         marginTop: '20px',

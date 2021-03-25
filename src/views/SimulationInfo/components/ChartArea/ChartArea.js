@@ -30,6 +30,8 @@ const ChartArea = (props) => {
   }, [chart_data]);
   const convertData = (data) => {
     let _arr = [];
+    if (data === null || data === undefined)
+      return _arr;
     _arr = data.map((item, index) => {
       let luka = null, podaz = null, popyt = null, zat = null, Rok;
       if (parseInt(item['Luka']) !== 0)
@@ -40,7 +42,7 @@ const ChartArea = (props) => {
         popyt = item['Popyt na pracę'];
       if (parseInt(item['Zatrudnienie']) !== 0)
         zat = item['Zatrudnienie'];
-      return {'Luka': luka, 'Podaż pracy' : podaz, 'Popyt na pracę' : popyt, 'Zatrudnienie' : zat, 'Rok': item['Rok']};
+      return {'Luka (prawa oś)': luka, 'Podaż pracy' : podaz, 'Popyt na pracę' : popyt, 'Zatrudnienie' : zat, 'Rok': item['Rok'], 'Wartość': item['Wartość']};
     })
     return _arr;
   }
@@ -75,10 +77,11 @@ const ChartArea = (props) => {
                         item == 3 ?
                           <Line type="monotone" dataKey="Zatrudnienie" stroke="#30a2cb" />
                           :
-                          <Line yAxisId="right" type="monotone" dataKey="Luka" stroke="#022ba5" />
+                          <Line yAxisId="right" type="monotone" dataKey="Luka (prawa oś)" stroke="#022ba5" />
                   ))
                 :
-                  <Line type="monotone" dataKey="Wartość" stroke="#D6324B" />
+                  <Line type="monotone" dataKey="Wartość" stroke="#30a2cb" />
+                  // <Line type="monotone" dataKey="Rok" stroke="#30a2cb" />
                 }
               </LineChart>
             </ResponsiveContainer>

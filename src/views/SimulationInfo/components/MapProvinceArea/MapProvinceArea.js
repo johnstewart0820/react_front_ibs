@@ -53,7 +53,7 @@ const MapProvinceArea = (props) => {
             {chart_title}
           </div>
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item md={8} xs={12}>
               <div id="tooltip" className={classes.tooltip} display="none" />
               <ReactSVG
                     afterInjection={(error, svg) => {
@@ -95,7 +95,7 @@ const MapProvinceArea = (props) => {
                     src={map_province_svg} />
 
             </Grid>
-            <Grid item xs={4} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
+            <Grid item md={4} xs={12} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
               <div className={classes.overflowCotainer}>
                 <div className={classes.layoutOverflow}>
                   {selectedProvince.map((item, index) => (

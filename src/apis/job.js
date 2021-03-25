@@ -16,6 +16,17 @@ class Job {
         })
     }
 
+    getDateStr = (year, month, day) => {
+        if (parseInt(month) < 10) {
+            month = '0' + month;
+        }
+        if (parseInt(day) < 10) {
+            day = '0' + day;
+        }
+
+        return year + '-' + month + '-' + day + ' 00:00:00';
+    }
+
     getChartData = (id_chart_type, id_section, id_occupation, id_province, id_cluster, fromDate, toDate) => {
         return axios
         .post(`${process.env.REACT_APP_BACKEND_URL}/job/get_chart_data`, {
@@ -26,10 +37,10 @@ class Job {
             id_cluster: id_cluster,
             fromDate: fromDate,
             toDate: toDate,
-            fromDateStr: new Date(fromDate.year, fromDate.month, 1, 0, 0, 0),
-            toDateStr: new Date(toDate.year, toDate.month + 1, 0, 0, 0, 0),
-            fromYearStr: new Date(fromDate.year, 0, 1, 0, 0, 0, 0),
-            toYearStr: new Date(parseInt(fromDate.year) + 1, 1, 0, 0, 0, 0)
+            fromDateStr: this.getDateStr(fromDate.year, fromDate.month + 1, 1),
+            toDateStr: this.getDateStr(toDate.year, toDate.month + 2, 1),
+            fromYearStr: this.getDateStr(fromDate.year, 1, 1),
+            toYearStr: this.getDateStr(fromDate.year, 13, 1),
         }, {
             headers: authHeader(storage.getStorage('token'))
         })

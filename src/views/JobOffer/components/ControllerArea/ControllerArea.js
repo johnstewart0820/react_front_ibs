@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
 const ControllerArea = (props) => {
-  const { handleExport, fromDate, setFromDate, toDate, setToDate, chartType, handleRender } = props;
+  const { handleExport, fromDate, setFromDate, toDate, setToDate, chartType, yearList, handleRender } = props;
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [exportDropdownOpen, setExportDropdownOpen] = useState(Boolean(anchorEl));
@@ -26,7 +26,7 @@ const ControllerArea = (props) => {
   };
   return (
     <Grid container spacing={2} className={classes.controlGrid}>
-      <Grid item xs={7} className={classes.controlContainer}>
+      <Grid item md={7} xs={12} className={classes.controlContainer}>
         <Card className={classes.controlBlock}>
             <DateArea
               fromDate={fromDate}
@@ -34,13 +34,14 @@ const ControllerArea = (props) => {
               toDate={toDate}
               setToDate={setToDate}
               chartType={chartType}
+              yearList={yearList}
             />
         </Card>
       </Grid>
-      <Grid item xs={5} className={classes.controlContainer}>
+      <Grid item md={5} xs={12} className={classes.controlContainer}>
         <Card className={classes.optionBlock}>
           <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <div className={classes.avatar}>
                 <Button variant="contained" color="secondary" className={classes.btnExport} onClick={handleMenu}>
                   Eksportuj
@@ -67,7 +68,7 @@ const ControllerArea = (props) => {
                 </Menu>
               </div>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item md={6} xs={12}>
               <Button variant="contained" color="secondary" className={classes.btnSave} onClick={() => handleRender()}>
                 Pokaż wyniki
               </Button>

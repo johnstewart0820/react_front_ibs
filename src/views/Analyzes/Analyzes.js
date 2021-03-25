@@ -130,7 +130,7 @@ const Analyzes = props => {
     <>
       <div className={classes.public}>
         <Grid container spacing={3}>
-          <Grid item xs={5} md={3} lg={2} >
+          <Grid item md={3} sm={5} xs={12} >
             <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleCreateSimulation}>
               Nowa analiza
             </Button>
@@ -143,19 +143,19 @@ const Analyzes = props => {
                     Filtruj wyniki
                   </div>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item md={4} xs={12}>
                   <div className={classes.titleHeader}>
                     Wybierz typ wykresu
                   </div>
                   <SingleSelect value={selectedChartType} handleChange={handleSelectedChartType} list={chartTypeList}/>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item md={4} xs={12}>
                   <div className={classes.titleHeader}>
                     Wybierz przekrój
                   </div>
                   <SingleSelect value={selectedSection} handleChange={handleSelectedSection} list={sectionList}/>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item md={4} xs={12}>
                   <div className={classes.titleHeader}>
                     Wybierz kategorie
                   </div>
@@ -167,16 +167,18 @@ const Analyzes = props => {
           <Grid item xs={12}>
             <Card className={classes.normalBlock}>
               <Grid container spacing={3}>
-                <Grid item xs={5}>
+                <Grid item md={5} xs={12}>
                   <div className={classes.rowsBlock}>
                     <div>Pokaż:</div>
-                    <RowFilter value={selectedCount} handleChange={setSelectedCount} list={countList} />
+                    <div className={classes.rowsContainer}>
+                      <RowFilter value={selectedCount} handleChange={setSelectedCount} list={countList} />
+                    </div>
                     <div>pozycji</div>
                   </div>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item md={7} xs={12}>
                   <div className={classes.searchBlock}>
-                    <div>Wyszukaj:</div>
+                    <div className={classes.first_block}>Wyszukaj:</div>
                     <input className={classes.input_box} type="text" value={searchKey} name="search_key"
                       onChange={(e) => setSearchKey(e.target.value)} autocomplete='off' onKeyPress={handleKeyPress}/>
                     <div className={classes.refresh_btn} onClick={handleSearch}>Odśwież</div>

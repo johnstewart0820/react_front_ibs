@@ -333,6 +333,9 @@ const SimulationInfoEdit = (props) => {
         chart_title = sectionList[selectedSection - 1].name.toLowerCase();
       }
       chart_title = chart_title.charAt(0).toUpperCase() + chart_title.slice(1);
+      if (chart_title === 'Edukacja') {
+        chart_title = 'Liczba absolwentów, tys.';
+      }
       return <ChartTableArea 
         data={chart}
         chartData={chartData}

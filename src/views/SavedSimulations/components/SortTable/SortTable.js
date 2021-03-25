@@ -30,7 +30,7 @@ const SortTable = (props) => {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>
+          <TableCell width="5%">
             <TableSortLabel
               active={sortBy === 0}
               direction={sortOrder}
@@ -39,7 +39,7 @@ const SortTable = (props) => {
               ID
             </TableSortLabel>
           </TableCell>
-          <TableCell>
+          <TableCell width="40%">
             <TableSortLabel
               active={sortBy === 1}
               direction={sortOrder}
@@ -48,7 +48,7 @@ const SortTable = (props) => {
               Nazwa
             </TableSortLabel>
           </TableCell>
-          <TableCell>
+          <TableCell width="5%">
             <TableSortLabel
               active={sortBy === 2}
               direction={sortOrder}

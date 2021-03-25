@@ -14,6 +14,17 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'roboto',
     fontWeight: 400,
   },
+  rowsContainer: {
+    marginLeft: '10px',
+    marginRight: '10px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%'
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 'fit-content',
+    },
+    
+  },
   normalBlock: {
     padding: '20px 20px 20px 20px',
     border: theme.palette.contrastColor,
@@ -71,13 +82,21 @@ const useStyles = makeStyles((theme) => ({
   },
   input_box: {
     padding: '12px 20px',
-    marginLeft: '10px',
-    marginRight: '10px',
-    width: '200px',
+    
     fontSize: '0.8750em',
     color: theme.palette.text.primary,
     border: `1px solid ${theme.palette.text.primary}`,
-    backgroundColor: theme.palette.black_white
+    backgroundColor: theme.palette.black_white,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '0px',
+      marginRight: '0px',
+      width: '100%'
+    },
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '10px',
+      marginRight: '10px',
+      width: '200px',
+    },
   },
   card: {
     border: theme.palette.contrastColor,
@@ -97,13 +116,33 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   searchBlock: {
-    display: 'flex',
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block'
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  first_block: {
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(1),
+    },
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '0'
+    },
   },
   refresh_btn: {
     color: theme.palette.pink,
     cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'right',
+      marginTop: theme.spacing(1),
+    },
+    [theme.breakpoints.up('md')]: {
+      
+    },
   },
   filterBlock: {
     padding: '20px',

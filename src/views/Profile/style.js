@@ -43,11 +43,24 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.pink,
   },
   userImageBlock: {
-    width: 'fit-content',
-    height: '100%'
+
+    height: '100%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center'
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 'fit-content',
+    },    
   },
   profileBlock: {
-    width: 'calc(100% - 260px)'
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 'calc(100% - 260px)',
+    },
   },
   profileLogo: {
     height: '100%',

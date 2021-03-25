@@ -25,7 +25,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '5px',
         fontWeight: 400
     },
-
+    additional_div: {
+        [theme.breakpoints.down('sm')]: {
+            height: '100px'
+        },
+        [theme.breakpoints.up('md')]: {
+            height: '112px'
+        },
+    },
     secondTitleHeader: {
         color: theme.palette.gray,
         

@@ -56,7 +56,7 @@ const MapCountyArea = (props) => {
             {chart_title}
           </div>
           <Grid container>
-            <Grid item xs={9}>
+            <Grid item md={9} xs={12}>
               <div id="tooltip" className={classes.tooltip} />
               <ReactSVG
                 afterInjection={(error, svg) => {
@@ -106,7 +106,7 @@ const MapCountyArea = (props) => {
                 src={map_province_svg} />
 
             </Grid>
-            <Grid item xs={3} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
+            <Grid item md={3} xs={12} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
               <div className={classes.overflowCotainer}>
                 <div className={classes.layoutOverflow}>
                   {selectedCluster.map((item, index) => (

@@ -74,10 +74,10 @@ const ChangePassword = (props) => {
   return (
     <>
     <Grid container spacing={4} className={classes.mainContainer}>
-      <Grid item className={classes.profileBlock}>
+      <Grid item md={8} xs={12}>
         <Card className={classes.profileContainer}>
           <Grid container spacing={2}>
-            <Grid item xs="6">
+            <Grid item md={8} xs={12} >
               <div className={classes.title}>
                 Stare hasło
               </div>

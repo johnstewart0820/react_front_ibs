@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
-        marginLeft: '10px',
-        marginRight: '10px'
+        width: '100%'
     },
     name_select_box: {
         '& svg': {

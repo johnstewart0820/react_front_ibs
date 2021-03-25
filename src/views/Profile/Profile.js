@@ -33,7 +33,7 @@ const Profile = (props) => {
       <Grid item className={classes.profileBlock}>
         <Card className={classes.profileContainer}>
           <Grid container spacing={2}>
-            <Grid item xs="6">
+            <Grid item md={8} xs={12}>
               <div className={classes.title}>
                 E-mail
               </div>

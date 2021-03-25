@@ -88,16 +88,18 @@ const SavedSimulations = props => {
           <Grid item xs={12}>
             <Card className={classes.normalBlock}>
               <Grid container spacing={3}>
-                <Grid item xs={5}>
+                <Grid item md={5} xs={12}>
                   <div className={classes.rowsBlock}>
                     <div>Pokaż:</div>
-                    <SingleSelect value={selectedCount} handleChange={setSelectedCount} list={countList} />
+                    <div className={classes.rowsContainer}>
+                      <SingleSelect value={selectedCount} handleChange={setSelectedCount} list={countList} />
+                    </div>
                     <div>pozycji</div>
                   </div>
                 </Grid>
-                <Grid item xs={7}>
+                <Grid item md={7} xs={12}>
                   <div className={classes.searchBlock}>
-                    <div>Wyszukaj:</div>
+                    <div className={classes.first_block}>Wyszukaj:</div>
                     <input className={classes.input_box} type="text" value={searchKey} name="search_key"
                       onChange={(e) => setSearchKey(e.target.value)} autocomplete='off' onKeyPress={handleKeyPress}/>
                     <div className={classes.refresh_btn} onClick={handleSearch}>Odśwież</div>

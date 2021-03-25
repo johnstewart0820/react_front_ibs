@@ -144,7 +144,7 @@ const ImportJobOffer = props => {
     <>
       <div className={classes.public}>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <Card className={classes.headerBlock}>
               <div className={classes.subHeader}>
                 Import danych
@@ -169,7 +169,7 @@ const ImportJobOffer = props => {
               </div>
             </Card>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item md={6} xs={12}>
             <Card className={classes.headerBlock}>
               <div className={classes.subHeader}>
                 Usuwanie danych

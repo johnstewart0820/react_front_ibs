@@ -45,10 +45,12 @@ const JobOffer = (props) => {
   const [clusterList, setClusterList] = useState([]);
   const [provinceList, setProvinceList] = useState([]);
   const [countyList, setCountyList] = useState([]);
+  const [limit, setLimit] = useState({});
+  const [yearList, setYearList] = useState([]);
   const [totalTableData, setTotalTableData] = useState([]);
   const [totalFieldList, setTotalFieldList] = useState([]);
   const [fromDate, setFromDate] = useState({ year: 2020, month: 0 });
-  const [toDate, setToDate] = useState({ year: 2021, month: 1 });
+  const [toDate, setToDate] = useState({ year: 2020, month: 11 });
   const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
 
   const [renderStatus, setRenderStatus] = useState(false);
@@ -238,6 +240,7 @@ const JobOffer = (props) => {
           toDate={toDate}
           setFromDate={setFromDate}
           setToDate={setToDate}
+          yearList={yearList}
           chartType={selectedChartType}
           handleRender={handleRender}
         />
@@ -273,6 +276,15 @@ const JobOffer = (props) => {
           setProvinceList(response.data.provinces);
           setClusterList(response.data.clusters);
           setCountyList(response.data.counties);
+          setLimit(response.data.limit);
+          let _year_list = [];
+          let start_date = new Date(response.data.limit.min);
+          let end_date = new Date(response.data.limit.max);
+          for (let i = start_date.getFullYear(); i < end_date.getFullYear(); i ++)
+            _year_list.push(i);
+          setYearList(_year_list);
+          setFromDate({ year: start_date.getUTCFullYear(), month: (start_date.getMonth() + 11) % 12 });
+          setToDate({ year: end_date.getUTCFullYear(), month: (end_date.getMonth() + 11) % 12  });
           let arr = [];
           response.data.type.map((item, index) => {
             if (index !== 0) {
@@ -289,7 +301,7 @@ const JobOffer = (props) => {
     <>
       <Card className={classes.secondContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>
-          <Grid item md={6} xs={12}>
+          <Grid item md={7} xs={12}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <div className={classes.mainHeader}>
@@ -320,7 +332,7 @@ const JobOffer = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={6} xs={12}>
+          <Grid item md={5} xs={12}>
             <Grid container spacing={2}>
             {
                 parseInt(selectedSection) !== 0 ?
@@ -332,8 +344,8 @@ const JobOffer = (props) => {
                   :
                   <></>
               }
-              <Grid item xs={12} className={classes.additional_div}>
-                <div style={{height: '112px'}}>
+              <Grid item xs={12} >
+                <div className={classes.additional_div}>
                 {
                   parseInt(selectedSection) === 1 ?
                     <OccupationSelectionModal

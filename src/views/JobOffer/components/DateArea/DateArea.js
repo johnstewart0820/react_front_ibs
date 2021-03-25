@@ -6,16 +6,9 @@ import { findIndex } from 'underscore';
 
 const DateArea = (props) => {
   const classes = useStyles();
-  const { fromDate, toDate, setFromDate, setToDate, chartType } = props;
-  const [yearList, setYearList] = useState([]);
+  const { fromDate, toDate, setFromDate, setToDate, yearList, chartType } = props;
+  // const [yearList, setYearList] = useState([]);
   const [monthList, setMonthList] = useState(['STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU']);
-  useEffect(() => {
-    let temp = [];
-    for (let i = 0; i < 31; i++) {
-      temp.push(i + 2020);
-    }
-    setYearList(temp);
-  }, []);
 
   return (
     <div>
