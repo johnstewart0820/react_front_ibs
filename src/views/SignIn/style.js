@@ -4,13 +4,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.mainBackground,
     [theme.breakpoints.down('sm')]: {
-      padding: '40px 40px 30px 40px'
+      padding: '20px 20px 0px 20px'
     },
     [theme.breakpoints.up('ms')]: {
-      padding: '40px 150px 30px 150px'
+      padding: '20px 20px 0px 20px'
     },
     [theme.breakpoints.up('md')]: {
-      padding: '40px 60px 30px 60px'
+      padding: '20px 20px 0px 20px'
     },
     
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   loginForm: {
   },
   switchContainer: {
-    marginTop: '100px',
+    marginTop: '80px',
     display: 'flex',
     // justifyContent: 'flex-end',
     [theme.breakpoints.down('sm')]: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   switchTab: {
-    marginBottom: '90px',
+    marginBottom: '70px',
     [theme.breakpoints.down('sm')]: {
       paddingRight: '0px'
     },

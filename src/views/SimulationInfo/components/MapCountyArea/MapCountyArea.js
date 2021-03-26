@@ -10,10 +10,29 @@ import useStyles from './style';
 const MapCountyArea = (props) => {
   const { clusterList, selectedCluster, countyList, chartData, selectedShowChartsMode, data, chart_title } = props;
   const classes = useStyles();
-  const color_list = ['#fd533c', '#9b210a', '#870d00', '#730000', '#5f0000', '#4b0000', '#230000', '#190000'];
+
   const [margin, setMargin] = useState(0);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
+  const color_list = getColorList();
+
+  function getColorList() {
+    let list = [];
+    let from_r = 214;
+    let from_g = 50;
+    let from_b = 75;
+    let to_r = 0;
+    let to_g = 0;
+    let to_b = 128;
+
+    for (let i = 0; i < 8; i ++) {
+      let r = from_r + (to_r - from_r) / 8 * i;
+      let g = from_g + (to_g - from_g) / 8 * i;
+      let b = from_b + (to_b - from_b) / 8 * i;
+      list.push('rgb(' + r + ',' + g + ',' + b +')');
+    }
+    return list;
+  }
 
   function showTooltip(evt, text) {
     let tooltip = document.getElementById("tooltip");

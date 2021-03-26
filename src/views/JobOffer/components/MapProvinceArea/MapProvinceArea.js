@@ -10,10 +10,29 @@ import useStyles from './style';
 const MapProvinceArea = (props) => {
   const { provinceList, selectedProvince, chartData, data, chart_title } = props;
   const classes = useStyles();
-  const color_list = ['#fd533c', '#c00000', '#a03000', '#9b210a', '#911700', '#870d00', '#7d0300', '#730000', '#690000', '#5f0000', '#550000', '#4b0000', '#410000', '#370000', '#230000', '#190000'];
+  const color_list = getColorList();
   const [margin, setMargin] = useState(0);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
+
+  function getColorList() {
+    let list = [];
+    let from_r = 214;
+    let from_g = 50;
+    let from_b = 75;
+    let to_r = 0;
+    let to_g = 0;
+    let to_b = 128;
+
+    for (let i = 0; i < 16; i ++) {
+      let r = from_r + (to_r - from_r) / 16 * i;
+      let g = from_g + (to_g - from_g) / 16 * i;
+      let b = from_b + (to_b - from_b) / 16 * i;
+      list.push('rgb(' + r + ',' + g + ',' + b +')');
+    }
+    return list;
+  }
+
   function showTooltip(evt, text) {
     let tooltip = document.getElementById("tooltip");
     tooltip.innerHTML = text;
