@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -57,6 +57,11 @@ const Main = props => {
 
   const shouldOpenSidebar = openSidebar;
 
+  useEffect(() => {
+    if(isDesktop === false) {
+      setOpenSidebar(false);
+    }
+  }, [isDesktop]);
   return (
     <div
       className={clsx({

@@ -606,9 +606,14 @@ const SimulationInfoEdit = (props) => {
       year = 2011;
       toYear = 2020;
     } else {
-      year = 2013;
-      toYear = 2050;
-    } 
+      if (parseInt(selectedMapCategory) != 3) {
+        year = 2019;
+        toYear = 2050;
+      } else {
+        year = 2011;
+        toYear = 2020;
+      }
+    }
     setSelectedYear(year);
     setSelectedToYear(toYear);
     let _arr = [];
@@ -616,7 +621,7 @@ const SimulationInfoEdit = (props) => {
       _arr.push(i);
     }
     setYearList(_arr);
-  }, [selectedCategory])
+  }, [selectedCategory, selectedMapCategory])
 
   const handleChangeChartType = (change) => {
     setChartData([]);

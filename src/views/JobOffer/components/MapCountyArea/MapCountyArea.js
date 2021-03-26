@@ -24,10 +24,10 @@ const MapCountyArea = (props) => {
     let to_g = 0;
     let to_b = 128;
 
-    for (let i = 0; i < 8; i ++) {
-      let r = from_r + (to_r - from_r) / 8 * i;
-      let g = from_g + (to_g - from_g) / 8 * i;
-      let b = from_b + (to_b - from_b) / 8 * i;
+    for (let i = 0; i < 5; i ++) {
+      let r = from_r + (to_r - from_r) / 5 * i;
+      let g = from_g + (to_g - from_g) / 5 * i;
+      let b = from_b + (to_b - from_b) / 5 * i;
       list.push('rgb(' + r + ',' + g + ',' + b +')');
     }
     return list;
@@ -50,11 +50,11 @@ const MapCountyArea = (props) => {
     let min = 0;
     let max = 0;
     for (let i = 0; i < chartData.length; i ++) {
-      if (parseInt(chartData[i].value) < min) {
-        min = parseInt(chartData[i].value);
+      if (parseFloat(chartData[i].value) < min) {
+        min = parseFloat(chartData[i].value);
       }
-      if (parseInt(chartData[i].value) > max) {
-        max = parseInt(chartData[i].value);
+      if (parseFloat(chartData[i].value) > max) {
+        max = parseFloat(chartData[i].value);
       }
     }
     setMin(min);
@@ -62,7 +62,7 @@ const MapCountyArea = (props) => {
     if (chartData.length === 0)
       setMargin(0);
     else
-      setMargin((max - min) / chartData.length);
+      setMargin((max - 0) / 5);
   }, [chartData]);
 
   return (
@@ -108,7 +108,7 @@ const MapCountyArea = (props) => {
                           let color = 0;
                           for (let l = 0; l < chartData.length ; l ++) {
                             if (parseInt(chartData[l].code) === parseInt(selectedCluster[i]))
-                              color = color_list[Math.round((parseInt(chartData[l].value) - min) / margin) - 1];
+                              color = color_list[Math.ceil((parseFloat(chartData[l].value) - min) / margin) - 1];
                           }
                           svg.children[k].style.fill = color;
                         }
@@ -126,10 +126,10 @@ const MapCountyArea = (props) => {
             <Grid item md={3} xs={12} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
               <div className={classes.overflowCotainer}>
                 <div className={classes.layoutOverflow}>
-                  {selectedCluster.map((item, index) => (
+                  {color_list.map((item, index) => (
                     <div className={classes.colorBlock}>
                       <div style={{ width: '20px', height: '10px', border: '1px solid gray', backgroundColor: color_list[index] }} />
-                      <div style={{ marginLeft: '20px' }}>{parseInt((index) * margin + min)} ~ {parseInt((index + 1) * margin + min)}</div>
+                      <div style={{ marginLeft: '20px' }}>{parseInt((index) * margin)} ~ {parseInt((index + 1) * margin)}</div>
                     </div>
                   ))}
                 </div>

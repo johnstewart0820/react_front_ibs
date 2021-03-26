@@ -233,8 +233,13 @@ const SimulationInfo = (props) => {
       year = 2011;
       toYear = 2020;
     } else {
-      year = 2013;
-      toYear = 2050;
+      if (parseInt(selectedMapCategory) != 3) {
+        year = 2019;
+        toYear = 2050;
+      } else {
+        year = 2011;
+        toYear = 2020;
+      }
     }
     
     setSelectedYear(year);
@@ -244,7 +249,7 @@ const SimulationInfo = (props) => {
       _arr.push(i);
     }
     setYearList(_arr);
-  }, [selectedCategory])
+  }, [selectedCategory, selectedMapCategory])
   useEffect(() => {
     setChartResultList(totalChartResultList);
     if (selectedChartType == 3) {

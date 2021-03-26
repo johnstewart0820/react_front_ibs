@@ -34,13 +34,13 @@ const ChartArea = (props) => {
       return _arr;
     _arr = data.map((item, index) => {
       let luka = null, podaz = null, popyt = null, zat = null, Rok;
-      if (parseInt(item['Luka']) !== 0 && parseInt(item['Rok']) >= 2019)
+      if (parseInt(item['Luka']) !== 0 || parseInt(item['Rok']) >= 2019)
         luka = item['Luka'];
-      if (parseInt(item['Podaż pracy']) !== 0 && parseInt(item['Rok']) >= 2019)
+      if (parseInt(item['Podaż pracy']) !== 0 || parseInt(item['Rok']) >= 2019)
         podaz = item['Podaż pracy'];
-      if (parseInt(item['Popyt na pracę']) !== 0 && parseInt(item['Rok']) >= 2019)
+      if (parseInt(item['Popyt na pracę']) !== 0 || parseInt(item['Rok']) >= 2019)
         popyt = item['Popyt na pracę'];
-      if (parseInt(item['Zatrudnienie']) !== 0 && parseInt(item['Rok']) <= 2020)
+      if (parseInt(item['Zatrudnienie']) !== 0 || parseInt(item['Rok']) <= 2020)
         zat = item['Zatrudnienie'];
       return {'Luka (prawa oś)': luka, 'Podaż pracy' : podaz, 'Popyt na pracę' : popyt, 'Zatrudnienie' : zat, 'Rok': item['Rok'], 'Wartość': item['Wartość']};
     })

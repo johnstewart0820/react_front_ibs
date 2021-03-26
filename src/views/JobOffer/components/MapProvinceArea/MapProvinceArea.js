@@ -24,10 +24,10 @@ const MapProvinceArea = (props) => {
     let to_g = 0;
     let to_b = 128;
 
-    for (let i = 0; i < 16; i ++) {
-      let r = from_r + (to_r - from_r) / 16 * i;
-      let g = from_g + (to_g - from_g) / 16 * i;
-      let b = from_b + (to_b - from_b) / 16 * i;
+    for (let i = 0; i < 5; i ++) {
+      let r = from_r + (to_r - from_r) / 5 * i;
+      let g = from_g + (to_g - from_g) / 5 * i;
+      let b = from_b + (to_b - from_b) / 5 * i;
       list.push('rgb(' + r + ',' + g + ',' + b +')');
     }
     return list;
@@ -50,11 +50,11 @@ const MapProvinceArea = (props) => {
     let min = 0;
     let max = 0;
     for (let i = 0; i < chartData.length; i ++) {
-      if (parseInt(chartData[i].value) < min) {
-        min = parseInt(chartData[i].value);
+      if (parseFloat(chartData[i].value) < min) {
+        min = parseFloat(chartData[i].value);
       }
-      if (parseInt(chartData[i].value) > max) {
-        max = parseInt(chartData[i].value);
+      if (parseFloat(chartData[i].value) > max) {
+        max = parseFloat(chartData[i].value);
       }
     }
     setMin(min);
@@ -62,7 +62,7 @@ const MapProvinceArea = (props) => {
     if (chartData.length === 0)
       setMargin(0);
     else
-      setMargin((max - min) / chartData.length);
+      setMargin((max - 0) / 5);
   }, [chartData]);
   return (
     <>
@@ -98,7 +98,7 @@ const MapProvinceArea = (props) => {
                               let color = 0;
                               for (let k = 0; k < chartData.length ; k ++) {
                                 if (parseInt(chartData[k].code) === parseInt(selectedProvince[j]))
-                                  color = color_list[Math.round((parseInt(chartData[k].value) - min) / margin) - 1];
+                                  color = color_list[Math.ceil((parseFloat(chartData[k].value) - 0) / margin) - 1];
                               }
                               svg.children[i].style.fill = color;
                             }
@@ -115,10 +115,10 @@ const MapProvinceArea = (props) => {
             <Grid item md={4} xs={12} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
               <div className={classes.overflowCotainer}>
                 <div className={classes.layoutOverflow}>
-                  {selectedProvince.map((item, index) => (
+                  {color_list.map((item, index) => (
                     <div className={classes.colorBlock}>
                       <div style={{ width: '20px', height: '10px', border: '1px solid gray', backgroundColor: color_list[index] }} />
-                      <div style={{ marginLeft: '20px' }}>{parseInt((index) * margin + min)} ~ {parseInt((index + 1) * margin - 1 + min)}</div>
+                      <div style={{ marginLeft: '20px' }}>{parseInt((index) * margin)} ~ {parseInt((index + 1) * margin - 1)}</div>
                     </div>
                   ))}
                 </div>

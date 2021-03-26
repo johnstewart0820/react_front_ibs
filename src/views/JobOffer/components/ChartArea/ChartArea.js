@@ -54,7 +54,25 @@ const ChartArea = (props) => {
     { name: 'Group E', value: 278 },
     { name: 'Group F', value: 189 },
   ];
-  const COLORS = ['#fd533c', '#9b210a', '#870d00', '#730000', '#5f0000', '#4b0000', '#230000', '#190000'];
+  const COLORS = getColorList();
+
+  function getColorList() {
+    let list = [];
+    let from_r = 214;
+    let from_g = 50;
+    let from_b = 75;
+    let to_r = 0;
+    let to_g = 0;
+    let to_b = 128;
+
+    for (let i = 0; i < 10; i ++) {
+      let r = from_r + (to_r - from_r) / 10 * i;
+      let g = from_g + (to_g - from_g) / 10 * i;
+      let b = from_b + (to_b - from_b) / 10 * i;
+      list.push('rgb(' + r + ',' + g + ',' + b +')');
+    }
+    return list;
+  }
   
   return (
     console.log(chartData),
@@ -97,7 +115,7 @@ const ChartArea = (props) => {
               dataKey="value"
               isAnimationActive={false}
               data={chartData}
-              fill="#8884d8"
+              fill="#D6324B"
               label={renderLabel}
             >
               {chartData.map((entry, index) => (

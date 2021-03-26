@@ -56,7 +56,9 @@ const ForecastingModule = (props) => {
               onChange={(event, value) => setSelectedItem(value ? value : {})}
               options={scenariosLabels}
               getOptionLabel={(option) => scenariosLabels && option && option.description}
-              renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}/>}
+              renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}
+              noOptionsText={'Brak opcji'}
+            />}
             />
           </Grid>
           <Grid item md={3} sm={8} xs={12}>

@@ -32,7 +32,7 @@ const OccupationAdditionalOption = (props) => {
         <Grid container spacing={2} className={classes.mainContainer}>
           <Grid item xs={12}>
             <div className={classes.mainHeader}>
-              Dotatkowe opcje
+              Dodatkowe opcje
             </div>
           </Grid>
           <Grid item md={8} xs={12}>          
