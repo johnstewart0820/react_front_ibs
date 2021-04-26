@@ -75,7 +75,6 @@ const ChartArea = (props) => {
   }
   
   return (
-    console.log(chartData),
     <>
       <Grid container spacing={0} className={classes.simulationView}>
         {selectedChartType == 1 ?

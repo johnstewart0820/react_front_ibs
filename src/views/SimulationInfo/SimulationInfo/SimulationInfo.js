@@ -33,6 +33,7 @@ import scenarios from '../../../apis/scenarios';
 import analyzes from '../../../apis/analyze';
 import analyze from '../../../apis/analyze';
 import { CSVLink } from "react-csv";
+import EXCEL from 'js-export-xlsx';
 
 const SimulationInfo = (props) => {
   const classes = useStyles();
@@ -110,11 +111,29 @@ const SimulationInfo = (props) => {
     if (type === 0)
       document.getElementById('export').click();
     if (type === 1)
-      handleExportAsPng();
+      handleExportAsXlsx();
     if (type === 2)
-      handleExportAsJpg();
+      handleExportAsPng();
     if (type === 3)
+      handleExportAsJpg();
+    if (type === 4)
       handleExportAsPdf();
+  }
+
+  const handleExportAsXlsx = () => {
+    let export_data = [];
+    totalTableData.map((table_each, index) => {
+      let item = [];
+      headers.map((each, index) => {
+        item.push(table_each[each.label])
+      })
+      export_data.push(item);
+    })
+    EXCEL.outPut({
+      header: headers.map((item, index)=> item.label),
+      data: export_data,
+      name: 'download'
+    })
   }
 
   const handleExportAsPng = () => {

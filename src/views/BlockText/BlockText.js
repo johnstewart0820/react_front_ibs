@@ -64,7 +64,6 @@ const BlockText = (props) => {
 
   useEffect(() => {
     setProgressStatus(true);
-    console.log(props);
     contents
       .getBlock(props.match.params.id)
       .then(response => {

@@ -22,6 +22,7 @@ import {
 import { useToasts } from 'react-toast-notifications'
 import job from '../../apis/job';
 import { ExportToCsv } from 'export-to-csv';
+import EXCEL from 'js-export-xlsx';
 
 const JobOffer = (props) => {
   const classes = useStyles();
@@ -86,11 +87,29 @@ const JobOffer = (props) => {
     if (type === 0)
       handleExportCSV();
     if (type === 1)
-      handleExportAsPng();
+      handleExportAsXlsx();
     if (type === 2)
-      handleExportAsJpg();
+      handleExportAsPng();
     if (type === 3)
+      handleExportAsJpg();
+    if (type === 4)
       handleExportAsPdf();
+  }
+
+  const handleExportAsXlsx = () => {
+    let export_data = [];
+    totalTableData.map((table_each, index) => {
+      let item = [];
+      totalFieldList.map((each, index) => {
+        item.push(table_each[each])
+      })
+      export_data.push(item);
+    })
+    EXCEL.outPut({
+      header: totalFieldList.map((item, index)=> item),
+      data: export_data,
+      name: 'download'
+    })
   }
 
   const handleExportAsPng = () => {

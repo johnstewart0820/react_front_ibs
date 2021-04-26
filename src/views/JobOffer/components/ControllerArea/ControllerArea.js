@@ -62,9 +62,10 @@ const ControllerArea = (props) => {
                   onClose={handleClose}
                 >
                   <MenuItem onClick={() => handleExport(0)}>Eksportuj do CSV</MenuItem>
-                  <MenuItem onClick={() => handleExport(1)}>Eksportuj do PNG</MenuItem>
-                  <MenuItem onClick={() => handleExport(2)}>Eksportuj do JPG</MenuItem>
-                  <MenuItem onClick={() => handleExport(3)}>Eksportuj do PDF</MenuItem>
+                  <MenuItem onClick={() => handleExport(1)}>Eksportuj do XLSX</MenuItem>
+                  <MenuItem onClick={() => handleExport(2)}>Eksportuj do PNG</MenuItem>
+                  <MenuItem onClick={() => handleExport(3)}>Eksportuj do JPG</MenuItem>
+                  <MenuItem onClick={() => handleExport(4)}>Eksportuj do PDF</MenuItem>
                 </Menu>
               </div>
             </Grid>
