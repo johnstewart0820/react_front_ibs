@@ -64,29 +64,34 @@ const OwnSimulations = props => {
   }
 
   const handleCreateScenario = () => {
-    setProgressStatus(true);
-    let arr = [];
-    [gdpList, foreignDemandList, publicConsumptionList, fertilityList, migrateBalanceList].forEach((item, index) => {
-      item.forEach((item, index) => {
-        if (item.description === gdpRate || item.description === foreignDemand || item.description === publicConsumption || item.description === fertility || item.description === migrateBalance)
-        arr.push(item.id_series)
+    if (!simulation || simulation.length === 0)
+      addToast("Nazwa symulacji musi zostać wprowadzona", { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true});
+    else {
+      setProgressStatus(true);
+      let arr = [];
+      [gdpList, foreignDemandList, publicConsumptionList, fertilityList, migrateBalanceList].forEach((item, index) => {
+        item.forEach((item, index) => {
+          if (item.description === gdpRate || item.description === foreignDemand || item.description === publicConsumption || item.description === fertility || item.description === migrateBalance)
+          arr.push(item.id_series)
+        })
       })
-    })
-    scenarios
-      .createScenario(0, simulation, 2019, 2050, arr)
-      .then(response => {
-        setProgressStatus(false);
-        if (response.code === 401) {
-          history.push('/login');
-        } else {
-          if (response.code === 200) {
-            addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true});
-            setTimeout(function(){history.push('/saved_simulations');}, 1000);
+      scenarios
+        .createScenario(0, simulation, 2019, 2050, arr)
+        .then(response => {
+          setProgressStatus(false);
+          if (response.code === 401) {
+            history.push('/login');
           } else {
-            addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true});
+            if (response.code === 200) {
+              addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true});
+              setTimeout(function(){history.push('/saved_simulations');}, 1000);
+            } else {
+              addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true});
+            }
           }
-        }
-      })
+        })
+    }
+    
   }
   
   const handleOpenModal = () => {
@@ -184,8 +189,6 @@ const OwnSimulations = props => {
                   || (Object.keys(publicConsumption).length === 0 && publicConsumption.constructor === Object )
                   || (Object.keys(fertility).length === 0 && fertility.constructor === Object )
                   || (Object.keys(migrateBalance).length === 0 && migrateBalance.constructor === Object )
-                  || !simulation
-                  || simulation.length === 0
                 }
                 onClick={handleCreateScenario}
               >
