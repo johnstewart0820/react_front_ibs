@@ -86,7 +86,7 @@ const SimulationInfoEdit = (props) => {
   const [totalFieldList, setTotalFieldList] = useState([]);
   const [headers, setHeaders] = useState([]);
   const [renderStatus, setRenderStatus] = useState(false);
-
+  const [first_render, setFirstRender] = useState(true);
   const handleChange = (props) => {
     history.push('/forecasting_module');
   }
@@ -141,7 +141,11 @@ const SimulationInfoEdit = (props) => {
 
   const handleExportAsPng = () => {
     const dom = chart.current;
-    domtoimage.toPng(dom)
+    domtoimage.toPng(dom, {
+      width: dom.offsetWidth * 10,
+      height: dom.offsetHeight * 10,
+      quality: 1
+    })
     .then(function (dataUrl) {
       var link = document.createElement('a');
       link.download = 'download.png';
@@ -252,6 +256,7 @@ const SimulationInfoEdit = (props) => {
   }
 
   const handleRender = () => {
+    setFirstRender(false);
     setTableData([]);
     setProgressStatus(true);
     analyzes.getChartData(
@@ -323,7 +328,7 @@ const SimulationInfoEdit = (props) => {
       
       chart_title += categoryList[selectedMapCategory - 1].name.charAt(0).toUpperCase() + categoryList[selectedMapCategory - 1].name.slice(1) + ' - przekrój ';
       chart_title += sectionList[selectedSection - 1].name.toLowerCase();
-      if (parseInt(selectedSection) === 6) {
+      if (parseInt(selectedSection) === 6 || parseInt(selectedSection) === 2) {
         return <MapProvinceArea
           data={chart}
           provinceList={provinceList}
@@ -392,41 +397,45 @@ const SimulationInfoEdit = (props) => {
   const renderControlView = () => {
     if (checkRenderStatus()) {
       return <></>
+    } else {
+      if (first_render) {
+        handleRender();
+      }
+      return (
+        <Grid container spacing={2} className={classes.thirdContainer}>
+          <ControllerArea
+            setSelectedYear={setSelectedYear}
+            selectedYear={selectedYear}
+            setSelectedToYear={setSelectedToYear}
+            selectedToYear={selectedToYear}
+            handleExport={handleExport}
+            handleSave={handleSave}
+            openModal={openModal}
+            handleCloseModal={handleCloseModal}
+            setName={setName}
+            handleSaveAnalyze={handleSaveAnalyze}
+            name={name}
+            yearList={yearList}
+            selectedChartType={selectedChartType}
+            handleRender={handleRender}
+          />
+          <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
+          {
+            renderStatus ? 
+              <> 
+                <>
+                  {renderResultView()}
+                </>
+                <>
+                  {renderTotalView()}
+                </>
+              </>
+              :
+              <></>
+          }
+        </Grid>
+      )
     }
-    return (
-      <Grid container spacing={2} className={classes.thirdContainer}>
-        <ControllerArea
-          setSelectedYear={setSelectedYear}
-          selectedYear={selectedYear}
-          setSelectedToYear={setSelectedToYear}
-          selectedToYear={selectedToYear}
-          handleExport={handleExport}
-          handleSave={handleSave}
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}
-          setName={setName}
-          handleSaveAnalyze={handleSaveAnalyze}
-          name={name}
-          yearList={yearList}
-          selectedChartType={selectedChartType}
-          handleRender={handleRender}
-        />
-        <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
-        {
-          renderStatus ? 
-            <> 
-              <>
-                {renderResultView()}
-              </>
-              <>
-                {renderTotalView()}
-              </>
-            </>
-            :
-            <></>
-        }
-      </Grid>
-    )
   }
   const renderSwitchAddition = () => {
     if (parseInt(selectedChartType) === 0 || parseInt(selectedSection) === 0 || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)) {
@@ -590,7 +599,7 @@ const SimulationInfoEdit = (props) => {
           setSelectedAge(getStringArray(response.data.analyze.id_age));
           let sections = [];
           response.data.sections.map((item, index) => {
-            if (index == 5 || index == 6) {
+            if (index == 1 || index == 2 || index == 5 || index == 6) {
               sections.push(item);
             }
           })

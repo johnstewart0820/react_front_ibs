@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid gray',
         borderRadius: '4px',
         padding: '30px 30px 15px 30px',
-        width: '180px'
+        width: '200px'
     },
     overflowCotainer: {
         display: 'flex',

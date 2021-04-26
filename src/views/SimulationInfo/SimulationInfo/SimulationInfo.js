@@ -328,7 +328,7 @@ const SimulationInfo = (props) => {
       
       chart_title += categoryList[selectedMapCategory - 1].name.charAt(0).toUpperCase() + categoryList[selectedMapCategory - 1].name.slice(1) + ' - przekrój ';
       chart_title += sectionList[selectedSection - 1].name.toLowerCase();
-      if (parseInt(selectedSection) === 6) {
+      if (parseInt(selectedSection) === 6 || parseInt(selectedSection) === 2) {
         return <MapProvinceArea
           data={chart}
           provinceList={provinceList}
@@ -623,7 +623,7 @@ const SimulationInfo = (props) => {
           setAgeList(response.data.ages);
           let sections = [];
           response.data.sections.map((item, index) => {
-            if (index == 5 || index == 6) {
+            if (index == 1 || index == 2 || index == 5 || index == 6) {
               sections.push(item);
             }
           })
