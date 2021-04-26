@@ -24,8 +24,10 @@ import {
   Grid, 
   Card, 
   Button,
-  CircularProgress
+  CircularProgress,
+  TextField
 } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 import { useToasts } from 'react-toast-notifications'
 import scenarios from '../../../apis/scenarios';
 import analyzes from '../../../apis/analyze';
@@ -36,7 +38,8 @@ const SimulationInfoEdit = (props) => {
   const chart = useRef(null);
   const { addToast } = useToasts()
   const { history } = props;
-  const item = props.location.state.item;
+  const [item, setItem] = useState(props.location.state.item);
+  const [scenariosLabels, setScenariosLabels] = useState([]);
   const [progressStatus, setProgressStatus] = useState(false);
   const [selectedCluster, setSelectedCluster] = useState([]);
   const [selectedChartType, setSelectedChartType] = useState(0);
@@ -206,7 +209,7 @@ const SimulationInfoEdit = (props) => {
       selectedOccupation,
       selectedPkdSection,
       selectedShowChartsMode, 
-      scenario.id_scenario,
+      item.id_scenario,
       idAnalyze,
       selectedOccupationSize,
       selectedCluster,
@@ -549,7 +552,7 @@ const SimulationInfoEdit = (props) => {
           setCountyList(response.data.counties);
           setEducationList(response.data.educations);
           setAgeList(response.data.ages);
-          setScenario(response.data.scenario);
+          setItem(response.data.scenario);
           setName(response.data.analyze.name);
           setIdAnalyze(response.data.analyze.id_analyze);
           setSelectedCluster(getNumArray(response.data.analyze.id_cluster));
@@ -628,6 +631,21 @@ const SimulationInfoEdit = (props) => {
     setTableData([]);
     setSelectedChartType(change);
   }
+
+  useEffect(() => {
+    setProgressStatus(true);
+    scenarios
+      .getScenariosLabels()
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          setScenariosLabels(response.data.scenarios_labels);
+        }
+      })
+  }, []);
+
   return (
     <>
       <Card>
@@ -638,7 +656,16 @@ const SimulationInfoEdit = (props) => {
                 Wybrana symulacja:
               </div>
               <div className={classes.titleInfo}>
-                {scenario.description}
+                <Autocomplete
+                  className={classes.name_select_box}
+                  value={item}
+                  onChange={(event, value) => setItem(value ? value : {})}
+                  options={scenariosLabels}
+                  getOptionLabel={(option) => scenariosLabels && option && option.description}
+                  renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}
+                    noOptionsText={'Brak opcji'}
+                  />}
+                />
               </div>
             </div>
           </Grid>

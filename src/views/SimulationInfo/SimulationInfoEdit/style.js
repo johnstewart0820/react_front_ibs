@@ -1,6 +1,30 @@
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles(theme => ({
+    name_select_box: {
+        '& .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"]': {
+          padding: '2px 10px',
+          borderRadius: '0px',
+          border: '0px'
+        },
+        '& fieldset': {
+          border: `1px solid ${theme.palette.gray}`,
+        },
+        '& .MuiChip-root': {
+          borderRadius: '2px',
+          backgroundColor: theme.palette.gray,
+          color: theme.palette.black_white,
+          padding: '0px 10px',
+          height: '26px'
+        }, 
+        '& .MuiAutocomplete-popper': {
+            color: 'red',
+            backgroundcolor: theme.palette.black_white
+        },
+        '& svg': {
+            color: theme.palette.text.primary
+        }
+    },
     card: {
         backgroundColor: theme.palette.topbar_background,
         border: theme.palette.contrastColor
@@ -11,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     },
     titleBlock: {
         display: 'flex',
+        alignItems: 'center'
     },
     mainHeader: {
         color: theme.palette.gray,

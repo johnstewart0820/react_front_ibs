@@ -20,11 +20,13 @@ import {
 } from '../components';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
+import { Autocomplete } from '@material-ui/lab';
 import {
   Grid,
   Card,
   Button,
-  CircularProgress
+  CircularProgress,
+  TextField
 } from '@material-ui/core';
 import { useToasts } from 'react-toast-notifications'
 import scenarios from '../../../apis/scenarios';
@@ -37,8 +39,9 @@ const SimulationInfo = (props) => {
   const chart = useRef(null);
   const { addToast } = useToasts()
   const { history } = props;
-  const item = props.location.state.item;
+  const [item, setItem] = useState(props.location.state.item);
   const [progressStatus, setProgressStatus] = useState(false);
+  const [scenariosLabels, setScenariosLabels] = useState([]);
   const [selectedChartType, setSelectedChartType] = useState(0);
   const [selectedSection, setSelectedSection] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState([]);
@@ -159,6 +162,20 @@ const SimulationInfo = (props) => {
     setOpenModal(false);
   }
 
+  useEffect(() => {
+    setProgressStatus(true);
+    scenarios
+      .getScenariosLabels()
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          setScenariosLabels(response.data.scenarios_labels);
+        }
+      })
+  }, []);
+  
   const handleSaveAnalyze = () => {
     setProgressStatus(true);
     analyzes.createAnalyze(
@@ -610,7 +627,16 @@ const SimulationInfo = (props) => {
                 Wybrana symulacja:
               </div>
               <div className={classes.titleInfo}>
-                {item.description}
+                <Autocomplete
+                  className={classes.name_select_box}
+                  value={item}
+                  onChange={(event, value) => setItem(value ? value : {})}
+                  options={scenariosLabels}
+                  getOptionLabel={(option) => scenariosLabels && option && option.description}
+                  renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}
+                    noOptionsText={'Brak opcji'}
+                  />}
+                />
               </div>
             </div>
           </Grid>
