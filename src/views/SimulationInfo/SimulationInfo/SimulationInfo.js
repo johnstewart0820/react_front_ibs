@@ -458,6 +458,7 @@ const SimulationInfo = (props) => {
       }
       setProgressStatus(false);
       setRenderStatus(true);
+      chart.current.scrollIntoView({ behavior: 'smooth' });
     })
   }
   const renderControlView = () => {

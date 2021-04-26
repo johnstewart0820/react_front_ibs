@@ -319,6 +319,7 @@ const SimulationInfoEdit = (props) => {
       }
       setProgressStatus(false);
       setRenderStatus(true);
+      chart.current.scrollIntoView({ behavior: 'smooth' });
     })
   }
 
