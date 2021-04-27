@@ -17,7 +17,7 @@ class dateUtil {
         let hour = this.adjust2digits(data.hour());
         let minute = this.adjust2digits(data.minute());
 
-        return `${month}.${day}.${year} ${hour}:${minute}`
+        return `${day}.${month}.${year} ${hour}:${minute}`
     }
 }
 export default new dateUtil();
