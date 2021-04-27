@@ -47,8 +47,8 @@ const MapCountyArea = (props) => {
   }
 
   useEffect(() => {
-    let min = 0;
-    let max = 0;
+    let min = 1000000;
+    let max = -1000000;
     for (let i = 0; i < chartData.length; i ++) {
       if (parseFloat(chartData[i].value) < min) {
         min = parseFloat(chartData[i].value);
@@ -61,8 +61,12 @@ const MapCountyArea = (props) => {
     setMax(max);
     if (chartData.length === 0)
       setMargin(0);
-    else
-      setMargin((max - 0) / 5);
+    else if (chartData.length === 1) {
+      setMargin((max - 0) /5);
+      setMin(0);
+    } else {
+      setMargin((max - min) / 5);
+    }
   }, [chartData]);
 
   return (
@@ -85,7 +89,7 @@ const MapCountyArea = (props) => {
                           let value = 0;
                           for (let k = 0; k < chartData.length; k ++) {
                             if (parseInt(chartData[k].code) === parseInt(countyList[j].id)) {
-                              value = chartData[k].value;
+                              value = (chartData[k].value).toFixed(2);
                             }
                           }
                           title = clusterList[countyList[j].cluster_id - 1].name + ' : ' + value;
@@ -107,8 +111,13 @@ const MapCountyArea = (props) => {
                         if (parseInt(svg.children[k].getAttribute('data-id')) === parseInt(countyList[temp[j]].id)) {
                           let color = 0;
                           for (let l = 0; l < chartData.length ; l ++) {
-                            if (parseInt(chartData[l].code) === parseInt(selectedCluster[i]))
-                              color = color_list[Math.ceil((parseFloat(chartData[l].value) - min) / margin) - 1];
+                            if (parseInt(chartData[l].code) === parseInt(selectedCluster[i])) {
+                              let color_ind = Math.ceil((chartData[l].value - min) / margin);
+                              if (color_ind >= color_list.length) {
+                                color_ind = color_list.length - 1;
+                              }
+                              color = color_list[color_ind];
+                            }
                           }
                           svg.children[k].style.fill = color;
                         }

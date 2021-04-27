@@ -45,8 +45,8 @@ const MapProvinceArea = (props) => {
   }
 
   useEffect(() => {
-    let min = 0;
-    let max = 0;
+    let min = 1000000;
+    let max = -1000000;
     for (let i = 0; i < chartData.length; i ++) {
       if (parseFloat(chartData[i].value) < min) {
         min = parseFloat(chartData[i].value);
@@ -59,8 +59,12 @@ const MapProvinceArea = (props) => {
     setMax(max);
     if (chartData.length === 0)
       setMargin(0);
-    else
+    else if (chartData.length === 1) {
       setMargin((max - 0) / 5);
+      setMin(0);
+    } else {
+      setMargin((max - min) / 5);
+    }
   }, [chartData]);
   return (
     <>
@@ -83,7 +87,7 @@ const MapProvinceArea = (props) => {
                               let value = 0;
                               for (let k = 0; k < chartData.length; k ++) {
                                 if (parseInt(chartData[k].code) === parseInt(provinceList[j].id)) {
-                                  value = chartData[k].value;
+                                  value = (chartData[k].value).toFixed(2);
                                 }
                               }
                               title = provinceList[j].name + ' : ' + value;
@@ -96,7 +100,11 @@ const MapProvinceArea = (props) => {
                               let color = 0;
                               for (let k = 0; k < chartData.length ; k ++) {
                                 if (parseInt(chartData[k].code) === parseInt(selectedProvince[j])) {
-                                  color = color_list[Math.ceil((parseFloat(chartData[k].value) - 0) / margin) - 1];
+                                  let color_ind = Math.ceil((chartData[k].value - min) / margin);
+                                  if (color_ind >= color_list.length) {
+                                    color_ind = color_list.length - 1;
+                                  }
+                                  color = color_list[color_ind];
                                 }
                               }
 
@@ -118,7 +126,7 @@ const MapProvinceArea = (props) => {
                   {color_list.map((item, index) => (
                     <div className={classes.colorBlock}>
                       <div style={{ width: '20px', height: '10px', border: '1px solid gray', backgroundColor: color_list[index] }} />
-                      <div style={{ marginLeft: '20px' }}>{parseInt((index) * margin)} ~ {parseInt((index + 1) * margin )}</div>
+                      <div style={{ marginLeft: '20px' }}>{((index) * margin + min).toFixed(2)} ~ {((index + 1) * margin + min).toFixed(2)}</div>
                     </div>
                   ))}
                 </div>
