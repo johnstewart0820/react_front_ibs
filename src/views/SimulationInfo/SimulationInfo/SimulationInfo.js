@@ -26,7 +26,8 @@ import {
   Card,
   Button,
   CircularProgress,
-  TextField
+  TextField,
+  Tooltip
 } from '@material-ui/core';
 import { useToasts } from 'react-toast-notifications'
 import scenarios from '../../../apis/scenarios';
@@ -40,6 +41,15 @@ const SimulationInfo = (props) => {
   const chart = useRef(null);
   const { addToast } = useToasts()
   const { history } = props;
+  const tooltip_list = [
+    'Podstawowy scenariusz wykorzystujący bazowe wartości wszystkich zmiennych egzogenicznych (zob. Raport metodologiczny w zakładce Pomoc)',
+    'Scenariusz zakładający tempo wzrostu ogólnej produktywności wyższe o 0,25 p.p. rocznie niż w scenariuszu bazowym, tempo wzrostu popytu zagranicznego wyższe o 0,1 p.p. oraz udział konsumpcji publicznej w PKB wyższy o 1 p.p.',
+    'Scenariusz zakładający współczynnik dzietności (TFR) niższy niż w scenariuszu bazowym. Różnica wynosi od 0,15 (początek prognozy) do 0,30 (rok 2050).',
+    'Scenariusz zakładający tempo wzrostu ogólnej produktywności wyższe o 0,25 p.p. rocznie niż w scenariuszu bazowym.',
+    'Scenariusz zakładający tempo wzrostu ogólnej produktywności niższe o 0,25 p.p. rocznie niż w scenariuszu bazowym.',
+    'Scenariusz zakładający dwukrotnie większy napływ imigrantów niż w scenariuszu bazowym.',
+    'Scenariusz zakładający dwukrotnie mniejszy napływ imigrantów niż w scenariuszu bazowym.'
+  ];
   const [item, setItem] = useState(props.location.state.item);
   const [progressStatus, setProgressStatus] = useState(false);
   const [scenariosLabels, setScenariosLabels] = useState([]);
@@ -69,7 +79,7 @@ const SimulationInfo = (props) => {
   const [countyList, setCountyList] = useState([]);
   const [educationList, setEducationList] = useState([]);
   const [ageList, setAgeList] = useState([]);
-  const [sectionMapList,setSectionMapList] = useState([]);
+  const [sectionMapList, setSectionMapList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [occupationSizeList, setOccupationSizeList] = useState([]);
   const [clusterList, setClusterList] = useState([]);
@@ -130,7 +140,7 @@ const SimulationInfo = (props) => {
       export_data.push(item);
     })
     EXCEL.outPut({
-      header: headers.map((item, index)=> item.label),
+      header: headers.map((item, index) => item.label),
       data: export_data,
       name: 'download'
     })
@@ -139,29 +149,29 @@ const SimulationInfo = (props) => {
   const handleExportAsPng = () => {
     const dom = chart.current;
     domtoimage.toPng(dom)
-    .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'download.png';
-      link.href = dataUrl;
-      link.click();
-    })
-    .catch(function (error) {
+      .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'download.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
-    });
+      });
   }
 
   const handleExportAsJpg = () => {
     const dom = chart.current;
     domtoimage.toJpeg(dom)
-    .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'download.jpg';
-      link.href = dataUrl;
-      link.click();
-    })
-    .catch(function (error) {
+      .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'download.jpg';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
-    });
+      });
   }
 
   const handleExportAsPdf = () => {
@@ -169,7 +179,7 @@ const SimulationInfo = (props) => {
     var options = {
       filename: 'download.pdf'
     };
-    domtopdf(dom, options, function() {
+    domtopdf(dom, options, function () {
     });
   }
 
@@ -194,7 +204,7 @@ const SimulationInfo = (props) => {
         }
       })
   }, []);
-  
+
   const handleSaveAnalyze = () => {
     setProgressStatus(true);
     analyzes.createAnalyze(
@@ -229,16 +239,16 @@ const SimulationInfo = (props) => {
   }
   const checkRenderStatus = () => {
     return parseInt(selectedChartType) === 0
-    || parseInt(selectedSection) === 0
-    || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
-    || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
+      || parseInt(selectedSection) === 0
+      || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
+      || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
   }
   useEffect(() => {
     setTotalTableData([]);
@@ -252,7 +262,7 @@ const SimulationInfo = (props) => {
     let containsNew = false;
     let year;
     let toYear;
-    for (let i = 0; i < selectedCategory.length; i ++) {
+    for (let i = 0; i < selectedCategory.length; i++) {
       if (parseInt(selectedCategory[i]) !== 3) {
         containsNew = true;
       } else {
@@ -262,7 +272,7 @@ const SimulationInfo = (props) => {
     if (containsNew && containsOld) {
       year = 2011;
       toYear = 2050;
-    } else if (containsNew){
+    } else if (containsNew) {
       year = 2019;
       toYear = 2050;
     } else if (containsOld) {
@@ -277,11 +287,11 @@ const SimulationInfo = (props) => {
         toYear = 2020;
       }
     }
-    
+
     setSelectedYear(year);
     setSelectedToYear(toYear);
     let _arr = [];
-    for (let i = year; i <= toYear; i ++) {
+    for (let i = year; i <= toYear; i++) {
       _arr.push(i);
     }
     setYearList(_arr);
@@ -292,12 +302,12 @@ const SimulationInfo = (props) => {
       setSelectedSection(0);
       setSelectedCategory([]);
       let _arr = [];
-      for (let i = 0; i < provinceList.length; i ++) {
+      for (let i = 0; i < provinceList.length; i++) {
         _arr.push(provinceList[i].id);
       }
       setSelectedProvince(_arr);
       _arr = [];
-      for (let i = 0; i < clusterList.length; i ++) {
+      for (let i = 0; i < clusterList.length; i++) {
         _arr.push(clusterList[i].id);
       }
       setSelectedCluster(_arr);
@@ -325,9 +335,10 @@ const SimulationInfo = (props) => {
   const renderResultView = () => {
     if (parseInt(selectedChartType) === 3) {
       let chart_title = '';
-      
+
       chart_title += categoryList[selectedMapCategory - 1].name.charAt(0).toUpperCase() + categoryList[selectedMapCategory - 1].name.slice(1) + ' - przekrój ';
       chart_title += sectionList[selectedSection - 1].name.toLowerCase();
+      chart_title += ' (w tysiącach)';
       if (parseInt(selectedSection) === 6 || parseInt(selectedSection) === 2) {
         return <MapProvinceArea
           data={chart}
@@ -349,9 +360,9 @@ const SimulationInfo = (props) => {
         />
       }
     } else {
-            let chart_title = '';
+      let chart_title = '';
       if (selectedCategory.length > 0) {
-        for(let i = 0; i < selectedCategory.length - 1; i ++) {
+        for (let i = 0; i < selectedCategory.length - 1; i++) {
           chart_title += categoryList[selectedCategory[i] - 1].name.toLowerCase() + '/';
         }
         chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name.toLowerCase() + ' - przekrój ';
@@ -364,7 +375,9 @@ const SimulationInfo = (props) => {
         chart_title = 'Liczba absolwentów, tys.';
       }
 
-      return <ChartTableArea 
+      chart_title += " (w tysiącach)";
+
+      return <ChartTableArea
         data={chart}
         chartData={chartData}
         selectedChartType={selectedChartType}
@@ -382,7 +395,7 @@ const SimulationInfo = (props) => {
 
   const renderTotalView = () => (
     <Grid item xs={12}>
-    <Card className={classes.totalView}>
+      <Card className={classes.totalView}>
         <SortTable
           rows={totalTableData}
           requestSort={requestTotalSort}
@@ -391,7 +404,7 @@ const SimulationInfo = (props) => {
           field_list={totalFieldList}
           handleChangeTableData={setTotalTableData}
         />
-    </Card>
+      </Card>
     </Grid>
   )
 
@@ -446,7 +459,7 @@ const SimulationInfo = (props) => {
           setTotalTableData(response.data.table_data);
           setTotalFieldList(response.data.field_list);
           let _arr = [];
-          for (let i = 0; i < response.data.field_list.length; i ++) {
+          for (let i = 0; i < response.data.field_list.length; i++) {
             let _item = {};
             _item.label = response.data.field_list[i].toString();
             _item.key = response.data.field_list[i].toString();
@@ -483,10 +496,10 @@ const SimulationInfo = (props) => {
           selectedChartType={selectedChartType}
           handleRender={handleRender}
         />
-        <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
+        <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{ display: 'none' }} id='export'>Export to CSV</CSVLink>
         {
-          renderStatus ? 
-            <> 
+          renderStatus ?
+            <>
               <>
                 {renderResultView()}
               </>
@@ -653,9 +666,14 @@ const SimulationInfo = (props) => {
                   onChange={(event, value) => setItem(value ? value : {})}
                   options={scenariosLabels}
                   getOptionLabel={(option) => scenariosLabels && option && option.description}
-                  renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}
+                  renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{ shrink: false }}
                     noOptionsText={'Brak opcji'}
                   />}
+                  renderOption={(option, { selected }) => (
+                    <Tooltip arrow title={option.id_scenario <= tooltip_list.length ? tooltip_list[option.id_scenario - 1] : ''} placement="right-start" value={option.id_scenario}>
+                      <div className={classes.tooltip}>{option.description}</div>
+                    </Tooltip>
+                  )}
                 />
               </div>
             </div>
@@ -698,31 +716,31 @@ const SimulationInfo = (props) => {
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={selectedChartType != 3 ? sectionList : sectionMapList} />
           </Grid>
           <Grid item md={4} xs={12}>
-          {
+            {
               parseInt(selectedSection) === 8
-              ?
-              <></>
-              :
-              <>
-                <div className={classes.titleHeader} style={selectedChartType == 3 ? {marginBottom: '40px'} : {}}>
-                  Wybierz kategorię
+                ?
+                <></>
+                :
+                <>
+                  <div className={classes.titleHeader} style={selectedChartType == 3 ? { marginBottom: '40px' } : {}}>
+                    Wybierz kategorię
                 </div>
-                {
-                  parseInt(selectedChartType) != 3 ?
-                  <div className={classes.subHeader}>
-                    (można wybrać 1, 2 lub 3 kategorie)
+                  {
+                    parseInt(selectedChartType) != 3 ?
+                      <div className={classes.subHeader}>
+                        (można wybrać 1, 2 lub 3 kategorie)
                   </div>
-                  :
-                  <></>
-                }
-                {
-                selectedChartType == 3
-                  ?
-                  <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
-                  :
-                  <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
-                }
-              </>
+                      :
+                      <></>
+                  }
+                  {
+                    selectedChartType == 3
+                      ?
+                      <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
+                      :
+                      <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
+                  }
+                </>
             }
 
           </Grid>

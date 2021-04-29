@@ -74,7 +74,9 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.primary
         }
       },
-      
+    tooltip: {
+        width: '100%'
+    },
     progressContainer: {
         position: 'absolute',
         top: '50%',

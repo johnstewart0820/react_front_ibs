@@ -29,21 +29,21 @@ const MultiSelect = (props) => {
   };
 
   const tooltip_list = [{
-    name: 'Sektorowy', tooltip: 'umożliwia przeglądanie prognoz w podziale na sekcje gospodarki według Polskiej Klasyfikacji Działalności.',
+    name: 'Sektorowy', tooltip: 'umożliwia przeglądanie prognoz dla Polski w podziale na sekcje gospodarki według Polskiej Klasyfikacji Działalności.',
   }, {
     name: 'Wojewódzki', tooltip: 'umożliwia przeglądanie zagregowanych prognoz w podziale na województwa.',
   }, {
     name: 'Powiatowy', tooltip: 'umożliwia przeglądanie zagregowanych prognoz w podziale na osiem grup powiatów, o wspólnych cechach gospodarczych.',
   }, {
-    name: 'Zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów, według Klasyfikacji Zawodów i Specjalności.',
+    name: 'Zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla Polski, w podziale na grupy zawodów, według Klasyfikacji Zawodów i Specjalności.',
   }, {
-    name: 'Sektorowo-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów, w ramach wybranych sekcji gospodarki. ',
+    name: 'Sektorowo-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów, w ramach wybranych sekcji gospodarki. Dane są prezentowane dla całego kraju.',
   }, {
-    name: 'Wojewódzko-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów w wybranych województwach. ',
+    name: 'Wojewódzko-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów w wybranych województwach.',
   }, {
-    name: 'Powiatowo-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów w wybranych klastrach powiatów. ',
+    name: 'Powiatowo-zawodowy', tooltip: 'umożliwia przeglądanie prognoz dla poszczególnych grup zawodów w wybranych klastrach powiatów.',
   }, {
-    name: 'Edukacja', tooltip: 'pokazuje liczbę absolwentów według dziedziny i poziomu wykształcenia oraz w podziale na grupy wieku. Prognoza zaczyna się od roku 2019.' 
+    name: 'Edukacja', tooltip: 'pokazuje liczbę absolwentów według dziedziny i poziomu wykształcenia oraz w podziale na grupy wieku. Dane są prezentowane dla całego kraju. Prognoza zaczyna się od roku 2019. ' 
   }, {
     name: 'Popyt na pracę', tooltip: 'Prognoza popytu na pracę zgłaszanego przez pracodawców',
   }, {

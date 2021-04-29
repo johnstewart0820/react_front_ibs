@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.text.primary
         }
     },
+    tooltip: {
+        width: '100%'
+    },
     card: {
         backgroundColor: theme.palette.topbar_background,
         border: theme.palette.contrastColor
