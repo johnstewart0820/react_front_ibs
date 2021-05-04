@@ -151,20 +151,16 @@ const SimulationInfoEdit = (props) => {
 
   const handleExportAsPng = () => {
     const dom = chart.current;
-    domtoimage.toPng(dom, {
-      width: dom.offsetWidth * 10,
-      height: dom.offsetHeight * 10,
-      quality: 1
-    })
-    .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'download.png';
-      link.href = dataUrl;
-      link.click();
-    })
-    .catch(function (error) {
+    domtoimage.toPng(dom)
+      .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'download.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
-    });
+      });
   }
 
   const handleExportAsJpg = () => {
@@ -184,7 +180,8 @@ const SimulationInfoEdit = (props) => {
   const handleExportAsPdf = () => {
     const dom = chart.current;
     var options = {
-      filename: 'download.pdf'
+      filename: 'download.pdf',
+      overrideWidth:  dom.clientWidth / 841.89 * (841.89 + 350)
     };
     domtopdf(dom, options, function() {
     });

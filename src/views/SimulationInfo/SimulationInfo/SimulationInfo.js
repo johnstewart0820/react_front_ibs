@@ -177,9 +177,10 @@ const SimulationInfo = (props) => {
   const handleExportAsPdf = () => {
     const dom = chart.current;
     var options = {
-      filename: 'download.pdf'
+      filename: 'download.pdf',
+      overrideWidth:  dom.clientWidth / 841.89 * (841.89 + 350)
     };
-    domtopdf(dom, options, function () {
+    domtopdf(dom, options, function() {
     });
   }
 

@@ -169,7 +169,7 @@ const OwnSimulations = props => {
           <Grid container spacing={4}>
             <Grid item md={4} xs={12}>
               <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleCreate}>
-                Stwórz własny scenariusz dla zmiennej egzogenicznej
+                Stwórz wybrany scenariusz dla własnej zmiennej
               </Button>
             </Grid>
             <Grid item md={1} xs={0}></Grid>

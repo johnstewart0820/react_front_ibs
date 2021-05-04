@@ -197,7 +197,7 @@ const CreateOwnSimulations = props => {
             <Card className={classes.headerBlock}>
               <Grid item xs={12}>
                 <div className={classes.subHeader}>
-                  Stwórz własny scenariusz dla zmiennej egzogenicznej
+                  Stwórz wybrany scenariusz dla własnej zmiennej
                 </div>
               </Grid>
               <Grid item lg={6} md={9} sm={12}>

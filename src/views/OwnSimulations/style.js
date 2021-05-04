@@ -119,7 +119,8 @@ const useStyles = makeStyles((theme) => ({
     '&:disabled': {
       backgroundColor: theme.palette.blue_disable,
       color: theme.palette.normal_disable
-    }
+    },
+    padding: '15px'
   },
   btnSee: {
       '& .MuiButton-label': {
@@ -139,7 +140,8 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.blue,
       width: '100%',
       height: '100%',
-      lineHeight: '1'
+      lineHeight: '1',
+      padding: '15px'
   },
   btnCreate: {
     '& .MuiButton-label': {
@@ -159,7 +161,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.pink,
     width: '100%',
     height: '100%',
-    lineHeight: '1'
+    lineHeight: '1',
+    padding: '15px'
 },
   input_box: {
     color: theme.palette.text.primary,
