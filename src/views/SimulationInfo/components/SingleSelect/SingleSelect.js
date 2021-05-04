@@ -30,6 +30,8 @@ const SingleSelect = (props) => {
     name: 'Zatrudnienie', tooltip: 'Dane historyczne o zatrudnieniu'
   }, {
     name: 'Luka', tooltip: 'Prognoza różnicy między popytem na pracę a podażą pracy',
+  }, {
+    name: 'Kolumnowy', tooltip: 'Wykres kolumnowy umożliwia porównanie wartości kilku zmiennych w jednym roku'
   }];
 
   const getTooltip = (name) => {
