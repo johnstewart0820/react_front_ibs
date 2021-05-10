@@ -1,5 +1,5 @@
 import React from 'react';
-import { MultiSelect, SingleSelect } from '..';
+import { MultiSelect, SingleSelect, TooltipSingleSelect } from '..';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 import { 
@@ -23,6 +23,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
     occupationList,
     showChartsMode,
     occupationSizeList,
+    selectedChartType
   } = props;
 
   return (
@@ -56,7 +57,12 @@ const ProvinceOccupationAdditionalOption = (props) => {
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>
-              <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+              {
+                Number(selectedChartType) === 3 ?
+                  <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+                :
+                  <TooltipSingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+              }
             </Grid>
             :
             <></>

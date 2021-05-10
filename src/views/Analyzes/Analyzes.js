@@ -93,8 +93,8 @@ const Analyzes = props => {
     }
   }
 
-  const handleCreateSimulation = () => {
-    history.push('/own_simulations');
+  const handleForecastingModule = () => {
+    history.push('/forecasting_module');
   }
 
   const handleSelectedChartType = (id) => {
@@ -131,7 +131,7 @@ const Analyzes = props => {
       <div className={classes.public}>
         <Grid container spacing={3}>
           <Grid item md={3} sm={5} xs={12} >
-            <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleCreateSimulation}>
+            <Button variant="contained" color="secondary" className={classes.btnCreate} onClick={handleForecastingModule}>
               Nowa analiza
             </Button>
           </Grid>

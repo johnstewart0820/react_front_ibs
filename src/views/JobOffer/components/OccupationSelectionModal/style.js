@@ -32,6 +32,13 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'roboto',
         fontWeight: '400'
     },
+    selectAll: {
+        marginLeft: '20px',
+        marginBottom: '4px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        fontSize: '0.8em',
+    },
     input_box: {
         '& svg': {
             fill: theme.palette.text.primary

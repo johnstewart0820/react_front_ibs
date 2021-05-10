@@ -587,6 +587,7 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
+          selectedChartType={selectedChartType}
         />
       case 7:
         return <ClusterOccupationAdditionalOption
@@ -602,6 +603,7 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           occupationSizeList={occupationSizeList}
           showChartsMode={chartResultList}
+          selectedChartType={selectedChartType}
         />
       case 8:
         return <EducationAdditionalOption

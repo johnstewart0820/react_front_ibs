@@ -1,4 +1,5 @@
 export { default as SingleSelect } from './SingleSelect';
+export { default as TooltipSingleSelect } from './TooltipSingleSelect';
 export { default as MultiSelect } from './MultiSelect';
 export { default as ClusterAdditionalOption } from './ClusterAdditionalOption';
 export { default as PkdSectionAdditionalOption } from './PkdSectionAdditionalOption';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MultiSelect, SingleSelect } from '..';
+import { MultiSelect, SingleSelect, TooltipSingleSelect } from '..';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 import { 
@@ -23,8 +23,7 @@ const ClusterOccupationAdditionalOption = (props) => {
     occupationList,
     occupationSizeList,
     showChartsMode,
-    ableRender,
-    handleRender
+    selectedChartType
   } = props;
 
   return (
@@ -58,7 +57,13 @@ const ClusterOccupationAdditionalOption = (props) => {
               <div className={classes.secondTitleHeader}>
                 Wyniki
               </div>
-              <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+              {
+                Number(selectedChartType) === 3 ?
+                  <SingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+                :
+                  <TooltipSingleSelect value={showChartModeValue} handleChange={handleSelectedShowChartsMode} list={showChartsMode}/>
+              }
+ 
             </Grid>
             :
             <></>

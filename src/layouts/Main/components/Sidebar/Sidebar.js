@@ -37,16 +37,19 @@ const Sidebar = props => {
     {
       title: 'Własne symulacje',
       href: '/own_simulations',
+      tooltip: 'Moduł pozwala dostosowywać prognozy rynku pracy do wybranych założeń ekonomicznych i demograficznych',
       icon: <SimulationIcon/>
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
+      tooltip: 'W tej zakładce znajdują się domyślne scenariusze oraz własne symulacje stworzone przez użytkownika',
       icon: <SavedSimulationIcon/>
     },
     {
       title: 'Zapisane analizy',
       href: '/analyzes',
+      tooltip: 'W tej zakładce znajdują się zapisane wyniki analiz dla wcześniej wybranych symulacji',
       icon: <SavedAnalyzeIcon/>
     },
     {
@@ -87,16 +90,19 @@ const Sidebar = props => {
     {
       title: 'Własne symulacje',
       href: '/own_simulations',
+      tooltip: 'Moduł pozwala dostosowywać prognozy rynku pracy do wybranych założeń ekonomicznych i demograficznych',
       icon: <SimulationIcon/>
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
+      tooltip: 'W tej zakładce znajdują się domyślne scenariusze oraz własne symulacje stworzone przez użytkownika',
       icon: <SavedSimulationIcon/>
     },
     {
       title: 'Zapisane analizy',
       href: '/analyzes',
+      tooltip: 'W tej zakładce znajdują się zapisane wyniki analiz dla wcześniej wybranych symulacji',
       icon: <SavedAnalyzeIcon/>
     },
     {

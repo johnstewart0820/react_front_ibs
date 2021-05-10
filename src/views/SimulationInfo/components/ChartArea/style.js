@@ -92,6 +92,9 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'roboto',
         marginBottom: '10px',
         marginTop: '10px',
+        '& .recharts-legend-wrapper': {
+            bottom: 'auto !important'
+        }
     },
     chartTitle: {
         writingMode: 'vertical-rl',

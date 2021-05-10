@@ -10,13 +10,21 @@ import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 const NotAxisTickButLabel = props=> {
   let value = props.payload.value + '';
-  if (value.length > 20)
-    value = value.substring(0, 20);
+  let arr = [];
+  while(value.length != 0) {
+    arr.push(value.substring(0, 22));
+    value = value.substring(22);
+  }
   return (
    <g transform={"translate( " + props.x + "," + props.y + " )" }>
-      <text x={0} y={0} dy={5}  fontFamily="Roboto"  fontSize="10px"  fill={props.color || "#44545e" } transform="rotate(90)">
-        {value}
-      </text>
+     {
+       arr.map((item, index) => (
+        <text x={0} y={index * 9} dy={arr.length / 2 * -5} key={index}  fontFamily="Roboto"  fontSize="10px"  fill={props.color || "#44545e" } transform="rotate(90)">
+          {item}
+        </text>
+       ))
+     }
+
     </g>  
   ); 
 }
