@@ -30,7 +30,8 @@ const OccupationSelectionModal = (props) => {
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(0);
   const classes = useStyles();
-
+  let allNodes = [];
+  
   const handleClick = (event) => {
     setOpen(!open);
   };
@@ -86,6 +87,28 @@ const OccupationSelectionModal = (props) => {
     }
   }
 
+  const getAllOccupation = (arr) => {
+    for (let i = 0; i < arr.length; i ++) {
+      if (arr[i].children) {
+        getAllOccupation(arr[i].children);
+      } else {
+        allNodes.push(arr[i].value);
+      }
+    }
+  }
+
+  const handleSelectAll = () => {
+    let arr = nodes;
+    if (selectedOccupation.length != 0) {
+      handleSelectedOccupation([]);
+    } else {
+      allNodes = [];
+      getAllOccupation(arr);
+      handleSelectedOccupation(allNodes);
+    }
+  }
+
+
   return (
     <Grid container style={{height: '100%'}}>
       <Grid item xs={5} style={{position: 'relative'}}>
@@ -117,6 +140,7 @@ const OccupationSelectionModal = (props) => {
             <Grid container className={classes.occupationBlock} id="occupation_block" style={open ? { visibility: 'visible', width: width } : { visibility: 'hidden', width: width }}>
               <Grid item xs={12}>
                 <div className={classes.checkboxblock}>
+                  <div className={classes.selectAll} onClick={handleSelectAll}>Zaznacz wszystkie / Odznacz wszystkie</div>
                   <CheckboxTree
                     nodes={nodes}
                     checked={selectedOccupation}

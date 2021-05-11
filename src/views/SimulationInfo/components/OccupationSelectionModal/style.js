@@ -33,6 +33,13 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '15px',
         fontWeight: '400'
     },
+    selectAll: {
+        marginLeft: '20px',
+        marginBottom: '4px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        fontSize: '0.8em',
+    },
     input_box: {
         '& svg': {
             fill: theme.palette.text.primary
