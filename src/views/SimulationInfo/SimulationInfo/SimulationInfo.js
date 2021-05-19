@@ -683,7 +683,7 @@ const SimulationInfo = (props) => {
           </Grid>
           <Grid item md={2} sm={6} xs={12}>
             <Button variant="contained" color="secondary" className={classes.btnChange} onClick={handleChange}>
-              Zmień
+              Resetuj
             </Button>
           </Grid>
           <Grid item md={3} sm={6} xs={12}>
