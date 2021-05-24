@@ -203,14 +203,43 @@ const JobOffer = (props) => {
 
   const renderResultView = () => {
     let chart_title = 'Ilość ofert pracy - przekrój ';
+    let chart_bottom_title = '';
+    let list = [];
     chart_title += sectionList[selectedSection - 1].name.toLowerCase();
     chart_title += ' (w tysiącach)';
+    if (parseInt(selectedSection) === 1) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup zawodowych:';
+      selectedOccupation.map((item, index) => {
+        occupationList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 2) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących województw:';
+      selectedProvince.map((item, index) => {
+        provinceList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 3) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup powiatów:';
+      selectedCluster.map((item, index) => {
+        clusterList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    }
     if (parseInt(selectedChartType) === 1 || parseInt(selectedChartType) === 2 || parseInt(selectedChartType) === 3) {
       return <ChartTableArea
         data={chart}
         chartData={chartData}
         selectedChartType={selectedChartType}
         chart_title={chart_title}
+        bottom_title={chart_bottom_title}
+        list={list}
       />
     } else if (parseInt(selectedChartType) === 4) {
       if (parseInt(selectedSection) === 2) {
@@ -220,6 +249,8 @@ const JobOffer = (props) => {
           selectedProvince={selectedProvince}
           chartData={chartData}
           chart_title={chart_title}
+          bottom_title={chart_bottom_title}
+          list={list}
         />
       } else {
         return <MapCountyArea
@@ -229,6 +260,8 @@ const JobOffer = (props) => {
           selectedCluster={selectedCluster}
           chartData={chartData}
           chart_title={chart_title}
+          bottom_title={chart_bottom_title}
+          list={list}
         />
       }
     }

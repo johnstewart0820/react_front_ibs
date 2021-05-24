@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Grid, Card
 } from '@material-ui/core';
@@ -8,7 +8,7 @@ import { ReactSVG } from 'react-svg'
 import useStyles from './style';
 
 const MapCountyArea = (props) => {
-  const { clusterList, selectedCluster, countyList, chartData, selectedShowChartsMode, data, chart_title } = props;
+  const { clusterList, selectedCluster, countyList, chartData, selectedShowChartsMode, data, chart_title, bottom_title, list, sub_list } = props;
   const classes = useStyles();
 
   const [margin, setMargin] = useState(0);
@@ -25,11 +25,11 @@ const MapCountyArea = (props) => {
     let to_g = 0;
     let to_b = 128;
 
-    for (let i = 0; i < 5; i ++) {
+    for (let i = 0; i < 5; i++) {
       let r = from_r + (to_r - from_r) / 5 * i;
       let g = from_g + (to_g - from_g) / 5 * i;
       let b = from_b + (to_b - from_b) / 5 * i;
-      list.push('rgb(' + r + ',' + g + ',' + b +')');
+      list.push('rgb(' + r + ',' + g + ',' + b + ')');
     }
     return list;
   }
@@ -51,7 +51,7 @@ const MapCountyArea = (props) => {
   useEffect(() => {
     let min = 1000000;
     let max = -1000000;
-    for (let i = 0; i < chartData.length; i ++) {
+    for (let i = 0; i < chartData.length; i++) {
       if (parseFloat(chartData[i].value) < min) {
         min = parseFloat(chartData[i].value);
       }
@@ -89,12 +89,12 @@ const MapCountyArea = (props) => {
                       for (let j = 0; j < countyList.length; j++) {
                         if (countyList[j].id === parseInt(svg.children[i].getAttribute('data-id'))) {
                           let value = 0;
-                          for (let k = 0; k < chartData.length; k ++) {
+                          for (let k = 0; k < chartData.length; k++) {
                             if (parseInt(chartData[k].code) === parseInt(countyList[j].id)) {
                               value = (chartData[k].value).toFixed(2);
                             }
                           }
-                          title = clusterList[countyList[j].cluster_id - 1].name ;
+                          title = clusterList[countyList[j].cluster_id - 1].name;
                         }
                       }
                       svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
@@ -112,7 +112,7 @@ const MapCountyArea = (props) => {
                       for (let j = 0; j < temp.length; j++) {
                         if (parseInt(svg.children[k].getAttribute('data-id')) === parseInt(countyList[temp[j]].id)) {
                           let color = 0;
-                          for (let l = 0; l < chartData.length ; l ++) {
+                          for (let l = 0; l < chartData.length; l++) {
                             if (parseInt(chartData[l].code) === parseInt(selectedCluster[i])) {
                               let color_ind = Math.ceil((chartData[l].value - min) / margin);
                               if (color_ind >= color_list.length) {
@@ -147,6 +147,25 @@ const MapCountyArea = (props) => {
               </div>
             </Grid>
           </Grid>
+          <div style={{marginTop: '30px'}}>
+            <div className={classes.chart_title}>
+              {bottom_title}
+            </div>
+            <div className={classes.chart_title}>
+              {list.join('; ')}
+            </div>
+          </div>
+          {
+            sub_list.length > 0 &&
+            <>
+              <div className={classes.chart_title}>
+                Uwzględniono następujące grupy zawodowe:
+              </div>
+              <div className={classes.chart_title}>
+                {sub_list.join('; ')}
+              </div>
+            </>
+          }
         </Card>
       </Grid>
     </>

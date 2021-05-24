@@ -8,12 +8,13 @@ import { ReactSVG } from 'react-svg'
 import useStyles from './style';
 
 const MapProvinceArea = (props) => {
-  const { provinceList, selectedProvince, chartData, selectedShowChartsMode, data, chart_title } = props;
+  const { provinceList, selectedProvince, chartData, selectedShowChartsMode, data, chart_title, bottom_title, list, sub_list } = props;
   const classes = useStyles();
   const color_list = getColorList();
   const [margin, setMargin] = useState(0);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(0);
+
   function getColorList() {
     let list = [];
     let from_r = 214;
@@ -23,11 +24,11 @@ const MapProvinceArea = (props) => {
     let to_g = 0;
     let to_b = 128;
 
-    for (let i = 0; i < 5; i ++) {
+    for (let i = 0; i < 5; i++) {
       let r = from_r + (to_r - from_r) / 5 * i;
       let g = from_g + (to_g - from_g) / 5 * i;
       let b = from_b + (to_b - from_b) / 5 * i;
-      list.push('rgb(' + r + ',' + g + ',' + b +')');
+      list.push('rgb(' + r + ',' + g + ',' + b + ')');
     }
     return list;
   }
@@ -47,7 +48,7 @@ const MapProvinceArea = (props) => {
   useEffect(() => {
     let min = 1000000;
     let max = -1000000;
-    for (let i = 0; i < chartData.length; i ++) {
+    for (let i = 0; i < chartData.length; i++) {
       if (parseFloat(chartData[i].value) < min) {
         min = parseFloat(chartData[i].value);
       }
@@ -66,6 +67,7 @@ const MapProvinceArea = (props) => {
       setMargin((max - min) / 5);
     }
   }, [chartData]);
+
   return (
     <>
       <Grid item xs={12} className={classes.controlContainer}>
@@ -77,47 +79,47 @@ const MapProvinceArea = (props) => {
             <Grid item md={8} xs={12}>
               <div id="tooltip" className={classes.tooltip} display="none" />
               <ReactSVG
-                    afterInjection={(error, svg) => {
-                      let list = [];
-                      for (let i = 0; i < svg.children.length; i++) {
-                        if (svg.children[i].tagName === 'path') {
-                          let title = '';
-                          for (let j = 0; j < provinceList.length; j++) {
-                            if (provinceList[j].id === parseInt(svg.children[i].getAttribute('data-id'))) {
-                              let value = 0;
-                              for (let k = 0; k < chartData.length; k ++) {
-                                if (parseInt(chartData[k].code) === parseInt(provinceList[j].id)) {
-                                  value = (chartData[k].value).toFixed(2);
-                                }
-                              }
-                              title = provinceList[j].name + ' : ' + value;
+                afterInjection={(error, svg) => {
+                  let list = [];
+                  for (let i = 0; i < svg.children.length; i++) {
+                    if (svg.children[i].tagName === 'path') {
+                      let title = '';
+                      for (let j = 0; j < provinceList.length; j++) {
+                        if (provinceList[j].id === parseInt(svg.children[i].getAttribute('data-id'))) {
+                          let value = 0;
+                          for (let k = 0; k < chartData.length; k++) {
+                            if (parseInt(chartData[k].code) === parseInt(provinceList[j].id)) {
+                              value = (chartData[k].value).toFixed(2);
                             }
                           }
-                          svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
-                          svg.children[i].onmouseout = hideTooltip;
-                          for (let j = 0; j < selectedProvince.length; j++) {
-                            if (parseInt(selectedProvince[j]) === parseInt(svg.children[i].getAttribute('data-id'))) {
-                              let color = 0;
-                              for (let k = 0; k < chartData.length ; k ++) {
-                                if (parseInt(chartData[k].code) === parseInt(selectedProvince[j])) {
-                                  let color_ind = Math.ceil((chartData[k].value - min) / margin);
-                                  if (color_ind >= color_list.length) {
-                                    color_ind = color_list.length - 1;
-                                  }
-                                  color = color_list[color_ind];
-                                }
-                              }
-
-                              svg.children[i].style.fill = color;
-                            }
-                          }
+                          title = provinceList[j].name + ' : ' + value;
                         }
                       }
-                    }}
-                    beforeInjection={(svg) => {
-                      svg.classList.add('province_map')
-                    }}
-                    src={map_province_svg} />
+                      svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
+                      svg.children[i].onmouseout = hideTooltip;
+                      for (let j = 0; j < selectedProvince.length; j++) {
+                        if (parseInt(selectedProvince[j]) === parseInt(svg.children[i].getAttribute('data-id'))) {
+                          let color = 0;
+                          for (let k = 0; k < chartData.length; k++) {
+                            if (parseInt(chartData[k].code) === parseInt(selectedProvince[j])) {
+                              let color_ind = Math.ceil((chartData[k].value - min) / margin);
+                              if (color_ind >= color_list.length) {
+                                color_ind = color_list.length - 1;
+                              }
+                              color = color_list[color_ind];
+                            }
+                          }
+
+                          svg.children[i].style.fill = color;
+                        }
+                      }
+                    }
+                  }
+                }}
+                beforeInjection={(svg) => {
+                  svg.classList.add('province_map')
+                }}
+                src={map_province_svg} />
 
             </Grid>
             <Grid item md={4} xs={12} style={{ alignItems: "flex-end", justifyContent: "flex-end", display: "flex" }}>
@@ -133,6 +135,26 @@ const MapProvinceArea = (props) => {
               </div>
             </Grid>
           </Grid>
+          <div style={{marginTop: '30px'}}>
+            <div className={classes.chart_title}>
+              {bottom_title}
+            </div>
+            <div className={classes.chart_title}>
+              {list.join('; ')}
+            </div>
+          </div>
+          {
+            sub_list.length > 0 &&
+            <>
+              <div className={classes.chart_title}>
+                Uwzględniono następujące grupy zawodowe:
+              </div>
+              <div className={classes.chart_title}>
+                {sub_list.join('; ')}
+              </div>
+            </>
+          }
+
         </Card>
       </Grid>
     </>

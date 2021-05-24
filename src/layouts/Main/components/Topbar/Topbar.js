@@ -91,7 +91,7 @@ const Topbar = props => {
       <div className={classes.toolbar}>
         <div className={classes.titlebar}>
           <Button className={classes.close_drawer_icon} onClick={onMaxTopbar}>
-            {openSidebar ? <KeyboardBackspaceIcon /> : <MenuIcon />}
+            <MenuIcon />
           </Button>
           <div className={classes.title}>
             {title}

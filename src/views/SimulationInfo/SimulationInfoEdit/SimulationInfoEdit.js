@@ -331,6 +331,95 @@ const SimulationInfoEdit = (props) => {
   }
 
   const renderResultView = () => {
+    let chart_bottom_title = '';
+    let list = [];
+    let sub_list = [];
+    if (parseInt(selectedSection) === 1) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących sektorów:';
+      selectedPkdSection.map((item, index) => {
+        pkdSectionList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 2) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących województw:';
+      selectedProvince.map((item, index) => {
+        provinceList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 3) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup powiatów:';
+      selectedCluster.map((item, index) => {
+        clusterList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 4) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup zawodowych:';
+      selectedOccupation.map((item, index) => {
+        occupationList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 5) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących sektorów:';
+      selectedPkdSection.map((item, index) => {
+        pkdSectionList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+      chart_bottom_title += 'Uwzględniono następujące grupy zawodowe:';
+      selectedOccupation.map((item, index) => {
+        occupationList.map((_item, _index) => {
+          if (item == _item.id)
+            sub_list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 6) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących województw:';
+      selectedProvince.map((item, index) => {
+        provinceList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+      chart_bottom_title += 'Uwzględniono następujące grupy zawodowe:';
+      selectedOccupation.map((item, index) => {
+        occupationList.map((_item, _index) => {
+          if (item == _item.id)
+            sub_list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 7) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup powiatów:';
+      selectedCluster.map((item, index) => {
+        clusterList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+      chart_bottom_title += 'Uwzględniono następujące grupy zawodowe:';
+      selectedOccupation.map((item, index) => {
+        occupationList.map((_item, _index) => {
+          if (item == _item.id)
+            sub_list.push(_item.name);
+        })
+      })
+    } else if (parseInt(selectedSection) === 8) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup wykształcenia:';
+      selectedEducation.map((item, index) => {
+        educationList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+    }
     if (parseInt(selectedChartType) === 3) {
       let chart_title = '';
       
@@ -345,6 +434,9 @@ const SimulationInfoEdit = (props) => {
           selectedShowChartsMode={selectedShowChartsMode}
           chartData={chartData}
           chart_title={chart_title}
+          bottom_title={chart_bottom_title}
+          list={list}
+          sub_list={sub_list}
         />
       } else {
         return <MapCountyArea
@@ -355,6 +447,9 @@ const SimulationInfoEdit = (props) => {
           selectedShowChartsMode={selectedShowChartsMode}
           chartData={chartData}
           chart_title={chart_title}
+          bottom_title={chart_bottom_title}
+          list={list}
+          sub_list={sub_list}
         />
       }
     } else {
@@ -385,6 +480,9 @@ const SimulationInfoEdit = (props) => {
         setTableData={setTableData}
         chart_title={chart_title}
         selectedSection={selectedSection}
+        bottom_title={chart_bottom_title}
+        list={list}
+        sub_list={sub_list}
       />
     }
   }
