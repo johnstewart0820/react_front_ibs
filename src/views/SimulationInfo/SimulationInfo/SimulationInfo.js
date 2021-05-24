@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import domtoimage from 'dom-to-image';
 import domtopdf from 'dom-to-pdf';
+import jsPDF from "jspdf";
+
 import {
   ClusterAdditionalOption,
   PkdSectionAdditionalOption,
@@ -175,14 +177,85 @@ const SimulationInfo = (props) => {
       });
   }
 
-  const handleExportAsPdf = () => {
-    const dom = chart.current;
-    var options = {
-      filename: 'download.pdf',
-      overrideWidth: dom.clientWidth / 841.89 * (841.89 + 350)
+  const A4_PAPER_DIMENSIONS = {
+    width: 210,
+    height: 297,
+  };
+
+  const A4_PAPER_RATIO = A4_PAPER_DIMENSIONS.width / A4_PAPER_DIMENSIONS.height;
+
+  const imageDimensionsOnA4 = (dimensions) => {
+    const isLandscapeImage = dimensions.width >= dimensions.height;
+
+    // If the image is in landscape, the full width of A4 is used.
+    if (isLandscapeImage) {
+      return {
+        width: A4_PAPER_DIMENSIONS.width,
+        height:
+          A4_PAPER_DIMENSIONS.width / (dimensions.width / dimensions.height),
+      };
+    }
+
+    // If the image is in portrait and the full height of A4 would skew
+    // the image ratio, we scale the image dimensions.
+    const imageRatio = dimensions.width / dimensions.height;
+    if (imageRatio > A4_PAPER_RATIO) {
+      const imageScaleFactor =
+        (A4_PAPER_RATIO * dimensions.height) / dimensions.width;
+
+      const scaledImageHeight = A4_PAPER_DIMENSIONS.height * imageScaleFactor;
+
+      return {
+        height: scaledImageHeight,
+        width: scaledImageHeight * imageRatio,
+      };
+    }
+
+    // The full height of A4 can be used without skewing the image ratio.
+    return {
+      width: A4_PAPER_DIMENSIONS.height / (dimensions.height / dimensions.width),
+      height: A4_PAPER_DIMENSIONS.height,
     };
-    domtopdf(dom, options, function () {
-    });
+  };
+
+  const handleExportAsPdf = () => {
+
+    const dom = chart.current;
+    domtoimage.toJpeg(dom)
+      .then(function (dataUrl) {
+        let img = new Image();
+        img.onload = function () {
+          const doc = new jsPDF();
+          // We let the images add all pages,
+          // therefore the first default page can be removed.
+          doc.deletePage(1);
+
+          const imageDimensions = imageDimensionsOnA4({
+            width: this.width,
+            height: this.height,
+          });
+
+          doc.addPage();
+          doc.addImage(
+            this.src,
+            'JPEG',
+            // Images are vertically and horizontally centered on the page.
+            (A4_PAPER_DIMENSIONS.width - imageDimensions.width) / 2,
+            (A4_PAPER_DIMENSIONS.height - imageDimensions.height) / 2,
+            imageDimensions.width,
+            imageDimensions.height
+          );
+          var link = document.createElement('a');
+          link.download = 'download.pdf';
+          link.href = doc.output("bloburl");
+          link.click();
+        }
+        img.src = dataUrl;
+
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
   }
 
   const handleSave = () => {
@@ -380,7 +453,7 @@ const SimulationInfo = (props) => {
             list.push(_item.name);
         })
       })
-      chart_bottom_title += 'Uwzględniono następujące grupy zawodowe:';
+
       selectedOccupation.map((item, index) => {
         occupationList.map((_item, _index) => {
           if (item == _item.id)
@@ -395,7 +468,7 @@ const SimulationInfo = (props) => {
             list.push(_item.name);
         })
       })
-      chart_bottom_title += 'Uwzględniono następujące grupy zawodowe:';
+
       selectedOccupation.map((item, index) => {
         occupationList.map((_item, _index) => {
           if (item == _item.id)
@@ -410,7 +483,7 @@ const SimulationInfo = (props) => {
             list.push(_item.name);
         })
       })
-      chart_bottom_title += 'Uwzględniono następujące grupy zawodowe:';
+
       selectedOccupation.map((item, index) => {
         occupationList.map((_item, _index) => {
           if (item == _item.id)
