@@ -33,7 +33,21 @@ const useStyles = makeStyles(theme => ({
   },
   mainContainer: {
     padding: theme.spacing(3),
+    height: 'calc(100vh - 160px)',
+    overflow: 'auto'
   },
+  footer: {
+    position: 'absolute',
+    bottom: '0px',
+    width: 'calc(100% - 300px)',
+    boxShadow: '0px 2px 4px 3px rgb(0 0 0 / 15%), 0px 4px 5px 0px rgb(0 0 0 / 4%), 0px 1px 10px 0px rgb(0 0 0 / 2%)'
+  },
+  footer_min: {
+    position: 'absolute',
+    bottom: '0px',
+    width: '100%',
+    boxShadow: '0px 2px 4px 3px rgb(0 0 0 / 15%), 0px 4px 5px 0px rgb(0 0 0 / 4%), 0px 1px 10px 0px rgb(0 0 0 / 2%)'
+  }
 }));
 
 const Main = props => {
@@ -58,7 +72,7 @@ const Main = props => {
   const shouldOpenSidebar = openSidebar;
 
   useEffect(() => {
-    if(isDesktop === false) {
+    if (isDesktop === false) {
       setOpenSidebar(false);
     }
   }, [isDesktop]);
@@ -69,7 +83,7 @@ const Main = props => {
         [classes.shiftContent]: openSidebar && isDesktop
       })}
     >
-      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar} className={!openSidebar || !isDesktop ? classes.topbar_max : classes.topbar_min } title={props.title}/>
+      <Topbar onSidebarOpen={handleSidebarOpen} onSidebarClose={handleSidebarClose} openSidebar={openSidebar} className={!openSidebar || !isDesktop ? classes.topbar_max : classes.topbar_min} title={props.title} />
       <Sidebar
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
@@ -78,6 +92,9 @@ const Main = props => {
       <main className={classes.mainContainer}>
         {children}
       </main>
+      <div className={openSidebar && isDesktop ? classes.footer : classes.footer_min}>
+        <Footer />
+      </div>
     </div>
   );
 };
