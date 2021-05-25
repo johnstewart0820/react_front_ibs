@@ -76,14 +76,14 @@ const ImportJobOffer = props => {
           else if (rows[0][j].startsWith('kzis_')) {
             let code = rows[0][j].slice(5);
             let value = rows[i + 1][j];
-            const date = new Date(year, month, 1, 0, 0, 0);
+            const date = `${year}-${month}-01 00:00:00`
             arr.push({ year: year, month: month, value: value, code: code, type: 1, time_value: date });
           } else {
             for (let k = 0; k < province.length; k++) {
               if (province[k].name.toLowerCase() === rows[0][j].toLowerCase()) {
                 let code = province[k].id;
                 let value = rows[i + 1][j];
-                const date = new Date(year, month, 1, 0, 0, 0);
+                const date = `${year}-${month}-01 00:00:00`
                 arr.push({ year: year, month: month, value: value, code: code, type: 2, time_value: date });
               }
             }
@@ -91,7 +91,7 @@ const ImportJobOffer = props => {
               if (cluster[k].name.toLowerCase() === rows[0][j].toLowerCase()) {
                 let code = cluster[k].id;
                 let value = rows[i + 1][j];
-                const date = new Date(year, month, 1, 0, 0, 0);
+                const date = `${year}-${month}-01 00:00:00`
                 arr.push({ year: year, month: month, value: value, code: code, type: 3, time_value: date });
               }
             }

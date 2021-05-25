@@ -33,19 +33,22 @@ const useStyles = makeStyles(theme => ({
   },
   mainContainer: {
     padding: theme.spacing(3),
-    height: 'calc(100vh - 160px)',
+    height: 'calc(100vh - 170px)',
+    position: 'relative',
     overflow: 'auto'
   },
   footer: {
     position: 'absolute',
     bottom: '0px',
     width: 'calc(100% - 300px)',
+    height: '80px',
     boxShadow: '0px 2px 4px 3px rgb(0 0 0 / 15%), 0px 4px 5px 0px rgb(0 0 0 / 4%), 0px 1px 10px 0px rgb(0 0 0 / 2%)'
   },
   footer_min: {
     position: 'absolute',
     bottom: '0px',
     width: '100%',
+    height: '80px',
     boxShadow: '0px 2px 4px 3px rgb(0 0 0 / 15%), 0px 4px 5px 0px rgb(0 0 0 / 4%), 0px 1px 10px 0px rgb(0 0 0 / 2%)'
   }
 }));

@@ -38,9 +38,9 @@ class Job {
             fromDate: fromDate,
             toDate: toDate,
             fromDateStr: this.getDateStr(fromDate.year, fromDate.month + 1, 1),
-            toDateStr: this.getDateStr(toDate.year, toDate.month + 2, 1),
+            toDateStr: this.getDateStr(toDate.year, toDate.month + 1, 28),
             fromYearStr: this.getDateStr(fromDate.year, 1, 1),
-            toYearStr: this.getDateStr(fromDate.year, 13, 1),
+            toYearStr: this.getDateStr(fromDate.year, 12, 31),
         }, {
             headers: authHeader(storage.getStorage('token'))
         })

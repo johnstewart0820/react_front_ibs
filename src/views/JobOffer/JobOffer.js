@@ -405,13 +405,15 @@ const JobOffer = (props) => {
           setCountyList(response.data.counties);
           setLimit(response.data.limit);
           let _year_list = [];
-          let start_date = new Date(response.data.limit.min);
-          let end_date = new Date(response.data.limit.max);
-          for (let i = start_date.getFullYear(); i < end_date.getFullYear(); i ++)
+          let start_year = response.data.limit.min.split('-')[0];
+          let start_month = response.data.limit.min.split('-')[1] - 1;
+          let end_year = response.data.limit.max.split('-')[0];
+          let end_month = response.data.limit.max.split('-')[1] - 1;
+          for (let i = start_year; i <= end_year; i ++)
             _year_list.push(i);
           setYearList(_year_list);
-          setFromDate({ year: start_date.getUTCFullYear(), month: (start_date.getMonth() + 11) % 12 });
-          setToDate({ year: end_date.getUTCFullYear(), month: (end_date.getMonth() + 11) % 12  });
+          setFromDate({ year: start_year, month: start_month});
+          setToDate({ year: end_year, month: end_month});
           let arr = [];
           response.data.type.map((item, index) => {
             if (index !== 0) {

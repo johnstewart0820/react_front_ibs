@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
   logo: {
     maxWidth: '100%',
     maxHeight: '100%',
-    width: '60%',
     height: '80%'
   },
   min_contain: {
