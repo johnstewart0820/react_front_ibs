@@ -36,6 +36,7 @@ const ImportJobOffer = props => {
   const { addToast } = useToasts()
   const classes = useStyles(theme);
   const [key, setKey] = useState(0);
+
   useEffect(() => {
 
     job_offers.getInfo()
@@ -51,56 +52,90 @@ const ImportJobOffer = props => {
       })
   }, []);
 
-  useEffect(() => {
-    parse(files[0]);
-  }, [files]);
+  const handlePreload = (files) => {
+    if (files.length > 0) {
+      setFiles(files);
+      setIsRightFile(true);
+    }
+  }
 
-  const parse = (file) => {
-    readXlsxFile(file).then((rows) => {
-      let arr = [];
-      for (let i = 0; i < rows.length - 1; i++) {
-        let year = 0;
-        let month = 0;
-        for (let j = 0; j < rows[i].length; j++) {
-          if (rows[0][j] === 'rok') {
-            year = rows[i + 1][j];
+  const parseVoivodeshipProfession = (rows) => {
+    let arr = [];
+    for (let i = 0; i < rows.length - 1; i++) {
+      let year = 0;
+      let month = 0;
+      let voivodeship = 0;
+      for (let j = 0; j < rows[i].length; j++) {
+        if (rows[0][j] === 'rok') {
+          year = rows[i + 1][j];
+        }
+        else if (rows[0][j] === 'miesiac') {
+          month = rows[i + 1][j];
+          if (parseInt(month) <= 0 || parseInt(month) > 12) {
+            addToast('Niepoprawny format pliku.', { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true });
+            return [];
           }
-          else if (rows[0][j] === 'miesiac') {
-            month = rows[i + 1][j];
-            if (parseInt(month) <= 0 || parseInt(month) > 12) {
-              addToast('Niepoprawny format pliku.', { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true });
-              setIsRightFile(false);
-              return false;
+        }
+        else if (rows[0][j] === 'wojewodztwo') {
+          for (let k = 0; k < province.length; k++) {
+            if (province[k].name.toLowerCase() === rows[i + 1][j].toLowerCase()) {
+              voivodeship = province[k].id;
             }
           }
-          else if (rows[0][j].startsWith('kzis_')) {
-            let code = rows[0][j].slice(5);
-            let value = rows[i + 1][j];
-            const date = `${year}-${month}-01 00:00:00`
-            arr.push({ year: year, month: month, value: value, code: code, type: 1, time_value: date });
-          } else {
-            for (let k = 0; k < province.length; k++) {
-              if (province[k].name.toLowerCase() === rows[0][j].toLowerCase()) {
-                let code = province[k].id;
-                let value = rows[i + 1][j];
-                const date = `${year}-${month}-01 00:00:00`
-                arr.push({ year: year, month: month, value: value, code: code, type: 2, time_value: date });
-              }
+        }
+        else if (rows[0][j].startsWith('kzis_')) {
+          let code = rows[0][j].slice(5);
+          let value = rows[i + 1][j];
+          let date = `${year}-${month}-01 00:00:00`
+          arr.push({ year: year, month: month, voivodeship: voivodeship, value: value, code: code, time_value: date });
+        }
+      }
+    }
+    return arr;
+  }
+
+  const parseNormal = (rows) => {
+    let arr = [];
+    for (let i = 0; i < rows.length - 1; i++) {
+      let year = 0;
+      let month = 0;
+      for (let j = 0; j < rows[i].length; j++) {
+        if (rows[0][j] === 'rok') {
+          year = rows[i + 1][j];
+        }
+        else if (rows[0][j] === 'miesiac') {
+          month = rows[i + 1][j];
+          if (parseInt(month) <= 0 || parseInt(month) > 12) {
+            addToast('Niepoprawny format pliku.', { appearance: 'error', autoDismissTimeout: 3000, autoDismiss: true });
+            return [];
+          }
+        }
+        else if (rows[0][j].startsWith('kzis_')) {
+          let code = rows[0][j].slice(5);
+          let value = rows[i + 1][j];
+          const date = `${year}-${month}-01 00:00:00`
+          arr.push({ year: year, month: month, value: value, code: code, type: 1, time_value: date });
+        } else {
+          for (let k = 0; k < province.length; k++) {
+            if (province[k].name.toLowerCase() === rows[0][j].toLowerCase()) {
+              let code = province[k].id;
+              let value = rows[i + 1][j];
+              const date = `${year}-${month}-01 00:00:00`
+              arr.push({ year: year, month: month, value: value, code: code, type: 2, time_value: date });
             }
-            for (let k = 0; k < cluster.length; k++) {
-              if (cluster[k].name.toLowerCase() === rows[0][j].toLowerCase()) {
-                let code = cluster[k].id;
-                let value = rows[i + 1][j];
-                const date = `${year}-${month}-01 00:00:00`
-                arr.push({ year: year, month: month, value: value, code: code, type: 3, time_value: date });
-              }
+          }
+          for (let k = 0; k < cluster.length; k++) {
+            if (cluster[k].name.toLowerCase() === rows[0][j].toLowerCase()) {
+              let code = cluster[k].id;
+              let value = rows[i + 1][j];
+              const date = `${year}-${month}-01 00:00:00`
+              arr.push({ year: year, month: month, value: value, code: code, type: 3, time_value: date });
             }
           }
         }
       }
-      setData(arr);
-      setIsRightFile(true);
-    })
+    }
+    return arr;
   }
 
   const handleClose = () => {
@@ -109,7 +144,7 @@ const ImportJobOffer = props => {
 
   const handleUpload = () => {
     setProgressStatus(true);
-    job_offers.create(data)
+    job_offers.create(files[0])
       .then(response => {
         if (response.code === 401) {
           history.push('/login');
@@ -153,10 +188,11 @@ const ImportJobOffer = props => {
                 <DropzoneArea
                   key={key}
                   className={classes.dropZone}
-                  onChange={setFiles}
+                  onChange={handlePreload}
                   fileObjects={[]}
                   acceptedFiles={["application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]}
                   filesLimit={1}
+                  maxFileSize={5000000}
                   showFileNames={true}
                   dropzoneText="Proszę zaimportować plik xlsx."
                   showAlerts={false}

@@ -584,70 +584,102 @@ const SimulationInfo = (props) => {
   )
 
   const handleRender = () => {
-    setProgressStatus(true);
-    analyze.getChartData(
-      selectedChartType,
-      selectedSection,
-      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-      item.id_scenario,
-      selectedYear,
-      selectedToYear,
-      selectedOccupation,
-      selectedPkdSection,
-      selectedProvince,
-      selectedCluster,
-      selectedEducation,
-      selectedAge,
-      selectedShowChartsMode
-    ).then(response => {
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          setChartData(response.data.chart_data);
-          setTableData(response.data.table_data);
-          setFieldList(response.data.field_list);
-        } else {
-        }
-      }
-    })
+    let category_count = 0;
+    let chart_count = 0;
 
-    analyze.getTotalData(
-      selectedChartType,
-      selectedSection,
-      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-      item.id_scenario,
-      selectedYear,
-      selectedToYear,
-      selectedOccupation,
-      selectedPkdSection,
-      selectedProvince,
-      selectedCluster,
-      selectedEducation,
-      selectedAge,
-      selectedShowChartsMode
-    ).then(response => {
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          setTotalTableData(response.data.table_data);
-          setTotalFieldList(response.data.field_list);
-          let _arr = [];
-          for (let i = 0; i < response.data.field_list.length; i++) {
-            let _item = {};
-            _item.label = response.data.field_list[i].toString();
-            _item.key = response.data.field_list[i].toString();
-            _arr.push(_item);
-          }
-          setHeaders(_arr);
+    if (Number(selectedChartType) === 3) {
+      category_count = selectedMapCategory.length;
+    } else {
+      category_count = selectedCategory.length;
+    }
+
+    if (Number(selectedSection) == 1) {
+      chart_count = selectedPkdSection.length;
+    } else if(Number(selectedSection) == 2) {
+      chart_count = selectedProvince.length;
+    } else if(Number(selectedSection) == 3) {
+      chart_count = selectedCluster.length;
+    } else if(Number(selectedSection) == 4) {
+      chart_count = selectedOccupation.length;
+    } else if(Number(selectedSection) == 5) {
+      chart_count = selectedPkdSection.length * selectedOccupation.length;
+    } else if(Number(selectedSection) == 6) {
+      chart_count = selectedProvince.length * selectedOccupation.length;
+    } else if(Number(selectedSection) == 7) {
+      chart_count = selectedCluster.length * selectedOccupation.length;
+    } else if(Number(selectedSection) == 8) {
+      chart_count = selectedEducation.length * selectedAge.length;
+    }
+
+    if (chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
+      addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie', 
+        { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
+    } else {
+      setProgressStatus(true);
+      analyze.getChartData(
+        selectedChartType,
+        selectedSection,
+        parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+        item.id_scenario,
+        selectedYear,
+        selectedToYear,
+        selectedOccupation,
+        selectedPkdSection,
+        selectedProvince,
+        selectedCluster,
+        selectedEducation,
+        selectedAge,
+        selectedShowChartsMode
+      ).then(response => {
+        if (response.code === 401) {
+          history.push('/login');
         } else {
+          if (response.code === 200) {
+            setChartData(response.data.chart_data);
+            setTableData(response.data.table_data);
+            setFieldList(response.data.field_list);
+          } else {
+          }
         }
-      }
-      setProgressStatus(false);
-      setRenderStatus(true);
-      chart.current.scrollIntoView({ behavior: 'smooth' });
-    })
+      })
+  
+      analyze.getTotalData(
+        selectedChartType,
+        selectedSection,
+        parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+        item.id_scenario,
+        selectedYear,
+        selectedToYear,
+        selectedOccupation,
+        selectedPkdSection,
+        selectedProvince,
+        selectedCluster,
+        selectedEducation,
+        selectedAge,
+        selectedShowChartsMode
+      ).then(response => {
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          if (response.code === 200) {
+            setTotalTableData(response.data.table_data);
+            setTotalFieldList(response.data.field_list);
+            let _arr = [];
+            for (let i = 0; i < response.data.field_list.length; i++) {
+              let _item = {};
+              _item.label = response.data.field_list[i].toString();
+              _item.key = response.data.field_list[i].toString();
+              _arr.push(_item);
+            }
+            setHeaders(_arr);
+          } else {
+          }
+        }
+        setProgressStatus(false);
+        setRenderStatus(true);
+        chart.current.scrollIntoView({ behavior: 'smooth' });
+      })
+    }
   }
   const renderControlView = () => {
     if (checkRenderStatus()) {

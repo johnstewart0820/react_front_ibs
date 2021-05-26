@@ -2,12 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import domtoimage from 'dom-to-image';
 import domtopdf from 'dom-to-pdf';
 import jsPDF from "jspdf";
-import { 
-  ClusterAdditionalOption, 
-  PkdSectionAdditionalOption, 
+import {
+  ClusterAdditionalOption,
+  PkdSectionAdditionalOption,
   ProvinceAdditionalOption,
-  MultiSelect, 
-  SingleSelect, 
+  MultiSelect,
+  SingleSelect,
   OccupationAdditionalOption,
   PkdOccupationAdditionalOption,
   ProvinceOccupationAdditionalOption,
@@ -21,9 +21,9 @@ import {
 } from '../components';
 import { withRouter } from 'react-router-dom';
 import useStyles from '../SimulationInfo/style';
-import { 
-  Grid, 
-  Card, 
+import {
+  Grid,
+  Card,
   Button,
   CircularProgress,
   TextField,
@@ -77,7 +77,7 @@ const SimulationInfoEdit = (props) => {
   const [chartTypeList, setChartTypeList] = useState([]);
   const [totalChartResultList, setTotalChartResultList] = useState([]);
   const [countyList, setCountyList] = useState([]);
-  const [sectionMapList,setSectionMapList] = useState([]);
+  const [sectionMapList, setSectionMapList] = useState([]);
   const [chartResultList, setChartResultList] = useState([]);
   const [sectionList, setSectionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
@@ -116,7 +116,7 @@ const SimulationInfoEdit = (props) => {
     }
     setSortTotalOption({ sortBy: pSortBy, sortOrder: sortOrder })
   }
-  
+
   const handleOpen = () => {
     history.push('/analyzes');
   }
@@ -144,7 +144,7 @@ const SimulationInfoEdit = (props) => {
       export_data.push(item);
     })
     EXCEL.outPut({
-      header: headers.map((item, index)=> item.label),
+      header: headers.map((item, index) => item.label),
       data: export_data,
       name: 'download'
     })
@@ -167,15 +167,15 @@ const SimulationInfoEdit = (props) => {
   const handleExportAsJpg = () => {
     const dom = chart.current;
     domtoimage.toJpeg(dom)
-    .then(function (dataUrl) {
-      var link = document.createElement('a');
-      link.download = 'download.jpg';
-      link.href = dataUrl;
-      link.click();
-    })
-    .catch(function (error) {
+      .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'download.jpg';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
         console.error('oops, something went wrong!', error);
-    });
+      });
   }
 
   const A4_PAPER_DIMENSIONS = {
@@ -277,7 +277,7 @@ const SimulationInfoEdit = (props) => {
       setSelectedYear(2013);
     }
   }, [selectedSection])
-  
+
   const handleSave = () => {
     setOpenModal(true);
   }
@@ -288,29 +288,29 @@ const SimulationInfoEdit = (props) => {
 
   const checkRenderStatus = () => {
     return parseInt(selectedChartType) === 0
-    || parseInt(selectedSection) === 0
-    || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
-    || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-    || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
+      || parseInt(selectedSection) === 0
+      || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
+      || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
   }
 
   const handleSaveAnalyze = () => {
     setProgressStatus(true);
     analyzes.updateAnalyze(
-      name, 
-      selectedChartType, 
-      selectedSection, 
+      name,
+      selectedChartType,
+      selectedSection,
       parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
       selectedProvince,
       selectedOccupation,
       selectedPkdSection,
-      selectedShowChartsMode, 
+      selectedShowChartsMode,
       item.id_scenario,
       idAnalyze,
       selectedOccupationSize,
@@ -318,88 +318,120 @@ const SimulationInfoEdit = (props) => {
       selectedEducation,
       selectedAge,
     )
-    .then(response => {
-      setProgressStatus(false);
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true});
-          setTimeout(function(){history.push('/analyzes');}, 1000);
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
         } else {
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true});
-        }
+          if (response.code === 200) {
+            addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true });
+            setTimeout(function () { history.push('/analyzes'); }, 1000);
+          } else {
+            addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
+          }
 
-      }
-    })
+        }
+      })
   }
 
   const handleRender = () => {
-    setFirstRender(false);
-    setTableData([]);
-    setProgressStatus(true);
-    analyzes.getChartData(
-      selectedChartType,
-      selectedSection,
-      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-      item.id_scenario,
-      selectedYear,
-      selectedToYear,
-      selectedOccupation,
-      selectedPkdSection,
-      selectedProvince,
-      selectedCluster,
-      selectedEducation,
-      selectedAge,
-      selectedShowChartsMode
-    ).then(response => {
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          setChartData(response.data.chart_data);
-          setTableData(response.data.table_data);
-          setFieldList(response.data.field_list);
+    let category_count = 0;
+    let chart_count = 0;
+
+    if (Number(selectedChartType) === 3) {
+      category_count = selectedMapCategory.length;
+    } else {
+      category_count = selectedCategory.length;
+    }
+
+    if (Number(selectedSection) == 1) {
+      chart_count = selectedPkdSection.length;
+    } else if (Number(selectedSection) == 2) {
+      chart_count = selectedProvince.length;
+    } else if (Number(selectedSection) == 3) {
+      chart_count = selectedCluster.length;
+    } else if (Number(selectedSection) == 4) {
+      chart_count = selectedOccupation.length;
+    } else if (Number(selectedSection) == 5) {
+      chart_count = selectedPkdSection.length * selectedOccupation.length;
+    } else if (Number(selectedSection) == 6) {
+      chart_count = selectedProvince.length * selectedOccupation.length;
+    } else if (Number(selectedSection) == 7) {
+      chart_count = selectedCluster.length * selectedOccupation.length;
+    } else if (Number(selectedSection) == 8) {
+      chart_count = selectedEducation.length * selectedAge.length;
+    }
+
+    if (chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
+      addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie',
+        { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
+    } else {
+      setFirstRender(false);
+      setTableData([]);
+      setProgressStatus(true);
+      analyzes.getChartData(
+        selectedChartType,
+        selectedSection,
+        parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+        item.id_scenario,
+        selectedYear,
+        selectedToYear,
+        selectedOccupation,
+        selectedPkdSection,
+        selectedProvince,
+        selectedCluster,
+        selectedEducation,
+        selectedAge,
+        selectedShowChartsMode
+      ).then(response => {
+        if (response.code === 401) {
+          history.push('/login');
         } else {
-        }
-      }
-    })
-    analyzes.getTotalData(
-      selectedChartType,
-      selectedSection,
-      parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-      item.id_scenario,
-      selectedYear,
-      selectedToYear,
-      selectedOccupation,
-      selectedPkdSection,
-      selectedProvince,
-      selectedCluster,
-      selectedEducation,
-      selectedAge,
-      selectedShowChartsMode
-    ).then(response => {
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          setTotalTableData(response.data.table_data);
-          setTotalFieldList(response.data.field_list);
-          let _arr = [];
-          for (let i = 0; i < response.data.field_list.length; i ++) {
-            let _item = {};
-            _item.label = response.data.field_list[i].toString();
-            _item.key = response.data.field_list[i].toString();
-            _arr.push(_item);
+          if (response.code === 200) {
+            setChartData(response.data.chart_data);
+            setTableData(response.data.table_data);
+            setFieldList(response.data.field_list);
+          } else {
           }
-          setHeaders(_arr);
-        } else {
         }
-      }
-      setProgressStatus(false);
-      setRenderStatus(true);
-      chart.current.scrollIntoView({ behavior: 'smooth' });
-    })
+      })
+      analyzes.getTotalData(
+        selectedChartType,
+        selectedSection,
+        parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+        item.id_scenario,
+        selectedYear,
+        selectedToYear,
+        selectedOccupation,
+        selectedPkdSection,
+        selectedProvince,
+        selectedCluster,
+        selectedEducation,
+        selectedAge,
+        selectedShowChartsMode
+      ).then(response => {
+        if (response.code === 401) {
+          history.push('/login');
+        } else {
+          if (response.code === 200) {
+            setTotalTableData(response.data.table_data);
+            setTotalFieldList(response.data.field_list);
+            let _arr = [];
+            for (let i = 0; i < response.data.field_list.length; i++) {
+              let _item = {};
+              _item.label = response.data.field_list[i].toString();
+              _item.key = response.data.field_list[i].toString();
+              _arr.push(_item);
+            }
+            setHeaders(_arr);
+          } else {
+          }
+        }
+        setProgressStatus(false);
+        setRenderStatus(true);
+        chart.current.scrollIntoView({ behavior: 'smooth' });
+      })
+    }
   }
 
   const renderResultView = () => {
@@ -493,7 +525,7 @@ const SimulationInfoEdit = (props) => {
     }
     if (parseInt(selectedChartType) === 3) {
       let chart_title = '';
-      
+
       chart_title += categoryList[selectedMapCategory - 1].name.charAt(0).toUpperCase() + categoryList[selectedMapCategory - 1].name.slice(1) + ' - przekrój ';
       chart_title += sectionList[selectedSection - 1].name.toLowerCase();
       chart_title += ' (w tysiącach)';
@@ -526,7 +558,7 @@ const SimulationInfoEdit = (props) => {
     } else {
       let chart_title = '';
       if (selectedCategory.length > 0) {
-        for(let i = 0; i < selectedCategory.length - 1; i ++) {
+        for (let i = 0; i < selectedCategory.length - 1; i++) {
           chart_title += categoryList[selectedCategory[i] - 1].name.toLowerCase() + '/';
         }
         chart_title += categoryList[selectedCategory[selectedCategory.length - 1] - 1].name.toLowerCase() + ' - przekrój ';
@@ -539,7 +571,7 @@ const SimulationInfoEdit = (props) => {
         chart_title = 'Liczba absolwentów, tys.';
       }
       chart_title += ' (w tysiącach)';
-      return <ChartTableArea 
+      return <ChartTableArea
         data={chart}
         chartData={chartData}
         selectedChartType={selectedChartType}
@@ -560,7 +592,7 @@ const SimulationInfoEdit = (props) => {
 
   const renderTotalView = () => (
     <Grid item xs={12}>
-    <Card className={classes.totalView}>
+      <Card className={classes.totalView}>
         <SortTable
           rows={totalTableData}
           requestSort={requestTotalSort}
@@ -569,7 +601,7 @@ const SimulationInfoEdit = (props) => {
           field_list={totalFieldList}
           handleChangeTableData={setTotalTableData}
         />
-    </Card>
+      </Card>
     </Grid>
   )
 
@@ -598,10 +630,10 @@ const SimulationInfoEdit = (props) => {
             selectedChartType={selectedChartType}
             handleRender={handleRender}
           />
-          <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{display: 'none'}} id='export'>Export to CSV</CSVLink>
+          <CSVLink asyncOnClick={true} data={totalTableData} headers={headers} filename="generated.csv" style={{ display: 'none' }} id='export'>Export to CSV</CSVLink>
           {
-            renderStatus ? 
-              <> 
+            renderStatus ?
+              <>
                 <>
                   {renderResultView()}
                 </>
@@ -724,7 +756,7 @@ const SimulationInfoEdit = (props) => {
 
   const getNumArray = (str) => {
     let arr = str ? str.split(',') : [];
-    for (let i = 0; i < arr.length; i ++) {
+    for (let i = 0; i < arr.length; i++) {
       arr[i] = parseInt(arr[i]);
     }
     return arr;
@@ -732,7 +764,7 @@ const SimulationInfoEdit = (props) => {
 
   const getStringArray = (str) => {
     let arr = str ? str.split(',') : [];
-    for (let i = 0; i < arr.length; i ++) {
+    for (let i = 0; i < arr.length; i++) {
       arr[i] = arr[i];
     }
     return arr;
@@ -801,7 +833,7 @@ const SimulationInfoEdit = (props) => {
     let containsNew = false;
     let year;
     let toYear;
-    for (let i = 0; i < selectedCategory.length; i ++) {
+    for (let i = 0; i < selectedCategory.length; i++) {
       if (parseInt(selectedCategory[i]) !== 3) {
         containsNew = true;
       } else {
@@ -811,7 +843,7 @@ const SimulationInfoEdit = (props) => {
     if (containsNew && containsOld) {
       year = 2011;
       toYear = 2050;
-    } else if (containsNew){
+    } else if (containsNew) {
       year = 2019;
       toYear = 2050;
     } else if (containsOld) {
@@ -829,7 +861,7 @@ const SimulationInfoEdit = (props) => {
     setSelectedYear(year);
     setSelectedToYear(toYear);
     let _arr = [];
-    for (let i = year; i <= toYear; i ++) {
+    for (let i = year; i <= toYear; i++) {
       _arr.push(i);
     }
     setYearList(_arr);
@@ -871,7 +903,7 @@ const SimulationInfoEdit = (props) => {
                   onChange={(event, value) => setItem(value ? value : {})}
                   options={scenariosLabels}
                   getOptionLabel={(option) => scenariosLabels && option && option.description}
-                  renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{shrink: false}}
+                  renderInput={(params) => <TextField {...params} placeholder="Wpisz nazwę" variant="outlined" InputLabelProps={{ shrink: false }}
                     noOptionsText={'Brak opcji'}
                   />}
                   renderOption={(option, { selected }) => (
@@ -909,7 +941,7 @@ const SimulationInfoEdit = (props) => {
             <div className={classes.subHeader}>
               (można wybrać tylko 1 z typów jednocześnie)
             </div>
-            <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList}/>
+            <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
           </Grid>
           <Grid item md={4} xs={12}>
             <div className={classes.titleHeader}>
@@ -921,31 +953,31 @@ const SimulationInfoEdit = (props) => {
             <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) != 3 ? sectionList : sectionMapList} />
           </Grid>
           <Grid item md={4} xs={12}>
-          {
+            {
               parseInt(selectedSection) === 8
-              ?
-              <></>
-              :
-              <>
-                <div className={classes.titleHeader} style={selectedChartType == 3 ? {marginBottom: '40px'} : {}}>
-                  Wybierz kategorię
+                ?
+                <></>
+                :
+                <>
+                  <div className={classes.titleHeader} style={selectedChartType == 3 ? { marginBottom: '40px' } : {}}>
+                    Wybierz kategorię
                 </div>
-                {
-                  parseInt(selectedChartType) != 3 ?
-                  <div className={classes.subHeader}>
-                    (można wybrać 1, 2 lub 3 kategorie)
+                  {
+                    parseInt(selectedChartType) != 3 ?
+                      <div className={classes.subHeader}>
+                        (można wybrać 1, 2 lub 3 kategorie)
                   </div>
-                  :
-                  <></>
-                }
-                {
-                selectedChartType == 3
-                  ?
-                  <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
-                  :
-                  <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
-                }
-              </>
+                      :
+                      <></>
+                  }
+                  {
+                    selectedChartType == 3
+                      ?
+                      <SingleSelect value={selectedMapCategory} handleChange={setSelectedMapCategory} list={categoryList} />
+                      :
+                      <MultiSelect value={selectedCategory} handleChange={setSelectedCategory} list={categoryList} />
+                  }
+                </>
             }
           </Grid>
         </Grid>

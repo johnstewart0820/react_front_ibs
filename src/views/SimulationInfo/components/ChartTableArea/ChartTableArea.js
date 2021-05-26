@@ -26,7 +26,7 @@ const ChartTableArea = (props) => {
             selectedCategory={selectedCategory}
             selectedSection={selectedSection}
           />
-          <div style={{marginTop: '30px'}}>
+          <div style={{marginTop: '90px'}}>
             <div className={classes.chart_title}>
               {bottom_title}
             </div>

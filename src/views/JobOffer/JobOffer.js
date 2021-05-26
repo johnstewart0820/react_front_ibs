@@ -107,7 +107,7 @@ const JobOffer = (props) => {
       export_data.push(item);
     })
     EXCEL.outPut({
-      header: totalFieldList.map((item, index)=> item),
+      header: totalFieldList.map((item, index) => item),
       data: export_data,
       name: 'download'
     })
@@ -230,6 +230,7 @@ const JobOffer = (props) => {
       || (parseInt(selectedSection) == 2 && selectedProvince.length === 0)
       || (parseInt(selectedSection) == 3 && selectedCluster.length === 0)
       || (parseInt(selectedChartType) !== 4 && parseInt(selectedSection) === 1 && selectedOccupation.length === 0)
+      || (parseInt(selectedSection) == 4 && (selectedProvince.length === 0 || selectedOccupation.length === 0))
     );
   }
 
@@ -405,15 +406,15 @@ const JobOffer = (props) => {
           setCountyList(response.data.counties);
           setLimit(response.data.limit);
           let _year_list = [];
-          let start_year = response.data.limit.min.split('-')[0];
-          let start_month = response.data.limit.min.split('-')[1] - 1;
-          let end_year = response.data.limit.max.split('-')[0];
-          let end_month = response.data.limit.max.split('-')[1] - 1;
-          for (let i = start_year; i <= end_year; i ++)
+          let start_year = response.data.limit.min ? response.data.limit.min.split('-')[0] : 2020;
+          let start_month = response.data.limit.min ? response.data.limit.min.split('-')[1] - 1 : 0;
+          let end_year = response.data.limit.max ? response.data.limit.max.split('-')[0] : 2020;
+          let end_month = response.data.limit.max ? response.data.limit.max.split('-')[1] - 1 : 11;
+          for (let i = start_year; i <= end_year; i++)
             _year_list.push(i);
           setYearList(_year_list);
-          setFromDate({ year: start_year, month: start_month});
-          setToDate({ year: end_year, month: end_month});
+          setFromDate({ year: start_year, month: start_month });
+          setToDate({ year: end_year, month: end_month });
           let arr = [];
           response.data.type.map((item, index) => {
             if (index !== 0) {
@@ -430,40 +431,40 @@ const JobOffer = (props) => {
     <>
       <Card className={classes.secondContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>
-          <Grid item md={7} xs={12}>
+          <Grid item md={4} xs={12}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <div className={classes.mainHeader}>
                   Przeglądaj wyniki
                 </div>
               </Grid>
-              <Grid item md={6} xs={12} style={{height: '130px', position: 'relative'}}>
+              <Grid item md={6} xs={12} style={{ height: '130px', position: 'relative' }}>
                 <div className={classes.titleHeader}>
                   Wybierz typ wykresu
                 </div>
                 <div className={classes.subHeader}>
                   (można wybrać tylko 1 z typów jednocześnie)
                 </div>
-                <div style={{position: 'absolute', bottom: '8px', width: 'calc(100% - 16px)'}}>
+                <div style={{ position: 'absolute', bottom: '8px', width: 'calc(100% - 16px)' }}>
                   <SingleSelect value={selectedChartType} handleChange={handleChangeChartType} list={chartTypeList} />
                 </div>
               </Grid>
-              <Grid item md={6} xs={12} style={{height: '130px', position: 'relative'}}>
+              <Grid item md={6} xs={12} style={{ height: '130px', position: 'relative' }}>
                 <div className={classes.titleHeader}>
                   Wybierz przekrój
                 </div>
                 <div className={classes.subHeader}>
                   (można wybrać tylko 1 z typów jednocześnie)
                 </div>
-                <div style={{position: 'absolute', bottom: '8px', width: 'calc(100% - 16px)'}}>
+                <div style={{ position: 'absolute', bottom: '8px', width: 'calc(100% - 16px)' }}>
                   <SingleSelect value={selectedSection} handleChange={setSelectedSection} list={parseInt(selectedChartType) !== 4 ? sectionList : sectionMapList} />
                 </div>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={5} xs={12}>
+          <Grid item md={8} xs={12}>
             <Grid container spacing={2}>
-            {
+              {
                 parseInt(selectedSection) !== 0 ?
                   <Grid item xs={12}>
                     <div className={classes.mainHeader}>
@@ -475,62 +476,89 @@ const JobOffer = (props) => {
               }
               <Grid item xs={12} >
                 <div className={classes.additional_div}>
-                {
-                  parseInt(selectedSection) === 1 ?
-                    <OccupationSelectionModal
-                      node={occupationList}
-                      occupationSize={selectedOccupationSize}
-                      handleSelectedOccupation={setSelectedOccupation}
-                      handleSelectedOccupationSize={setSelectedOccupationSize}
-                      occupationSizeList={occupationSizeList}
-                      selectedOccupation={selectedOccupation}
-                    />
-                    :
-                    parseInt(selectedSection) === 2 ?
-                      <div className={classes.additional_block}>
-                        <div className={classes.titleHeader}>
-                          Wybierz województwo
-                        </div>
-                        <div className={classes.subHeader}>
-                          (można wybrać więcej niż 1 województwo jednocześnie)
-                        </div>
-                        <div className={classes.bottom_block}>
-                          <MultiSelect value={selectedProvince} handleChange={setSelectedProvince} list={provinceList} />
-                        </div>
-                      </div>
+                  {
+                    parseInt(selectedSection) === 1 ?
+                      <OccupationSelectionModal
+                        node={occupationList}
+                        occupationSize={selectedOccupationSize}
+                        handleSelectedOccupation={setSelectedOccupation}
+                        handleSelectedOccupationSize={setSelectedOccupationSize}
+                        occupationSizeList={occupationSizeList}
+                        selectedOccupation={selectedOccupation}
+                      />
                       :
-                      parseInt(selectedSection) === 3 ?
+                      parseInt(selectedSection) === 2 ?
                         <div className={classes.additional_block}>
                           <div className={classes.titleHeader}>
-                            Wybierz klastry
-                          </div>
+                            Wybierz województwo
+                        </div>
                           <div className={classes.subHeader}>
-                            (można wybrać max.8 klastrów jednocześnie)
-                          </div>
+                            (można wybrać więcej niż 1 województwo jednocześnie)
+                        </div>
                           <div className={classes.bottom_block}>
-                            <MultiSelect value={selectedCluster} handleChange={setSelectedCluster} list={clusterList} />
+                            <MultiSelect value={selectedProvince} handleChange={setSelectedProvince} list={provinceList} />
                           </div>
                         </div>
                         :
-                        <></>
-                }
+                        parseInt(selectedSection) === 3 ?
+                          <div className={classes.additional_block}>
+                            <div className={classes.titleHeader}>
+                              Wybierz klastry
+                          </div>
+                            <div className={classes.subHeader}>
+                              (można wybrać max.8 klastrów jednocześnie)
+                          </div>
+                            <div className={classes.bottom_block}>
+                              <MultiSelect value={selectedCluster} handleChange={setSelectedCluster} list={clusterList} />
+                            </div>
+                          </div>
+                          :
+                          parseInt(selectedSection) === 4 ?
+                            <Grid container spacing={0} style={{height: '100%'}}>
+                              <Grid item xs={4} style={{paddingRight: '10px'}}>
+                                <div className={classes.additional_block}>
+                                  <div className={classes.titleHeader}>
+                                    Wybierz województwo
+                                  </div>
+                                  <div className={classes.subHeader}>
+                                    (można wybrać więcej niż 1 województwo jednocześnie)
+                                  </div>
+                                  <div className={classes.bottom_block}>
+                                    <MultiSelect value={selectedProvince} handleChange={setSelectedProvince} list={provinceList} />
+                                  </div>
+                                </div>
+                              </Grid>
+                              <Grid item xs={8}>
+                                <OccupationSelectionModal
+                                  node={occupationList}
+                                  occupationSize={selectedOccupationSize}
+                                  handleSelectedOccupation={setSelectedOccupation}
+                                  handleSelectedOccupationSize={setSelectedOccupationSize}
+                                  occupationSizeList={occupationSizeList}
+                                  selectedOccupation={selectedOccupation}
+                                />
+                              </Grid>
+                            </Grid>
+                            :
+                            <></>
+                  }
                 </div>
-              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Card>
-      {renderControlView()}
-      {
-        progressStatus ?
-          <>
-            <div className={classes.progressContainer}>
-              <CircularProgress className={classes.progress} />
-            </div>
-          </>
-          :
-          <></>
-      }
+        </Grid>
+    </Card>
+      { renderControlView() }
+  {
+    progressStatus ?
+      <>
+        <div className={classes.progressContainer}>
+          <CircularProgress className={classes.progress} />
+        </div>
+      </>
+      :
+      <></>
+  }
     </>
   );
 };
