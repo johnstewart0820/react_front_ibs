@@ -23,7 +23,11 @@ const ProvinceOccupationAdditionalOption = (props) => {
     occupationList,
     showChartsMode,
     occupationSizeList,
-    selectedChartType
+    selectedChartType,
+    occupationAllIn,
+    setOccupationAllIn,
+    provinceAllIn,
+    setProvinceAllIn
   } = props;
 
   return (
@@ -39,7 +43,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
-            <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList}/>
+            <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList} allIn={provinceAllIn} setAllIn={setProvinceAllIn}/>
           </Grid>
           <Grid item md={6} xs={12}>
             <OccupationSelectionModal
@@ -49,6 +53,8 @@ const ProvinceOccupationAdditionalOption = (props) => {
                 handleSelectedOccupationSize={handleSelectedOccupationSize}
                 occupationSizeList={occupationSizeList}
                 selectedOccupation={occupationValue}
+                allIn={occupationAllIn}
+                setAllIn={setOccupationAllIn}
               // handleSave={handleSaveOccupation}
               />
           </Grid>

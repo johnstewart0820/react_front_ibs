@@ -96,6 +96,12 @@ const SimulationInfo = (props) => {
   const [sortOption, setSortOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const [sortTotalOption, setSortTotalOption] = useState({ sortBy: 0, sortOrder: "asc" });
   const [renderStatus, setRenderStatus] = useState(false);
+
+  const [pkdAllIn, setPkdAllIn] = useState(false);
+  const [provinceAllIn, setProvinceAllIn] = useState(false);
+  const [clusterAllIn, setClusterAllIn] = useState(false);
+  const [occupationAllIn, setOccupationAllIn] = useState(false);
+
   const requestSort = (pSortBy) => {
     var sortOrder = "asc";
     if (pSortBy === sortOption.sortBy) {
@@ -316,13 +322,13 @@ const SimulationInfo = (props) => {
     return parseInt(selectedChartType) === 0
       || parseInt(selectedSection) === 0
       || (parseInt(selectedChartType) !== 3 && parseInt(selectedSection) !== 8 && selectedCategory.length === 0) || (parseInt(selectedChartType) === 3 && parseInt(selectedMapCategory) === 0)
-      || (parseInt(selectedSection) === 1 && (selectedPkdSection.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 2 && (selectedProvince.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 3 && (selectedCluster.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 4 && (selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 5 && (selectedPkdSection.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 6 && (selectedProvince.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
-      || (parseInt(selectedSection) === 7 && (selectedCluster.length === 0 || selectedOccupation.length === 0 || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 1 && ((selectedPkdSection.length === 0 && !pkdAllIn) || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 2 && ((selectedProvince.length === 0 && !provinceAllIn) || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 3 && ((selectedCluster.length === 0 && !clusterAllIn) || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 4 && ((selectedOccupation.length === 0 && !occupationAllIn) || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 5 && ((selectedPkdSection.length === 0 && !pkdAllIn) || (selectedOccupation.length === 0 && !occupationAllIn) || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 6 && ((selectedProvince.length === 0 && !provinceAllIn) || (selectedOccupation.length === 0 && !occupationAllIn) || parseInt(selectedShowChartsMode) === 0))
+      || (parseInt(selectedSection) === 7 && ((selectedCluster.length === 0 && !clusterAllIn) || (selectedOccupation.length === 0 && !occupationAllIn) || parseInt(selectedShowChartsMode) === 0))
       || (parseInt(selectedSection) === 8 && (selectedEducation.length === 0 || selectedAge.length === 0 || parseInt(selectedShowChartsMode) === 0));
   }
   useEffect(() => {
@@ -387,20 +393,41 @@ const SimulationInfo = (props) => {
         _arr.push(clusterList[i].id);
       }
       setSelectedCluster(_arr);
-
+      setPkdAllIn(false);
+      setProvinceAllIn(false);
+      setClusterAllIn(false);
+      setOccupationAllIn(false);
     }
     if (selectedChartType == 2) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
       setChartResultList([_arr[1]]);
       setSelectedShowChartsMode(2);
+      setPkdAllIn(false);
+      setProvinceAllIn(false);
+      setClusterAllIn(false);
+      setOccupationAllIn(false);
     }
   }, [selectedChartType]);
+
+  useEffect(() => {
+    if (pkdAllIn || provinceAllIn || clusterAllIn || occupationAllIn) {
+      let _arr = JSON.parse(JSON.stringify(totalChartResultList));
+      setChartResultList([_arr[1]]);
+      setSelectedShowChartsMode(2);
+    } else {
+      setChartResultList(totalChartResultList);
+    }
+  }, [pkdAllIn, provinceAllIn, clusterAllIn, occupationAllIn]);
 
   useEffect(() => {
     if (parseInt(selectedSection) === 8) {
       setSelectedCategory([]);
       setSelectedYear(2013);
     }
+    setPkdAllIn(false);
+    setProvinceAllIn(false);
+    setClusterAllIn(false);
+    setOccupationAllIn(false);
   }, [selectedSection])
 
   const handleChangeChartType = (change) => {
@@ -583,6 +610,121 @@ const SimulationInfo = (props) => {
     </Grid>
   )
 
+  const convertChartData = (list) => {
+    if (Number(selectedSection) <= 4) {
+      let result = [{ data: [], name: 'Ogółem' }];
+
+      for (let i = 0; i < list[0].data.length; i++) {
+        let item_list = { 'Rok': 0, 'Popyt na pracę': 0, 'Podaż pracy': 0, 'Luka': 0, 'Zatrudnienie': 0 };
+        for (let j = 0; j < list.length; j++) {
+          let item = list[j].data[i];
+          item_list['Rok'] = item['Rok'];
+          item_list['Popyt na pracę'] += item['Popyt na pracę'];
+          item_list['Podaż pracy'] += item['Podaż pracy'];
+          item_list['Luka'] += item['Luka'];
+          item_list['Zatrudnienie'] += item['Zatrudnienie'];
+        }
+        result[0].data.push(item_list);
+      }
+      return result;
+    } else {
+      if ((pkdAllIn || provinceAllIn || clusterAllIn) && occupationAllIn) {
+        let result = [{ data: [], name: 'Ogółem' }];
+
+        for (let i = 0; i < list[0].data.length; i++) {
+          let item_list = { 'Rok': 0, 'Popyt na pracę': 0, 'Podaż pracy': 0, 'Luka': 0, 'Zatrudnienie': 0 };
+          for (let j = 0; j < list.length; j++) {
+            let item = list[j].data[i];
+            item_list['Rok'] = item['Rok'];
+            item_list['Popyt na pracę'] += item['Popyt na pracę'];
+            item_list['Podaż pracy'] += item['Podaż pracy'];
+            item_list['Luka'] += item['Luka'];
+            item_list['Zatrudnienie'] += item['Zatrudnienie'];
+          }
+          result[0].data.push(item_list);
+        }
+        return result;
+      } else if (pkdAllIn || provinceAllIn || clusterAllIn) {
+        let result_list = [];
+        let temp_list = [];
+        for (let i = 0; i < selectedOccupation.length; i++) {
+          let _temp_list = [];
+          for (let j = 0; j < list.length; j++) {
+            if (j % selectedOccupation.length === i) {
+              _temp_list.push(list[j]);
+            }
+          }
+          temp_list.push(_temp_list);
+        }
+
+        for (let i = 0; i < temp_list.length; i++) {
+          let _temp_item = temp_list[i];
+          let result = { data: [], name: `Ogółem (${_temp_item[0].sub_name})` };
+          for (let j = 0; j < _temp_item[0].data.length; j++) {
+            let item_list = { 'Rok': 0, 'Popyt na pracę': 0, 'Podaż pracy': 0, 'Luka': 0, 'Zatrudnienie': 0 };
+            for (let k = 0; k < _temp_item.length; k++) {
+              let item = _temp_item[k].data[j];
+              item_list['Rok'] = item['Rok'];
+              item_list['Popyt na pracę'] += item['Popyt na pracę'];
+              item_list['Podaż pracy'] += item['Podaż pracy'];
+              item_list['Luka'] += item['Luka'];
+              item_list['Zatrudnienie'] += item['Zatrudnienie'];
+            }
+            result.data.push(item_list);
+          }
+          result_list.push(result);
+        }
+        return result_list;
+      } else if (occupationAllIn) {
+
+        let list_count = 0;
+        if (Number(selectedSection) == 5)
+          list_count = selectedPkdSection.length;
+        else if (Number(selectedSection) == 6)
+          list_count = selectedProvince.length;
+        else if (Number(selectedSection) == 7)
+          list_count = selectedCluster.length;
+        let result_list = [];
+        let temp_list = [];
+        let k = 0;
+        let count = 0;
+        for (let j = 0; j < list.length; j++) {
+          if (k === 0)
+            temp_list.push([]);
+          if (k < list.length / list_count) {
+            temp_list[count].push(list[j]);
+          }
+          k++;
+          if (k === selectedOccupation.length / list_count) {
+            k = 0;
+          }
+        }
+
+        console.log(temp_list);
+
+        for (let i = 0; i < temp_list.length; i++) {
+          let _temp_item = temp_list[i];
+          let result = { data: [], name: `${_temp_item[0].name}(Ogółem)` };
+          for (let j = 0; j < _temp_item[0].data.length; j++) {
+            let item_list = { 'Rok': 0, 'Popyt na pracę': 0, 'Podaż pracy': 0, 'Luka': 0, 'Zatrudnienie': 0 };
+            for (let k = 0; k < _temp_item.length; k++) {
+              let item = _temp_item[k].data[j];
+              item_list['Rok'] = item['Rok'];
+              item_list['Popyt na pracę'] += item['Popyt na pracę'];
+              item_list['Podaż pracy'] += item['Podaż pracy'];
+              item_list['Luka'] += item['Luka'];
+              item_list['Zatrudnienie'] += item['Zatrudnienie'];
+            }
+            result.data.push(item_list);
+          }
+          result_list.push(result);
+        }
+        console.log(result_list);
+        return result_list;
+      }
+    }
+  }
+
   const handleRender = () => {
     let category_count = 0;
     let chart_count = 0;
@@ -595,27 +737,53 @@ const SimulationInfo = (props) => {
 
     if (Number(selectedSection) == 1) {
       chart_count = selectedPkdSection.length;
-    } else if(Number(selectedSection) == 2) {
+    } else if (Number(selectedSection) == 2) {
       chart_count = selectedProvince.length;
-    } else if(Number(selectedSection) == 3) {
+    } else if (Number(selectedSection) == 3) {
       chart_count = selectedCluster.length;
-    } else if(Number(selectedSection) == 4) {
+    } else if (Number(selectedSection) == 4) {
       chart_count = selectedOccupation.length;
-    } else if(Number(selectedSection) == 5) {
+    } else if (Number(selectedSection) == 5) {
       chart_count = selectedPkdSection.length * selectedOccupation.length;
-    } else if(Number(selectedSection) == 6) {
+    } else if (Number(selectedSection) == 6) {
       chart_count = selectedProvince.length * selectedOccupation.length;
-    } else if(Number(selectedSection) == 7) {
+    } else if (Number(selectedSection) == 7) {
       chart_count = selectedCluster.length * selectedOccupation.length;
-    } else if(Number(selectedSection) == 8) {
+    } else if (Number(selectedSection) == 8) {
       chart_count = selectedEducation.length * selectedAge.length;
     }
 
-    if (chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
-      addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie', 
+    if (Number(selectedChartType) === 1 && chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
+      addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie',
         { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
     } else {
       setProgressStatus(true);
+      let pkd_list = [];
+      let province_list = [];
+      let cluster_list = [];
+      let occupation_list = [];
+      if (pkdAllIn) {
+        pkd_list = pkdSectionList.map((item, index) => {
+          return item.id;
+        })
+      }
+      if (provinceAllIn) {
+        province_list = provinceList.map((item, index) => {
+          return item.id;
+        })
+      }
+      if (clusterAllIn) {
+        cluster_list = clusterList.map((item, index) => {
+          return item.id;
+        })
+      }
+      if (occupationAllIn) {
+        for (let i = 0; i < occupationList.length; i++) {
+          if ((occupationList[i].id).length === selectedOccupationSize)
+            occupation_list.push(occupationList[i].id)
+        }
+      }
+
       analyze.getChartData(
         selectedChartType,
         selectedSection,
@@ -623,10 +791,10 @@ const SimulationInfo = (props) => {
         item.id_scenario,
         selectedYear,
         selectedToYear,
-        selectedOccupation,
-        selectedPkdSection,
-        selectedProvince,
-        selectedCluster,
+        occupationAllIn ? occupation_list : selectedOccupation,
+        pkdAllIn ? pkd_list : selectedPkdSection,
+        provinceAllIn ? province_list : selectedProvince,
+        clusterAllIn ? cluster_list : selectedCluster,
         selectedEducation,
         selectedAge,
         selectedShowChartsMode
@@ -635,14 +803,17 @@ const SimulationInfo = (props) => {
           history.push('/login');
         } else {
           if (response.code === 200) {
-            setChartData(response.data.chart_data);
+            if ((pkdAllIn || provinceAllIn || clusterAllIn || occupationAllIn) && Number(selectedChartType) === 1)
+              setChartData(convertChartData(response.data.chart_data));
+            else
+              setChartData(response.data.chart_data);
             setTableData(response.data.table_data);
             setFieldList(response.data.field_list);
           } else {
           }
         }
       })
-  
+
       analyze.getTotalData(
         selectedChartType,
         selectedSection,
@@ -650,10 +821,10 @@ const SimulationInfo = (props) => {
         item.id_scenario,
         selectedYear,
         selectedToYear,
-        selectedOccupation,
-        selectedPkdSection,
-        selectedProvince,
-        selectedCluster,
+        occupationAllIn ? occupation_list : selectedOccupation,
+        pkdAllIn ? pkd_list : selectedPkdSection,
+        provinceAllIn ? province_list : selectedProvince,
+        clusterAllIn ? cluster_list : selectedCluster,
         selectedEducation,
         selectedAge,
         selectedShowChartsMode
@@ -733,6 +904,8 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           pkdSectionList={pkdSectionList}
           showChartsMode={chartResultList}
+          allIn={pkdAllIn}
+          setAllIn={setPkdAllIn}
         />
       case 2:
         return <ProvinceAdditionalOption
@@ -742,6 +915,8 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           provinceList={provinceList}
           showChartsMode={chartResultList}
+          allIn={provinceAllIn}
+          setAllIn={setProvinceAllIn}
         />
       case 3:
         return <ClusterAdditionalOption
@@ -751,6 +926,8 @@ const SimulationInfo = (props) => {
           handleSelectedShowChartsMode={setSelectedShowChartsMode}
           clusterList={clusterList}
           showChartsMode={chartResultList}
+          allIn={clusterAllIn}
+          setAllIn={setClusterAllIn}
         />
       case 4:
         return <OccupationAdditionalOption
@@ -763,6 +940,8 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
+          allIn={occupationAllIn}
+          setAllIn={setOccupationAllIn}
         />
       case 5:
         return <PkdOccupationAdditionalOption
@@ -778,6 +957,10 @@ const SimulationInfo = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
+          occupationAllIn={occupationAllIn}
+          setOccupationAllIn={setOccupationAllIn}
+          pkdAllIn={pkdAllIn}
+          setPkdAllIn={setPkdAllIn}
         />
       case 6:
         return <ProvinceOccupationAdditionalOption
@@ -794,6 +977,10 @@ const SimulationInfo = (props) => {
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
           selectedChartType={selectedChartType}
+          occupationAllIn={occupationAllIn}
+          setOccupationAllIn={setOccupationAllIn}
+          provinceAllIn={provinceAllIn}
+          setProvinceAllIn={setProvinceAllIn}
         />
       case 7:
         return <ClusterOccupationAdditionalOption
@@ -810,6 +997,10 @@ const SimulationInfo = (props) => {
           occupationSizeList={occupationSizeList}
           showChartsMode={chartResultList}
           selectedChartType={selectedChartType}
+          occupationAllIn={occupationAllIn}
+          setOccupationAllIn={setOccupationAllIn}
+          clusterAllIn={clusterAllIn}
+          setClusterAllIn={setClusterAllIn}
         />
       case 8:
         return <EducationAdditionalOption

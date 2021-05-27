@@ -23,8 +23,10 @@ const ProvinceOccupationAdditionalOption = (props) => {
     occupationList,
     showChartsMode,
     occupationSizeList,
-    ableRender,
-    handleRender
+    occupationAllIn,
+    setOccupationAllIn,
+    pkdAllIn,
+    setPkdAllIn,
   } = props;
 
   return (
@@ -45,7 +47,7 @@ const ProvinceOccupationAdditionalOption = (props) => {
                 <div className={classes.subHeader}>
                   (można wybrać kilka sekcji)
                 </div>
-                <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
+                <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList} allIn={pkdAllIn} setAllIn={setPkdAllIn}/>
               </Grid>
               <Grid item md={6} xs={12}>
                 <OccupationSelectionModal
@@ -55,6 +57,8 @@ const ProvinceOccupationAdditionalOption = (props) => {
                     handleSelectedOccupationSize={handleSelectedOccupationSize}
                     occupationSizeList={occupationSizeList}
                     selectedOccupation={occupationValue}
+                    allIn={occupationAllIn}
+                    setAllIn={setOccupationAllIn}
                   // handleSave={handleSaveOccupation}
                   />
               </Grid>

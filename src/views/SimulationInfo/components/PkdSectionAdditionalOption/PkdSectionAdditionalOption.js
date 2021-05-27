@@ -17,6 +17,8 @@ const PkdSectionAdditionalOption = (props) => {
     handleSelectedShowChartsMode,
     pkdSectionList,
     showChartsMode,
+    allIn,
+    setAllIn
   } = props;
 
   return (
@@ -35,7 +37,7 @@ const PkdSectionAdditionalOption = (props) => {
             <div className={classes.subHeader}>
               (można wybrać kilka sekcji)
             </div>
-            <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList}/>
+            <MultiSelect value={pkdSectionValue} handleChange={handleSelectedPkdSection} list={pkdSectionList} allIn={allIn} setAllIn={setAllIn}/>
           </Grid>
           {showChartsMode.length > 1 ?
             <Grid item md={4} xs={12}>
