@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
     drawer: {
       width: 300,
-      backgroundColor: theme.palette.sidebar_background
     },
     root: {
       backgroundColor: theme.palette.sidebar_background,
