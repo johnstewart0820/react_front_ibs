@@ -17,8 +17,8 @@ const ClusterAdditionalOption = (props) => {
     handleSelectedShowChartsMode,
     clusterList,
     showChartsMode,
-    allIn,
-    setAllIn
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -34,7 +34,7 @@ const ClusterAdditionalOption = (props) => {
             <div className={classes.secondTitleHeader}>
               Wybierz klaster powiatów
             </div>
-            <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList} allIn={allIn} setAllIn={setAllIn}/>
+            <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList}/>
           </Grid>
           {showChartsMode.length > 1 ?
             <Grid item md={4} xs={12}>

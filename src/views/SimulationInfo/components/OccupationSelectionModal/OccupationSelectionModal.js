@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Grid,
   Button,
-  Popover,
-  FormControlLabel,
-  Checkbox
+  Popover
 } from '@material-ui/core';
 import CheckboxTree from 'react-checkbox-tree';
 import {
@@ -26,14 +24,14 @@ import './style.css';
 
 var isInitialRender = 0;
 const OccupationSelectionModal = (props) => {
-  const { node, occupationSize, occupationSizeList, handleSelectedOccupationSize, handleSelectedOccupation, selectedOccupation, allIn, setAllIn } = props;
+  const { node, occupationSize, occupationSizeList, handleSelectedOccupationSize, handleSelectedOccupation, selectedOccupation } = props;
   const [nodes, setNodes] = useState([]);
   const [expanded, setExpanded] = useState([]);
   const [open, setOpen] = useState(false);
   const [width, setWidth] = useState(0);
   const classes = useStyles();
   let allNodes = [];
-
+  
   const handleClick = (event) => {
     setOpen(!open);
   };
@@ -90,7 +88,7 @@ const OccupationSelectionModal = (props) => {
   }
 
   const getAllOccupation = (arr) => {
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i ++) {
       if (arr[i].children) {
         getAllOccupation(arr[i].children);
       } else {
@@ -110,24 +108,19 @@ const OccupationSelectionModal = (props) => {
     }
   }
 
-  const handleChangeAllIn = () => {
-    setAllIn(!allIn);
-    handleSelectedOccupation([]);
-  }
-
 
   return (
-    <Grid container style={{ height: '100%' }}>
-      <Grid item xs={5} style={{ position: 'relative' }}>
+    <Grid container style={{height: '100%'}}>
+      <Grid item xs={5} style={{position: 'relative'}}>
         <div className={classes.secondTitleHeader}>
           Wybierz rodzaj grupy KZiS
         </div>
-        <div style={{ position: 'absolute', bottom: '0px', width: '95%' }}>
+        <div style={{position: 'absolute', bottom: '0px', width: '95%'}}>
           <SingleSelect value={occupationSize} handleChange={handleSelectedOccupationSize} list={occupationSizeList} />
         </div>
       </Grid>
-      <Grid item xs={7} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-        <div className={classes.secondTitleHeader} style={{ height: '100%' }}>
+      <Grid item xs={7} style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
+        <div className={classes.secondTitleHeader} style={{height: '100%'}}>
           Zawód
         </div>
         <Grid item xs={12}>
@@ -138,55 +131,43 @@ const OccupationSelectionModal = (props) => {
             className={classes.btnOpen}
             onClick={handleClick} disabled={!occupationSize || occupationSize == 0}
             startIcon={!open ? <ArrowDownward /> : <ArrowUpward />}
-            style={open ? { 'border-bottom': '0px' } : {}}
+            style={open ? {'border-bottom': '0px'} : {}}
           >
             Wybierz zawód
           </Button>
           {
             <>
-              <Grid container className={classes.occupationBlock} id="occupation_block" style={open ? { visibility: 'visible', width: width } : { visibility: 'hidden', width: width }}>
-                <Grid item xs={12}>
-                  <div className={classes.checkboxblock}>
-                    <div className={classes.selectAll} onClick={handleSelectAll}>Zaznacz wszystkie / Odznacz wszystkie</div>
-                    <FormControlLabel
-                      className={classes.selectAllIn}
-                      control={
-                        <Checkbox
-                          checked={allIn}
-                          onChange={handleChangeAllIn}
-                        />
-                      }
-                      label="Ogółem"
-                    />
-                    <CheckboxTree
-                      nodes={nodes}
-                      checked={selectedOccupation}
-                      expanded={expanded}
-                      onCheck={(result) => handleSelectedOccupation(result)}
-                      onExpand={setExpanded}
-                      disabled={allIn}
-                      expandDisabled={allIn}
-                      icons={{
-                        check: <CheckBox />,
-                        uncheck: <CheckBoxOutlineBlank />,
-                        halfCheck: <IndeterminateCheckBox />,
-                        expandClose: <ExpandMore />,
-                        expandOpen: <ChevronRight />,
-                        expandAll: <ChevronRight />,
-                        collapseAll: <ExpandMore />,
-                        parentClose: <></>,
-                        parentOpen: <></>,
-                        leaf: <></>,
-                      }}
-                      onlyLeafCheckboxes={true}
-                      expandOnClick={true}
-                      onClick={(e) => { !allIn && onClickItem(e) }}
-                      checkModel="leaf"
-                    />
-                  </div>
-                </Grid>
+            <Grid container className={classes.occupationBlock} id="occupation_block" style={open ? { visibility: 'visible', width: width } : { visibility: 'hidden', width: width }}>
+              <Grid item xs={12}>
+                <div className={classes.checkboxblock}>
+                  <div className={classes.selectAll} onClick={handleSelectAll}>Zaznacz wszystkie / Odznacz wszystkie</div>
+                  <CheckboxTree
+                    nodes={nodes}
+                    checked={selectedOccupation}
+                    expanded={expanded}
+                    onCheck={(result) => handleSelectedOccupation(result)}
+                    onExpand={setExpanded}
+                    icons={{
+                      check: <CheckBox />,
+                      uncheck: <CheckBoxOutlineBlank />,
+                      halfCheck: <IndeterminateCheckBox />,
+                      expandClose: <ExpandMore />,
+                      expandOpen: <ChevronRight />,
+                      expandAll: <ChevronRight />,
+                      collapseAll: <ExpandMore />,
+                      parentClose: <></>,
+                      parentOpen: <></>,
+                      leaf: <></>,
+                    }}
+                    onlyLeafCheckboxes={true}
+                    expandOnClick={true}
+                    onClick={(e) => { onClickItem(e) }}
+                    checkModel="leaf"
+                  />
+                </div>
               </Grid>
-              {open ? <div className={classes.overBox} onClick={handleClose} /> : <></>}
+            </Grid>
+            {open ? <div className={classes.overBox} onClick={handleClose}/> : <></>}
             </>
           }
 

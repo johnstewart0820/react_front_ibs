@@ -11,14 +11,6 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: '14px',
         marginTop: '-1px'
     },
-    normal: {
-        fontWeight: '400',
-        paddingLeft: '14px',
-        marginTop: '-1px'
-    },
-    rememberMe: {
-        width: '100%'
-    },
     multiple_select: {
         '& .MuiSelect-outlined.MuiSelect-outlined': {
             padding: '18.5px 14px',

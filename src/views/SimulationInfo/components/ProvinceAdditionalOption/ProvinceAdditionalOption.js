@@ -17,8 +17,8 @@ const ProvinceAdditionalOption = (props) => {
     handleSelectedShowChartsMode,
     provinceList,
     showChartsMode,
-    allIn, 
-    setAllIn
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -34,7 +34,7 @@ const ProvinceAdditionalOption = (props) => {
             <div className={classes.secondTitleHeader}>
               Wybierz województwo
             </div>
-            <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList} allIn={allIn} setAllIn={setAllIn}/>
+            <MultiSelect value={provinceValue} handleChange={handleSelectedProvince} list={provinceList}/>
           </Grid>
           {showChartsMode.length > 1 ?
             <Grid item md={4} xs={12}>

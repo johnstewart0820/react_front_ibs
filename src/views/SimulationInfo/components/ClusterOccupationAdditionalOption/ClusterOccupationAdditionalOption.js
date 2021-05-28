@@ -23,11 +23,7 @@ const ClusterOccupationAdditionalOption = (props) => {
     occupationList,
     occupationSizeList,
     showChartsMode,
-    selectedChartType,
-    occupationAllIn,
-    setOccupationAllIn,
-    clusterAllIn,
-    setClusterAllIn,
+    selectedChartType
   } = props;
 
   return (
@@ -43,7 +39,7 @@ const ClusterOccupationAdditionalOption = (props) => {
             <div className={classes.secondTitleHeader}>
               Wybierz klaster powiatów
             </div>
-            <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList} allIn={clusterAllIn} setAllIn={setClusterAllIn}/>
+            <MultiSelect value={clusterValue} handleChange={handleSelectedCluster} list={clusterList}/>
           </Grid>
           <Grid item md={6} xs={12}>
             <OccupationSelectionModal
@@ -53,8 +49,6 @@ const ClusterOccupationAdditionalOption = (props) => {
                 handleSelectedOccupationSize={handleSelectedOccupationSize}
                 occupationSizeList={occupationSizeList}
                 selectedOccupation={occupationValue}
-                allIn={occupationAllIn}
-                setAllIn={setOccupationAllIn}
               // handleSave={handleSaveOccupation}
               />
           </Grid>

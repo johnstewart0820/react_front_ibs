@@ -22,8 +22,8 @@ const OccupationAdditionalOption = (props) => {
     occupationList,
     showChartsMode,
     occupationSizeList,
-    allIn,
-    setAllIn
+    ableRender,
+    handleRender
   } = props;
 
   return (
@@ -43,8 +43,6 @@ const OccupationAdditionalOption = (props) => {
               handleSelectedOccupationSize={handleSelectedOccupationSize}
               occupationSizeList={occupationSizeList}
               selectedOccupation={occupationValue}
-              allIn={allIn} 
-              setAllIn={setAllIn}
             // handleSave={handleSaveOccupation}
             />
           </Grid>

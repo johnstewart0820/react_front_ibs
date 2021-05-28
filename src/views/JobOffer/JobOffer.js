@@ -316,7 +316,7 @@ const JobOffer = (props) => {
         list={list}
       />
     } else if (parseInt(selectedChartType) === 4) {
-      if (parseInt(selectedSection) === 2 || parseInt(selectedSection) === 4) {
+      if (parseInt(selectedSection) === 2) {
         return <MapProvinceArea
           data={chart}
           provinceList={provinceList}
