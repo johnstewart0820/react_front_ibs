@@ -34,12 +34,12 @@ const Sidebar = props => {
       tooltip: 'Moduł pozwala przeglądać szczegółowe prognozy popytu na pracę, podaży pracy i luki popytowo-podażowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostępne są w 8 przekrojach ',
       icon: <ModuleIcon/>
     },
-    {
-      title: 'Własne symulacje',
-      href: '/own_simulations',
-      tooltip: 'Moduł pozwala dostosowywać prognozy rynku pracy do wybranych założeń ekonomicznych i demograficznych',
-      icon: <SimulationIcon/>
-    },
+    // {
+    //   title: 'Własne symulacje',
+    //   href: '/own_simulations',
+    //   tooltip: 'Moduł pozwala dostosowywać prognozy rynku pracy do wybranych założeń ekonomicznych i demograficznych',
+    //   icon: <SimulationIcon/>
+    // },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',

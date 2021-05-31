@@ -373,6 +373,8 @@ const SimulationInfo = (props) => {
   }, [selectedCategory, selectedMapCategory])
 
   useEffect(() => {
+    setChartData([]);
+    setTableData([]);
     setChartResultList(totalChartResultList);
     if (selectedChartType == 3) {
       setSelectedSection(0);
@@ -612,6 +614,7 @@ const SimulationInfo = (props) => {
     }
 
     if (Number(selectedChartType) === 1 && chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
+      addToast('response.message', { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true });
       addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie', 
         { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
     } else {
@@ -639,6 +642,8 @@ const SimulationInfo = (props) => {
             setTableData(response.data.table_data);
             setFieldList(response.data.field_list);
           } else {
+            addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
+              { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
           }
         }
       })
@@ -673,6 +678,8 @@ const SimulationInfo = (props) => {
             }
             setHeaders(_arr);
           } else {
+            addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
+              { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
           }
         }
         setProgressStatus(false);

@@ -39,7 +39,7 @@ const ChartArea = (props) => {
   }, [chart_data]);
   const convertData = (data) => {
     let _result = [];
-    if (data === null || data === undefined || data.length === 0)
+    if (data === null || data === undefined || data.length === 0 || !data[0].data)
       return _result;
     for (let i = 0; i < data[0].data.length; i ++ ) {
       let _result_item = {};

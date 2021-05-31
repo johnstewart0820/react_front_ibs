@@ -260,9 +260,23 @@ const SimulationInfoEdit = (props) => {
   }
 
   useEffect(() => {
+    setChartData([]);
+    setTableData([]);
     setChartResultList(totalChartResultList);
     if (selectedChartType == 3) {
       setSelectedSection(0);
+      setSelectedCategory([]);
+      let _arr = [];
+      for (let i = 0; i < provinceList.length; i++) {
+        _arr.push(provinceList[i].id);
+      }
+      setSelectedProvince(_arr);
+      _arr = [];
+      for (let i = 0; i < clusterList.length; i++) {
+        _arr.push(clusterList[i].id);
+      }
+      setSelectedCluster(_arr);
+
     }
     if (selectedChartType == 2) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
@@ -392,6 +406,8 @@ const SimulationInfoEdit = (props) => {
             setTableData(response.data.table_data);
             setFieldList(response.data.field_list);
           } else {
+            addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
+              { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
           }
         }
       })
@@ -425,6 +441,8 @@ const SimulationInfoEdit = (props) => {
             }
             setHeaders(_arr);
           } else {
+            addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
+              { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
           }
         }
         setProgressStatus(false);
