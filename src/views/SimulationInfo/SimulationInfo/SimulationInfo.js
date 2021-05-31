@@ -611,7 +611,7 @@ const SimulationInfo = (props) => {
       chart_count = selectedEducation.length * selectedAge.length;
     }
 
-    if (chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
+    if (Number(selectedChartType) === 1 && chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
       addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie', 
         { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
     } else {
