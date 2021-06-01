@@ -50,7 +50,7 @@ const SimulationInfoEdit = (props) => {
   ];
   const { addToast } = useToasts()
   const { history } = props;
-  const [item, setItem] = useState(props.location.state.item);
+  const [item, setItem] = useState(props.location.state ? props.location.state.item: 1);
   const [scenariosLabels, setScenariosLabels] = useState([]);
   const [progressStatus, setProgressStatus] = useState(false);
   const [selectedCluster, setSelectedCluster] = useState([]);
@@ -402,53 +402,63 @@ const SimulationInfoEdit = (props) => {
           history.push('/login');
         } else {
           if (response.code === 200) {
-            setChartData(response.data.chart_data);
-            setTableData(response.data.table_data);
-            setFieldList(response.data.field_list);
+            let chart_data = response.data.chart_data;
+            let table_data = response.data.table_data;
+            let field_list = response.data.field_list;
+
+            analyzes.getTotalData(
+              selectedChartType,
+              selectedSection,
+              parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
+              item.id_scenario,
+              selectedYear,
+              selectedToYear,
+              selectedOccupation,
+              selectedPkdSection,
+              selectedProvince,
+              selectedCluster,
+              selectedEducation,
+              selectedAge,
+              selectedShowChartsMode
+            ).then(response => {
+              if (response.code === 401) {
+                history.push('/login');
+              } else {
+                if (response.code === 200) {
+                  setChartData(chart_data);
+                  setTableData(table_data);
+                  setFieldList(field_list);
+                  setTotalTableData(response.data.table_data);
+                  setTotalFieldList(response.data.field_list);
+                  let _arr = [];
+                  for (let i = 0; i < response.data.field_list.length; i++) {
+                    let _item = {};
+                    _item.label = response.data.field_list[i].toString();
+                    _item.key = response.data.field_list[i].toString();
+                    _arr.push(_item);
+                  }
+                  setHeaders(_arr);
+                  setTimeout(() => {
+                    if (chart.current != null)
+                    chart.current.scrollIntoView({ behavior: 'smooth' });
+                  }, 1000);
+                } else {
+                  addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
+                    { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
+                  setProgressStatus(false);
+                }
+              }
+              setProgressStatus(false);
+              setRenderStatus(true);
+            })
           } else {
             addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
               { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
+            setProgressStatus(false);
           }
         }
       })
-      analyzes.getTotalData(
-        selectedChartType,
-        selectedSection,
-        parseInt(selectedChartType) === 3 ? selectedMapCategory : selectedCategory,
-        item.id_scenario,
-        selectedYear,
-        selectedToYear,
-        selectedOccupation,
-        selectedPkdSection,
-        selectedProvince,
-        selectedCluster,
-        selectedEducation,
-        selectedAge,
-        selectedShowChartsMode
-      ).then(response => {
-        if (response.code === 401) {
-          history.push('/login');
-        } else {
-          if (response.code === 200) {
-            setTotalTableData(response.data.table_data);
-            setTotalFieldList(response.data.field_list);
-            let _arr = [];
-            for (let i = 0; i < response.data.field_list.length; i++) {
-              let _item = {};
-              _item.label = response.data.field_list[i].toString();
-              _item.key = response.data.field_list[i].toString();
-              _arr.push(_item);
-            }
-            setHeaders(_arr);
-          } else {
-            addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
-              { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
-          }
-        }
-        setProgressStatus(false);
-        setRenderStatus(true);
-        chart.current.scrollIntoView({ behavior: 'smooth' });
-      })
+      
     }
   }
 
