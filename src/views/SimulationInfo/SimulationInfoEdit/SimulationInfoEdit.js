@@ -442,6 +442,7 @@ const SimulationInfoEdit = (props) => {
                     if (chart.current != null)
                     chart.current.scrollIntoView({ behavior: 'smooth' });
                   }, 1000);
+                  setRenderStatus(true);
                 } else {
                   addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
                     { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
@@ -449,7 +450,6 @@ const SimulationInfoEdit = (props) => {
                 }
               }
               setProgressStatus(false);
-              setRenderStatus(true);
             })
           } else {
             addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie', 
