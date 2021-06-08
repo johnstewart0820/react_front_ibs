@@ -56,7 +56,7 @@ const CreateOwnSimulations = props => {
   useEffect(() => {
     let array = [];
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 32; i++) {
       array.push(String(''));
     }
     setSeriesValue(JSON.stringify(array));
@@ -69,20 +69,20 @@ const CreateOwnSimulations = props => {
   const handleCreateScenario = (e) => {
     setProgressStatus(true);
     series
-    .createSeries(seriesLabelId[selectedSeriesId].id_type_key, scenariosName, 'my_unique_variable', 1, JSON.parse(seriesValue))
-    .then(response => {
-      setProgressStatus(false);
-      if (response.code === 401) {
-        history.push('/login');
-      } else {
-        if (response.code === 200) {
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true});
-          setTimeout(function(){history.push('/own_simulations');}, 1000);
+      .createSeries(seriesLabelId[selectedSeriesId].id_type_key, scenariosName, 'my_unique_variable', 1, JSON.parse(seriesValue))
+      .then(response => {
+        setProgressStatus(false);
+        if (response.code === 401) {
+          history.push('/login');
         } else {
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true});
+          if (response.code === 200) {
+            addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true });
+            setTimeout(function () { history.push('/own_simulations'); }, 1000);
+          } else {
+            addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
+          }
         }
-      }
-    })
+      })
 
   }
 
@@ -93,7 +93,7 @@ const CreateOwnSimulations = props => {
       setSeriesValue(JSON.stringify(arr));
     }
 
-    for (let i = 0; i < 30; i ++) {
+    for (let i = 0; i < 32; i++) {
       if (arr[i].length === 0) {
         setDisableStatus(true);
         return;
@@ -108,7 +108,7 @@ const CreateOwnSimulations = props => {
       setValueFrom(e.target.value);
     }
   }
-  
+
   const handleChangeValueTo = (e) => {
     if (isNaN(e.target.value)) {
     } else {
@@ -117,11 +117,11 @@ const CreateOwnSimulations = props => {
   }
 
   const handleSyncValue = () => {
-    let diff = (valueTo - valueFrom) / 29;
+    let diff = (valueTo - valueFrom) / 31;
     let array = JSON.parse(seriesValue);
     array[0] = valueFrom;
-    array[29] = valueTo;
-    for (let i = 0; i < 29; i ++) {
+    array[31] = valueTo;
+    for (let i = 0; i < 30; i++) {
       let value = parseFloat(array[i]) + diff;
 
       array[i + 1] = value.toString();
@@ -134,8 +134,8 @@ const CreateOwnSimulations = props => {
     setSelectedSeriesId(index);
     setValueFrom('0');
     setValueTo('0');
-    let array = new Array(30);
-    for (let i = 0; i <= 29; i ++) {
+    let array = new Array(32);
+    for (let i = 0; i <= 31; i++) {
       array[i] = '';
     }
     setSeriesValue(JSON.stringify(array));
@@ -148,36 +148,36 @@ const CreateOwnSimulations = props => {
     else {
       if (ctrlDown && e.keyCode === 86) {
         navigator.clipboard.readText()
-        .then(
-          response => {
-            var rows = response.replace(/"((?:[^"]*(?:\r\n|\n\r|\n|\r|\t))+[^"]+)"/mg, function (match, p1) {
-              return p1
+          .then(
+            response => {
+              var rows = response.replace(/"((?:[^"]*(?:\r\n|\n\r|\n|\r|\t))+[^"]+)"/mg, function (match, p1) {
+                return p1
                   .replace(/""/g, '"')
                   .replace(/\r\n|\n\r|\n|\r|\t/g, ' ');
-            })
-          .split(/\r\n|\n\r|\n|\r|\t/g);
-          let array = JSON.parse(seriesValue);
-          let i = 0;
-          for(i = 0; i < rows.length; i ++) {
-            if (i === 30)
-              break;
-            if (!isNaN(rows[i])) {
-              array[i] = rows[i];
-            }
-          }
-          if (rows.length < 30)
-          for (let j = i - 1; j < 30; j ++) {
-            array[j] = 0;
-          }
-          setSeriesValue(JSON.stringify(array));
-          for (let i = 0; i < 30; i ++) {
-            if (array[i].length === 0) {
-              setDisableStatus(true);
-              return;
-            }
-          }
-          setDisableStatus(false);
-          });
+              })
+                .split(/\r\n|\n\r|\n|\r|\t/g);
+              let array = JSON.parse(seriesValue);
+              let i = 0;
+              for (i = 0; i < rows.length; i++) {
+                if (i === 32)
+                  break;
+                if (!isNaN(rows[i])) {
+                  array[i] = rows[i];
+                }
+              }
+              if (rows.length < 32)
+                for (let j = i - 1; j < 32; j++) {
+                  array[j] = 0;
+                }
+              setSeriesValue(JSON.stringify(array));
+              for (let i = 0; i < 32; i++) {
+                if (array[i].length === 0) {
+                  setDisableStatus(true);
+                  return;
+                }
+              }
+              setDisableStatus(false);
+            });
       }
       setCtrlDown(false);
     }
@@ -243,7 +243,7 @@ const CreateOwnSimulations = props => {
                 <Card className={classes.normalBlock}>
                   <Grid container spacing={3}>
                     <Grid item md={4} xs={12}>
-                      Wprowadź wartość roku 2020:
+                      Wprowadź wartość roku 2019:
                       <input className={classes.input_box} type="text" value={valueFrom} name="valueFrom" placeholder="Wpisz wartość"
                         onChange={handleChangeValueFrom} autocomplete='off' />
                     </Grid>
@@ -269,46 +269,45 @@ const CreateOwnSimulations = props => {
                     <Grid item xs={12}>
                       <Grid container spacing={3}>
                         <Grid item xs={12}>
-
-                        <div className={classes.seriesTotalBlock}>
-                          <div className={clsx({ [classes.firstBlock]: true })}>
-                            <div className={classes.headerLabel}>
-                              2021
+                          <div className={classes.seriesTotalBlock}>
+                            <div className={clsx({ [classes.firstBlock]: true })}>
+                              <div className={classes.headerLabel}>
+                                2019
                               </div>
-                            <div>
-                              <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[0]} name="valueFrom"
-                                onChange={(e) => handleChangeSeriesValue(e, 0)} autocomplete='off'  onKeyDown={handleKeydown} onKeyUp={handleKeyUp}/>
-                            </div>
-                          </div>
-                          <div className={classes.overflowBlock}>
-                            <div className={classes.seriesBlock}>
-                              {
-                                JSON.parse(seriesValue).map((item, index) => (
-                                  index < 28 ?
-                                  <div className={clsx({ [classes.mediumBlock]: true, [classes.inputBlock]: index != 0 })}>
-                                    <div className={classes.whiteHeaderLabel}>
-                                      {index + 2022}
-                                    </div>
-                                    <div>
-                                      <input className={clsx({ [classes.input_box]: true, [classes.scroll_margin]: true })} type="text" value={JSON.parse(seriesValue)[index + 1]} name="valueFrom"
-                                        onChange={(e) => handleChangeSeriesValue(e, index + 1)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp}/>
-                                    </div>
-                                  </div>
-                                  :
-                                  <></>
-                                ))
-                              }
-                            </div>
-                          </div>
-                          <div className={clsx({ [classes.lastBlock]: true, [classes.inputBlock]: true })}>
-                            <div className={classes.headerLabel}>
-                              2050
+                              <div>
+                                <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[0]} name="valueFrom"
+                                  onChange={(e) => handleChangeSeriesValue(e, 0)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp} />
                               </div>
-                            <div>
-                              <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[29]} name="valueFrom"
-                                onChange={(e) => handleChangeSeriesValue(e, 29)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp}/>
                             </div>
-                          </div>
+                            <div className={classes.overflowBlock}>
+                              <div className={classes.seriesBlock}>
+                                {
+                                  JSON.parse(seriesValue).map((item, index) => (
+                                    index < 30 ?
+                                      <div className={clsx({ [classes.mediumBlock]: true, [classes.inputBlock]: index != 0 })}>
+                                        <div className={classes.whiteHeaderLabel}>
+                                          {index + 2020}
+                                        </div>
+                                        <div>
+                                          <input className={clsx({ [classes.input_box]: true, [classes.scroll_margin]: true })} type="text" value={JSON.parse(seriesValue)[index + 1]} name="valueFrom"
+                                            onChange={(e) => handleChangeSeriesValue(e, index + 1)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp} />
+                                        </div>
+                                      </div>
+                                      :
+                                      <></>
+                                  ))
+                                }
+                              </div>
+                            </div>
+                            <div className={clsx({ [classes.lastBlock]: true, [classes.inputBlock]: true })}>
+                              <div className={classes.headerLabel}>
+                                2050
+                              </div>
+                              <div>
+                                <input className={clsx({ [classes.input_box]: true, [classes.input_box_black]: true })} type="text" value={JSON.parse(seriesValue)[31]} name="valueFrom"
+                                  onChange={(e) => handleChangeSeriesValue(e, 31)} autocomplete='off' onKeyDown={handleKeydown} onKeyUp={handleKeyUp} />
+                              </div>
+                            </div>
                           </div>
                         </Grid>
                       </Grid>
