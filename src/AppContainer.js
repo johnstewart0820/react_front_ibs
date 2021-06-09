@@ -57,15 +57,22 @@ class AppContainer extends React.Component {
       .validateToken()
       .then(response => {
         if (response.code !== 401) {
-          if (this.props.location.pathname !== '/content_management') {
-            this.setState({flag: true}) 
-          } else {
-            if (Number(response.role) === 1) {
-              this.setState({flag: true}) 
+          if (this.props.location.pathname === '/content_management' || this.props.location.pathname === '/import_job_offer') {
+            if (Number(response.role) == 1) {
+              this.setState({flag: true})               
             } else {
               this.setState({flag: false})
-              this.props.history.push('/login');            
+              this.props.history.push('/login');
             }
+          } else if (this.props.location.pathname === '/own_simulations' || this.props.location.pathname === '/saved_simulations') {
+            if (Number(response.role) <= 2) {
+              this.setState({flag: true})               
+            } else {
+              this.setState({flag: false})
+              this.props.history.push('/login');
+            }
+          } else {
+            this.setState({flag: true})         
           }
         }
         else {

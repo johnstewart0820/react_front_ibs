@@ -22,7 +22,7 @@ const Sidebar = props => {
   const { open, variant, history, onClose, className, ...rest } = props;
   const [pages, setPages] = useState([]);
   const classes = useStyles();
-  const items = [
+  const items_normal = [
     {
       title: 'Kokpit',
       href: '/cockpit',
@@ -46,12 +46,12 @@ const Sidebar = props => {
       tooltip: 'W tej zakładce znajdują się domyślne scenariusze oraz własne symulacje stworzone przez użytkownika',
       icon: <SavedSimulationIcon/>
     },
-    {
-      title: 'Zapisane analizy',
-      href: '/analyzes',
-      tooltip: 'W tej zakładce znajdują się zapisane wyniki analiz dla wcześniej wybranych symulacji',
-      icon: <SavedAnalyzeIcon/>
-    },
+    // {
+    //   title: 'Zapisane analizy',
+    //   href: '/analyzes',
+    //   tooltip: 'W tej zakładce znajdują się zapisane wyniki analiz dla wcześniej wybranych symulacji',
+    //   icon: <SavedAnalyzeIcon/>
+    // },
     {
       title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
@@ -68,6 +68,54 @@ const Sidebar = props => {
     //   href: '/profile',
     //   icon: <TextFieldsIcon />
     // },
+    {
+      title: 'Wyloguj',
+      href: '/login',
+      icon: <LogoutIcon/>
+    },
+  ];
+
+  const items_advanced = [
+    {
+      title: 'Kokpit',
+      href: '/cockpit',
+      icon: <KokpitIcon/>
+    },
+    {
+      title: 'Modul prognostyczny',
+      href: '/forecasting_module',
+      tooltip: 'Modul pozwala przegladac szczególowe prognozy popytu na prace, podazy pracy i luki popytowo-podazowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostepne sa w 8 przekrojach ',
+      icon: <ModuleIcon/>
+    },
+    {
+      title: 'Wlasne symulacje',
+      href: '/own_simulations',
+      tooltip: 'Modul pozwala dostosowywac prognozy rynku pracy do wybranych zalozen ekonomicznych i demograficznych',
+      icon: <SimulationIcon/>
+    },
+    {
+      title: 'Zapisane symulacje',
+      href: '/saved_simulations',
+      tooltip: 'W tej zakladce znajduja sie domyslne scenariusze oraz wlasne symulacje stworzone przez uzytkownika',
+      icon: <SavedSimulationIcon/>
+    },
+    {
+      title: 'Zapisane analizy',
+      href: '/analyzes',
+      tooltip: 'W tej zakladce znajduja sie zapisane wyniki analiz dla wczesniej wybranych symulacji',
+      icon: <SavedAnalyzeIcon/>
+    },
+    {
+      title: 'Modul Internetowych Ofert Pracy',
+      href: '/job_offer',
+      tooltip: 'Modul gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupelniajac informacje o niezrealizowanym popycie na prace oraz wskazujac jego biezace trendy.',
+      icon: <JobIcon/>
+    },
+    {
+      title: 'Pomoc',
+      href: '/help',
+      icon: <HelpIcon/>
+    },
     {
       title: 'Wyloguj',
       href: '/login',
@@ -150,8 +198,10 @@ const Sidebar = props => {
   useEffect(() => {
     if (storage.getStorage('role') === '1') {
       setPages(items_admin);
+    } else if(storage.getStorage('role') === '2') {
+      setPages(items_advanced);
     } else {
-      setPages(items);
+      setPages(items_normal);
     }
   }, []);
   
