@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
 const ChartTableArea = (props) => {
-  const { chartData, selectedChartType, data, chart_title, bottom_title, list } = props;
+  const { chartData, selectedChartType, data, chart_title, bottom_title, list, sub_list } = props;
   const classes = useStyles();
 
   return (
@@ -24,7 +24,7 @@ const ChartTableArea = (props) => {
             chart_data={chartData}
             selectedChartType={selectedChartType}
           />
-          <div style={{marginTop: '90px'}}>
+          <div style={{ marginTop: '90px' }}>
             <div className={classes.chart_title}>
               {bottom_title}
             </div>
@@ -32,6 +32,17 @@ const ChartTableArea = (props) => {
               {list.join('; ')}
             </div>
           </div>
+          {
+            sub_list.length > 0 &&
+            <>
+              <div className={classes.chart_title}>
+                Uwzgledniono nastepujace grupy zawodowe:
+              </div>
+              <div className={classes.chart_title}>
+                {sub_list.join('; ')}
+              </div>
+            </>
+          }
         </Card>
       </Grid>
     </>

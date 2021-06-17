@@ -279,6 +279,7 @@ const JobOffer = (props) => {
     let chart_title = 'Ilość ofert pracy - przekrój ';
     let chart_bottom_title = '';
     let list = [];
+    let sub_list = [];
     chart_title += sectionList[selectedSection - 1].name.toLowerCase();
     chart_title += ' (w tysiącach)';
     if (parseInt(selectedSection) === 1) {
@@ -305,6 +306,20 @@ const JobOffer = (props) => {
             list.push(_item.name);
         })
       })
+    } else if (parseInt(selectedSection) === 4) {
+      chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących województw:';
+      selectedProvince.map((item, index) => {
+        provinceList.map((_item, _index) => {
+          if (item == _item.id)
+            list.push(_item.name);
+        })
+      })
+      selectedOccupation.map((item, index) => {
+        occupationList.map((_item, _index) => {
+          if (item == _item.id)
+            sub_list.push(_item.name);
+        })
+      })
     }
     if (parseInt(selectedChartType) === 1 || parseInt(selectedChartType) === 2 || parseInt(selectedChartType) === 3) {
       return <ChartTableArea
@@ -314,6 +329,7 @@ const JobOffer = (props) => {
         chart_title={chart_title}
         bottom_title={chart_bottom_title}
         list={list}
+        sub_list={sub_list}
       />
     } else if (parseInt(selectedChartType) === 4) {
       if (parseInt(selectedSection) === 2 || parseInt(selectedSection) === 4) {
@@ -325,6 +341,7 @@ const JobOffer = (props) => {
           chart_title={chart_title}
           bottom_title={chart_bottom_title}
           list={list}
+          sub_list={sub_list}
         />
       } else {
         return <MapCountyArea

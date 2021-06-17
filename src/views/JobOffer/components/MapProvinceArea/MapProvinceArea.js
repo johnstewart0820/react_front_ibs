@@ -8,7 +8,7 @@ import { ReactSVG } from 'react-svg'
 import useStyles from './style';
 
 const MapProvinceArea = (props) => {
-  const { provinceList, selectedProvince, chartData, data, chart_title, bottom_title, list } = props;
+  const { provinceList, selectedProvince, chartData, data, chart_title, bottom_title, list, sub_list } = props;
   const classes = useStyles();
   const color_list = getColorList();
   const [margin, setMargin] = useState(0);
@@ -135,7 +135,7 @@ const MapProvinceArea = (props) => {
               </div>
             </Grid>
           </Grid>
-          <div style={{marginTop: '30px'}}>
+          <div style={{ marginTop: '30px' }}>
             <div className={classes.chart_title}>
               {bottom_title}
             </div>
@@ -143,6 +143,17 @@ const MapProvinceArea = (props) => {
               {list.join('; ')}
             </div>
           </div>
+          {
+            sub_list.length > 0 &&
+            <>
+              <div className={classes.chart_title}>
+                Uwzględniono następujące grupy zawodowe:
+              </div>
+              <div className={classes.chart_title}>
+                {sub_list.join('; ')}
+              </div>
+            </>
+          }
         </Card>
       </Grid>
     </>

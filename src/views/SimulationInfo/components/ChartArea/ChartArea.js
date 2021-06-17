@@ -41,9 +41,9 @@ const ChartArea = (props) => {
     let _result = [];
     if (data === null || data === undefined || data.length === 0 || !data[0].data)
       return _result;
-    for (let i = 0; i < data[0].data.length; i ++ ) {
+    for (let i = 0; i < data[0].data.length; i++) {
       let _result_item = {};
-      for (let j = 0; j < data.length; j ++) {
+      for (let j = 0; j < data.length; j++) {
         let each = data[j];
         let item = data[j].data[i];
         let luka = null, podaz = null, popyt = null, zat = null, Rok;
@@ -55,7 +55,7 @@ const ChartArea = (props) => {
           popyt = item['Popyt na pracę'];
         if (parseInt(item['Zatrudnienie']) !== 0 || parseInt(item['Rok']) <= 2020)
           zat = item['Zatrudnienie'];
-        _result_item = {..._result_item, [`${each.name} - Luka (prawa oś)`]: luka, [`${each.name} - Podaż pracy`]: podaz, [`${each.name} - Popyt na pracę`]: popyt, [`${each.name} - Zatrudnienie`]: zat, 'Rok': item['Rok'], 'Wartość': item['Wartość']};
+        _result_item = { ..._result_item, [`${each.name} - Luka (prawa oś)`]: luka, [`${each.name} - Podaż pracy`]: podaz, [`${each.name} - Popyt na pracę`]: popyt, [`${each.name} - Zatrudnienie`]: zat, 'Rok': item['Rok'], [each.name]: item['Wartość'] };
       }
       _result.push(_result_item);
     }
@@ -82,23 +82,25 @@ const ChartArea = (props) => {
                 <Tooltip />
                 <Legend />
                 {
-                  parseInt(selectedSection) !== 8 ?
-                    chartData.map((item, index) => (
+
+                  chartData.map((item, index) => (
+                    parseInt(selectedSection) !== 8 ?
                       selectedCategory.map((_item, _index) => (
                         _item == 1 ?
                           <Line type="monotone" dataKey={`${item.name} - Popyt na pracę`} stroke={colors[selectedCategory.length * index + _index]} />
                           :
                           _item == 2 ?
-                            <Line type="monotone" dataKey={`${item.name} - Podaż pracy`}  stroke={colors[selectedCategory.length * index + _index]} />
+                            <Line type="monotone" dataKey={`${item.name} - Podaż pracy`} stroke={colors[selectedCategory.length * index + _index]} />
                             :
                             _item == 3 ?
-                              <Line type="monotone" dataKey={`${item.name} - Zatrudnienie`}  stroke={colors[selectedCategory.length * index + _index]} />
+                              <Line type="monotone" dataKey={`${item.name} - Zatrudnienie`} stroke={colors[selectedCategory.length * index + _index]} />
                               :
-                              <Line yAxisId="right" type="monotone" dataKey={`${item.name} - Luka (prawa oś)`}  stroke={colors[selectedCategory.length * index + _index]} />
+                              <Line yAxisId="right" type="monotone" dataKey={`${item.name} - Luka (prawa oś)`} stroke={colors[selectedCategory.length * index + _index]} />
                       ))
-                    ))
-                    :
-                    <Line type="monotone" dataKey="Wartość" stroke="#30a2cb" />
+                      :
+                      <Line type="monotone" dataKey={item.name} stroke={colors[index]} />
+                  ))
+
                   // <Line type="monotone" dataKey="Rok" stroke="#30a2cb" />
                 }
               </LineChart>
