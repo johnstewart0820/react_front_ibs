@@ -276,7 +276,7 @@ const JobOffer = (props) => {
   }
 
   const renderResultView = () => {
-    let chart_title = 'Ilość ofert pracy - przekrój ';
+    let chart_title = 'Liczba ofert pracy - przekrój ';
     let chart_bottom_title = '';
     let list = [];
     let sub_list = [];

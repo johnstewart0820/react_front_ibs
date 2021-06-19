@@ -41,7 +41,7 @@ const ChartArea = (props) => {
         m = parseInt(chart_data[i].value);
       }
       chart_data[i]['name'] = monthList[chart_data[i].month - 1] + '/' + chart_data[i].year;
-      chart_data[i]['value'] = parseInt(chart_data[i]['value']);
+      chart_data[i]['liczba ofert pracy'] = parseInt(chart_data[i]['value']);
     }
     setMax(m);
     setChartData(chart_data);
@@ -87,7 +87,7 @@ const ChartArea = (props) => {
                 <XAxis dataKey="name" />
                 <YAxis type="number" domain={[0, parseInt(max / 1000 + 1) * 1000]}/>
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#D6324B" />
+                <Line type="monotone" dataKey="liczba ofert pracy" stroke="#D6324B" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -102,7 +102,7 @@ const ChartArea = (props) => {
             <XAxis dataKey="name" interval={0} angle={0} height={100}  tick={<NotAxisTickButLabel/> }/>
             <YAxis />
             <Tooltip />
-            <Bar dataKey="value" fill="#D6324B" />
+            <Bar dataKey="liczba ofert pracy" fill="#D6324B" />
           </BarChart>
         </ResponsiveContainer>
         </div>
@@ -111,7 +111,7 @@ const ChartArea = (props) => {
           <ResponsiveContainer>
           <PieChart>
             <Pie
-              dataKey="value"
+              dataKey="liczba ofert pracy"
               isAnimationActive={false}
               data={chartData}
               fill="#D6324B"
