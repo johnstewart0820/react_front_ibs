@@ -79,6 +79,10 @@ const Main = props => {
       setOpenSidebar(false);
     }
   }, [isDesktop]);
+
+  useEffect(() => {
+    localStorage.setItem('sidebar', !openSidebar || !isDesktop);
+  }, [isDesktop, openSidebar])
   return (
     <div
       className={clsx({
@@ -92,7 +96,7 @@ const Main = props => {
         open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
       />
-      <main className={classes.mainContainer}>
+      <main className={classes.mainContainer} id="main_container">
         {children}
       </main>
       <div className={openSidebar && isDesktop ? classes.footer : classes.footer_min}>

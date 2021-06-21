@@ -37,8 +37,10 @@ const MapProvinceArea = (props) => {
     let tooltip = document.getElementById("tooltip");
     tooltip.innerHTML = text;
     tooltip.style.display = "block";
-    tooltip.style.left = evt.pageX - 30 + 'px';
-    tooltip.style.top = evt.pageY - 30 + 'px';
+    // console.log(evt.pageY - 30 + window.scrollY);
+    let main_container = document.getElementById('main_container');
+    tooltip.style.left = localStorage.getItem('sidebar') === 'true' ? evt.pageX  + 'px' : evt.pageX - 300 + 'px';
+    tooltip.style.top = evt.pageY - 115 + main_container.scrollTop + 'px';
   }
 
   function hideTooltip() {

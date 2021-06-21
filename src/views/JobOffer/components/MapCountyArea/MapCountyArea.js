@@ -37,8 +37,9 @@ const MapCountyArea = (props) => {
     tooltip.innerHTML = text;
     tooltip.style.display = "block";
     tooltip.style.padding = "5px";
-    tooltip.style.left = evt.pageX - 30 + 'px';
-    tooltip.style.top = evt.pageY - 30 + 'px';
+    let main_container = document.getElementById('main_container');
+    tooltip.style.left = localStorage.getItem('sidebar') === 'true' ? evt.pageX  + 'px' : evt.pageX - 300 + 'px';
+    tooltip.style.top = evt.pageY - 115 + main_container.scrollTop + 'px';
   }
 
   function hideTooltip() {
@@ -92,7 +93,7 @@ const MapCountyArea = (props) => {
                               value = (chartData[k].value).toFixed(2);
                             }
                           }
-                          title = clusterList[countyList[j].cluster_id - 1].name + ' : ' + value;
+                          title = clusterList[countyList[j].cluster_id - 1].name;
                         }
                       }
                       svg.children[i].onmousemove = (evt) => showTooltip(evt, title);
