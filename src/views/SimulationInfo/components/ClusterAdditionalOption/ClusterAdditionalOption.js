@@ -17,8 +17,7 @@ const ClusterAdditionalOption = (props) => {
     handleSelectedShowChartsMode,
     clusterList,
     showChartsMode,
-    ableRender,
-    handleRender
+    selectedChartType
   } = props;
 
   return (

@@ -281,7 +281,6 @@ const JobOffer = (props) => {
     let list = [];
     let sub_list = [];
     chart_title += sectionList[selectedSection - 1].name.toLowerCase();
-    chart_title += ' (w tysiącach)';
     if (parseInt(selectedSection) === 1) {
       chart_bottom_title = 'Na wykresie przedstawiono liczebności dla następujących grup zawodowych:';
       selectedOccupation.map((item, index) => {

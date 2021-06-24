@@ -19,8 +19,7 @@ const EducationAdditionalOption = (props) => {
     educationList,
     ageList,
     showChartsMode,
-    ableRender,
-    handleRender
+    selectedChartType
   } = props;
 
   return (

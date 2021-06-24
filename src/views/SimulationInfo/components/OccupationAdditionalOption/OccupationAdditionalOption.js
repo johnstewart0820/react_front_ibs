@@ -22,8 +22,7 @@ const OccupationAdditionalOption = (props) => {
     occupationList,
     showChartsMode,
     occupationSizeList,
-    ableRender,
-    handleRender
+    selectedChartType
   } = props;
 
   return (

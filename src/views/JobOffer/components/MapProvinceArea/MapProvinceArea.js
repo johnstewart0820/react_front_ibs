@@ -70,6 +70,12 @@ const MapProvinceArea = (props) => {
       setMargin((max - min) / 5);
     }
   }, [chartData]);
+
+  const generateThousand = (value) => {
+    let _value = parseInt(value);
+    let _str = _value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return _str;
+  }
   return (
     <>
       <Grid item xs={12} className={classes.controlContainer}>
@@ -130,7 +136,7 @@ const MapProvinceArea = (props) => {
                   {color_list.map((item, index) => (
                     <div className={classes.colorBlock}>
                       <div style={{ width: '20px', height: '10px', border: '1px solid gray', backgroundColor: color_list[index] }} />
-                      <div style={{ marginLeft: '20px' }}>{((index) * margin + min).toFixed(2)} ~ {((index + 1) * margin + min).toFixed(2)}</div>
+                      <div style={{ marginLeft: '20px' }}>{generateThousand((index) * margin + min)} ~ {generateThousand((index + 1) * margin + min)}</div>
                     </div>
                   ))}
                 </div>

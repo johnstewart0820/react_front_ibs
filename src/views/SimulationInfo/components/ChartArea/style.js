@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
     },
     container: {
         width: '100%',
-        height: '576px',
+        height: '800px',
         display: 'flex',
         fontFamily: 'roboto',
         marginBottom: '10px',

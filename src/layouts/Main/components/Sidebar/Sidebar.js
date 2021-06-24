@@ -82,21 +82,21 @@ const Sidebar = props => {
       icon: <KokpitIcon/>
     },
     {
-      title: 'Modul prognostyczny',
+      title: 'Moduł prognostyczny',
       href: '/forecasting_module',
-      tooltip: 'Modul pozwala przegladac szczególowe prognozy popytu na prace, podazy pracy i luki popytowo-podazowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostepne sa w 8 przekrojach ',
+      tooltip: 'Moduł pozwala przegladac szczególowe prognozy popytu na prace, podazy pracy i luki popytowo-podazowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostepne sa w 8 przekrojach ',
       icon: <ModuleIcon/>
     },
     {
-      title: 'Wlasne symulacje',
+      title: 'Własne symulacje',
       href: '/own_simulations',
-      tooltip: 'Modul pozwala dostosowywac prognozy rynku pracy do wybranych zalozen ekonomicznych i demograficznych',
+      tooltip: 'Moduł pozwala dostosowywac prognozy rynku pracy do wybranych zalozen ekonomicznych i demograficznych',
       icon: <SimulationIcon/>
     },
     {
       title: 'Zapisane symulacje',
       href: '/saved_simulations',
-      tooltip: 'W tej zakladce znajduja sie domyslne scenariusze oraz wlasne symulacje stworzone przez uzytkownika',
+      tooltip: 'W tej zakladce znajduja sie domyslne scenariusze oraz własne symulacje stworzone przez uzytkownika',
       icon: <SavedSimulationIcon/>
     },
     {
@@ -106,9 +106,9 @@ const Sidebar = props => {
       icon: <SavedAnalyzeIcon/>
     },
     {
-      title: 'Modul Internetowych Ofert Pracy',
+      title: 'Moduł Internetowych Ofert Pracy',
       href: '/job_offer',
-      tooltip: 'Modul gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupelniajac informacje o niezrealizowanym popycie na prace oraz wskazujac jego biezace trendy.',
+      tooltip: 'Moduł gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupelniajac informacje o niezrealizowanym popycie na prace oraz wskazujac jego biezace trendy.',
       icon: <JobIcon/>
     },
     {

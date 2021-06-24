@@ -70,6 +70,12 @@ const MapCountyArea = (props) => {
     }
   }, [chartData]);
 
+  const generateThousand = (value) => {
+    let _value = parseInt(value);
+    let _str = _value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return _str;
+  }
+  
   return (
     <>
       <Grid item xs={12} className={classes.controlContainer}>
@@ -139,7 +145,7 @@ const MapCountyArea = (props) => {
                   {color_list.map((item, index) => (
                     <div className={classes.colorBlock}>
                       <div style={{ width: '20px', height: '10px', border: '1px solid gray', backgroundColor: color_list[index] }} />
-                      <div style={{ marginLeft: '20px' }}>{parseInt((index) * margin)} ~ {parseInt((index + 1) * margin)}</div>
+                      <div style={{ marginLeft: '20px' }}>{generateThousand((index) * margin)} ~ {generateThousand((index + 1) * margin)}</div>
                     </div>
                   ))}
                 </div>

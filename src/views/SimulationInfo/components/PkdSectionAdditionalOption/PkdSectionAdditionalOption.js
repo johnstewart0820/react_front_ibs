@@ -17,7 +17,9 @@ const PkdSectionAdditionalOption = (props) => {
     handleSelectedShowChartsMode,
     pkdSectionList,
     showChartsMode,
+    selectedChartType
   } = props;
+
 
   return (
     <>

@@ -16,12 +16,10 @@ const ProvinceAdditionalOption = (props) => {
     handleSelectedProvince,
     handleSelectedShowChartsMode,
     provinceList,
-    showChartsMode,
-    ableRender,
-    handleRender
+    showChartsMode
   } = props;
 
-  return (
+  return (  
     <>
       <Card className={classes.secondContainer}>
         <Grid container spacing={2} className={classes.mainContainer}>

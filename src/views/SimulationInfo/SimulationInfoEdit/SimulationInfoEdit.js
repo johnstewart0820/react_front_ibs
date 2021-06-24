@@ -278,7 +278,7 @@ const SimulationInfoEdit = (props) => {
       setSelectedCluster(_arr);
 
     }
-    if (selectedChartType == 2) {
+    if (selectedChartType == 2 || Number(selectedChartType) == 3) {
       let _arr = JSON.parse(JSON.stringify(totalChartResultList));
       setChartResultList([_arr[1]]);
       setSelectedShowChartsMode(2);
@@ -376,7 +376,7 @@ const SimulationInfoEdit = (props) => {
       chart_count = selectedEducation.length * selectedAge.length;
     }
 
-    if (chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
+    if (Number(selectedChartType) === 1 && chart_count * category_count > 10 && Number(selectedShowChartsMode) === 2) {
       addToast('Wykres liniowy prezentujący zbiorcze dane może zawierać do 10 linii. Zmień ustawienia i wygeneruj wykres ponownie',
         { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true });
     } else {
@@ -749,7 +749,6 @@ const SimulationInfoEdit = (props) => {
           occupationList={occupationList}
           showChartsMode={chartResultList}
           occupationSizeList={occupationSizeList}
-          selectedChartType={selectedChartType}
         />
       case 7:
         return <ClusterOccupationAdditionalOption
@@ -765,7 +764,6 @@ const SimulationInfoEdit = (props) => {
           occupationList={occupationList}
           occupationSizeList={occupationSizeList}
           showChartsMode={chartResultList}
-          selectedChartType={selectedChartType}
         />
       case 8:
         return <EducationAdditionalOption
