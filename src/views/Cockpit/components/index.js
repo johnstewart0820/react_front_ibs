@@ -1,1 +1,2 @@
-// export { default as Budget } from './Budget';
+export { default as SimulationChart } from './SimulationChart';
+export { default as ChartArea } from './ChartArea';
