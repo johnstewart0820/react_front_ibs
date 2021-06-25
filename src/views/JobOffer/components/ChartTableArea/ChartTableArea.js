@@ -24,7 +24,7 @@ const ChartTableArea = (props) => {
             chart_data={chartData}
             selectedChartType={selectedChartType}
           />
-          <div style={{ marginTop: '120px' }}>
+          <div style={{ marginTop: '0px' }}>
             <div className={classes.chart_title}>
               {bottom_title}
             </div>
@@ -36,7 +36,7 @@ const ChartTableArea = (props) => {
             sub_list.length > 0 &&
             <>
               <div className={classes.chart_title}>
-                Uwzględniono następujace grupy zawodowe:
+                Uwzględniono następujące grupy zawodowe:
               </div>
               <div className={classes.chart_title}>
                 {sub_list.join('; ')}

@@ -87,14 +87,11 @@ const useStyles = makeStyles(theme => ({
     },
     container: {
         width: '100%',
-        height: '800px',
+        height: '700px',
         display: 'flex',
         fontFamily: 'roboto',
         marginBottom: '10px',
         marginTop: '10px',
-        '& .recharts-legend-wrapper': {
-            bottom: 'auto !important'
-        }
     },
     chartTitle: {
         writingMode: 'vertical-rl',

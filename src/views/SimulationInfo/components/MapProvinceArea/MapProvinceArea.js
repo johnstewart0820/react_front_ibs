@@ -109,10 +109,12 @@ const MapProvinceArea = (props) => {
                           let color = 0;
                           for (let k = 0; k < chartData.length; k++) {
                             if (parseInt(chartData[k].code) === parseInt(selectedProvince[j])) {
-                              let color_ind = Math.ceil((chartData[k].value - min) / margin);
+                              let color_ind = Math.ceil((chartData[k].value - min) / margin - 1);
                               if (color_ind >= color_list.length) {
                                 color_ind = color_list.length - 1;
                               }
+                              if (color_ind < 0)
+                                color_ind = 0;
                               color = color_list[color_ind];
                             }
                           }
