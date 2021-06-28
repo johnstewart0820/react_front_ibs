@@ -152,7 +152,14 @@ const SimulationInfoEdit = (props) => {
 
   const handleExportAsPng = () => {
     const dom = chart.current;
-    domtoimage.toPng(dom)
+    const scale = 2;
+    domtoimage.toPng(dom, {
+      height: dom.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale}) translate(${dom.offsetWidth / 2 / scale}px, ${dom.offsetHeight / 2 / scale}px)`
+      },
+      width: dom.offsetWidth * scale
+    })
       .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'download.png';
@@ -166,7 +173,14 @@ const SimulationInfoEdit = (props) => {
 
   const handleExportAsJpg = () => {
     const dom = chart.current;
-    domtoimage.toJpeg(dom)
+    const scale = 2;
+    domtoimage.toJpeg(dom, {
+      height: dom.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale}) translate(${dom.offsetWidth / 2 / scale}px, ${dom.offsetHeight / 2 / scale}px)`
+      },
+      width: dom.offsetWidth * scale
+    })
       .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'download.jpg';
@@ -222,7 +236,14 @@ const SimulationInfoEdit = (props) => {
   const handleExportAsPdf = () => {
 
     const dom = chart.current;
-    domtoimage.toJpeg(dom)
+    const scale = 2;
+    domtoimage.toJpeg(dom, {
+      height: dom.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale}) translate(${dom.offsetWidth / 2 / scale}px, ${dom.offsetHeight / 2 / scale}px)`
+      },
+      width: dom.offsetWidth * scale
+    })
       .then(function (dataUrl) {
         let img = new Image();
         img.onload = function () {

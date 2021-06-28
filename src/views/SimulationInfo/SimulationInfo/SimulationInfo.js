@@ -53,7 +53,7 @@ const SimulationInfo = (props) => {
     'Scenariusz zakładający dwukrotnie większy napływ imigrantów niż w scenariuszu bazowym.',
     'Scenariusz zakładający dwukrotnie mniejszy napływ imigrantów niż w scenariuszu bazowym.'
   ];
-  const [item, setItem] = useState(props.location.state ? props.location.state.item: 1);
+  const [item, setItem] = useState(props.location.state ? props.location.state.item : 1);
   const [progressStatus, setProgressStatus] = useState(false);
   const [scenariosLabels, setScenariosLabels] = useState([]);
   const [selectedChartType, setSelectedChartType] = useState(0);
@@ -151,7 +151,14 @@ const SimulationInfo = (props) => {
 
   const handleExportAsPng = () => {
     const dom = chart.current;
-    domtoimage.toPng(dom)
+    const scale = 2;
+    domtoimage.toPng(dom, {
+      height: dom.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale}) translate(${dom.offsetWidth / 2 / scale}px, ${dom.offsetHeight / 2 / scale}px)`
+      },
+      width: dom.offsetWidth * scale
+    })
       .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'download.png';
@@ -165,7 +172,14 @@ const SimulationInfo = (props) => {
 
   const handleExportAsJpg = () => {
     const dom = chart.current;
-    domtoimage.toJpeg(dom)
+    const scale = 2;
+    domtoimage.toJpeg(dom, {
+      height: dom.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale}) translate(${dom.offsetWidth / 2 / scale}px, ${dom.offsetHeight / 2 / scale}px)`
+      },
+      width: dom.offsetWidth * scale
+    })
       .then(function (dataUrl) {
         var link = document.createElement('a');
         link.download = 'download.jpg';
@@ -221,7 +235,14 @@ const SimulationInfo = (props) => {
   const handleExportAsPdf = () => {
 
     const dom = chart.current;
-    domtoimage.toJpeg(dom)
+    const scale = 2;
+    domtoimage.toJpeg(dom, {
+      height: dom.offsetHeight * scale,
+      style: {
+        transform: `scale(${scale}) translate(${dom.offsetWidth / 2 / scale}px, ${dom.offsetHeight / 2 / scale}px)`
+      },
+      width: dom.offsetWidth * scale
+    })
       .then(function (dataUrl) {
         let img = new Image();
         img.onload = function () {
@@ -640,7 +661,7 @@ const SimulationInfo = (props) => {
             let chart_data = response.data.chart_data;
             let table_data = response.data.table_data;
             let field_list = response.data.field_list;
-            
+
             analyze.getTotalData(
               selectedChartType,
               selectedSection,
@@ -675,7 +696,7 @@ const SimulationInfo = (props) => {
                   setHeaders(_arr);
                   setTimeout(() => {
                     if (chart.current != null)
-                    chart.current.scrollIntoView({ behavior: 'smooth' });
+                      chart.current.scrollIntoView({ behavior: 'smooth' });
                   }, 1000);
                   setRenderStatus(true);
                 } else {
@@ -685,7 +706,7 @@ const SimulationInfo = (props) => {
                 }
               }
               setProgressStatus(false);
-              
+
             })
           } else {
             addToast('Określiłeś zbyt dużo danych do przeanalizowania. Zmodyfikuj parametry analizy i spróbuj ponownie',
@@ -948,12 +969,12 @@ const SimulationInfo = (props) => {
                 <>
                   <div className={classes.titleHeader} style={selectedChartType == 3 ? { marginBottom: '40px' } : {}}>
                     Wybierz kategorię
-                </div>
+                  </div>
                   {
                     parseInt(selectedChartType) != 3 ?
                       <div className={classes.subHeader}>
                         (można wybrać 1, 2 lub 3 kategorie)
-                  </div>
+                      </div>
                       :
                       <></>
                   }

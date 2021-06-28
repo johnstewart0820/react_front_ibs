@@ -95,6 +95,14 @@ const useStyles = makeStyles(theme => ({
         '& .recharts-legend-wrapper': {
             bottom: '-20px !important',
             fontSize: '14px'
+        },
+        '& .recharts-legend-item-text' : {
+            fontSize: '14px',
+            width: '350px',
+            verticalAlign: 'top',
+            display: 'inline-block',
+            lineHeight: '19px',
+            textAlign: 'left'
         }
     },
     chartTitle: {

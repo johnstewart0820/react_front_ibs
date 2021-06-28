@@ -21,7 +21,7 @@ const SimulationChart = (props) => {
   const [selectedPkdSection, setSelectedPkdSection] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState([]);
   const [selectedOccupation, setSelectedOccupation] = useState([]);
-  const [selectedYear, setSelectedYear] = useState(2011);
+  const [selectedYear, setSelectedYear] = useState(2020);
   const [selectedEducation, setSelectedEducation] = useState([]);
   const [selectedAge, setSelectedAge] = useState([]);
   const [selectedToYear, setSelectedToYear] = useState(2050);
