@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   normalBlock: {
     padding: '30px 30px 30px 30px',
-    height: '100%',
+    // height: '100%',
     '& img': {
       width: '100%'
     },
@@ -95,6 +95,9 @@ const useStyles = makeStyles((theme) => ({
   progress: {
       color: theme.palette.pink
   },
+  tooltip: {
+    fontSize: '0.8em'
+  }
 }));
 
 export default useStyles;

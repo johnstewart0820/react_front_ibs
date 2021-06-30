@@ -113,7 +113,7 @@ const SignUp = props => {
       <div className={classes.root}>
         <div className={classes.mainContainer}>
           <div className={classes.footerContainer}>
-            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} />
+            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt='Logo Panstwowy Fundusz Rehabilitacji Osób Niepelnosprawnych'/>
           </div>
           <div className={classes.logoContainer}>
             <div className={classes.logo} />
@@ -128,12 +128,12 @@ const SignUp = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} />
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='E-mail'/>
                   <div className={classes.error_log}>{registered && error["email"] && error["email"].length > 0 && error.email}</div>
                   <div className={classes.notify}>Hasło musi zawierać minimum 8 znaków, małe i wielkie litery oraz cyfry, a dodatkowo posiadać minimum jeden znak specjalny: !,@,#,?</div>
-                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress} />
+                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='Hasło'/>
                   <div className={classes.error_log}>{registered && error["password"] && error["password"].length > 0 && error.password}</div>
-                  <input className={classes.input_box} type="password" value={input.reset_password} name="reset_password" placeholder="Powtórz hasło" onChange={handleChange} onKeyPress={handleKeyPress} />
+                  <input className={classes.input_box} type="password" value={input.reset_password} name="reset_password" placeholder="Powtórz hasło" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='Powtórz hasło'/>
                   <div className={classes.error_log}>{registered && error["reset_password"] && error["reset_password"].length > 0 && error.reset_password}</div>
                   <Grid container>
                     <Grid item xs={12}>

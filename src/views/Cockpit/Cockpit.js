@@ -10,7 +10,7 @@ import {
   Tooltip
 } from '@material-ui/core';
 import contents from '../../apis/contents';
-import { SimulationChart } from './components';
+import { SimulationChart } from 'components';
 const Cockpit = props => {
   const { children } = props;
   const [blocks, setBlocks] = useState([]);
@@ -26,22 +26,39 @@ const Cockpit = props => {
       .then(response => {
         setProgressStatus(false);
         if (response.code === 200) {
-          setBlocks(getContents(response.data.blocks));
+          setBlocks(response.data.blocks);
         }
       })
   }, []);
 
-  const getContents = (_blocks) => {
-    let _arr = [];
-    for (let i = 0; i < _blocks.length; i++) {
-      let item = _blocks[i].content;
-      item = item.replace('<p>', '');
-      item = item.replace('</p>', '');
-      _arr.push(item);
-    }
-    console.log(_arr);
-    return _arr;
+  const getContent = (_block) => {
+    let index = 0;
+    let item = _block;
+    if (item.search("chart:") == -1)
+      return null;
+    item = item.split("<p>[chart:")[1];
+    index = item.split(']</p>')[0];
+
+    return index;
   }
+
+  const getHeader = (_block) => {
+    let item = _block;
+    item = item.split('<p>[chart:')[0];
+
+    return item;
+  }
+
+  const getFooter = (_block) => {
+    let item = _block;
+    if (item.search('chart:') == -1)
+      return null;
+    item = item.split('<p>[chart:')[1];
+    item = item.split(']</p>')[1];
+
+    return item;
+  }
+
   const handleGotoForecastingModule = () => {
     history.push('/forecasting_module');
   }
@@ -58,12 +75,12 @@ const Cockpit = props => {
               <div className={classes.header}>Witaj w Systemie Prognozowania Polskiego Rynku Pracy!</div>
               <div className={classes.subHeader}>Wybierz Moduł, który Cię interesuje:</div>
               <div className={classes.buttonBlock}>
-                <Tooltip arrow title="Moduł pozwala przeglądać szczegółowe prognozy popytu na pracę, podaży pracy i luki popytowo-podażowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostępne są w 8 przekrojach." placement="bottom-start">
+                <Tooltip arrow classes={{ tooltip: classes.tooltip }} title="Moduł pozwala przeglądać szczegółowe prognozy popytu na pracę, podaży pracy i luki popytowo-podażowej na polskim rynku pracy w horyzoncie do roku 2050. Prognozy oraz dane historyczne dostępne są w 8 przekrojach." placement="bottom-start">
                   <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoForecastingModule}>
                     Moduł Prognostyczny
                   </Button>
                 </Tooltip>
-                <Tooltip arrow title="Moduł gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupełniając informacje o niezrealizowanym popycie na pracę oraz wskazując jego bieżące trendy." placement="bottom-start">
+                <Tooltip arrow classes={{ tooltip: classes.tooltip }} title="Moduł gromadzi dane o ofertach pracy zamieszczanych na dedykowanych portalach rekrutacyjnych, uzupełniając informacje o niezrealizowanym popycie na pracę oraz wskazując jego bieżące trendy." placement="bottom-start">
                   <Button variant="contained" color="secondary" className={classes.btnOpen} onClick={handleGotoJobOffer}>
                     Moduł Internetowych Ofert Pracy
                   </Button>
@@ -78,20 +95,38 @@ const Cockpit = props => {
                 {
                   blocks.length > 3 &&
                   <Card className={classes.normalBlock}>
-                    <SimulationChart
-                      id_analyze={blocks[3]}
-                    />
+                    <div dangerouslySetInnerHTML={{ __html: getHeader(blocks[3].content) }} />
+                    {
+                      getContent(blocks[3].content) &&
+                      <SimulationChart
+                        id_analyze={getContent(blocks[3].content)}
+                      />
+                    }
+                    {
+                      getFooter(blocks[3].content) &&
+                      <div dangerouslySetInnerHTML={{ __html: getFooter(blocks[3].content) }} />
+                    }
+
                   </Card>
                 }
 
               </Grid>
               <Grid item md={6} xs={12}>
-              {
-                  blocks.length > 3 &&
+                {
+                  blocks.length > 4 &&
                   <Card className={classes.normalBlock}>
-                    <SimulationChart
-                      id_analyze={blocks[4]}
-                    />
+                    <div dangerouslySetInnerHTML={{ __html: getHeader(blocks[4].content) }} />
+                    {
+                      getContent(blocks[4].content) &&
+                      <SimulationChart
+                        id_analyze={getContent(blocks[4].content)}
+                      />
+                    }
+                    {
+                      getFooter(blocks[4].content) &&
+                      <div dangerouslySetInnerHTML={{ __html: getFooter(blocks[4].content) }} />
+                    }
+
                   </Card>
                 }
 

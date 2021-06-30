@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import useStyles from './style';
 
-import analyzes from '../../../../apis/analyze';
+import analyzes from '../../apis/analyze';
 import {ChartArea} from '../'
 
 const SimulationChart = (props) => {

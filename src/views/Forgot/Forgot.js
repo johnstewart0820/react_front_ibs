@@ -21,7 +21,7 @@ const Forgot = props => {
   const [error, setError] = useState({});
   const [progressStatus, setProgressStatus] = useState(false);
   useEffect(() => {
-    
+
   }, []);
 
   const handleChange = event => {
@@ -31,22 +31,22 @@ const Forgot = props => {
   };
 
   const handleForgot = event => {
-    if ((error && (error.email && error.email.length > 0 )) || !input.email) {
+    if ((error && (error.email && error.email.length > 0)) || !input.email) {
       addToast(constants.CHECK_ALL_FIELDS, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
     } else {
       setProgressStatus(true);
       auth
-      .forgot(input.email)
-      .then(response => {
-        if (response.code === 200) {
-          setProgressStatus(false);
-          addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true })
-          setTimeout(function(){history.push('/login')}, 1000);
-        } else {
-          setProgressStatus(false);
-          addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
-        }
-      }) 
+        .forgot(input.email)
+        .then(response => {
+          if (response.code === 200) {
+            setProgressStatus(false);
+            addToast(response.message, { appearance: 'success', autoDismissTimeout: 1000, autoDismiss: true })
+            setTimeout(function () { history.push('/login') }, 1000);
+          } else {
+            setProgressStatus(false);
+            addToast(response.message, { appearance: 'error', autoDismissTimeout: 5000, autoDismiss: true })
+          }
+        })
     }
   };
 
@@ -68,52 +68,52 @@ const Forgot = props => {
     setError(arr);
   }, [input]);
   return (
-      <>
-    <div className={classes.root}>
-      <div className={classes.mainContainer}>
-        <div className={classes.footerContainer}>
-            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt=""/>
-        </div>
-        <div className={classes.logoContainer}>
-          <div className={classes.logo} />
-        </div>
-        <div className={classes.switchContainer}>
-                <div className={classes.switchTab}>
-                  <Link to="/login" component={RouterLink} className={classes.tabLogin}>Logowanie</Link>
-                  <Link to="/register" component={RouterLink} className={classes.tabRegister}>Rejestracja</Link>
+    <>
+      <div className={classes.root}>
+        <div className={classes.mainContainer}>
+          <div className={classes.footerContainer}>
+            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt='Logo Panstwowy Fundusz Rehabilitacji Osób Niepelnosprawnych' />
+          </div>
+          <div className={classes.logoContainer}>
+            <div className={classes.logo} />
+          </div>
+          <div className={classes.switchContainer}>
+            <div className={classes.switchTab}>
+              <Link to="/login" component={RouterLink} className={classes.tabLogin}>Logowanie</Link>
+              <Link to="/register" component={RouterLink} className={classes.tabRegister}>Rejestracja</Link>
+            </div>
+          </div>
+          <div className={classes.loginForm}>
+            <div>
+              <div className={classes.loginMainForm}>
+                <div className={classes.inputForm}>
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='E-mail' />
+                  <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
                 </div>
               </div>
-        <div className={classes.loginForm}>
-          <div>
-            <div className={classes.loginMainForm}>
-              <div className={classes.inputForm}>
-                <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress}/>
-                <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
-              </div>
-            </div>
-            <div className={classes.buttonContainer}>
-              <div className={classes.btnForgotContainer}>
-                <Button variant="contained" color="secondary" className={classes.btnForgot} onClick={handleForgot}>
+              <div className={classes.buttonContainer}>
+                <div className={classes.btnForgotContainer}>
+                  <Button variant="contained" color="secondary" className={classes.btnForgot} onClick={handleForgot}>
                     Zresetuj hasło
-                </Button>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
+
         </div>
-        
       </div>
-    </div>
-    {
+      {
         progressStatus ?
-        <>
-        <div className={classes.progressContainer}>
-          <CircularProgress className={classes.progress}/>
-        </div>
-        </>
-        :
-        <></>
+          <>
+            <div className={classes.progressContainer}>
+              <CircularProgress className={classes.progress} />
+            </div>
+          </>
+          :
+          <></>
       }
-  </>
+    </>
   );
 };
 

@@ -99,7 +99,7 @@ const SignIn = props => {
       <div className={classes.root}>
         <div className={classes.mainContainer}>
           <div className={classes.footerContainer}>
-            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} />
+            <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt='Logo Panstwowy Fundusz Rehabilitacji Osób Niepelnosprawnych'/>
           </div>
           <div className={classes.logoContainer}>
             <div className={classes.logo} />
@@ -114,9 +114,9 @@ const SignIn = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} autocomplete='off'/>
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} autocomplete='off' aria-label='E-mail'/>
                   <div className={classes.error_log}>{tryLogin && error["email"] && error["email"].length > 0 && error.email}</div>
-                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}/>
+                  <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress}  aria-label='Hasło'/>
                   <div className={classes.error_log}>{tryLogin && error["password"] && error["password"].length > 0 && error.password}</div>
                   <FormControlLabel
                     className={classes.rememberMe}

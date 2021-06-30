@@ -116,7 +116,7 @@ const ResetPassword = props => {
         </div>
       </div>
       <div className={classes.footerContainer}>
-        <img src="/images/logos/footer_logo.png" className={classes.unionLogo} />
+        <img src="/images/logos/footer_logo.png" className={classes.unionLogo} alt='Logo Panstwowy Fundusz Rehabilitacji Osób Niepelnosprawnych'/>
       </div>
       {
         progressStatus ?
