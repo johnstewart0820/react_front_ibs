@@ -87,7 +87,7 @@ const Forgot = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='E-mail' />
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" id="email" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='E-mail' />
                   <div className={classes.error_log}>{error["email"] && error["email"].length > 0 && error.email}</div>
                 </div>
               </div>

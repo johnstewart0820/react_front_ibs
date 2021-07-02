@@ -128,7 +128,7 @@ const SignUp = props => {
             <div>
               <div className={classes.loginMainForm}>
                 <div className={classes.inputForm}>
-                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='E-mail'/>
+                  <input className={classes.input_box} type="email" value={input.email} name="email" placeholder="E-mail" onChange={handleChange} onKeyPress={handleKeyPress} id="email" aria-label='E-mail'/>
                   <div className={classes.error_log}>{registered && error["email"] && error["email"].length > 0 && error.email}</div>
                   <div className={classes.notify}>Hasło musi zawierać minimum 8 znaków, małe i wielkie litery oraz cyfry, a dodatkowo posiadać minimum jeden znak specjalny: !,@,#,?</div>
                   <input className={classes.input_box} type="password" value={input.password} name="password" placeholder="Hasło" onChange={handleChange} onKeyPress={handleKeyPress} aria-label='Hasło'/>
